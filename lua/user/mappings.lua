@@ -119,12 +119,18 @@ keymap('x', '<leader>p', '"_dP', opts)
 ----------------------------------------------------------------------------------------------------
 -- NOTE: could move the builtins back to commands, not lua functions. Lua functions only useful
 -- if I want to customize them further, differing from the options set up, which I don't do here.
-keymap('n', '<leader><space>', function()
-  require('telescope.builtin').buffers()
-end, opts)
--- keymap('n', '<leader>ff', function()
+
+-- keymap('n', '<leader><space>', function()
+--   require('telescope.builtin').buffers()
+-- end, opts)
 keymap('n', '\\e', function()
   require('telescope.builtin').find_files()
+end, opts)
+keymap('n', '\\g', function()
+  require('telescope.builtin').git_files()
+end, opts)
+keymap('n', '\\b', function()
+  require('telescope.builtin').buffers()
 end, opts)
 keymap('n', '<leader>sb', function()
   require('telescope.builtin').current_buffer_fuzzy_find()
@@ -132,6 +138,7 @@ end, opts)
 keymap('n', '<leader>sh', function()
   require('telescope.builtin').help_tags()
 end, opts)
+-- allow to grep for string under cursor
 keymap('n', '<leader>sd', function()
   require('telescope.builtin').grep_string()
 end, opts)
@@ -145,13 +152,10 @@ end, opts)
 keymap('n', '<leader>fgb', ':Telescope git_branches<CR>', opts)
 keymap('n', '<leader>?', ':Telescope keymaps<CR>', opts)
 keymap('n', '<leader>r', ':Telescope resume<CR>', opts)
+keymap('n', '<leader>sg', [[:Telescope grep_string search=<cr>]])
 -- keymap('n', '<leader>st', [[<cmd>lua require('telescope.builtin').tags()<CR>]], opts)
 -- keymap('n', '<leader>so', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]], opts)
 -- keymap('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], opts)
-
--- allow to grep for string under cursor
--- keymap('n', '<leader>sc', [[:execute 'Telescope live_grep default_text=' . expand('<cword>')<cr>]])
-keymap('n', '<leader>sg', [[:Telescope grep_string search=<cr>]])
 
 ----------------------------------------------------------------------------------------------------
 -- LSP Saga
