@@ -22,6 +22,7 @@ M.server = {
     '--all-scopes-completion',
     '--pch-storage=memory',
     '--query-driver=C:\\ST\\STM32CubeIDE_1.10.1\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.0.202111181127\\tools\\bin\\arm-none-eabi-gcc.exe', -- NOTE: This will definitely use c++ indexing, maybe change to gcc if C specific features/indexing needed
+    -- TODO: find a way to use gcc for c files and g++ for cpp files, as otherwise the diagnostics are not correct
   },
 }
 

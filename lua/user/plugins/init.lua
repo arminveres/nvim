@@ -122,8 +122,8 @@ require('packer').startup({
       },
       'ThePrimeagen/harpoon',
       -- {
-        -- 'rcarriga/nvim-notify',
-        -- config = require('user.plugins.notify')
+      -- 'rcarriga/nvim-notify',
+      -- config = require('user.plugins.notify')
       -- },
     })
 
@@ -137,6 +137,7 @@ require('packer').startup({
     use({ -- colorschemes TODO: just write my own colorscheme based on gruvbox...
       'ellisonleao/gruvbox.nvim',
       'rebelot/kanagawa.nvim',
+      'Mofiqul/adwaita.nvim',
       -- 'Mofiqul/vscode.nvim',
       -- 'projekt0n/github-nvim-theme',
       -- 'tanvirtin/monokai.nvim',
@@ -184,7 +185,7 @@ require('packer').startup({
 
     use({
       'junegunn/fzf',
-      run = './install --bin',
+      -- run = './install --bin',
     })
 
     use({ -- Autocompletion plugins
@@ -218,6 +219,11 @@ require('packer').startup({
       config = require('user.plugins.lspsaga'),
     })
 
+    use({
+      'RaafatTurki/hex.nvim',
+      config = require('user.plugins.hex')
+    })
+
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if PACKER_BOOTSTRAP then
@@ -225,6 +231,7 @@ require('packer').startup({
     end
   end,
   config = {
+    compile_on_sync = false, -- During sync(), run packer.compile()
     display = {
       open_fn = require('packer.util').float,
     },
