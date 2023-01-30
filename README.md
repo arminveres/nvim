@@ -1,3 +1,7 @@
+# nvim config
+
+![image](https://user-images.githubusercontent.com/45210978/215608303-3d877575-6184-4592-909f-92348418e080.png)
+
 #### TODO
 
 - add debug protocol DAP [nvim-dap](https://github.com/mfussenegger/nvim-dap)
