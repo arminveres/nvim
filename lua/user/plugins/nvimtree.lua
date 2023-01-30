@@ -5,6 +5,9 @@ return {
     local tree_callback = tcfg.nvim_tree_callback
     require("nvim-tree").setup({
       view = {
+        number = true, -- default: false
+        relativenumber = true, -- default: false
+        signcolumn = "yes",
         mappings = {
           custom_only = false,
           list = {
@@ -16,6 +19,10 @@ return {
         },
       },
       renderer = {
+        indent_markers = {
+          enable = true,
+          inline_arrows = true,
+        },
         icons = {
           webdev_colors = true,
           glyphs = {

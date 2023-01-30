@@ -1,6 +1,84 @@
 return {
+  {
+    "L3MON4D3/LuaSnip",
+    dependencies = {
+    "JoosepAlviste/nvim-ts-context-commentstring", -- better context aware commenting
+    },
+    opts = function()
+      local types = require("luasnip.util.types")
+      return {
+        history = true,
+        updateevents = "TextChanged,TextChangedI",
+        ext_opts = {
+          [types.choiceNode] = {
+            active = {
+              virt_text = { { " <- Current Choice", "NonTest" } },
+            },
+          },
+        },
+      }
+    end,
+    config = function(_, opts)
+      local ls = require("luasnip")
+      ls.config.set_config(opts)
+
+      require("luasnip/loaders/from_vscode").lazy_load()
+
+      if vim.fn.has("win32") == 1 then -- Windows specific options
+        require("luasnip.loaders.from_vscode").lazy_load({
+          paths = { "~/AppData/Local/nvim/lua/user/snippets/vsc/" },
+        })
+      else
+        require("luasnip.loaders.from_vscode").lazy_load({
+          paths = { "~/.config/nvim/lua/user/snippets/vsc/" },
+        })
+      end
+
+      for _, lang in pairs({ "all", "sh" }) do
+        ls.add_snippets(lang, require("user.snippets." .. lang), { key = lang })
+      end
+
+    end,
+    keys = {
+      {
+        "<C-k>",
+        function()
+          if require("luasnip").expand_or_jumpable() then
+            require("luasnip").expand_or_jump()
+          end
+        end,
+        mode = { "i", "s" },
+      },
+      {
+        "<C-j>",
+        function()
+          if require("luasnip").jumpable(-1) then
+            require("luasnip").jump(-1)
+          end
+        end,
+        mode = { "i", "s" },
+      },
+      {
+        "<C-l>",
+        function()
+          if require("luasnip").choice_active() then
+            require("luasnip").change_choice(1)
+          end
+        end,
+        mode = "i",
+      },
+      {
+        "<C-u>",
+        function()
+          require("luasnip.extras.select_choice")
+        end,
+        mode = "i",
+      },
+    },
+  },
   { -- Autocompletion plugins
     "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
     dependencies = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-nvim-lsp-signature-help",
@@ -15,7 +93,6 @@ return {
       },
       "uga-rosa/cmp-dictionary", -- dictionary plugin
       "f3fora/cmp-spell", -- spelling plugin
-      "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
       "rafamadriz/friendly-snippets",
       {
@@ -27,24 +104,12 @@ return {
     config = function()
       local cmp = require("cmp")
       local luasnip = require("luasnip")
-      require("luasnip/loaders/from_vscode").lazy_load()
-
-      if vim.fn.has("win32") == 1 then -- Windows specific options
-        require("luasnip.loaders.from_vscode").lazy_load({
-          paths = { "~/AppData/Local/nvim/snippets/" },
-        })
-      else
-        require("luasnip.loaders.from_vscode").lazy_load({
-          paths = { "~/.config/nvim/snippets/" },
-        })
-      end
 
       local check_backspace = function()
         local col = vim.fn.col(".") - 1
         return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
       end
 
-      --   פּ ﯟ   some other good icons
       local kind_icons = {
         Text = "",
         Method = "m",
@@ -94,26 +159,26 @@ return {
           -- Accept currently selected item. If none selected, `select` first item.
           -- Set `select` to `false` to only confirm explicitly selected items.
           ["<CR>"] = cmp.mapping.confirm({ select = false }),
-          ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
-            elseif check_backspace() then
-              fallback()
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
-          ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-              luasnip.jump(-1)
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
+          -- ["<Tab>"] = cmp.mapping(function(fallback)
+          --   if cmp.visible() then
+          --     cmp.select_next_item()
+          --   elseif luasnip.expand_or_jumpable() then
+          --     luasnip.expand_or_jump()
+          --   elseif check_backspace() then
+          --     fallback()
+          --   else
+          --     fallback()
+          --   end
+          -- end, { "i", "s" }),
+          -- ["<S-Tab>"] = cmp.mapping(function(fallback)
+          --   if cmp.visible() then
+          --     cmp.select_prev_item()
+          --   elseif luasnip.jumpable(-1) then
+          --     luasnip.jump(-1)
+          --   else
+          --     fallback()
+          --   end
+          -- end, { "i", "s" }),
         }),
         formatting = {
           fields = { "kind", "abbr", "menu" },
