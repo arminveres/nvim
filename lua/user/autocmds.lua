@@ -24,10 +24,13 @@ aucmd(
   { pattern = "defx", group = "TrailingSpace", command = "highlight clear TrailingSpaces" }
 )
 
-aucmd({ "VimEnter,WinEnter,Bufenter" }, {
+aucmd({ "VimEnter,WinEnter,BufEnter" }, {
   pattern = "*",
   callback = function()
+    vim.opt.foldcolumn = "0"
     vim.opt.foldlevel = 99
+    vim.opt.foldlevelstart = 99
+    vim.opt.foldenable = true
   end,
 })
 
