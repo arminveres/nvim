@@ -5,4 +5,3 @@
 - open telescope file picker if buffer empty
 - add `rust_tools`
 - replace `harpoon.nvim` with `graple.nvim`
-- configure [nvim ufo](https://github.com/kevinhwang91/nvim-ufo)

@@ -24,16 +24,6 @@ aucmd(
   { pattern = "defx", group = "TrailingSpace", command = "highlight clear TrailingSpaces" }
 )
 
-aucmd({ "VimEnter,WinEnter,BufEnter" }, {
-  pattern = "*",
-  callback = function()
-    vim.opt.foldcolumn = "0"
-    vim.opt.foldlevel = 99
-    vim.opt.foldlevelstart = 99
-    vim.opt.foldenable = true
-  end,
-})
-
 aucmd("BufWritePre", {
   group = vim.api.nvim_create_augroup("auto_create_dir", { clear = true }),
   callback = function(event)
