@@ -19,7 +19,6 @@
   "dressing.nvim": { "branch": "master", "commit": "4436d6f41e2f6b8ada57588acd1a9f8b3d21453c" },
   "fidget.nvim": { "branch": "main", "commit": "44585a0c0085765195e6961c15529ba6c5a2a13b" },
   "friendly-snippets": { "branch": "main", "commit": "a6f7a1609addb4e57daa6bedc300f77f8d225ab7" },
-  "fzf": { "branch": "master", "commit": "3ee00f8bc281e98e06689c127ebd09c0ed123929" },
   "gitsigns.nvim": { "branch": "main", "commit": "0d4fe37ba5285171f3729da955955205f3fa945b" },
   "grayout.vim": { "branch": "master", "commit": "4740a59994b9fbf372dced887b07f75d117208df" },
   "gruvbox.nvim": { "branch": "main", "commit": "2e93ac50b3e95d650e62729f8810a005861e77ad" },

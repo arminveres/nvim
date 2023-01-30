@@ -1,11 +1,13 @@
-local mason_ok, mason = pcall(require, 'mason')
+local mason_ok, mason = pcall(require, "mason")
 if not mason_ok then
-  vim.notify('mason not ok')
+  vim.notify("mason not ok")
   return
 end
 
 mason.setup({
-  -- add config here
+  ui = {
+    border = "rounded",
+  },
 })
 
 local status_ok, lsp_installer = pcall(require, "mason-lspconfig")
@@ -17,7 +19,7 @@ local settings = {
   -- refer to documentation https://github.com/williamboman/mason-lspconfig.nvim
 }
 lsp_installer.setup({
-  ensure_installed = { "sumneko_lua", "rust_analyzer", "clangd", "bashls" }
+  ensure_installed = { "sumneko_lua", "rust_analyzer", "clangd", "bashls" },
 })
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
@@ -64,11 +66,11 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
   end
 
   if server == "clangd" then
-    local clangd_opts = require('user.lsp.settings.clangd').server
-    opts = vim.tbl_deep_extend('force', clangd_opts, opts)
-    require('clangd_extensions').setup({
+    local clangd_opts = require("user.lsp.settings.clangd").server
+    opts = vim.tbl_deep_extend("force", clangd_opts, opts)
+    require("clangd_extensions").setup({
       server = opts,
-      extensions = require('user.lsp.settings.clangd').extensions
+      extensions = require("user.lsp.settings.clangd").extensions,
     })
     goto continue
   end

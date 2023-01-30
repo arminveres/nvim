@@ -29,15 +29,16 @@ return {
     "stevearc/dressing.nvim",
     config = true,
   },
-  "ThePrimeagen/harpoon",
   { -- install without yarn or npm
     "iamcco/markdown-preview.nvim",
     build = function()
       vim.fn["mkdp#util#install"]()
     end,
+    ft = "markdown",
   },
-  {
-    "junegunn/fzf",
-    -- build = './install --bin',
-  },
+  "ThePrimeagen/harpoon",
+  -- {
+  --   "junegunn/fzf",
+  -- build = './install --bin',
+  -- },
 }
