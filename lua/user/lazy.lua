@@ -16,4 +16,11 @@ require("lazy").setup({
     { import = "user.plugins" },
     { import = "user.plugins.ui" },
   },
+  defaults = {
+    performance = {
+      disabled_plugins = {
+        "netrwPlugin",
+      },
+    },
+  },
 })
