@@ -43,6 +43,17 @@ else
   })
 end
 
+-- ayu settings
+local ayu_ok, ayu = pcall(require, "ayu")
+if not ayu_ok then
+  vim.notify("ayu not ok")
+else
+  ayu.setup({
+    mirage = false,
+    overrides = custom_colors,
+  })
+end
+
 -- setting the colorscheme
 local colorscheme_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 if not colorscheme_ok then

@@ -15,6 +15,7 @@ return {
   dependencies = {
     "ellisonleao/gruvbox.nvim",
     config = function()
+      -- BUG: weird bug, where this is the only way, I can setup gruvbox, other colorschemes work without issues
       require("user.colorscheme")
     end,
   },

@@ -10,6 +10,9 @@ return {
     "JoosepAlviste/nvim-ts-context-commentstring", -- better context aware commenting
     {
       "numToStr/Comment.nvim", -- Comment out code easily
+      opts = {
+        ignore = '^$'
+      },
       config = true,
     },
   },
