@@ -2,7 +2,7 @@ return {
   {
     "L3MON4D3/LuaSnip",
     dependencies = {
-    "JoosepAlviste/nvim-ts-context-commentstring", -- better context aware commenting
+      "JoosepAlviste/nvim-ts-context-commentstring", -- better context aware commenting
     },
     opts = function()
       local types = require("luasnip.util.types")
@@ -34,9 +34,11 @@ return {
         })
       end
 
-      for _, lang in pairs({ "all", "sh" }) do
+      for _, lang in pairs({ "all", "sh", "c" }) do
         ls.add_snippets(lang, require("user.snippets." .. lang), { key = lang })
       end
+
+      ls.filetype_extend("cpp", { "c" }) -- could use filetype_set, which blocks cpp snippets
 
     end,
     keys = {
@@ -78,7 +80,7 @@ return {
   },
   { -- Autocompletion plugins
     "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
+    -- event = "InsertEnter",
     dependencies = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-nvim-lsp-signature-help",

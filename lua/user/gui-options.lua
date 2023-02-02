@@ -11,10 +11,14 @@ if vim.g.neovide then -- neovide specific settings
   vim.keymap.set('i', '<S-Insert>', '<C-R>+', opts)
 
   vim.g.neovide_transparency = 0.9
-  vim.g.neovide_frame_rate_idle = 60
   vim.g.neovide_frame_rate = 120
+  vim.g.neovide_frame_rate_idle = 120
+
 elseif vim.g.GuiLoaded then -- nvim-qt
   -- Nvim-qt needs this kind of notation
+  vim.opt.guifont = { 'Iosevka NF:h11' }
+  vim.keymap.set('i', '<S-Insert>', '<C-R>+', opts)
+else
   vim.opt.guifont = { 'Iosevka NF:h11' }
   vim.keymap.set('i', '<S-Insert>', '<C-R>+', opts)
 end
