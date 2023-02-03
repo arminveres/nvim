@@ -1,6 +1,7 @@
 return {
   {
     "L3MON4D3/LuaSnip",
+    event = "InsertEnter",
     dependencies = {
       "JoosepAlviste/nvim-ts-context-commentstring", -- better context aware commenting
     },
@@ -35,11 +36,11 @@ return {
       end
 
       for _, lang in pairs({ "all", "sh", "c" }) do
+        if lang == "c" then
+          ls.add_snippets("cpp", require("user.snippets." .. lang), { key = "cpp" })
+        end
         ls.add_snippets(lang, require("user.snippets." .. lang), { key = lang })
       end
-
-      ls.filetype_extend("cpp", { "c" }) -- could use filetype_set, which blocks cpp snippets
-
     end,
     keys = {
       {
@@ -80,7 +81,6 @@ return {
   },
   { -- Autocompletion plugins
     "hrsh7th/nvim-cmp",
-    -- event = "InsertEnter",
     dependencies = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-nvim-lsp-signature-help",
@@ -99,9 +99,19 @@ return {
       "rafamadriz/friendly-snippets",
       {
         "windwp/nvim-autopairs", -- Autopairs {}, [], () etc
-        config = true,
+        config = function()
+          local Rule = require("nvim-autopairs.rule")
+          local npairs = require("nvim-autopairs")
+          npairs.setup({
+            fast_wrap = {
+              map = "<M-e>",
+              chars = { "{", "[", "(", '"', "'", "<" },
+              pattern = [=[[%'%"%>%]%)%}%;%,]]=],
+            },
+          })
+          npairs.add_rule(Rule("<", ">")) -- finally add a tag rule
+        end,
       },
-      -- {'hrsh7th/cmp-vsnip'},
     },
     config = function()
       local cmp = require("cmp")
@@ -161,26 +171,6 @@ return {
           -- Accept currently selected item. If none selected, `select` first item.
           -- Set `select` to `false` to only confirm explicitly selected items.
           ["<CR>"] = cmp.mapping.confirm({ select = false }),
-          -- ["<Tab>"] = cmp.mapping(function(fallback)
-          --   if cmp.visible() then
-          --     cmp.select_next_item()
-          --   elseif luasnip.expand_or_jumpable() then
-          --     luasnip.expand_or_jump()
-          --   elseif check_backspace() then
-          --     fallback()
-          --   else
-          --     fallback()
-          --   end
-          -- end, { "i", "s" }),
-          -- ["<S-Tab>"] = cmp.mapping(function(fallback)
-          --   if cmp.visible() then
-          --     cmp.select_prev_item()
-          --   elseif luasnip.jumpable(-1) then
-          --     luasnip.jump(-1)
-          --   else
-          --     fallback()
-          --   end
-          -- end, { "i", "s" }),
         }),
         formatting = {
           fields = { "kind", "abbr", "menu" },
@@ -202,13 +192,13 @@ return {
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
           { name = "nvim_lua" },
-          { name = "luasnip" },
+          { name = "luasnip", priority = 1000 },
           { name = "nvim_lsp_signature_help" },
           { name = "path" },
           { name = "dictionary", keyword_length = 2 },
-          --[[ { name = 'rg' }, ]]
           { name = "buffer" },
           { name = "spell" },
+          -- { name = 'rg' },
         }),
         confirm_opts = {
           behavior = cmp.ConfirmBehavior.Replace,
@@ -218,19 +208,16 @@ return {
           completion = cmp.config.window.bordered(),
           documentation = cmp.config.window.bordered(),
         },
-        view = {
-          -- entries = 'native',
-        },
         experimental = {
           ghost_text = true,
         },
+        -- view = { entries = 'native', },
       })
 
       cmp.setup.cmdline(":", {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources({
           { name = "path" },
-        }, {
           { name = "cmdline" },
         }),
       })
@@ -246,7 +233,6 @@ return {
       cmp.setup.filetype("gitcommit", {
         sources = cmp.config.sources({
           { name = "git" }, -- You can specify the `cmp_git` source if you were installed it.
-        }, {
           { name = "buffer" },
         }),
       })
