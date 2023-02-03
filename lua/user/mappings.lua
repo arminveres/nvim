@@ -224,10 +224,12 @@ end, opts)
 ----------------------------------------------------------------------------------------------------
 keymap("n", [[<c-\>j]], ":ToggleTerm direction=horizontal<CR>", opts)
 keymap("n", [[<c-\>l]], ":ToggleTerm direction=vertical<CR>", opts)
+keymap("n", "<leader>gu", function()
+  _GITUI_TOGGLE()
+end, opts)
 
-keymap('n', '<leader>cp', '<cmd>PickColor<cr>', opts)
+keymap("n", "<leader>cp", "<cmd>PickColor<cr>", opts)
 -- vim.keymap.set('i', '<C-c>', '<cmd>PickColorInsert<cr>', opts)
 
-keymap('v', '<leader>ga', ':Gitsign stage_hunk<cr>', opts)
-keymap('n', '<leader>gb', ':Gitsign blame_line<cr>', opts)
-
+keymap("v", "<leader>ga", ":Gitsign stage_hunk<cr>", opts)
+keymap("n", "<leader>gb", ":Gitsign blame_line<cr>", opts)
