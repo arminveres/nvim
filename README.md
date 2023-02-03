@@ -9,3 +9,4 @@
 - open telescope file picker if buffer empty
 - add `rust_tools`
 - replace `harpoon.nvim` with `graple.nvim`
+- move json snippets to lua snippets
