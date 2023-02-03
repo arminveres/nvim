@@ -18,7 +18,7 @@ local snippets = {
   s("todo", {
     -- p(get_comment_string), -- BUG: does not work :( returns nil
     t(" "),
-    c(1, { t("TODO"), t("FIXME"), t("XXX") }),
+    c(1, { t("TODO"), t("FIXME"), t("NOTE"), t("BUG"), t("MISC") }),
     t(": (aver) "),
   }),
   s("dmy", {
