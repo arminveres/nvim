@@ -19,7 +19,7 @@ local settings = {
   -- refer to documentation https://github.com/williamboman/mason-lspconfig.nvim
 }
 lsp_installer.setup({
-  ensure_installed = { "sumneko_lua", "rust_analyzer", "clangd", "bashls" },
+  ensure_installed = { "lua_ls", "rust_analyzer", "clangd", "bashls" },
 })
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
@@ -35,9 +35,9 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
     capabilities = require("user.lsp.handlers").capabilities,
   }
 
-  if server == "sumneko_lua" then
-    local sumneko_opts = require("user.lsp.settings.sumneko_lua")
-    opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
+  if server == "lua_ls" then
+    local lua_opts = require("user.lsp.settings.lua_ls")
+    opts = vim.tbl_deep_extend("force", lua_opts, opts)
   end
 
   if server == "pyright" then

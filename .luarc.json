@@ -1,0 +1,16 @@
+{
+    "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
+    "diagnostics": {
+        "enable": true,
+        "globals": [
+            "vim",
+            "prequire"
+        ]
+    },
+    "workspace": {
+        "library": [
+            "/usr/share/nvim/runtime/lua/",
+            "/usr/share/nvim/runtime/lua/vim/lsp/"
+        ]
+    }
+}

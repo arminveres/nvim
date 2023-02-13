@@ -56,12 +56,12 @@ return {
       ncdu:toggle()
     end
 
-    local htop = Terminal:new({ cmd = "htop", hidden = true })
+    local htop = Terminal:new({ cmd = "htop", hidden = true, direction = "float" })
     function _HTOP_TOGGLE()
       htop:toggle()
     end
 
-    local python = Terminal:new({ cmd = "python", hidden = true })
+    local python = Terminal:new({ cmd = "python", hidden = true, direction = "float" })
     function _PYTHON_TOGGLE()
       python:toggle()
     end
