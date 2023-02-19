@@ -25,7 +25,7 @@ aucmd(
 )
 
 aucmd("BufWritePre", {
-  group = vim.api.nvim_create_augroup("auto_create_dir", { clear = true }),
+  group = create_augroup("auto_create_dir", { clear = true }),
   callback = function(event)
     local file = vim.loop.fs_realpath(event.match) or event.match
 
@@ -33,5 +33,18 @@ aucmd("BufWritePre", {
     local backup = vim.fn.fnamemodify(file, ":p:~:h")
     backup = backup:gsub("[/\\]", "%%")
     vim.go.backupext = backup
+  end,
+})
+
+aucmd("VimEnter,WinEnter", {
+  group = create_augroup("TelescopeOnEmptyBuffer", { clear = true }),
+  callback = function()
+    if vim.bo.filetype == "" then
+      local builtin = require("telescope.builtin")
+      builtin.find_files({
+        mode = "insert",
+        hidden = true,
+      })
+    end
   end,
 })
