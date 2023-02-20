@@ -2,6 +2,8 @@
 
 ![image](https://user-images.githubusercontent.com/45210978/215608303-3d877575-6184-4592-909f-92348418e080.png)
 
+**NOTE: remove all remaining packer files from the data folder, as it may cause conflicts and unnecessary errors!**
+
 ## Features
 
 - Easy and simple LSP usage, automatic install and setup [Mason](https://github.com/williamboman/mason.nvimhttps://github.com/williamboman/mason.nvim)

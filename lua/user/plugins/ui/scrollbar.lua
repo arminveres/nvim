@@ -12,7 +12,11 @@ return {
     })
   end,
   dependencies = {
-    "lewis6991/gitsigns.nvim",
+    {
+      "lewis6991/gitsigns.nvim",
+      tag = 'release',
+      config = true,
+    },
     "kevinhwang91/nvim-hlslens", -- nicer search results
   },
 }

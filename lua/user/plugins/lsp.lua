@@ -6,6 +6,7 @@ return {
   "p00f/clangd_extensions.nvim", -- Clangd's off-spec features for neovim's LSP client
   {
     "glepnir/lspsaga.nvim",
+    event = "BufRead",
     branch = "main",
     opts = {
       ui = {
@@ -21,6 +22,10 @@ return {
     config = function(_, opts)
       require("lspsaga").setup(opts)
     end,
+    dependencies = {
+      { "nvim-tree/nvim-web-devicons" },
+      { "nvim-treesitter/nvim-treesitter" },
+    },
   },
   {
     "j-hui/fidget.nvim", -- progress indicator for LSP

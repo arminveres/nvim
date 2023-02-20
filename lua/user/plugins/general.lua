@@ -37,8 +37,12 @@ return {
     ft = "markdown",
   },
   "ThePrimeagen/harpoon",
+
+  -- TODO: (aver) setup function: https://github.com/tzachar/local-highlight.nvim
   -- {
-  --   "junegunn/fzf",
-  -- build = './install --bin',
+  --   "tzachar/local-highlight.nvim",
+  --   config = function()
+  --     require("local-highlight").setup()
+  --   end,
   -- },
 }

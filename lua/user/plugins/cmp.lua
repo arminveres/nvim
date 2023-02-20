@@ -1,13 +1,15 @@
 return {
   {
     "L3MON4D3/LuaSnip",
-    event = "InsertEnter",
-    dependencies = {
-      "JoosepAlviste/nvim-ts-context-commentstring", -- better context aware commenting
-    },
-    opts = function()
+    -- version = "<CurrentMajor>.*", -- follow latest major release
+    -- event = "InsertEnter",
+    -- dependencies = {
+    --   "JoosepAlviste/nvim-ts-context-commentstring", -- better context aware commenting
+    -- },
+    config = function()
       local types = require("luasnip.util.types")
-      return {
+      local ls = require("luasnip")
+      ls.config.set_config({
         history = true,
         updateevents = "TextChanged,TextChangedI",
         ext_opts = {
@@ -17,11 +19,7 @@ return {
             },
           },
         },
-      }
-    end,
-    config = function(_, opts)
-      local ls = require("luasnip")
-      ls.config.set_config(opts)
+      })
 
       require("luasnip/loaders/from_vscode").lazy_load()
 
@@ -148,8 +146,7 @@ return {
         Event = "",
         Operator = "",
         TypeParameter = "",
-      }
-      -- find more here: https://www.nerdfonts.com/cheat-sheet
+      } -- find more here: https://www.nerdfonts.com/cheat-sheet
 
       cmp.setup({
         snippet = {
