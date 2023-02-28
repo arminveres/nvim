@@ -89,6 +89,7 @@ return {
       "lukas-reineke/cmp-rg",
       {
         "petertriho/cmp-git",
+        ft = "gitcommit",
         config = true,
       },
       "uga-rosa/cmp-dictionary", -- dictionary plugin

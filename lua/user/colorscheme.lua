@@ -20,6 +20,8 @@ local custom_colors = {
 
   CursorColumn = { bg = "#303030" },
   CursorLine = { bg = "#303030" },
+  -- TODO: (aver) change string color, green starts to get annoying
+  -- String = { fg = "#af3a03" }
 }
 
 -- gruvbox settings
