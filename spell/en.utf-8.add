@@ -15,3 +15,15 @@ init
 inits
 usart2
 CRC
+bootloader
+checksum
+MULTISAVE
+STM32CubeIDE
+v1
+USART2
+printf
+https
+llvm
+ClangFormatStyleOptions
+html
+TODOs

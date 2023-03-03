@@ -31,12 +31,15 @@ return {
   },
   { -- install without yarn or npm
     "iamcco/markdown-preview.nvim",
-    build = function()
-      vim.fn["mkdp#util#install"]()
-    end,
+    build = "cd app && npm install",
     ft = "markdown",
+    config = function()
+      vim.g.mkdp_theme = "light"
+    end,
   },
-  "ThePrimeagen/harpoon",
+  {
+    "ThePrimeagen/harpoon",
+  },
 
   -- TODO: (aver) setup function: https://github.com/tzachar/local-highlight.nvim
   -- {

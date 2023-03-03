@@ -26,6 +26,6 @@ end
 if vim.fn.has('win32') == 1 then -- Windows specific options
   vim.g.grayout_libclang_path = 'C:\\Program Files\\LLVM\\bin'
   vim.opt.shell = 'C:/Programme/Git/bin/bash.exe'
-  vim.opt.shellcmdflag = '--login -i -c'
+  vim.opt.shellcmdflag = '--login -c' -- ignore '-i' for now
   vim.opt.shellxquote = ''
 end
