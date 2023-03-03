@@ -16,3 +16,4 @@
 - add `rust_tools`
 - replace `harpoon.nvim` with `graple.nvim`
 - move json snippets to lua snippets
+- more integration of `nvim-treesitter-textobjects`

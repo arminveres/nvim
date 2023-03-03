@@ -8,32 +8,46 @@ return {
           theme = "adwaita", --auto
           -- component_separators = { left = '|', right = '|' },
           -- section_separators = { left = '', right = '' },
-          component_separators = { left = "", right = "" },
-          section_separators = { left = "", right = "" },
           disabled_filetypes = {},
           always_divide_middle = true,
           globalstatus = true,
         },
         sections = {
-          lualine_a = { "mode" },
+          lualine_a = {
+            { "mode" },
+          },
           lualine_b = {
             {
               "branch",
-              icon = { "", color = { fg = "#f34f29 " } },
+              icon = { "", color = { fg = "#f34f29" } },
             },
-            "diff",
-            "diagnostics",
+            {
+              "diff",
+            },
+            {
+              "diagnostics",
+            },
           },
           lualine_c = {
             {
+              "%=",
+              separator = '',
+            },
+            {
+              function()
+                return vim.fn.fnamemodify(require("project_nvim.project").find_lsp_root(), ":t")
+              end,
+              cond = function()
+                return vim.fn.fnamemodify(require("project_nvim.project").find_lsp_root(), ":t")
+                  ~= "null"
+              end,
+            },
+            {
               "filename",
-              path = 0, -- 0: Just the filename
-              -- 1: Relative path
-              -- 2: Absolute path
+              path = 0, -- 0: Just the filename 1: Relative path 2: Absolute path
               file_status = true, -- Displays file status (readonly status, modified status)
               shorting_target = 40, -- Shortens path to leave 40 spaces in the window for other components.
             },
-            {}, -- 'aerial' -- didn't really use aerial, so disabling for now
           },
           lualine_x = {
             {
