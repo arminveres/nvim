@@ -233,3 +233,5 @@ keymap("n", "<leader>cp", "<cmd>PickColor<cr>", opts)
 
 keymap("v", "<leader>ga", ":Gitsign stage_hunk<cr>", opts)
 keymap("n", "<leader>gb", ":Gitsign blame_line<cr>", opts)
+keymap("n", "[h", ":Gitsign prev_hunk<cr>", opts)
+keymap("n", "]h", ":Gitsign next_hunk<cr>", opts)

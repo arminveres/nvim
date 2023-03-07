@@ -17,11 +17,12 @@ local custom_colors = {
   GitSignsAdd = { bg = "NONE" },
   GitSignsDelete = { bg = "NONE" },
   GitSignsChange = { bg = "NONE" },
-
   CursorColumn = { bg = "#303030" },
   CursorLine = { bg = "#303030" },
+
+  -- Function = { link = "GruvboxOrangeBold"}
   -- TODO: (aver) change string color, green starts to get annoying
-  -- String = { fg = "#af3a03" }
+  -- String = { link = "GruvboxOrangeBold" },
 }
 
 -- gruvbox settings
