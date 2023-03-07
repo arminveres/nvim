@@ -8,7 +8,7 @@ return {
       },
       diagnostics = {
         -- Get the language server to recognize the `vim` global
-        -- globals = { "vim", "packer_plugins", "awesome", "client", "root", "use" },
+        globals = { "vim" },
       },
       workspace = {
         -- Make the server aware of Neovim runtime files

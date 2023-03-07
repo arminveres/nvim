@@ -3,6 +3,7 @@ return {
   "williamboman/mason.nvim", -- installer for lsps
   "williamboman/mason-lspconfig.nvim",
   "jose-elias-alvarez/null-ls.nvim", -- Null LS
+  "jay-babu/mason-null-ls.nvim",
   "p00f/clangd_extensions.nvim", -- Clangd's off-spec features for neovim's LSP client
   {
     "glepnir/lspsaga.nvim",

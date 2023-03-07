@@ -1,26 +1,56 @@
-local null_ls_status_ok, null_ls = pcall(require, 'null-ls')
+local null_ls_status_ok, null_ls = pcall(require, "null-ls")
 if not null_ls_status_ok then
+  vim.notify("null_ls not ok")
   return
 end
 
--- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
+local status_ok, mason_null_ls = pcall(require, "mason-null-ls")
+if not status_ok then
+  vim.notify("mason_null_ls not ok")
+  return
+end
+
+mason_null_ls.setup({
+  ensure_installed = {
+    -- Opt to list sources here, when available in mason.
+    "stylua",
+    "jq",
+    "shfmt",
+    "gitlint",
+    "latexindent",
+    "shellcheck",
+  },
+  automatic_installation = false,
+  automatic_setup = true, -- Recommended, but optional
+})
+
+-- code action sources
+local code_actions = null_ls.builtins.code_actions
+-- diagnostic sources
 local diagnostics = null_ls.builtins.diagnostics
-local completion = null_ls.builtins.completion
--- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
+-- formatting sources
 local formatting = null_ls.builtins.formatting
+-- hover sources
+local hover = null_ls.builtins.hover
+-- completion sources
+local completion = null_ls.builtins.completion
 
 null_ls.setup({
   debug = false,
   sources = {
+    code_actions.gitsigns,
+    -- diagnostics.cpplint,
+    -- diagnostics.cppcheck,
+    diagnostics.zsh,
+    diagnostics.shellcheck,
+    -- diagnostics.commitlint,
+    diagnostics.gitlint,
     formatting.stylua,
-    formatting.prettier.with({ extra_args = { '--single-quote', '--jsx-single-quote' } }),
-    formatting.black.with({ extra_args = { '--fast' } }),
+    formatting.prettier.with({ extra_args = { "--single-quote", "--jsx-single-quote" } }),
     formatting.shfmt,
     formatting.latexindent,
     -- formatting.shfmt.with({ extra_args = { '--indent', '4' } }),
-    -- formatting.clang_format.with({ extra_args = { '--offset=16', '-style="{BasedOnStyle: Google, AccessModifierOffset: -1}"' } }),
-    -- formatting.clang_format.with({ command =  'clang-format -style="{BasedOnStyle: Google, AccessModifierOffset: -1}"' }),
-    -- formatting.eslint_d,
-    -- formatting.eslint,
+    -- formatting.black.with({ extra_args = { "--fast" } }),
+    hover.dictionary,
   },
 })
