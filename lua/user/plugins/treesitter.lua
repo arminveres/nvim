@@ -6,13 +6,11 @@ return {
     "nvim-treesitter/nvim-treesitter-textobjects",
     "nvim-treesitter/nvim-treesitter-refactor",
     "nvim-treesitter/nvim-treesitter-context",
-    "p00f/nvim-ts-rainbow", -- rainbow parenthesis
+    "HiPhish/nvim-ts-rainbow2", -- rainbow parenthesis
     "JoosepAlviste/nvim-ts-context-commentstring", -- better context aware commenting
     {
       "numToStr/Comment.nvim", -- Comment out code easily
-      opts = {
-        ignore = '^$'
-      },
+      opts = { ignore = "^$" },
       config = true,
     },
   },
@@ -39,11 +37,14 @@ return {
     },
     rainbow = {
       enable = true,
-      -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-      extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-      max_file_lines = nil, -- Do not enable for files with more than n lines, int
-      -- colors = {}, -- table of hex strings
-      -- termcolors = {} -- table of colour name strings
+      -- disable = { "jsx", "cpp" }, -- list of languages you want to disable the plugin for
+      -- extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+      query = {
+        "rainbow-parens",
+        html = "rainbow-tags",
+        latex = "rainbow-blocks",
+      }, -- Which query to use for finding delimiters
+      -- strategy = require("ts-rainbow.strategy.global"), -- Highlight the entire buffer all at once
     },
     textobjects = {
       --[[
@@ -76,12 +77,12 @@ return {
         lookahead = true,
         keymaps = {
           -- You can use the capture groups defined in textobjects.scm
-          ["af"] = "@function.outer",
-          ["if"] = "@function.inner",
-          ["ac"] = "@class.outer",
-          ["ic"] = "@class.inner",
-          ["ab"] = "@conditional.outer",
-          ["ib"] = "@conditional.inner",
+          ["af"] = { query = "@function.outer", desc = "Select outer part of function/method" },
+          ["if"] = { query = "@function.inner", desc = "Select inner part of function/method" },
+          ["ac"] = { query = "@class.outer", desc = "Select outer part of class" },
+          ["ic"] = { query = "@class.inner", desc = "Select innter part of class" },
+          ["ab"] = { query = "@conditional.outer", desc = "Select outer part of conditional" },
+          ["ib"] = { query = "@conditional.inner", desc = "Select inner part of conditional" },
         },
       },
       swap = {
@@ -148,16 +149,6 @@ return {
     },
   },
   config = function(_, opts)
-    -- local ts = require("nvim-treesitter")
-    -- ts.define_modules({
-    --   fold = {
-    --     attach = function()
-    --       vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-    --       vim.opt.foldmethod = "expr"
-    --     end,
-    --     detach = function() end,
-    --   },
-    -- })
     require("nvim-treesitter.configs").setup(opts)
   end,
 }
