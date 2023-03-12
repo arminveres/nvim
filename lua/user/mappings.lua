@@ -1,5 +1,5 @@
 --[[
---  TODO: (aver) 
+--  TODO: (aver)
 --]]
 local opts = { noremap = true, silent = true }
 local remopts = { noremap = false, silent = true }
@@ -109,7 +109,6 @@ keymap("n", "<leader>p", '"+p', opts)
 keymap("n", "<leader>P", '"+P', opts)
 --[[ keymap('v', '<leader>p', '"+p', opts) ]]
 --[[ keymap('v', '<leader>P', '"+P', opts) ]]
-
 -- delete into nirvana
 keymap("n", "<leader>d", '"_d', opts)
 keymap("v", "<leader>d", '"_d', opts)
@@ -230,6 +229,14 @@ end, opts)
 
 keymap("n", "<leader>cp", "<cmd>PickColor<cr>", opts)
 -- vim.keymap.set('i', '<C-c>', '<cmd>PickColorInsert<cr>', opts)
+
+-- Easier window switching with leader + Number
+-- Creates mappings like this: km.set("n", "<Leader>2", "2<C-W>w", { desc = "Move to Window 2" })
+for i = 1, 6 do
+  local lhs = "<Leader>" .. i
+  local rhs = i .. "<C-W>w"
+  keymap("n", lhs, rhs, { desc = "Move to Window " .. i })
+end
 
 keymap("v", "<leader>ga", ":Gitsign stage_hunk<cr>", opts)
 keymap("n", "<leader>gb", ":Gitsign blame_line<cr>", opts)

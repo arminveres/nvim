@@ -1,3 +1,7 @@
+-- @brief Returns the current window number
+local function current_window()
+  return vim.api.nvim_win_get_number(0)
+end
 return {
   {
     "nvim-lualine/lualine.nvim", -- Fancier statusline
@@ -10,7 +14,7 @@ return {
           -- section_separators = { left = '', right = '' },
           disabled_filetypes = {},
           always_divide_middle = true,
-          globalstatus = true,
+          globalstatus = false,
         },
         sections = {
           lualine_a = {
@@ -35,16 +39,17 @@ return {
             },
             {
               function()
-                return vim.fn.fnamemodify(require("project_nvim.project").find_lsp_root(), ":t")
+                return vim.fn.fnamemodify(require("project_nvim.project").find_pattern_root(), ":t")
               end,
               cond = function()
-                return vim.fn.fnamemodify(require("project_nvim.project").find_lsp_root(), ":t")
-                  ~= "null"
+                local capture =
+                  vim.fn.fnamemodify(require("project_nvim.project").find_pattern_root(), ":t")
+                return capture ~= "null" and capture ~= "v:null"
               end,
             },
             {
               "filename",
-              path = 0, -- 0: Just the filename 1: Relative path 2: Absolute path
+              path = 0, -- 0: Just the filename, 1: Relative path, 2: Absolute path
               file_status = true, -- Displays file status (readonly status, modified status)
               shorting_target = 40, -- Shortens path to leave 40 spaces in the window for other components.
             },
@@ -82,7 +87,7 @@ return {
           lualine_z = { "location" },
         },
         inactive_sections = {
-          lualine_a = {},
+          lualine_a = { current_window },
           lualine_b = {},
           lualine_c = { "filename" },
           lualine_x = { "location" },
