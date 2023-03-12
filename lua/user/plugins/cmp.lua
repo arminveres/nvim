@@ -1,11 +1,6 @@
 return {
   {
     "L3MON4D3/LuaSnip",
-    -- version = "<CurrentMajor>.*", -- follow latest major release
-    -- event = "InsertEnter",
-    -- dependencies = {
-    --   "JoosepAlviste/nvim-ts-context-commentstring", -- better context aware commenting
-    -- },
     config = function()
       local types = require("luasnip.util.types")
       local ls = require("luasnip")
@@ -87,11 +82,6 @@ return {
       "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-cmdline",
       "lukas-reineke/cmp-rg",
-      {
-        "petertriho/cmp-git",
-        ft = "gitcommit",
-        config = true,
-      },
       "uga-rosa/cmp-dictionary", -- dictionary plugin
       "f3fora/cmp-spell", -- spelling plugin
       "saadparwaiz1/cmp_luasnip",
@@ -215,7 +205,7 @@ return {
       cmp.setup.cmdline(":", {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources({
-          { name = "path" },
+          -- { name = "path", priority = 1000 },
           { name = "cmdline" },
         }),
       })
@@ -225,14 +215,6 @@ return {
         sources = {
           { name = "buffer" },
         },
-      })
-
-      -- Set configuration specifically for gitcommit
-      cmp.setup.filetype("gitcommit", {
-        sources = cmp.config.sources({
-          { name = "git" }, -- You can specify the `cmp_git` source if you were installed it.
-          { name = "buffer" },
-        }),
       })
 
       -- dictionary setup
@@ -275,6 +257,24 @@ return {
           },
         })
       )
+    end,
+  },
+  { -- lazyloading git plugin for cmp!
+    "petertriho/cmp-git",
+    ft = "gitcommit",
+    dependencies = {
+      "hrsh7th/nvim-cmp",
+    },
+    config = function(_, opts)
+      local cmp = require("cmp")
+      -- Set configuration specifically for gitcommit
+      cmp.setup.filetype("gitcommit", {
+        sources = cmp.config.sources({
+          { name = "git" }, -- You can specify the `cmp_git` source if you were installed it.
+          { name = "buffer" },
+        }),
+      })
+      require("cmp_git").setup(opts)
     end,
   },
 }
