@@ -36,15 +36,15 @@ aucmd("BufWritePre", {
   end,
 })
 
-aucmd("VimEnter,WinEnter", {
-  group = create_augroup("TelescopeOnEmptyBuffer", { clear = true }),
-  callback = function()
-    if vim.bo.filetype == "" then
-      local builtin = require("telescope.builtin")
-      builtin.find_files({
-        mode = "insert",
-        hidden = true,
-      })
-    end
-  end,
-})
+-- aucmd("VimEnter,WinEnter", {
+--   group = create_augroup("TelescopeOnEmptyBuffer", { clear = true }),
+--   callback = function()
+--     if vim.bo.filetype == "" then
+--       local builtin = require("telescope.builtin")
+--       builtin.find_files({
+--         mode = "insert",
+--         hidden = true,
+--       })
+--     end
+--   end,
+-- })

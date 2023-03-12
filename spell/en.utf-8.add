@@ -27,3 +27,4 @@ llvm
 ClangFormatStyleOptions
 html
 TODOs
+heapq

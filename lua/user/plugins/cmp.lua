@@ -1,6 +1,7 @@
 return {
   {
     "L3MON4D3/LuaSnip",
+    lazy = true,
     config = function()
       local types = require("luasnip.util.types")
       local ls = require("luasnip")
@@ -74,6 +75,7 @@ return {
   },
   { -- Autocompletion plugins
     "hrsh7th/nvim-cmp",
+    lazy = true,
     dependencies = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-nvim-lsp-signature-help",

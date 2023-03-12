@@ -24,6 +24,7 @@ return {
   {
     "zbirenbaum/neodim", -- dim unused variables
     config = true,
+    lazy = true
   },
   {
     "stevearc/dressing.nvim",

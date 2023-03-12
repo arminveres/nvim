@@ -93,7 +93,7 @@ keymap("n", "<C-d>", "<C-d>zz", opts)
 -- CLIPBOARD
 ----------------------------------------------------------------------------------------------------
 -- keymap('n', '<leader>fe', ':Lex 30<cr>', opts) -- made obsolete by nvim-tree
-keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
+-- keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 keymap("n", "<leader>bq", ":Bdelete<CR>", opts)
 keymap("n", "\\q", ":q<CR>", opts)
 keymap("n", "\\Q", "<Cmd>qall<CR>", opts) -- quickquit

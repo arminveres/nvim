@@ -12,16 +12,17 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+  defaults = {
+    lazy = false,
+  },
   spec = {
     { import = "user.plugins" },
     { import = "user.plugins.ui" },
   },
-  defaults = {
-    performance = {
-      rtp = {
-        disabled_plugins = {
-          "netrwPlugin",
-        },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "netrwPlugin",
       },
     },
   },

@@ -3,7 +3,10 @@ return {
   { "fladson/vim-kitty", ft = "kitty" },
   { "ron-rs/ron.vim", ft = "ron" },
   { "mboughaba/i3config.vim", ft = "i3config" },
-  "RRethy/vim-illuminate", -- illuminate word under cursor
+  {
+    "RRethy/vim-illuminate",
+    lazy = true,
+  }, -- illuminate word under cursor
   "tpope/vim-sleuth", -- automatically adjusts 'shiftwidth' and 'expandtab' based on the current file
   "ludovicchabant/vim-gutentags", -- Automatic tags management
   "moll/vim-bbye", -- allows you to do delete buffers (close files) without closing your windows

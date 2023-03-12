@@ -2,6 +2,7 @@ return {
   -- Highlight, edit, and navigate code using a fast incremental parsing library
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
+  lazy = true,
   dependencies = {
     "nvim-treesitter/nvim-treesitter-textobjects",
     "nvim-treesitter/nvim-treesitter-refactor",
@@ -12,6 +13,7 @@ return {
       "numToStr/Comment.nvim", -- Comment out code easily
       opts = { ignore = "^$" },
       config = true,
+      lazy = true,
     },
   },
   opts = {

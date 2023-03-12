@@ -62,7 +62,6 @@
   "project.nvim": { "branch": "main", "commit": "1c2e9c93c7c85126c2197f5e770054f53b1926fb" },
   "promise-async": { "branch": "main", "commit": "7fa127fa80e7d4d447e0e2c78e99af4355f4247b" },
   "ron.vim": { "branch": "master", "commit": "f749e543975a82e8dd9a6e7df9600a1c098ae800" },
-  "telescope-zoxide": { "branch": "main", "commit": "68966349aa1b8e9ade403e18479ecf79447389a7" },
   "telescope.nvim": { "branch": "0.1.x", "commit": "766a45a972408f67e793a3b63e3c419ff5458753" },
   "todo-comments.nvim": { "branch": "main", "commit": "6ccb0bebeb22dbe31940776a750db54b844ae653" },
   "toggleterm.nvim": { "branch": "main", "commit": "bfb7a7254b5d897a5b889484c6a5142951a18b29" },

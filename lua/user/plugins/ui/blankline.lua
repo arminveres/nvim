@@ -1,5 +1,6 @@
 return {
   "lukas-reineke/indent-blankline.nvim", -- Add indentation guides even on blank lines
+  lazy = true,
   opts = {
     char = "┊",
     filetype_exclude = { "help", "packer" },

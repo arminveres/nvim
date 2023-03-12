@@ -1,5 +1,13 @@
 return {
   "kyazdani42/nvim-tree.lua", -- Replacement for Netrw
+  -- lazy = true,
+  keys = {
+    {
+      "<leader>e",
+      ":NvimTreeToggle<cr>",
+      desc = "NvimTree",
+    },
+  },
   config = function()
     local tcfg = require("nvim-tree.config")
     local tree_callback = tcfg.nvim_tree_callback

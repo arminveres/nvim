@@ -5,13 +5,12 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons",
-      "jvgrootveld/telescope-zoxide", -- allows you operate zoxide within Neovim
+      -- "jvgrootveld/telescope-zoxide", -- allows you operate zoxide within Neovim
     },
     config = function()
       local t = require("telescope")
       local actions = require("telescope.actions")
-      t.load_extension("zoxide")
-      t.load_extension("projects")
+      -- t.load_extension("zoxide")
       t.setup({
         defaults = {
           file_ignore_patterns = { ".git", 'node_modules' },
