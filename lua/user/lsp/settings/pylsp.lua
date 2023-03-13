@@ -3,13 +3,13 @@ return {
     pylsp = {
       plugins = {
         pycodestyle = {
-          --[[ ignore = { 'W391' }, ]]
-          maxLineLength = 100
+          ignore = { "W391", "E402" },
+          maxLineLength = 100,
         },
         rope_completion = {
           enabled = true,
-        }
-      }
-    }
-  }
+        },
+      },
+    },
+  },
 }
