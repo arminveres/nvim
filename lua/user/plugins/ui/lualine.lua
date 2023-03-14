@@ -9,7 +9,7 @@ return {
       require("lualine").setup({
         options = {
           icons_enabled = true,
-          theme = "adwaita", --auto
+          theme = "powerline", --"adwaita", --auto
           -- component_separators = { left = '|', right = '|' },
           -- section_separators = { left = '', right = '' },
           disabled_filetypes = {},
@@ -43,14 +43,14 @@ return {
               end,
               cond = function()
                 local capture =
-                  vim.fn.fnamemodify(require("project_nvim.project").find_pattern_root(), ":t")
+                    vim.fn.fnamemodify(require("project_nvim.project").find_pattern_root(), ":t")
                 return capture ~= "null" and capture ~= "v:null"
               end,
             },
             {
               "filename",
-              path = 0, -- 0: Just the filename, 1: Relative path, 2: Absolute path
-              file_status = true, -- Displays file status (readonly status, modified status)
+              path = 0,             -- 0: Just the filename, 1: Relative path, 2: Absolute path
+              file_status = true,   -- Displays file status (readonly status, modified status)
               shorting_target = 40, -- Shortens path to leave 40 spaces in the window for other components.
             },
           },

@@ -12,14 +12,8 @@ local custom_colors = {
   PMenu = { bg = "NONE" }, -- Completion Menu
   NormalFloat = { bg = "NONE" },
   FloatBorder = { bg = "NONE" },
-  SignColumn = { bg = "NONE" },
-  WinBar = { bg = "NONE" },
-  GitSignsAdd = { bg = "NONE" },
-  GitSignsDelete = { bg = "NONE" },
-  GitSignsChange = { bg = "NONE" },
   CursorColumn = { bg = "#303030" },
   CursorLine = { bg = "#303030" },
-
   -- Function = { link = "GruvboxOrangeBold"}
   -- TODO: (aver) change string color, green starts to get annoying
   -- String = { link = "GruvboxOrangeBold" },
@@ -35,11 +29,14 @@ else
     underline = true,
     bold = true,
     italic = true, -- will make italic comments and special strings
+    strikethrough = true,
     inverse = true, -- invert background for search, diffs, statuslines and errors
     invert_selection = false,
     invert_signs = false,
     invert_tabline = false,
-    invert_intend_guides = false,
+    invert_intend_guides = true,
+    dim_inactive = true,
+    transparent_mode = true,
     contrast = "hard", -- can be "hard" or "soft"
     -- overriding highlight groups
     overrides = custom_colors,
@@ -56,6 +53,19 @@ else
     overrides = custom_colors,
   })
 end
+
+local kok, kanagawa = pcall(require, "kanagawa")
+if not kok then
+  vim.notify("kanagawa not ok")
+  return
+end
+
+kanagawa.setup({
+  transparent = true,
+  overrides = function()
+    return custom_colors
+  end,
+})
 
 -- setting the colorscheme
 local colorscheme_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)

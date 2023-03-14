@@ -28,3 +28,4 @@ ClangFormatStyleOptions
 html
 TODOs
 heapq
+gpio
