@@ -39,18 +39,21 @@ null_ls.setup({
   debug = false,
   sources = {
     code_actions.gitsigns,
+
     -- diagnostics.cpplint,
     -- diagnostics.cppcheck,
     diagnostics.zsh,
     diagnostics.shellcheck,
     -- diagnostics.commitlint,
     diagnostics.gitlint,
-    formatting.stylua,
+
+    -- formatting.stylua,
     formatting.prettier.with({ extra_args = { "--single-quote", "--jsx-single-quote" } }),
     formatting.shfmt,
     formatting.latexindent,
     -- formatting.shfmt.with({ extra_args = { '--indent', '4' } }),
     -- formatting.black.with({ extra_args = { "--fast" } }),
+
     hover.dictionary,
   },
 })

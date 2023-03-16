@@ -22,6 +22,7 @@ M.server = {
     "--pch-storage=memory",
     -- TODO: find a way to use gcc for c files and g++ for cpp files, as otherwise the diagnostics are not correct
     '--query-driver=/opt/gcc-arm-none-eabi-11.3/bin/*g++', -- NOTE: This will definitely use c++ indexing, maybe change to gcc if C specific features/indexing needed
+    '--offset-encoding=utf-16'
   },
 }
 
