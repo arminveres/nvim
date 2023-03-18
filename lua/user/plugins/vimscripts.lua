@@ -1,3 +1,12 @@
+vim.g.vimtex_compiler_latexmk = {
+  options = {
+    '-shell-escape',
+    '-verbose',
+    '-file-line-error',
+    '-synctex=1',
+    '-interaction=nonstopmode'
+  }
+}
 return {
   { "lervag/vimtex", ft = "tex" },
   { "fladson/vim-kitty", ft = "kitty" },
