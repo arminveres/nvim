@@ -15,13 +15,29 @@ require("lazy").setup({
   defaults = {
     lazy = false,
   },
+  install = {
+    missing = true,
+    colorscheme = {
+      'gruvbox'
+    }
+  },
   spec = {
     { import = "user.plugins" },
     { import = "user.plugins.ui" },
   },
   performance = {
+    cache = {
+      enabled = true,
+    },
     rtp = {
       disabled_plugins = {
+        "gzip",
+        "matchit",
+        "matchparen",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
         "netrwPlugin",
       },
     },
