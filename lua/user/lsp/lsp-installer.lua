@@ -35,7 +35,7 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
     capabilities = require("user.lsp.handlers").capabilities,
   }
 
-  if server == "lua_ls" then
+  if server == "lua-language-server" then
     local lua_opts = require("user.lsp.settings.lua_ls")
     opts = vim.tbl_deep_extend("force", lua_opts, opts)
   end

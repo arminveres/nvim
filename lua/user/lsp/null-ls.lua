@@ -41,7 +41,7 @@ null_ls.setup({
     code_actions.gitsigns,
 
     -- diagnostics.cpplint,
-    -- diagnostics.cppcheck,
+    diagnostics.cppcheck,
     diagnostics.zsh,
     diagnostics.shellcheck,
     -- diagnostics.commitlint,

@@ -14,9 +14,11 @@ local custom_colors = {
   FloatBorder = { bg = "NONE" },
   CursorColumn = { bg = "#303030" },
   CursorLine = { bg = "#303030" },
-  -- Function = { link = "GruvboxOrangeBold"}
   -- TODO: (aver) change string color, green starts to get annoying
   -- String = { link = "GruvboxOrangeBold" },
+  -- String = { fg = "#af5a32" },
+  -- Comment = { fg = "#79740e" },
+  -- Function = { fg = "#af3a03" }
 }
 
 -- gruvbox settings
@@ -28,7 +30,7 @@ else
     undercurl = true,
     underline = true,
     bold = true,
-    italic = true, -- will make italic comments and special strings
+    -- italic = {}, -- will make italic comments and special strings
     strikethrough = true,
     inverse = true, -- invert background for search, diffs, statuslines and errors
     invert_selection = false,
@@ -43,14 +45,30 @@ else
   })
 end
 
--- ayu settings
-local ayu_ok, ayu = pcall(require, "ayu")
-if not ayu_ok then
-  vim.notify("ayu not ok")
+local vcs_ok, vscode = pcall(require, 'vscode')
+if not vcs_ok then
+  vim.notify('vscode not ok')
 else
-  ayu.setup({
-    mirage = false,
-    overrides = custom_colors,
+  -- local c = require('vscode.colors').get_colors()
+  vscode.setup({
+    -- Alternatively set style in setup
+    style = 'dark',
+    -- Enable transparent background
+    transparent = true,
+    -- Enable italic comment
+    italic_comments = true,
+    -- Disable nvim-tree background color
+    disable_nvimtree_bg = true,
+    -- Override colors (see ./lua/vscode/colors.lua)
+    -- color_overrides = {
+    --   vscLineNumber = '#FFFFFF',
+    -- },
+    -- Override highlight groups (see ./lua/vscode/theme.lua)
+    group_overrides = {
+      -- this supports the same val table as vim.api.nvim_set_hl
+      -- use colors from this colorscheme by requiring vscode.colors!
+      -- Cursor = { fg = c.vscDarkBlue, bg = c.vscLightGreen, bold = true },
+    }
   })
 end
 
