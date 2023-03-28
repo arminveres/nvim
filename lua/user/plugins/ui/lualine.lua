@@ -2,6 +2,11 @@
 local function current_window()
   return vim.api.nvim_win_get_number(0)
 end
+
+local function lspsaga_winbar()
+  return require('lspsaga.symbolwinbar'):get_winbar()
+end
+
 return {
   {
     "nvim-lualine/lualine.nvim", -- Fancier statusline
@@ -9,7 +14,7 @@ return {
       require("lualine").setup({
         options = {
           icons_enabled = true,
-          theme = "powerline", --"adwaita", --auto
+          theme = "auto", --"adwaita", --auto "powerline"
           -- component_separators = { left = '|', right = '|' },
           -- section_separators = { left = '', right = '' },
           disabled_filetypes = {},
@@ -94,7 +99,16 @@ return {
           lualine_y = {},
           lualine_z = {},
         },
-        tabline = {},
+        -- TODO: (aver) add outline to lualine and then make status global again, as currently lualine hijackts outline
+        -- in wibar
+        -- winbar = {
+        --   lualine_a = {
+        --     lspsaga_winbar,
+        --   },
+        -- },
+        -- inactive_winbar = {
+        --   lualine_z = { current_window },
+        -- },
         extensions = {},
       })
     end,
