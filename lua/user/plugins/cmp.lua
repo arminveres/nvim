@@ -75,10 +75,11 @@ return {
       },
     },
   },
-  { -- Autocompletion plugins
+  {
+    -- Autocompletion plugins
     "hrsh7th/nvim-cmp",
     lazy = true,
-    event = 'InsertEnter',
+    event = "InsertEnter",
     dependencies = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-nvim-lsp-signature-help",
@@ -87,7 +88,6 @@ return {
       "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-cmdline",
       "lukas-reineke/cmp-rg",
-      "uga-rosa/cmp-dictionary", -- dictionary plugin
       "f3fora/cmp-spell", -- spelling plugin
       "saadparwaiz1/cmp_luasnip",
       "rafamadriz/friendly-snippets",
@@ -185,10 +185,10 @@ return {
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
           { name = "nvim_lua" },
-          { name = "luasnip", priority = 1000 },
+          { name = "luasnip",                priority = 1000 },
           { name = "nvim_lsp_signature_help" },
           { name = "path" },
-          { name = "dictionary", keyword_length = 2 },
+          { name = "dictionary",             keyword_length = 2 },
           { name = "buffer" },
           { name = "spell" },
           -- { name = 'rg' },
@@ -215,26 +215,13 @@ return {
         }),
       })
 
-      cmp.setup.cmdline("/", {
+      cmp.setup.cmdline({ "/", "?" }, {
         mapping = cmp.mapping.preset.cmdline(),
-        sources = {
-          { name = "buffer" },
-        },
-      })
-
-      -- dictionary setup
-      require("cmp_dictionary").setup({
-        dic = {
-          ["markdown"] = { "~/.local/share/dict/eng.dict", "/usr/share/dict/linux.words" },
-          -- ["*"] = { "/usr/share/dict/words" },
-          -- ["lua"] = "path/to/lua.dic",
-        },
-        -- The following are default values, so you don't need to write them if you don't want to change them
-        exact = 2,
-        first_case_insensitive = false,
-        async = true,
-        capacity = 5,
-        debug = false,
+        sources = cmp.config.sources({
+          { name = 'path' }
+        }, {
+          { name = 'cmdline' }
+        })
       })
 
       --[[
@@ -264,7 +251,8 @@ return {
       )
     end,
   },
-  { -- lazyloading git plugin for cmp!
+  {
+    -- lazyloading git plugin for cmp!
     "petertriho/cmp-git",
     ft = "gitcommit",
     dependencies = {
@@ -282,4 +270,23 @@ return {
       require("cmp_git").setup(opts)
     end,
   },
+  {
+    "uga-rosa/cmp-dictionary", -- dictionary plugin
+    ft = {
+      "gitcommit",
+      'markdown'
+    },
+    config = function()
+      local dict = require("cmp_dictionary")
+      dict.setup({
+        async = true,
+      })
+      dict.switcher({
+        filetype = {
+          markdown = { "~/.local/share/dict/eng.dict", "/usr/share/dict/linux.words" },
+          gitcommit = { "~/.local/share/dict/eng.dict", "/usr/share/dict/linux.words" }
+        }
+      })
+    end
+  }
 }

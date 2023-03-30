@@ -12,6 +12,10 @@ return {
   {
     "norcalli/nvim-colorizer.lua", -- colorizes color codes
     config = true,
+    keys = {
+      { "<leader>bc", ":ColorizerToggle<cr>", mode = { 'n' } }
+
+    }
   },
   {
     "ziontee113/color-picker.nvim", -- color picker

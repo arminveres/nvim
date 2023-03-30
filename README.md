@@ -13,7 +13,6 @@
 
 - add debug protocol DAP [nvim-dap](https://github.com/mfussenegger/nvim-dap)
   and [dap-ui](https://github.com/rcarriga/nvim-dap-ui)
-- add `rust_tools`
 - replace `harpoon.nvim` with `graple.nvim`
 - move json snippets to lua snippets
 - more integration of `nvim-treesitter-textobjects`

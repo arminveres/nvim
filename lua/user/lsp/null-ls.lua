@@ -52,7 +52,7 @@ null_ls.setup({
     formatting.shfmt,
     formatting.latexindent,
     -- formatting.shfmt.with({ extra_args = { '--indent', '4' } }),
-    -- formatting.black.with({ extra_args = { "--fast" } }),
+    formatting.black, --.with({ extra_args = { "--fast" } }),
 
     hover.dictionary,
   },

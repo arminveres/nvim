@@ -57,6 +57,11 @@ return {
       gitui:toggle()
     end
 
+    local lg = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" })
+    function _LAZYGIT_TOGGLE()
+      lg:toggle()
+    end
+
     local ncdu = Terminal:new({ cmd = "ncdu", hidden = true })
     function _NCDU_TOGGLE()
       ncdu:toggle()
