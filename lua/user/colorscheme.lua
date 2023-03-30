@@ -7,11 +7,11 @@ local colorscheme = "gruvbox"
 
 -- Customized colors for colorschemes
 local custom_colors = {
-  Normal = { bg = "NONE" },
-  NormalNC = { bg = "NONE" },
-  PMenu = { bg = "NONE" }, -- Completion Menu
-  NormalFloat = { bg = "NONE" },
-  FloatBorder = { bg = "NONE" },
+  -- Normal = { bg = "NONE" },
+  -- NormalNC = { bg = "NONE" },
+  -- PMenu = { bg = "NONE" }, -- Completion Menu
+  -- NormalFloat = { bg = "NONE" },
+  -- FloatBorder = { bg = "NONE" },
   CursorColumn = { bg = "#303030" },
   CursorLine = { bg = "#303030" },
   -- TODO: (aver) change string color, green starts to get annoying
@@ -37,11 +37,42 @@ else
     invert_signs = false,
     invert_tabline = false,
     invert_intend_guides = true,
-    dim_inactive = true,
-    transparent_mode = true,
+    dim_inactive = false,
+    transparent_mode = false,
     contrast = "hard", -- can be "hard" or "soft"
     -- overriding highlight groups
-    overrides = custom_colors,
+    palette_overrides = {
+      dark0_hard = "#0E1018"
+    },
+    overrides = {
+      -- Comment = { fg = "#828282", italic = true, bold = true },
+      Define = { link = "GruvboxPurple" },
+      Macro = { link = "GruvboxPurple" },
+      -- new git colors
+      DiffAdd = { bold = true, reverse = false, fg = "", bg = "#2a4333" },
+      DiffChange = { bold = true, reverse = false, fg = "", bg = "#333841" },
+      DiffDelete = { bold = true, reverse = false, fg = "#442d30", bg = "#442d30" },
+      DiffText = { bold = true, reverse = false, fg = "", bg = "#213352" },
+      -- fold
+      Folded = { fg = "#fe8019", bg = "#3c3836", italic = true },
+      FoldColumn = { fg = "#fe8019", bg = "#0E1018" },
+      SignColumn = { link = "GruvboxBg0" },
+      -- statusline
+      StatusLine = { bg = "#ffffff", fg = "#0E1018" },
+      StatusLineNC = { bg = "#3c3836", fg = "#0E1018" },
+      CursorLineNr = { fg = "#fabd2f", bg = "" },
+      GruvboxOrangeSign = { fg = "#dfaf87", bg = "" },
+      GruvboxAquaSign = { fg = "#8EC07C", bg = "" },
+      GruvboxGreenSign = { fg = "#b8bb26", bg = "" },
+      GruvboxRedSign = { fg = "#fb4934", bg = "" },
+      GruvboxBlueSign = { fg = "#83a598", bg = "" },
+      WilderMenu = { fg = "#ebdbb2", bg = "" },
+      WilderAccent = { fg = "#f4468f", bg = "" },
+      -- LspSaga colors
+      SagaNormal = { link = 'PMenu' },
+      LspInlayHint = { link = 'GruvboxAqua' },
+      LspInlayHints = { link = 'GruvboxAqua' }
+    } --custom_colors,
   })
 end
 

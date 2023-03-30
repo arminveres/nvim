@@ -20,10 +20,12 @@ return {
       require("luasnip/loaders/from_vscode").lazy_load()
 
       if vim.fn.has("win32") == 1 then -- Windows specific options
+        ---@diagnostic disable-next-line: different-requires
         require("luasnip.loaders.from_vscode").lazy_load({
           paths = { "~/AppData/Local/nvim/lua/user/snippets/vsc/" },
         })
       else
+        ---@diagnostic disable-next-line: different-requires
         require("luasnip.loaders.from_vscode").lazy_load({
           paths = { "~/.config/nvim/lua/user/snippets/vsc/" },
         })
@@ -196,13 +198,13 @@ return {
           select = false,
         },
         window = {
-          completion = cmp.config.window.bordered(),
-          documentation = cmp.config.window.bordered(),
+          -- completion = cmp.config.window.bordered(),
+          -- documentation = cmp.config.window.bordered(),
         },
         experimental = {
           ghost_text = true,
         },
-        -- view = { entries = 'native', },
+        -- view = { entries = "native" },
       })
 
       cmp.setup.cmdline(":", {

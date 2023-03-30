@@ -12,14 +12,14 @@ return {
     opts = {
       ui = {
         title = true,
-        border = "rounded",
+        border = "shadow",
         winblend = 15,
         code_action_icon = "💡", --
-        colors = {
-          normal_bg = "#000000",
-        },
       },
       -- symbol_in_winbar = { enable = false }
+      rename = {
+        in_select = false -- I don't see why we should be in select mode, caused me a lot of headaches
+      }
     },
     config = function(_, opts)
       require("lspsaga").setup(opts)
