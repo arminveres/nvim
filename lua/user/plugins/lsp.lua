@@ -4,7 +4,8 @@ return {
   "williamboman/mason-lspconfig.nvim",
   "jose-elias-alvarez/null-ls.nvim", -- Null LS
   "jay-babu/mason-null-ls.nvim",
-  "p00f/clangd_extensions.nvim",     -- Clangd's off-spec features for neovim's LSP client
+  "p00f/clangd_extensions.nvim", -- Clangd's off-spec features for neovim's LSP client
+  "simrat39/rust-tools.nvim",
   {
     "glepnir/lspsaga.nvim",
     event = "LspAttach",

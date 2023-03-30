@@ -19,7 +19,7 @@ local settings = {
   -- refer to documentation https://github.com/williamboman/mason-lspconfig.nvim
 }
 lsp_installer.setup({
-  ensure_installed = { "lua_ls", "rust_analyzer", "clangd", "bashls" },
+  ensure_installed = { "lua_ls", "clangd", "bashls" },
 })
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
@@ -60,22 +60,24 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
     opts = vim.tbl_deep_extend("force", ltex_opts, opts)
   end
 
-  if server == "rust-analyzer" then
-    local rust_opts = require("user.lsp.settings.rust")
-    opts = vim.tbl_deep_extend("force", rust_opts, opts)
-  end
+  if server == "rust_analyzer" then
+    -- local rt = require("rust-tools")
+    -- local rust_opts = require("user.lsp.settings.rust").server
+    -- opts = vim.tbl_deep_extend("force", rust_opts, opts)
+    -- rt.setup({
+    --   tools = require("user.lsp.settings.rust").tools,
+    --   server = opts
+    -- })
 
-  if server == "clangd" then
+    require('user.lsp.settings.rust')
+  elseif server == "clangd" then
     local clangd_opts = require("user.lsp.settings.clangd").server
     opts = vim.tbl_deep_extend("force", clangd_opts, opts)
     require("clangd_extensions").setup({
       server = opts,
       extensions = require("user.lsp.settings.clangd").extensions,
     })
-    goto continue
+  else -- WARN: Never remove this, this sets up the lsp for every server except for clangd
+    lspconfig[server].setup(opts)
   end
-
-  lspconfig[server].setup(opts)
-
-  ::continue::
 end
