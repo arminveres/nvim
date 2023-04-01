@@ -11,10 +11,40 @@ return {
   {
     "nvim-lualine/lualine.nvim", -- Fancier statusline
     config = function()
+      local my_theme = require("lualine.themes.powerline")
+      local gruvbox = require("gruvbox.palette").colors
+      local my_colors = {
+        gray1  = '#262626',
+        gray2  = '#303030',
+        gray4  = '#585858',
+        gray5  = '#606060',
+        gray7  = '#9e9e9e',
+        gray8  = '#aaaaaa',
+        gray10 = '#f0f0f0',
+      }
+
+      my_theme.normal = {
+        a = { fg = gruvbox.dark0, bg = gruvbox.bright_orange, gui = 'bold' },
+        b = { fg = my_colors.gray10, bg = gruvbox.dark1 },
+        c = { fg = my_colors.gray8, bg = gruvbox.dark0 },
+      }
+      my_theme.visual = {
+        a = { fg = gruvbox.light0, bg = gruvbox.neutral_blue, gui = 'bold' }
+      }
+      my_theme.insert = {
+        a = { fg = gruvbox.dark0, bg = gruvbox.neutral_green, gui = 'bold' }
+      }
+      my_theme.terminal = {
+        a = { fg = gruvbox.dark0, bg = gruvbox.bright_aqua, gui = 'bold' }
+      }
+      my_theme.inactive.a.fg = gruvbox.light0_hard
+      my_theme.inactive.b.fg = gruvbox.light0_hard
+      my_theme.inactive.c.fg = gruvbox.light0_hard
+
       require("lualine").setup({
         options = {
           icons_enabled = true,
-          theme = "auto", --"adwaita", --auto "powerline"
+          theme = my_theme, -- "powerline", --"adwaita", "auto"
           -- component_separators = { left = '|', right = '|' },
           -- section_separators = { left = '', right = '' },
           disabled_filetypes = {},
@@ -99,6 +129,7 @@ return {
           lualine_y = {},
           lualine_z = {},
         },
+
         -- TODO: (aver) add outline to lualine and then make status global again, as currently lualine hijackts outline
         -- in wibar
         -- winbar = {
@@ -107,8 +138,9 @@ return {
         --   },
         -- },
         -- inactive_winbar = {
-        --   lualine_z = { current_window },
+        --   lualine_a = { current_window },
         -- },
+
         extensions = {},
       })
     end,
