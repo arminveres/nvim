@@ -32,13 +32,14 @@ require("lazy").setup({
     rtp = {
       disabled_plugins = {
         "gzip",
-        "matchit",
-        "matchparen",
         "tarPlugin",
         "tohtml",
         "tutor",
         "zipPlugin",
         "netrwPlugin",
+        -- Needed for highlighting parenthesis
+        -- "matchit",
+        -- "matchparen",
       },
     },
   },

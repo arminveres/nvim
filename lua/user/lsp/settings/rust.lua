@@ -4,7 +4,7 @@ rt.setup({
     -- autosethints = true,
     inlay_hints = {
       show_parameter_hints = true,
-      highlight = "GruvboxAqua",
+      highlight = "GruvboxBlue",
     },
     -- hover_actions = { auto_focus = true }
   },
