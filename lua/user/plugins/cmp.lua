@@ -278,9 +278,7 @@ return {
     },
     config = function()
       local dict = require("cmp_dictionary")
-      dict.setup({
-        async = true,
-      })
+      dict.setup({})
       dict.switcher({
         filetype = {
           markdown = { "~/.local/share/dict/eng.dict", "/usr/share/dict/linux.words" },
