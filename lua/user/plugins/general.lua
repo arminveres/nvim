@@ -13,7 +13,7 @@ return {
     "norcalli/nvim-colorizer.lua", -- colorizes color codes
     config = true,
     keys = {
-      { "<leader>bc", ":ColorizerToggle<cr>", mode = { 'n' } }
+      { "<leader>bc", ":ColorizerToggle<cr>", mode = { 'n' }, desc = "Toggle Colors for buffer" }
 
     }
   },
@@ -34,7 +34,8 @@ return {
     "stevearc/dressing.nvim",
     config = true,
   },
-  { -- install without yarn or npm
+  {
+    -- install without yarn or npm
     "iamcco/markdown-preview.nvim",
     build = "cd app && npm install",
     ft = "markdown",

@@ -5,6 +5,10 @@ local opts = { noremap = true, silent = true }
 local remopts = { noremap = false, silent = true }
 local keymap = vim.keymap.set
 
+local function merge(table1, table2)
+  return vim.tbl_deep_extend("force", table1, table2)
+end
+
 -- Leader --
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
@@ -97,7 +101,7 @@ keymap("n", "<C-d>", "<C-d>zz", opts)
 keymap("n", "<leader>bq", ":Bdelete<CR>", opts)
 keymap("n", "\\q", ":q<CR>", opts)
 keymap("n", "\\Q", "<Cmd>qall<CR>", opts) -- quickquit
-keymap("n", "\\w", "<Cmd>w<CR>", opts) -- quick save
+keymap("n", "\\w", "<Cmd>w<CR>", opts)    -- quick save
 -- keymap("n", "<leader>.", ":so ~/.config/nvim/init.lua<CR>", opts)
 
 -- Yank to clipboard
@@ -147,7 +151,7 @@ end, opts)
 keymap("n", "<leader>sp", function()
   require("telescope.builtin").live_grep()
 end, opts)
-keymap("n", "<leader>fgb", ":Telescope git_branches<CR>", opts)
+keymap("n", "<leader>gfb", ":Telescope git_branches<CR>", merge(opts, { desc = "Telescope [f]ind [g]it [b]ranches" }))
 keymap("n", "<leader>?", ":Telescope keymaps<CR>", opts)
 keymap("n", "<leader>r", ":Telescope resume<CR>", opts)
 keymap("n", "<leader>sg", [[:Telescope grep_string search=<cr>]])
@@ -172,12 +176,14 @@ end, opts)
 keymap("n", "<leader>ca", ":Lspsaga code_action<CR>", opts)
 keymap("v", "<leader>ca", "<cmd><C-U>Lspsaga range_code_action<CR>", opts)
 keymap("n", "gs", ":Lspsaga signature_help<CR>", opts)
-keymap("n", "<leader>rn", ":Lspsaga rename<CR>", opts)
+keymap("n", "<leader>rn", ":Lspsaga rename ++project<CR>", opts)
 keymap("n", "gh", ":Lspsaga lsp_finder<CR>", opts)
 keymap("n", "<leader>gd", "<cmd>Lspsaga preview_definition<CR>", opts)
 keymap("n", "<leader>at", ":Lspsaga outline<CR>", opts)
 keymap("n", "gl", ":Lspsaga show_line_diagnostics<CR>", opts)
 keymap("n", "<leader>gl", ":Lspsaga show_cursor_diagnostics<CR>", opts)
+keymap("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
+keymap("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
 
 -- Undo tree toggle
 keymap("n", "<Leader>u", "<Cmd>UndotreeToggle<CR>", opts)
@@ -222,10 +228,10 @@ keymap("n", [[<c-\>l]], ":ToggleTerm direction=vertical<CR>", opts)
 keymap("n", [[<c-\>k]], ":ToggleTerm direction=tab<CR>", opts)
 keymap("n", "<leader>gu", function()
   _GITUI_TOGGLE()
-end, opts)
+end, merge(opts, { desc = "Toggle Gitui" }))
 keymap("n", "<leader>gl", function()
   _LAZYGIT_TOGGLE()
-end, opts)
+end, merge(opts, { desc = "Toggle LazyGit" }))
 
 keymap("n", "<leader>cp", "<cmd>PickColor<cr>", opts)
 -- vim.keymap.set('i', '<C-c>', '<cmd>PickColorInsert<cr>', opts)
