@@ -4,7 +4,7 @@ return {
   "williamboman/mason-lspconfig.nvim",
   "jose-elias-alvarez/null-ls.nvim", -- Null LS
   "jay-babu/mason-null-ls.nvim",
-  "p00f/clangd_extensions.nvim", -- Clangd's off-spec features for neovim's LSP client
+  "p00f/clangd_extensions.nvim",     -- Clangd's off-spec features for neovim's LSP client
   "simrat39/rust-tools.nvim",
   {
     "glepnir/lspsaga.nvim",
@@ -20,6 +20,9 @@ return {
       -- symbol_in_winbar = { enable = false }
       rename = {
         in_select = false -- I don't see why we should be in select mode, caused me a lot of headaches
+      },
+      code_action = {
+        extend_gitsigns = true, -- use gitsign either through lspsaga or null-ls
       }
     },
     config = function(_, opts)
