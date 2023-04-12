@@ -5,6 +5,8 @@ rt.setup({
     inlay_hints = {
       show_parameter_hints = true,
       highlight = "GruvboxBlue",
+      parameter_hints_prefix = " ",
+      other_hints_prefix = " ",
     },
     -- hover_actions = { auto_focus = true }
   },
