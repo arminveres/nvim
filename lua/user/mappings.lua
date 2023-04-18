@@ -189,7 +189,6 @@ keymap("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
 keymap("n", "<Leader>u", "<Cmd>UndotreeToggle<CR>", opts)
 
 keymap("n", "<C-p>", "<Cmd>Telescope projects<CR>", opts)
-keymap("n", "<Leader>td", ":TodoTelescope<CR>", opts)
 
 keymap("n", "<Leader>li", ":LspInfo<CR>", opts)
 keymap("n", "<Leader>ll", ":LspLog<CR>", opts)
@@ -248,3 +247,8 @@ keymap("v", "<leader>ga", ":Gitsign stage_hunk<cr>", opts)
 keymap("n", "<leader>gb", ":Gitsign blame_line<cr>", opts)
 keymap("n", "[h", ":Gitsign prev_hunk<cr>", opts)
 keymap("n", "]h", ":Gitsign next_hunk<cr>", opts)
+
+keymap("n", "<leader>td", ":TodoTelescope theme=dropdown layout_config={width=0.5}<cr>", merge(opts, {
+  desc =
+  "Show all TODOs in project."
+}))
