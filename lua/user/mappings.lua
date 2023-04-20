@@ -194,9 +194,6 @@ keymap("n", "<Leader>li", ":LspInfo<CR>", opts)
 keymap("n", "<Leader>ll", ":LspLog<CR>", opts)
 keymap("n", "<Leader>lr", ":LspRestart<CR>", opts)
 
--- BUG: Following does not work, when no 'LSP' is installed, even when Null-LS is running
-keymap("n", "<space>bf", "<cmd>lua vim.lsp.buf.format({async = true})<CR>", opts)
-
 ----------------------------------------------------------------------------------------------------
 -- Harpoon
 ----------------------------------------------------------------------------------------------------

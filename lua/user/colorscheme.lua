@@ -38,7 +38,7 @@ else
     invert_tabline = false,
     invert_intend_guides = true,
     dim_inactive = false,
-    transparent_mode = false,
+    transparent_mode = true,
     contrast = "hard", -- can be "hard" or "soft"
     -- overriding highlight groups
     palette_overrides = {
