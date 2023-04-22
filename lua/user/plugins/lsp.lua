@@ -32,16 +32,5 @@ return {
       { "nvim-tree/nvim-web-devicons" },
       { "nvim-treesitter/nvim-treesitter" },
     },
-  },
-  {
-    "j-hui/fidget.nvim", -- progress indicator for LSP
-    opts = {
-      text = {
-        spinner = "dots", -- animation shown when tasks are ongoing
-      },
-    },
-    config = function(_, opts)
-      require("fidget").setup(opts)
-    end,
-  },
+  }
 }
