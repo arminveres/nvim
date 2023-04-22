@@ -10,22 +10,6 @@ return {
     config = true,
   },
   {
-    "norcalli/nvim-colorizer.lua", -- colorizes color codes
-    config = true,
-    keys = {
-      { "<leader>bc", ":ColorizerToggle<cr>", mode = { 'n' }, desc = "Toggle Colors for buffer" }
-
-    }
-  },
-  {
-    "ziontee113/color-picker.nvim", -- color picker
-    config = function()
-      require("color-picker").setup({
-        ["icons"] = { "ﱢ", "" },
-      })
-    end,
-  },
-  {
     "zbirenbaum/neodim", -- dim unused variables
     config = true,
     lazy = true
@@ -45,6 +29,17 @@ return {
   },
   {
     "ThePrimeagen/harpoon",
+  },
+  {
+    "uga-rosa/ccc.nvim",
+    keys = {
+      {
+        "<leader>bc", ":CccHighlighterToggle<CR>", mode = { "n" }, desc = "Toggles Color Highlighting"
+      },
+      {
+        "<leader>cp", ":CccPick<CR>", mode = { "n" }, desc = "Toggles Color Picker"
+      }
+    }
   },
 
   -- TODO: (aver) setup function: https://github.com/tzachar/local-highlight.nvim
