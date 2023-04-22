@@ -42,10 +42,12 @@ else
     contrast = "hard", -- can be "hard" or "soft"
     -- overriding highlight groups
     palette_overrides = {
-      dark0_hard = "#0E1018"
+      dark0_hard = "#101010"
     },
     overrides = {
-      -- Comment = { fg = "#828282", italic = true, bold = true },
+      String = { fg = "#eb9664" }, -- #eb9664, #c89664
+      Comment = { fg = "#91a573", italic = true, bold = false },
+      -- Comment = { fg = "#c89664", italic = true, bold = false },
       Define = { link = "GruvboxPurple" },
       Macro = { link = "GruvboxPurple" },
       -- new git colors
@@ -111,9 +113,9 @@ end
 
 kanagawa.setup({
   transparent = true,
-  overrides = function()
-    return custom_colors
-  end,
+  -- overrides = function()
+  --   return custom_colors
+  -- end,
 })
 
 -- setting the colorscheme
