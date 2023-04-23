@@ -1,6 +1,6 @@
 # nvim config
 
-![image](https://user-images.githubusercontent.com/45210978/215608303-3d877575-6184-4592-909f-92348418e080.png)
+![image](https://user-images.githubusercontent.com/45210978/233858627-e067a2a4-4b18-4a2e-b079-6fd26ada45ea.png)
 
 **NOTE: remove all remaining packer files from the data folder, as it may cause conflicts and unnecessary errors!**
 
