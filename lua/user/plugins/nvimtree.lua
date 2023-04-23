@@ -79,7 +79,9 @@ return {
   keys = {
     {
       "<leader>e",
-      ":NvimTreeToggle<cr>",
+      function()
+        require('nvim-tree.api').tree.toggle()
+      end,
       desc = "NvimTree",
     },
   },
