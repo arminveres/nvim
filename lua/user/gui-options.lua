@@ -2,12 +2,13 @@ local opts = { noremap = true, silent = true }
 local fonts = {
   "Iosevka Term:h10",
   "JetBrainsMono Nerd Font:h10",
-  "Tamzen:h12",
+  "TamzenForPowerline:h14",
   "TerminessTTF Nerd Font Mono:h11.5",
+  "DinaRemasterII:h12"
 }
 
 if vim.g.neovide then -- neovide specific settings
-  vim.opt.guifont = fonts[1]
+  vim.opt.guifont = fonts[5]
   vim.keymap.set("i", "<S-Insert>", "<C-R>+", opts)
 
   vim.g.neovide_transparency = 0.8

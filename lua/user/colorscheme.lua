@@ -14,6 +14,7 @@ local custom_colors = {
   -- FloatBorder = { bg = "NONE" },
   CursorColumn = { bg = "#303030" },
   CursorLine = { bg = "#303030" },
+  SagaNormal = { bg = "#303030" },
   -- TODO: (aver) change string color, green starts to get annoying
   -- String = { link = "GruvboxOrangeBold" },
   -- String = { fg = "#af5a32" },
