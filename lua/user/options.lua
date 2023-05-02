@@ -54,7 +54,7 @@ vim.opt.spelllang = "en_us"
 vim.opt.pumblend = 15 -- blend popup
 vim.opt.winblend = 15
 
-vim.opt.cmdheight = 0
+vim.opt.cmdheight = 1
 -- configure ripgrep as grep program if available
 if vim.fn.executable("rg") then
   vim.o.grepprg = "rg --no-heading --vimgrep"

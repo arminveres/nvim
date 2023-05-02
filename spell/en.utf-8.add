@@ -31,3 +31,5 @@ heapq
 gpio
 neovim
 parallelize
+crc
+reinitialization

@@ -15,6 +15,13 @@ local snippets = {
     i(3),
     t("*/"),
   }),
+  s("diagign", {
+    t("#pragma GCC diagnostic push", "\n"),
+    t("#pragma GCC diagnostic ignored \""),
+    i(1),
+    t("\"", "\n"),
+    t("#pragma GCC diagnostic pop", "\n"),
+  })
 }
 
 return snippets

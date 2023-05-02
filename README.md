@@ -2,7 +2,7 @@
 
 ![image](https://user-images.githubusercontent.com/45210978/233858627-e067a2a4-4b18-4a2e-b079-6fd26ada45ea.png)
 
-**NOTE: remove all remaining packer files from the data folder, as it may cause conflicts and unnecessary errors!**
+> **Warning**: remove all remaining packer files from the data folder, as it may cause conflicts and unnecessary errors!
 
 ## Features
 

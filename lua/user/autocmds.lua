@@ -36,6 +36,12 @@ aucmd("BufWritePre", {
   end,
 })
 
+aucmd("BufEnter", {
+  group = create_augroup("TermAlwaysInsert", { clear = true }),
+  pattern = "term://*toggleterm*",
+  command = "startinsert"
+})
+
 -- aucmd("VimEnter,WinEnter", {
 --   group = create_augroup("TelescopeOnEmptyBuffer", { clear = true }),
 --   callback = function()

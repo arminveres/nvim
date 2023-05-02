@@ -48,6 +48,9 @@ else
     overrides = {
       String = { fg = "#eb9664" }, -- #eb9664, #c89664
       Comment = { fg = "#91a573", italic = true, bold = false },
+      -- These highlights are special for undefined macros
+      ["@lsp.type.comment.c"] = { fg = "#91a573", bg = "#785032" },
+      ["@lsp.type.comment.cpp"] = { fg = "#91a573", bg = "#785032" },
       -- Comment = { fg = "#c89664", italic = true, bold = false },
       Define = { link = "GruvboxPurple" },
       Macro = { link = "GruvboxPurple" },
@@ -74,6 +77,7 @@ else
       -- LspSaga colors
       SagaNormal = { link = 'PMenu' },
       LspInlayHint = { link = 'GruvboxAqua' },
+      -- LspInlayHint = { fg = '#325f5f' },
       LspInlayHints = { link = 'GruvboxAqua' }
     } --custom_colors,
   })
