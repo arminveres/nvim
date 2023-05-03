@@ -4,7 +4,7 @@ local fonts = {
   "JetBrainsMono Nerd Font:h10",
   "TamzenForPowerline:h14",
   "TerminessTTF Nerd Font Mono:h11.5",
-  "DinaRemasterII:h12"
+  "DinaRemasterII:h12",
   "UbuntuMono Nerd Font Mono:h12",
   --windows fonts
   "UbuntuMono NFM:h12",

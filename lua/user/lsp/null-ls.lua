@@ -46,11 +46,13 @@ null_ls.setup({
     diagnostics.shellcheck,
     -- diagnostics.commitlint,
     diagnostics.gitlint,
+    -- diagnostics.ruff,
 
     -- formatting.stylua,
     formatting.prettier.with({ extra_args = { "--single-quote", "--jsx-single-quote" } }),
     formatting.shfmt,
     formatting.latexindent,
+    -- formatting.ruff,
     -- formatting.shfmt.with({ extra_args = { '--indent', '4' } }),
     formatting.black, --.with({ extra_args = { "--fast" } }),
     formatting.beautysh,
