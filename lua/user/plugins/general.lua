@@ -41,6 +41,30 @@ return {
       }
     }
   },
+  {
+    "chrishrb/gx.nvim",
+    event = { "BufEnter" },
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = true, -- default settings
+  },
+  {
+    'codethread/qmk.nvim',
+    filetype = 'keymap.c',
+    config = function()
+      ---@type qmk.UserConfig
+      local conf = {
+        name = 'LAYOUT',
+        layout = {
+          'x x x x x x _ _ _ x x x x x x',
+          'x x x x x x _ _ _ x x x x x x',
+          'x x x x x x _ _ _ x x x x x x',
+          'x x x x x x x _ x x x x x x x',
+          '_ _ x x x x x _ x x x x x _ _',
+        }
+      }
+      require('qmk').setup(conf)
+    end
+  }
 
   -- TODO: (aver) setup function: https://github.com/tzachar/local-highlight.nvim
   -- {
