@@ -1,6 +1,6 @@
 local opts = { noremap = true, silent = true }
 local fonts = {
-  "Iosevka Term:h10",
+  "Iosevka Mono Nerd Font Mono:h10",
   "JetBrainsMono Nerd Font:h10.5",
   "TamzenForPowerline:h14",
   "TerminessTTF Nerd Font Mono:h11.5",
@@ -38,14 +38,7 @@ if vim.g.neovide then
   vim.g.neovide_no_idle = true
 
   -- Other GUI options, e.g., nvim-Qt or Goneovim
-elseif vim.g.GuiLoaded then
-  vim.opt.guifont = fonts[1]
+else
+  vim.opt.guifont = fonts[2]
   vim.keymap.set("i", "<S-Insert>", "<C-R>+", opts)
-end
-
--- Windows specific options
-if vim.fn.has("win32") == 1 then
-  vim.opt.shell = "C:/Programme/Git/bin/bash.exe"
-  vim.opt.shellcmdflag = "--login -c" -- ignore '-i' for now
-  vim.opt.shellxquote = ""
 end

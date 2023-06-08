@@ -2,13 +2,13 @@
 vim.opt.ignorecase = true
 vim.opt.smartcase = true --Case insensitive searching UNLESS /C or capital in search
 vim.opt.smarttab = true
-vim.opt.hlsearch = true -- toggle off until next search w/ <BS>
+vim.opt.hlsearch = true  -- toggle off until next search w/ <BS>
 vim.opt.backup = true
 vim.opt.writebackup = true
 vim.opt.breakindent = true
 vim.opt.inccommand = "nosplit"
 vim.opt.mouse = "a"
-vim.opt.hidden = true --Do not save when switching buffers (note: this is now a default on master)
+vim.opt.hidden = true  --Do not save when switching buffers (note: this is now a default on master)
 vim.opt.scrolloff = 10 -- keeps x lines of context, scrolls otherwise
 
 vim.opt.tabstop = 8
@@ -32,8 +32,8 @@ vim.opt.wrap = true
 vim.opt.textwidth = 100
 vim.opt.clipboard = "unnamedplus"
 
-vim.opt.undofile = true --Save undo history
-vim.opt.undodir = "/tmp//" --'~/.cache/nvim/undo//' doesn't work
+vim.opt.undofile = true      --Save undo history
+vim.opt.undodir = "/tmp//"   --'~/.cache/nvim/undo//' doesn't work
 vim.opt.backupdir = "/tmp//" --'~/.cache/nvim/backup//'
 
 --Decrease update time
@@ -59,4 +59,11 @@ vim.opt.cmdheight = 1
 if vim.fn.executable("rg") then
   vim.o.grepprg = "rg --no-heading --vimgrep"
   vim.o.grepformat = "%f:%l:%c:%m"
+end
+
+-- Windows specific options
+if vim.fn.has("win32") == 1 then
+  vim.opt.shell = "C:/Programme/Git/bin/bash.exe"
+  vim.opt.shellcmdflag = "--login -c" -- ignore '-i' for now
+  vim.opt.shellxquote = ""
 end

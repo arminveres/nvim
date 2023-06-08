@@ -7,18 +7,6 @@
         "path": "./lua.json"
       },
       {
-        "language": "sh",
-        "path": "./sh.json"
-      },
-      {
-        "language": "bash",
-        "path": "./sh.json"
-      },
-      {
-        "language": "zsh",
-        "path": "./sh.json"
-      },
-      {
         "language": "c",
         "path": "./c_cpp.json"
       },
