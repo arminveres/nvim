@@ -72,9 +72,15 @@ return {
       htop:toggle()
     end
 
-    local python = Terminal:new({ cmd = "python", hidden = true, direction = "float" })
-    function _PYTHON_TOGGLE()
-      python:toggle()
+    local ranger = Terminal:new({ cmd = "ranger", hidden = true, direction = "float" })
+    function _RANGER_TOGGLE()
+      ranger:toggle()
     end
+
+    -- local python = Terminal:new({ cmd = "python", hidden = true, direction = "float" })
+    -- function _PYTHON_TOGGLE()
+    --   python:toggle()
+    -- end
+
   end,
 }

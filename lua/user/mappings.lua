@@ -222,12 +222,18 @@ end, opts)
 keymap("n", [[<c-\>j]], ":ToggleTerm direction=horizontal<CR>", opts)
 keymap("n", [[<c-\>l]], ":ToggleTerm direction=vertical<CR>", opts)
 keymap("n", [[<c-\>k]], ":ToggleTerm direction=tab<CR>", opts)
+
 keymap("n", "<leader>gu", function()
   _GITUI_TOGGLE()
 end, merge(opts, { desc = "Toggle Gitui" }))
+
 keymap("n", "<leader>gl", function()
   _LAZYGIT_TOGGLE()
 end, merge(opts, { desc = "Toggle LazyGit" }))
+
+keymap("n", "<leader>gr", function()
+  _RANGER_TOGGLE()
+end, merge(opts, { desc = "Toggle Ranger" }))
 
 keymap("n", "<leader>cp", "<cmd>PickColor<cr>", opts)
 -- vim.keymap.set('i', '<C-c>', '<cmd>PickColorInsert<cr>', opts)

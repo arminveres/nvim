@@ -24,6 +24,11 @@ if vim.g.neovide then
   -- set ctrl-v to paste in insert mode
   vim.keymap.set("i", "<C-v>", "<C-R>+", opts)
 
+  -- add padding because of rounded borders
+  vim.g.neovide_padding_top = 5
+  vim.g.neovide_padding_bottom = 5
+  vim.g.neovide_padding_right = 5
+  vim.g.neovide_padding_left = 5
 
   vim.g.neovide_transparency = 0.95
   vim.g.neovide_frame_rate = 60
