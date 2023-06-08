@@ -64,7 +64,20 @@ return {
       }
       require('qmk').setup(conf)
     end
-  }
+  },
+
+  -- Experimental UI plugin based on Kitty graphics protocol
+  -- {
+  --   'romgrk/kirby.nvim',
+  --   dependencies = {
+  --     {
+  --       'romgrk/fzy-lua-native',
+  --       build = 'make install'
+  --     },
+  --     { 'romgrk/kui.nvim' },
+  --     { 'nvim-tree/nvim-web-devicons' },
+  --   },
+  -- },
 
   -- TODO: (aver) setup function: https://github.com/tzachar/local-highlight.nvim
   -- {

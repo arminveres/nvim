@@ -1,7 +1,7 @@
 local opts = { noremap = true, silent = true }
 local fonts = {
   "Iosevka Term:h10",
-  "JetBrainsMono Nerd Font:h10",
+  "JetBrainsMono Nerd Font:h10.5",
   "TamzenForPowerline:h14",
   "TerminessTTF Nerd Font Mono:h11.5",
   "DinaRemasterII:h12",
@@ -13,23 +13,33 @@ local fonts = {
   "MesloLGSDZ NFM:h10",
 }
 
-if vim.g.neovide then -- neovide specific settings
-  vim.opt.guifont = fonts[7]
-  vim.keymap.set("i", "<S-Insert>", "<C-R>+", opts)
+-- NEOVIDE specific settings
+if vim.g.neovide then
+  vim.opt.guifont = fonts[2]
+  vim.opt.title = true
+  vim.opt.titlestring = "Neovide"
+  -- vim.cmd([[:auto BufEnter * let &titlestring = expand("%:p")]])
 
-  -- vim.g.neovide_transparency = 0.8
+  vim.keymap.set("i", "<S-Insert>", "<C-R>+", opts)
+  -- set ctrl-v to paste in insert mode
+  vim.keymap.set("i", "<C-v>", "<C-R>+", opts)
+
+
+  vim.g.neovide_transparency = 0.95
   vim.g.neovide_frame_rate = 60
   vim.g.neovide_frame_rate_idle = 60
   vim.g.neovide_cursor_animation_length = 0
   vim.g.neovide_scroll_animation_length = 0
   vim.g.neovide_no_idle = true
-elseif vim.g.GuiLoaded then -- nvim-qt
-  -- Nvim-qt needs this kind of notation
+
+  -- Other GUI options, e.g., nvim-Qt or Goneovim
+elseif vim.g.GuiLoaded then
   vim.opt.guifont = fonts[1]
   vim.keymap.set("i", "<S-Insert>", "<C-R>+", opts)
 end
 
-if vim.fn.has("win32") == 1 then -- Windows specific options
+-- Windows specific options
+if vim.fn.has("win32") == 1 then
   vim.opt.shell = "C:/Programme/Git/bin/bash.exe"
   vim.opt.shellcmdflag = "--login -c" -- ignore '-i' for now
   vim.opt.shellxquote = ""

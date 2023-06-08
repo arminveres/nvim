@@ -39,11 +39,11 @@ else
     invert_tabline = false,
     invert_intend_guides = true,
     dim_inactive = false,
-    transparent_mode = true,
+    transparent_mode = false,
     contrast = "hard", -- can be "hard" or "soft"
     -- overriding highlight groups
     palette_overrides = {
-      dark0_hard = "#101010"
+      dark0_hard = "#1e1e1e"
     },
     overrides = {
       String = { fg = "#eb9664" }, -- #eb9664, #c89664
