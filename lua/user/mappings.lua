@@ -6,7 +6,7 @@ local remopts = { noremap = false, silent = true }
 local keymap = vim.keymap.set
 
 local function merge(table1, table2)
-  return vim.tbl_deep_extend("force", table1, table2)
+    return vim.tbl_deep_extend("force", table1, table2)
 end
 
 -- Leader --
@@ -130,26 +130,26 @@ keymap("x", "<leader>p", '"_dP', opts)
 --   require('telescope.builtin').buffers()
 -- end, opts)
 keymap("n", "\\e", function()
-  require("telescope.builtin").find_files()
+    require("telescope.builtin").find_files()
 end, opts)
 keymap("n", "\\g", function()
-  require("telescope.builtin").git_files()
+    require("telescope.builtin").git_files()
 end, opts)
 keymap("n", "\\b", function()
-  require("telescope.builtin").buffers()
+    require("telescope.builtin").buffers()
 end, opts)
 keymap("n", "<leader>sb", function()
-  require("telescope.builtin").current_buffer_fuzzy_find()
+    require("telescope.builtin").current_buffer_fuzzy_find()
 end, opts)
 keymap("n", "<leader>sh", function()
-  require("telescope.builtin").help_tags()
+    require("telescope.builtin").help_tags()
 end, opts)
 -- allow to grep for string under cursor
 keymap("n", "<leader>sd", function()
-  require("telescope.builtin").grep_string()
+    require("telescope.builtin").grep_string()
 end, opts)
 keymap("n", "<leader>sp", function()
-  require("telescope.builtin").live_grep()
+    require("telescope.builtin").live_grep()
 end, opts)
 keymap("n", "<leader>gfb", ":Telescope git_branches<CR>", merge(opts, { desc = "Telescope [f]ind [g]it [b]ranches" }))
 keymap("n", "<leader>?", ":Telescope keymaps<CR>", opts)
@@ -167,11 +167,11 @@ keymap("n", "]d", ":Lspsaga diagnostic_jump_next<CR>", opts)
 keymap("n", "K", ":Lspsaga hover_doc<CR>", opts)
 
 keymap("n", "<C-f>", function()
-  require("lspsaga.action").smart_scroll_with_saga(1)
+    require("lspsaga.action").smart_scroll_with_saga(1)
 end, opts)
 -- scroll up hover doc
 keymap("n", "<C-b>", function()
-  require("lspsaga.action").smart_scroll_with_saga(-1)
+    require("lspsaga.action").smart_scroll_with_saga(-1)
 end, opts)
 keymap("n", "<leader>ca", ":Lspsaga code_action<CR>", opts)
 keymap("v", "<leader>ca", "<cmd><C-U>Lspsaga range_code_action<CR>", opts)
@@ -198,22 +198,22 @@ keymap("n", "<Leader>lr", ":LspRestart<CR>", opts)
 -- Harpoon
 ----------------------------------------------------------------------------------------------------
 keymap("n", "<leader>ha", function()
-  require("harpoon.mark").add_file()
+    require("harpoon.mark").add_file()
 end, opts)
 keymap("n", "\\h", function()
-  require("harpoon.ui").toggle_quick_menu()
+    require("harpoon.ui").toggle_quick_menu()
 end, opts)
 keymap("n", "\\a", function()
-  require("harpoon.ui").nav_file(1)
+    require("harpoon.ui").nav_file(1)
 end, opts)
 keymap("n", "\\s", function()
-  require("harpoon.ui").nav_file(2)
+    require("harpoon.ui").nav_file(2)
 end, opts)
 keymap("n", "\\d", function()
-  require("harpoon.ui").nav_file(3)
+    require("harpoon.ui").nav_file(3)
 end, opts)
 keymap("n", "\\f", function()
-  require("harpoon.ui").nav_file(4)
+    require("harpoon.ui").nav_file(4)
 end, opts)
 
 ----------------------------------------------------------------------------------------------------
@@ -224,11 +224,11 @@ keymap("n", [[<c-\>l]], ":ToggleTerm direction=vertical<CR>", opts)
 keymap("n", [[<c-\>k]], ":ToggleTerm direction=tab<CR>", opts)
 
 keymap("n", "<leader>gu", function()
-  _GITUI_TOGGLE()
+    _GITUI_TOGGLE()
 end, merge(opts, { desc = "Toggle Gitui" }))
 
 keymap("n", "<leader>gl", function()
-  _LAZYGIT_TOGGLE()
+    _LAZYGIT_TOGGLE()
 end, merge(opts, { desc = "Toggle LazyGit" }))
 
 keymap("n", "<leader>gr", function()
@@ -241,9 +241,9 @@ keymap("n", "<leader>cp", "<cmd>PickColor<cr>", opts)
 -- Easier window switching with leader + Number
 -- Creates mappings like this: km.set("n", "<Leader>2", "2<C-W>w", { desc = "Move to Window 2" })
 for i = 1, 6 do
-  local lhs = "<Leader>" .. i
-  local rhs = i .. "<C-W>w"
-  keymap("n", lhs, rhs, { desc = "Move to Window " .. i })
+    local lhs = "<Leader>" .. i
+    local rhs = i .. "<C-W>w"
+    keymap("n", lhs, rhs, { desc = "Move to Window " .. i })
 end
 
 keymap("v", "<leader>ga", ":Gitsign stage_hunk<cr>", opts)
@@ -252,6 +252,6 @@ keymap("n", "[h", ":Gitsign prev_hunk<cr>", opts)
 keymap("n", "]h", ":Gitsign next_hunk<cr>", opts)
 
 keymap("n", "<leader>td", ":TodoTelescope theme=dropdown layout_config={width=0.5}<cr>", merge(opts, {
-  desc =
-  "Show all TODOs in project."
+    desc =
+    "Show all TODOs in project."
 }))

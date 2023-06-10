@@ -57,8 +57,8 @@ vim.opt.winblend = 15
 vim.opt.cmdheight = 1
 -- configure ripgrep as grep program if available
 if vim.fn.executable("rg") then
-  vim.o.grepprg = "rg --no-heading --vimgrep"
-  vim.o.grepformat = "%f:%l:%c:%m"
+    vim.o.grepprg = "rg --no-heading --vimgrep"
+    vim.o.grepformat = "%f:%l:%c:%m"
 end
 
 -- Windows specific options

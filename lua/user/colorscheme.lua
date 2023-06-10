@@ -76,10 +76,11 @@ else
       WilderAccent = { fg = "#f4468f", bg = "" },
       -- LspSaga colors
       SagaNormal = { link = 'PMenu' },
-      LspInlayHint = { link = 'GruvboxAqua' },
-      -- LspInlayHint = { fg = '#325f5f' },
-      LspInlayHints = { link = 'GruvboxAqua' }
-    } --custom_colors,
+      -- FloatShadow = { link = 'PMenu' },
+      -- FloatShadowThrough = { link = 'PMenu' },
+      -- LspInlayHint = { link = 'GruvboxAqua' },
+      -- LspInlayHints = { link = 'GruvboxAqua' }
+    }
   })
 end
 
