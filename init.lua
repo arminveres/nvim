@@ -8,4 +8,3 @@ require("user.autocmds")
 vim.opt.showtabline = 1 -- only show when more than one 1 tab, need to be loaded last, gets overwritten otherwise
 vim.cmd([[highlight link TrailingSpaces Error | match TrailingSpaces /\s\+$/]])
 
-vim.opt.runtimepath:append(", ~/gitfiles/md-pdf.nvim")
