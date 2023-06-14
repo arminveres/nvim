@@ -4,10 +4,10 @@ rt.setup({
         -- autosethints = true,
         inlay_hints = {
             show_parameter_hints = true,
-            highlight = "GruvboxBlue",
+            -- highlight = "GruvboxBlue",
             parameter_hints_prefix = " ",
             other_hints_prefix = " ",
-            auto = false,
+            auto = true,
         },
         -- hover_actions = { auto_focus = true }
     },

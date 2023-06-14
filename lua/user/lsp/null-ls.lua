@@ -47,6 +47,7 @@ null_ls.setup({
         -- diagnostics.commitlint,
         diagnostics.gitlint,
         -- diagnostics.ruff,
+        diagnostics.stylelint,
 
         -- formatting.stylua,
         formatting.prettier.with({ extra_args = { "--single-quote", "--jsx-single-quote" } }),
@@ -56,6 +57,7 @@ null_ls.setup({
         -- formatting.shfmt.with({ extra_args = { '--indent', '4' } }),
         formatting.black, --.with({ extra_args = { "--fast" } }),
         formatting.beautysh,
+        formatting.stylelint,
 
         hover.dictionary,
     },

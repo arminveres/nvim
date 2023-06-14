@@ -1,9 +1,9 @@
 --[[
 --  TODO: (aver)
 --]]
+local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 local remopts = { noremap = false, silent = true }
-local keymap = vim.keymap.set
 
 local function merge(table1, table2)
     return vim.tbl_deep_extend("force", table1, table2)
@@ -154,7 +154,7 @@ end, opts)
 keymap("n", "<leader>gfb", ":Telescope git_branches<CR>", merge(opts, { desc = "Telescope [f]ind [g]it [b]ranches" }))
 keymap("n", "<leader>?", ":Telescope keymaps<CR>", opts)
 keymap("n", "<leader>r", ":Telescope resume<CR>", opts)
-keymap("n", "<leader>sg", [[:Telescope grep_string search=<cr>]])
+keymap("n", "<leader>sg", ":Telescope grep_string search=<cr>")
 -- keymap('n', '<leader>st', [[<cmd>lua require('telescope.builtin').tags()<CR>]], opts)
 -- keymap('n', '<leader>so', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]], opts)
 -- keymap('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], opts)
@@ -232,7 +232,7 @@ keymap("n", "<leader>gl", function()
 end, merge(opts, { desc = "Toggle LazyGit" }))
 
 keymap("n", "<leader>gr", function()
-  _RANGER_TOGGLE()
+    _RANGER_TOGGLE()
 end, merge(opts, { desc = "Toggle Ranger" }))
 
 keymap("n", "<leader>cp", "<cmd>PickColor<cr>", opts)
