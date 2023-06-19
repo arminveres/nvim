@@ -1,6 +1,6 @@
 return {
     {
-        dir = "~/gitfiles/md-pdf.nvim",
+        dir = "~/projects/md-pdf.nvim",
         lazy = true,
         keys = { { '<leader>,' } },
         config = function()
