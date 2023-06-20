@@ -9,6 +9,14 @@
 - Easy and simple LSP usage, automatic install and setup [Mason](https://github.com/williamboman/mason.nvimhttps://github.com/williamboman/mason.nvim)
 - Plugin management through [Lazy](https://github.com/folke/lazy.nvimhttps://github.com/folke/lazy.nvim)
 
+## Requirements
+
+- nvim >= 0.9
+- TeX distribution like `texlive`
+- `pandoc` for document conversions
+- `ripgrep` for faster and more modern grepping
+- `fd-find` for more modern file finding
+
 #### TODO
 
 - add debug protocol DAP [nvim-dap](https://github.com/mfussenegger/nvim-dap)

@@ -14,8 +14,7 @@ end
 M.server = {
     cmd = {
         "clangd",
-        '--query-driver=/opt/gcc-arm-none-eabi/bin/arm-none-eabi-g++',
-        -- '--query-driver=/**/**/bin/*gcc',
+        -- '--query-driver=*',
         "--background-index",
         "--header-insertion=iwyu", -- never
         "--clang-tidy",
