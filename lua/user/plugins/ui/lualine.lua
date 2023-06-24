@@ -144,8 +144,5 @@ return {
         extensions = {},
       })
     end,
-    dependencies = {
-      "Mofiqul/adwaita.nvim",
-    },
   },
 }

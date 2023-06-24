@@ -66,6 +66,7 @@ M.on_attach = function(client, bufnr)
     M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
 
     lsp_highlight_document(client)
+    -- vim.lsp.buf.inlay_hint(bufnr, true)
 end
 
 -- Use LspAttach autocommand to only map the following keys

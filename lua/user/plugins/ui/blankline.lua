@@ -14,11 +14,4 @@ return {
   config = function(_, opts)
     require("indent_blankline").setup(opts)
   end,
-  dependencies = {
-    "ellisonleao/gruvbox.nvim",
-    config = function()
-      -- BUG: weird bug, where this is the only way, I can setup gruvbox, other colorschemes work without issues
-      require("user.colorscheme")
-    end,
-  },
 }

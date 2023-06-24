@@ -8,3 +8,10 @@ require("user.autocmds")
 vim.opt.showtabline = 1 -- only show when more than one 1 tab, need to be loaded last, gets overwritten otherwise
 vim.cmd([[highlight link TrailingSpaces Error | match TrailingSpaces /\s\+$/]])
 
+-- setting the colorscheme
+local colorscheme = "gruvbox"
+local colorscheme_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+if not colorscheme_ok then
+  vim.notify("colorscheme " .. colorscheme .. " not found!")
+  vim.cmd([[colorscheme retrobox]])
+end
