@@ -78,7 +78,7 @@ return {
   {
     -- Autocompletion plugins
     "hrsh7th/nvim-cmp",
-    lazy = true,
+    -- lazy = true,
     event = "InsertEnter",
     dependencies = {
       "hrsh7th/cmp-buffer",
@@ -111,10 +111,10 @@ return {
       local cmp = require("cmp")
       local luasnip = require("luasnip")
 
-      local check_backspace = function()
-        local col = vim.fn.col(".") - 1
-        return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
-      end
+      -- local check_backspace = function()
+      --   local col = vim.fn.col(".") - 1
+      --   return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
+      -- end
 
       local kind_icons = {
         Text = "",
@@ -145,18 +145,19 @@ return {
       } -- find more here: https://www.nerdfonts.com/cheat-sheet
 
       cmp.setup({
+        -- preselect = 'None',
         snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body) -- For `luasnip` users.
           end,
         },
         mapping = cmp.mapping.preset.insert({
-          ["<C-k>"] = cmp.mapping.select_prev_item(),
-          ["<C-j>"] = cmp.mapping.select_next_item(),
+          -- ["<C-y>"] = cmp.config.disable,                                     -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+          ["<Tab>"] = cmp.mapping.select_next_item(),
+          ["<S-Tab>"] = cmp.mapping.select_prev_item(),
           ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),  -- 'forward'
           ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }), -- 'backward'
           ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-          ["<C-y>"] = cmp.config.disable,                                     -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
           ["<C-e>"] = cmp.mapping({
             i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
@@ -170,14 +171,15 @@ return {
           format = function(entry, vim_item)
             -- Kind icons
             vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-            -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+            -- NOTE: This concatonates the icons with the name of the item kind
+            -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
             vim_item.menu = ({
               nvim_lsp = "[LSP]",
-              luasnip = "[Snippet]",
-              nvim_lua = "[NV_Lua]",
+              luasnip = "[Snip]",
+              nvim_lua = "[Lua]",
               path = "[Path]",
-              buffer = "[Buffer]",
-              dictionary = "[Dictionary]",
+              buffer = "[Buf]",
+              dictionary = "[Dict]",
             })[entry.source.name]
             return vim_item
           end,
@@ -197,13 +199,14 @@ return {
           behavior = cmp.ConfirmBehavior.Replace,
           select = false,
         },
-        window = {
-          -- completion = cmp.config.window.bordered(),
-          -- documentation = cmp.config.window.bordered(),
-        },
         experimental = {
           ghost_text = true,
         },
+        -- window = {
+        --   completion = cmp.config.window.bordered(),
+        --   documentation = cmp.config.window.bordered(),
+        -- },
+        -- WARN: Disable native completion, conflicting with preview
         -- view = { entries = "native" },
       })
 
@@ -275,7 +278,9 @@ return {
     },
     config = function()
       local dict = require("cmp_dictionary")
-      dict.setup({})
+      dict.setup({
+        max_items = 10,
+      })
       dict.switcher({
         filetype = {
           markdown = { "~/.local/share/dict/eng.dict", "/usr/share/dict/linux.words" },

@@ -7,10 +7,10 @@ return {
     "nvim-treesitter/nvim-treesitter-textobjects",
     "nvim-treesitter/nvim-treesitter-refactor",
     "nvim-treesitter/nvim-treesitter-context",
-    "HiPhish/nvim-ts-rainbow2", -- rainbow parenthesis
+    "HiPhish/nvim-ts-rainbow2",                    -- rainbow parenthesis
     "JoosepAlviste/nvim-ts-context-commentstring", -- better context aware commenting
     {
-      "numToStr/Comment.nvim", -- Comment out code easily
+      "numToStr/Comment.nvim",                     -- Comment out code easily
       opts = { ignore = "^$" },
       config = true,
       lazy = true,
@@ -18,15 +18,15 @@ return {
   },
   opts = {
     ensure_installed = "all",
-    sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
+    sync_install = false,    -- install languages synchronously (only applied to `ensure_installed`)
     ignore_install = { "" }, -- List of parsers to ignore installing
     autopairs = {
       enable = true,
     },
     highlight = {
       enable = true, -- false will disable the whole extension
-      disable = { "markdown" }, -- list of language that will be disabled
-      additional_vim_regex_highlighting = false,
+      -- disable = { "markdown" }, -- list of language that will be disabled
+      additional_vim_regex_highlighting = { "markdown" },
     },
     indent = {
       enable = true,

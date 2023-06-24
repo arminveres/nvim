@@ -1,6 +1,3 @@
---[[
---  TODO: (aver)
---]]
 local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 local remopts = { noremap = false, silent = true }
@@ -49,11 +46,14 @@ keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Move text up and down
-keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
-keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
+-- keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
+-- keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
+-- Only move the text, don't go into insert more
+keymap("n", "<A-j>", "<Esc>:m .+1<CR>", opts)
+keymap("n", "<A-k>", "<Esc>:m .-2<CR>", opts)
 
 -- Navigate tabs
-keymap("n", "<leader>ta", ":$tabnew<CR>", opts)
+keymap("n", "<C-t>", ":$tabnew<CR>", opts)
 keymap("n", "<leader>tc", ":tabclose<CR>", opts)
 keymap("n", "<leader>to", ":tabonly<CR>", opts)
 keymap("n", "<leader>tn", ":tabn<CR>", opts)
