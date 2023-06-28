@@ -1,6 +1,6 @@
 local opts = { noremap = true, silent = true }
 local fonts = {
-    "Iosevka Nerd Font Mono:h10",
+    "Iosevka Nerd Font Mono:h12",
     "JetBrainsMono Nerd Font Mono:h8.5",
     "TamzenForPowerline:h14",
     "TerminessTTF Nerd Font Mono:h11.5",
@@ -21,7 +21,7 @@ local fonts = {
 if vim.g.neovide then
     vim.opt.guifont = fonts[1]
     vim.opt.title = true
-    vim.opt.titlestring = "Neovide"
+    -- vim.opt.titlestring = "Neovide"
     -- vim.cmd([[:auto BufEnter * let &titlestring = expand("%:p")]])
 
     vim.keymap.set("i", "<S-Insert>", "<C-R>+", opts)

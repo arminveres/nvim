@@ -5,5 +5,5 @@ vim.keymap.set("n", "<leader>m", ":MarkdownPreview<CR>", {
 vim.opt_local.spell = true
 vim.opt_local.conceallevel = 2 -- hide spaces too
 
-vim.bo.shiftwidth = 4
-vim.bo.softtabstop = 4
+vim.bo.shiftwidth = 2
+vim.bo.softtabstop = 2

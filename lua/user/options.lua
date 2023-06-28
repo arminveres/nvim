@@ -11,9 +11,9 @@ vim.opt.mouse = "a"
 vim.opt.hidden = true  --Do not save when switching buffers (note: this is now a default on master)
 vim.opt.scrolloff = 10 -- keeps x lines of context, scrolls otherwise
 
+vim.opt.expandtab = true
 vim.opt.tabstop = 8
 vim.opt.softtabstop = 4
-vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
 
 vim.opt.splitbelow = true -- force all horizontal splits to go below current window
