@@ -166,13 +166,6 @@ keymap("n", "[d", ":Lspsaga diagnostic_jump_prev<CR>", opts)
 keymap("n", "]d", ":Lspsaga diagnostic_jump_next<CR>", opts)
 keymap("n", "K", ":Lspsaga hover_doc<CR>", opts)
 
-keymap("n", "<C-f>", function()
-    require("lspsaga.action").smart_scroll_with_saga(1)
-end, opts)
--- scroll up hover doc
-keymap("n", "<C-b>", function()
-    require("lspsaga.action").smart_scroll_with_saga(-1)
-end, opts)
 keymap("n", "<leader>ca", ":Lspsaga code_action<CR>", opts)
 keymap("v", "<leader>ca", "<cmd><C-U>Lspsaga range_code_action<CR>", opts)
 keymap("n", "gs", ":Lspsaga signature_help<CR>", opts)
