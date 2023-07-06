@@ -18,7 +18,7 @@ return {
   },
   opts = {
     ensure_installed = "all",
-    sync_install = false,    -- install languages synchronously (only applied to `ensure_installed`)
+    sync_install = false,   -- install languages synchronously (only applied to `ensure_installed`)
     ignore_install = { "" }, -- List of parsers to ignore installing
     autopairs = {
       enable = true,

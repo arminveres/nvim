@@ -47,6 +47,7 @@ return { -- colorschemes TODO: just write my own colorscheme based on gruvbox...
         DiffChange = { bold = true, reverse = false, fg = "", bg = "#333841" },
         DiffDelete = { bold = true, reverse = false, fg = "#442d30", bg = "#442d30" },
         DiffText = { bold = true, reverse = false, fg = "", bg = "#213352" },
+        GitSignsCurrentLineBlame = { link = 'GruvboxFg3' },
 
         -- ==========================================================================================
         -- Fold
