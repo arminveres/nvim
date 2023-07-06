@@ -1,3 +1,4 @@
+-- Vimtex options
 vim.g.vimtex_compiler_latexmk = {
     options = {
         '--shell-escape',
@@ -7,6 +8,8 @@ vim.g.vimtex_compiler_latexmk = {
         '--interaction=nonstopmode'
     }
 }
+vim.g.vimtex_view_automatic = 0
+vim.g.vimtex_quickfix_open_on_warning = 0
 
 return {
     {
