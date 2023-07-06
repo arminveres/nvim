@@ -78,8 +78,7 @@ return {
   {
     -- Autocompletion plugins
     "hrsh7th/nvim-cmp",
-    -- lazy = true,
-    event = "InsertEnter",
+    event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-nvim-lsp-signature-help",
@@ -210,24 +209,29 @@ return {
         -- view = { entries = "native" },
       })
 
-      cmp.setup.cmdline(":", {
+      -- `:` cmdline setup.
+      cmp.setup.cmdline(':', {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources({
-          { name = "cmdline" },
-        }),
+          { name = 'path' }
+        }, {
+          {
+            name = 'cmdline',
+            option = {
+              ignore_cmds = { 'Man', '!' }
+            }
+          }
+        })
       })
-
-      cmp.setup.cmdline({ "/", "?" }, {
+      -- `/` cmdline setup.
+      cmp.setup.cmdline('/', {
         mapping = cmp.mapping.preset.cmdline(),
         sources = {
           { name = 'buffer' }
         }
       })
 
-      --[[
-      -- more on: https://github.com/windwp/nvim-autopairs
-      -- autopairs setup
-      --]]
+      -- more on: https://github.com/windwp/nvim-autopairs autopairs setup
       local cmp_autopairs = require("nvim-autopairs.completion.cmp")
       local handlers = require("nvim-autopairs.completion.handlers")
       cmp.event:on(
@@ -255,9 +259,7 @@ return {
     -- lazyloading git plugin for cmp!
     "petertriho/cmp-git",
     ft = "gitcommit",
-    dependencies = {
-      "hrsh7th/nvim-cmp",
-    },
+    dependencies = { "hrsh7th/nvim-cmp", },
     config = function(_, opts)
       local cmp = require("cmp")
       -- Set configuration specifically for gitcommit
@@ -272,10 +274,7 @@ return {
   },
   {
     "uga-rosa/cmp-dictionary", -- dictionary plugin
-    ft = {
-      "gitcommit",
-      'markdown'
-    },
+    ft = { "gitcommit", 'markdown', "latex" },
     config = function()
       local dict = require("cmp_dictionary")
       dict.setup({
@@ -284,7 +283,8 @@ return {
       dict.switcher({
         filetype = {
           markdown = { "~/.local/share/dict/eng.dict", "/usr/share/dict/linux.words" },
-          gitcommit = { "~/.local/share/dict/eng.dict", "/usr/share/dict/linux.words" }
+          gitcommit = { "~/.local/share/dict/eng.dict", "/usr/share/dict/linux.words" },
+          latex = { "~/.local/share/dict/eng.dict", "/usr/share/dict/linux.words" }
         }
       })
     end
