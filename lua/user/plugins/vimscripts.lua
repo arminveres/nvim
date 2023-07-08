@@ -38,7 +38,8 @@ return {
     },
     {
         "mbbill/undotree",
-        lazy = true
+        lazy = true,
+        cmd = 'UndotreeToggle'
     },
     {
         "zefei/vim-colortuner",
