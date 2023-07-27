@@ -66,7 +66,6 @@ M.on_attach = function(client, bufnr)
     M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
 
     lsp_highlight_document(client)
-    -- vim.lsp.buf.inlay_hint(bufnr, true)
 end
 
 -- Use LspAttach autocommand to only map the following keys
@@ -76,6 +75,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(ev)
         -- Enable completion triggered by <c-x><c-o>
         vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+        vim.lsp.inlay_hint(0, true)
 
         -- Buffer local mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions

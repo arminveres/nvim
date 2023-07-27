@@ -14,7 +14,6 @@ return {
     {
         "glepnir/lspsaga.nvim",
         event = "LspAttach",
-        branch = "main",
         opts = {
             ui = {
                 title = true,

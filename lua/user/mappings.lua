@@ -1,5 +1,8 @@
+---@type function
 local keymap = vim.keymap.set
+---@type table
 local opts = { noremap = true, silent = true }
+---@type table
 local remopts = { noremap = false, silent = true }
 
 local function merge(table1, table2)
@@ -166,17 +169,17 @@ keymap("n", "[d", ":Lspsaga diagnostic_jump_prev<CR>", opts)
 keymap("n", "]d", ":Lspsaga diagnostic_jump_next<CR>", opts)
 keymap("n", "K", ":Lspsaga hover_doc<CR>", opts)
 
-keymap("n", "<leader>ca", ":Lspsaga code_action<CR>", opts)
-keymap("v", "<leader>ca", "<cmd><C-U>Lspsaga range_code_action<CR>", opts)
-keymap("n", "gs", ":Lspsaga signature_help<CR>", opts)
-keymap("n", "<leader>rn", ":Lspsaga rename ++project<CR>", opts)
-keymap("n", "gh", ":Lspsaga lsp_finder<CR>", opts)
-keymap("n", "<leader>gd", "<cmd>Lspsaga preview_definition<CR>", opts)
+keymap({ 'n', 'v' }, "<leader>ca", ":Lspsaga code_action<CR>", opts)
+keymap("n", "grn", ":Lspsaga rename ++project<CR>", opts)
+keymap("n", "gh", ":Lspsaga finder<CR>", opts)
 keymap("n", "<leader>at", ":Lspsaga outline<CR>", opts)
 keymap("n", "gl", ":Lspsaga show_line_diagnostics<CR>", opts)
 keymap("n", "<leader>gl", ":Lspsaga show_cursor_diagnostics<CR>", opts)
 keymap("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
 keymap("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
+-- keymap("n", "<leader>rn", ":Lspsaga rename ++project<CR>", opts)
+-- keymap("v", "<leader>ca", "<cmd><C-U>Lspsaga range_code_action<CR>", opts)
+-- keymap("n", "<leader>gd", "<cmd>Lspsaga preview_definition<CR>", opts)
 
 -- Undo tree toggle
 keymap("n", "<Leader>u", "<Cmd>UndotreeToggle<CR>", opts)
