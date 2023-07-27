@@ -274,7 +274,7 @@ return {
   },
   {
     "uga-rosa/cmp-dictionary", -- dictionary plugin
-    ft = { "gitcommit", 'markdown', "latex" },
+    ft = { "gitcommit", 'markdown', "tex" },
     config = function()
       local dict = require("cmp_dictionary")
       dict.setup({
@@ -284,7 +284,7 @@ return {
         filetype = {
           markdown = { "~/.local/share/dict/eng.dict", "/usr/share/dict/linux.words" },
           gitcommit = { "~/.local/share/dict/eng.dict", "/usr/share/dict/linux.words" },
-          latex = { "~/.local/share/dict/eng.dict", "/usr/share/dict/linux.words" }
+          tex = { "~/.local/share/dict/eng.dict", "/usr/share/dict/linux.words" }
         }
       })
     end
