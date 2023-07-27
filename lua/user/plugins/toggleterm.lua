@@ -1,5 +1,13 @@
 return {
   "akinsho/toggleterm.nvim", -- custom terminal for neovim
+  keys = {
+    { [[<c-\>j]],   ":ToggleTerm direction=horizontal<CR>", mode = 'n', desc = 'Open Toggleterm in horizontal window.' },
+    { [[<c-\>l]],   ":ToggleTerm direction=vertical<CR>",   mode = 'n', desc = 'Open Toggleterm in vertical window.' },
+    { [[<c-\>k]],   ":ToggleTerm direction=tab<CR>",        mode = 'n', desc = 'Open Toggleterm in Tab.' },
+    { "<leader>gu", function() _GITUI_TOGGLE() end,         mode = 'n', desc = "Toggle Gitui" },
+    { "<leader>gl", function() _LAZYGIT_TOGGLE() end,       mode = 'n', desc = "Toggle LazyGit" },
+    { "<leader>gr", function() _RANGER_TOGGLE() end,        mode = 'n', desc = "Toggle Ranger" },
+  },
   config = function()
     require("toggleterm").setup({
       size = function(term)
@@ -81,6 +89,8 @@ return {
     -- function _PYTHON_TOGGLE()
     --   python:toggle()
     -- end
-
   end,
+  dependencies = {
+    'willothy/flatten.nvim',
+  }
 }
