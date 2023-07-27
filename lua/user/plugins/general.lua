@@ -60,8 +60,22 @@ return {
                 '_ _ x x x x x _ x x x x x _ _',
             }
         }
+    },
+    {
+        'lukas-reineke/headlines.nvim',
+        dependencies = "nvim-treesitter/nvim-treesitter",
+        ft = { 'markdown', 'neorg', 'orgmode' },
+        config = true, -- or `opts = {}`
+        opts = {
+            markdown = {
+                headline_highlights = {
+                    "Headline1",
+                    "Headline2",
+                    "Headline3"
+                },
+            }
+        }
     }
-
     -- TODO: (aver) setup function: https://github.com/tzachar/local-highlight.nvim
     -- {
     --   "tzachar/local-highlight.nvim",

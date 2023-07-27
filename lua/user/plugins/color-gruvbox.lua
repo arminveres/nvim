@@ -73,11 +73,14 @@ return { -- colorschemes TODO: just write my own colorscheme based on gruvbox...
         -- ==========================================================================================
         -- Markdown highlights
         -- ==========================================================================================
-        ["@text.title.1"] = { bg = '#442d30', reverse = false },
-        ["@text.title.2"] = { bg = '#442d30', reverse = false },
-        ["@text.title.3"] = { bg = '#442d30', reverse = false },
-        ["@text.title.4"] = { bg = '#442d30', reverse = false },
-        ["@text.title.5"] = { bg = '#442d30', reverse = false },
+        -- ["@text.title.1"] = { bg = '#442d30', reverse = false },
+        -- ["@text.title.2"] = { bg = '#442d30', reverse = false },
+        -- ["@text.title.3"] = { bg = '#442d30', reverse = false },
+        -- ["@text.title.4"] = { bg = '#442d30', reverse = false },
+        -- ["@text.title.5"] = { bg = '#442d30', reverse = false },
+        Headline1 = { bg = '#442d30' },
+        Headline2 = { bg = '#1e2718' },
+        Headline3 = { bg = '#21262d' },
 
         -- Tried to clear colors, but remains black
         -- NoiceCmdline = { bg = 'NONE' },
