@@ -52,7 +52,7 @@ null_ls.setup({
         -- formatting.stylua,
         formatting.prettier.with({ extra_args = { "--single-quote", "--jsx-single-quote" } }),
         formatting.shfmt,
-        formatting.latexindent,
+        formatting.latexindent, -- .with({ extra_args = { "-y=\"defaultIndent:'  '\"" } }),
         -- formatting.ruff,
         -- formatting.shfmt.with({ extra_args = { '--indent', '4' } }),
         formatting.black, --.with({ extra_args = { "--fast" } }),

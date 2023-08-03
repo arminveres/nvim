@@ -1,4 +1,6 @@
+---@type function
 local aucmd = vim.api.nvim_create_autocmd
+---@type function
 local create_augroup = vim.api.nvim_create_augroup
 
 aucmd({ "BufRead,BufNewFile" }, { pattern = { "*.frag,*.vert" }, command = ":set filetype=glsl" })
@@ -42,15 +44,13 @@ aucmd("BufEnter", {
     command = "startinsert"
 })
 
--- aucmd("VimEnter,WinEnter", {
---   group = create_augroup("TelescopeOnEmptyBuffer", { clear = true }),
---   callback = function()
---     if vim.bo.filetype == "" then
---       local builtin = require("telescope.builtin")
---       builtin.find_files({
---         mode = "insert",
---         hidden = true,
---       })
---     end
---   end,
--- })
+aucmd("LspAttach", {
+    group = create_augroup("UserLspConfig", {}),
+    callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client.server_capabilities.inlayHintProvider then
+            vim.lsp.inlay_hint(args.buf, true)
+        end
+        -- whatever other lsp config you want
+    end
+})

@@ -1,14 +1,9 @@
 local rt = require("rust-tools")
 rt.setup({
     tools = {
-        autosethints = true,
         inlay_hints = {
-            show_parameter_hints = true,
-            -- parameter_hints_prefix = " ",
-            -- other_hints_prefix = " ",
             auto = false,
         },
-        -- hover_actions = { auto_focus = true }
     },
     server = {
         on_attach = function(_, bufnr)

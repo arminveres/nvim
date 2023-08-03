@@ -32,9 +32,9 @@ vim.opt.wrap = true
 vim.opt.textwidth = 100
 vim.opt.clipboard = "unnamedplus"
 
-vim.opt.undofile = true      --Save undo history
-vim.opt.undodir = "/tmp//"   --'~/.cache/nvim/undo//' doesn't work
-vim.opt.backupdir = "/tmp//" --'~/.cache/nvim/backup//'
+vim.opt.undofile = true                  --Save undo history
+vim.opt.undodir = "/tmp/nvim/undo//"     --'~/.cache/nvim/undo//' doesn't work
+vim.opt.backupdir = "/tmp/nvim/backup//" --'~/.cache/nvim/backup//'
 
 --Decrease update time
 vim.opt.updatetime = 250
@@ -57,8 +57,8 @@ vim.opt.winblend = 15
 vim.opt.cmdheight = 1
 -- configure ripgrep as grep program if available
 if vim.fn.executable("rg") then
-    vim.o.grepprg = "rg --no-heading --vimgrep"
-    vim.o.grepformat = "%f:%l:%c:%m"
+  vim.o.grepprg = "rg --no-heading --vimgrep"
+  vim.o.grepformat = "%f:%l:%c:%m"
 end
 
 -- Windows specific options

@@ -75,7 +75,7 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
         opts = vim.tbl_deep_extend("force", clangd_opts, opts)
         require("clangd_extensions").setup({
             server = opts,
-            extensions = require("user.lsp.settings.clangd").extensions,
+            -- extensions = require("user.lsp.settings.clangd").extensions,
         })
     else -- WARN: Never remove this, this sets up the lsp for every server except for clangd
         lspconfig[server].setup(opts)
