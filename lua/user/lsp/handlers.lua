@@ -1,13 +1,14 @@
 local M = {}
+local merge = require('user.utils').merge
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 
 M.setup = function()
     local signs = {
         { name = 'DiagnosticSignError', text = '' }, -- ""
-        { name = 'DiagnosticSignWarn',  text = '' },
-        { name = 'DiagnosticSignHint',  text = '' },
-        { name = 'DiagnosticSignInfo',  text = '' },
+        { name = 'DiagnosticSignWarn', text = '' },
+        { name = 'DiagnosticSignHint', text = '' },
+        { name = 'DiagnosticSignInfo', text = '' },
     }
 
     for _, sign in ipairs(signs) do
@@ -72,13 +73,13 @@ end
 -- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-    callback = function(ev)
+    callback = function(args)
         -- Enable completion triggered by <c-x><c-o>
-        vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+        vim.bo[args.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
         -- Buffer local mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
-        local opts = { buffer = ev.buf }
+        local opts = { buffer = args.buf }
         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
         -- vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
@@ -95,7 +96,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
         vim.keymap.set('n', '<space>bf', function()
             vim.lsp.buf.format { async = true }
-        end, opts)
+        end, merge(opts, { desc = 'Format current Buffer' }))
+
+
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client.server_capabilities.inlayHintProvider then
+            vim.lsp.inlay_hint(args.buf, true)
+        end
     end,
 })
 

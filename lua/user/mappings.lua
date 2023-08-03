@@ -1,13 +1,11 @@
+local merge = require('user.utils').merge
+
 ---@type function
 local keymap = vim.keymap.set
 ---@type table
 local opts = { noremap = true, silent = true }
 ---@type table
 local remopts = { noremap = false, silent = true }
-
-local function merge(table1, table2)
-    return vim.tbl_deep_extend("force", table1, table2)
-end
 
 -- Leader --
 --Remap space as leader key
