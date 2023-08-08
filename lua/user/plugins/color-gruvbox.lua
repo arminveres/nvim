@@ -3,34 +3,20 @@ return { -- colorschemes TODO: just write my own colorscheme based on gruvbox...
     "ellisonleao/gruvbox.nvim",
     lazy = false,
     priority = 1001,
-    config = true,
     opts = {
-      undercurl = true,
-      underline = true,
-      bold = true,
-      -- italic = {}, -- will make italic comments and special strings
-      strikethrough = true,
-      inverse = true, -- invert background for search, diffs, statuslines and errors
-      invert_selection = false,
-      invert_signs = false,
-      invert_tabline = false,
-      invert_intend_guides = true,
-      dim_inactive = false,
-      transparent_mode = false,
+      transparent_mode = true,
       contrast = "hard", -- can be "hard" or "soft"
       -- overriding highlight groups
       palette_overrides = {
         dark0_hard = "#141414"
       },
       overrides = {
-        -- ==========================================================================================
+        -- ========================================================================================
         -- LSP and LspSaga colors
-        -- ==========================================================================================
+        -- ========================================================================================
         SagaNormal = { link = 'PMenu' },
         -- FloatShadow = { link = 'PMenu' },
         -- FloatShadowThrough = { link = 'PMenu' },
-        -- LspInlayHint = { link = 'GruvboxAqua' },
-        -- LspInlayHints = { link = 'GruvboxAqua' }
         String = { fg = "#eb9664" }, -- #eb9664, #c89664
         Comment = { fg = "#919191", italic = true, bold = false },
         -- These highlights are special for undefined macros
@@ -40,25 +26,25 @@ return { -- colorschemes TODO: just write my own colorscheme based on gruvbox...
         Define = { link = "GruvboxPurple" },
         Macro = { link = "GruvboxPurple" },
 
-        -- ==========================================================================================
+        -- ========================================================================================
         -- Git Diff
-        -- ==========================================================================================
+        -- ========================================================================================
         DiffAdd = { bold = true, reverse = false, fg = "", bg = "#2a4333" },
         DiffChange = { bold = true, reverse = false, fg = "", bg = "#333841" },
         DiffDelete = { bold = true, reverse = false, fg = "#442d30", bg = "#442d30" },
         DiffText = { bold = true, reverse = false, fg = "", bg = "#213352" },
         GitSignsCurrentLineBlame = { link = 'GruvboxFg3' },
 
-        -- ==========================================================================================
+        -- ========================================================================================
         -- Fold
-        -- ==========================================================================================
+        -- ========================================================================================
         Folded = { fg = "#fe8019", bg = "#3c3836", italic = true },
         FoldColumn = { fg = "#fe8019", bg = "#0E1018" },
         SignColumn = { link = "GruvboxBg0" },
 
-        -- ==========================================================================================
+        -- ========================================================================================
         -- statusline and column
-        -- ==========================================================================================
+        -- ========================================================================================
         StatusLine = { bg = "#ffffff", fg = "#0E1018" },
         StatusLineNC = { bg = "#3c3836", fg = "#0E1018" },
         CursorLineNr = { fg = "#fabd2f", bg = "" },
@@ -70,9 +56,9 @@ return { -- colorschemes TODO: just write my own colorscheme based on gruvbox...
         WilderMenu = { fg = "#ebdbb2", bg = "" },
         WilderAccent = { fg = "#f4468f", bg = "" },
 
-        -- ==========================================================================================
+        -- ========================================================================================
         -- Markdown highlights
-        -- ==========================================================================================
+        -- ========================================================================================
         -- ["@text.title.1"] = { bg = '#442d30', reverse = false },
         -- ["@text.title.2"] = { bg = '#442d30', reverse = false },
         -- ["@text.title.3"] = { bg = '#442d30', reverse = false },

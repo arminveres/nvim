@@ -66,4 +66,6 @@ if vim.fn.has("win32") == 1 then
   vim.opt.shell = "C:/Programme/Git/bin/bash.exe"
   vim.opt.shellcmdflag = "--login -c" -- ignore '-i' for now
   vim.opt.shellxquote = ""
+else
+  vim.opt.shell = "/usr/bin/zsh"
 end

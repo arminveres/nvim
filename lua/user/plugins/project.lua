@@ -22,6 +22,7 @@ return {
         "Makefile",
         "package.json",
         "README.md",
+        "Cargo.toml",
       },
       -- Table of lsp clients to ignore by name
       -- eg: { "efm", ... }
