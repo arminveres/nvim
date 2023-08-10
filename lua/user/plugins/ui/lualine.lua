@@ -24,7 +24,8 @@ return {
       }
 
       my_theme.normal = {
-        a = { fg = gruvbox.dark0, bg = gruvbox.bright_orange, gui = 'bold' },
+        -- a = { fg = gruvbox.dark0, bg = gruvbox.bright_orange, gui = 'bold' },
+        a = { fg = gruvbox.dark0, bg = "#d75f00", gui = 'bold' },
         b = { fg = my_colors.gray10, bg = gruvbox.dark1 },
         c = { fg = my_colors.gray8, bg = gruvbox.dark0 },
       }
