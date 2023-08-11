@@ -98,7 +98,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
             vim.lsp.buf.format { async = true }
         end, merge(opts, { desc = 'Format current Buffer' }))
 
-
         local client = vim.lsp.get_client_by_id(args.data.client_id)
         if client.server_capabilities.inlayHintProvider then
             vim.lsp.inlay_hint(args.buf, true)

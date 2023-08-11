@@ -58,6 +58,7 @@ HMI
 HMIs
 Hyperledger
 IAM
+ICT
 IETF
 IFE
 IFI
@@ -82,6 +83,7 @@ Lifecycle
 Logitech
 Luminance
 M4
+MCU
 MCUs
 MUDs
 MULTISAVE
@@ -105,6 +107,7 @@ PUFs
 Partitional
 Petr
 Pi4
+Pico
 PoC
 PoW
 Quicksort
@@ -114,7 +117,8 @@ RTOS
 Replacable
 RockPi
 SCADA
-SRAM
+SQLite
+SRaM
 SSI
 STL
 STM
@@ -124,6 +128,7 @@ Selectionsort
 SoC
 Solaar
 Sovrin
+Stefano
 TOCKos
 TODO
 TODOs
@@ -143,6 +148,7 @@ W3C
 WIP
 WP1
 WP2
+Warmup
 Wayland
 X11
 YAC
@@ -167,6 +173,7 @@ codebases
 collins
 config
 crc
+crypto
 cryptocurrencies
 cryptocurrency
 cryptographic
@@ -203,22 +210,26 @@ incentivize
 init
 inits
 installable
+instantiation
 instantiations
 interledger
 interoperability
 io
+iterable
 json
 keymap
 lifecycle
 llvm
 lua
 metadata
+microcontroller
 microstructure
 modularity
 neovim
 nvim
 onboarded
 onboarding
+orion
 outliers
 overcomplicate
 parallelize
@@ -229,6 +240,7 @@ png
 polymorphism
 pre
 printf
+prometheus
 rebased
 recertification
 recertified
@@ -243,6 +255,7 @@ repurposed
 repurposing
 ripgrep
 rodio
+rodrigues
 rootkits
 runtime
 runtime
@@ -273,12 +286,5 @@ verifier
 verifier
 wezterm
 whitepaper
+yaml
 zsh
-iterable
-Pico
-microcontroller
-MCU
-rodrigues
-SQLite
-Stefano
-ICT

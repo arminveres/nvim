@@ -17,7 +17,7 @@ vim.g.maplocalleader = " "
 -- NeoVIM CORE
 ----------------------------------------------------------------------------------------------------
 -- Normal Mode --
-keymap("n", "<BS>", ":noh<CR>", opts) -- disables hlsearch until next search
+keymap("n", "<ESC>", ":noh<CR>", remopts) -- recursively redefine escape; disable hlsearch until next search
 
 --Remap for dealing with word wrap
 keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
@@ -65,8 +65,8 @@ keymap("n", "<leader>tmp", ":-tabmove<CR>", opts)
 keymap("n", "<leader>tmn", ":+tabmove<CR>", opts)
 
 -- Insert Mode --
--- Map jj to the escape key
-keymap("i", "jk", "<Esc>", opts)
+-- Map kj to the escape key
+keymap("i", "kj", "<Esc>", opts)
 
 -- Visual Mode --
 -- Stay in indent mode
