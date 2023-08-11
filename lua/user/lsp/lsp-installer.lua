@@ -62,22 +62,11 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
 
 
     if server == "clangd" then
-        local clangd_opts = require("user.lsp.settings.clangd").server
+        local clangd_opts = require("user.lsp.settings.clangd").server_opts
         opts = vim.tbl_deep_extend("force", clangd_opts, opts)
-        -- require("clangd_extensions").setup({
-        --     extensions = require("user.lsp.settings.clangd").extensions,
-        -- })
     end
 
     if server == "rust_analyzer" then
-        -- local rt = require("rust-tools")
-        -- local rust_opts = require("user.lsp.settings.rust").server
-        -- opts = vim.tbl_deep_extend("force", rust_opts, opts)
-        -- rt.setup({
-        --   tools = require("user.lsp.settings.rust").tools,
-        --   server = opts
-        -- })
-
         require('user.lsp.settings.rust')
     else -- WARN: Never remove this, this sets up the lsp for every server except for clangd
         lspconfig[server].setup(opts)

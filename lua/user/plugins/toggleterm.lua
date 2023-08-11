@@ -84,11 +84,6 @@ return {
     function _RANGER_TOGGLE()
       ranger:toggle()
     end
-
-    -- local python = Terminal:new({ cmd = "python", hidden = true, direction = "float" })
-    -- function _PYTHON_TOGGLE()
-    --   python:toggle()
-    -- end
   end,
   dependencies = {
     'willothy/flatten.nvim',

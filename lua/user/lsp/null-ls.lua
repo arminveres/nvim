@@ -49,7 +49,7 @@ null_ls.setup({
         -- diagnostics.ruff,
         diagnostics.stylelint,
 
-        -- formatting.stylua,
+        formatting.stylua,
         formatting.prettier.with({ extra_args = { "--single-quote", "--jsx-single-quote" } }),
         formatting.shfmt,
         formatting.latexindent, -- .with({ extra_args = { "-y=\"defaultIndent:'  '\"" } }),
