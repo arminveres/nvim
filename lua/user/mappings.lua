@@ -1,4 +1,4 @@
-local merge = require('user.utils').merge
+local merge = require("user.utils").merge
 
 ---@type function
 local keymap = vim.keymap.set
@@ -102,7 +102,7 @@ keymap("n", "<C-d>", "<C-d>zz", opts)
 keymap("n", "<leader>bq", ":Bdelete<CR>", opts)
 keymap("n", "\\q", ":q<CR>", opts)
 keymap("n", "\\Q", "<Cmd>qall<CR>", opts) -- quickquit
-keymap("n", "\\w", "<Cmd>w<CR>", opts)    -- quick save
+keymap("n", "\\w", "<Cmd>w<CR>", opts) -- quick save
 -- keymap("n", "<leader>.", ":so ~/.config/nvim/init.lua<CR>", opts)
 
 -- Yank to clipboard
@@ -152,7 +152,12 @@ end, opts)
 keymap("n", "<leader>sp", function()
     require("telescope.builtin").live_grep()
 end, opts)
-keymap("n", "<leader>gfb", ":Telescope git_branches<CR>", merge(opts, { desc = "Telescope [f]ind [g]it [b]ranches" }))
+keymap(
+    "n",
+    "<leader>gfb",
+    ":Telescope git_branches<CR>",
+    merge(opts, { desc = "Telescope [f]ind [g]it [b]ranches" })
+)
 keymap("n", "<leader>?", ":Telescope keymaps<CR>", opts)
 keymap("n", "<leader>r", ":Telescope resume<CR>", opts)
 keymap("n", "<leader>sg", ":Telescope grep_string search=<cr>")
@@ -167,7 +172,7 @@ keymap("n", "[d", ":Lspsaga diagnostic_jump_prev<CR>", opts)
 keymap("n", "]d", ":Lspsaga diagnostic_jump_next<CR>", opts)
 keymap("n", "K", ":Lspsaga hover_doc<CR>", opts)
 
-keymap({ 'n', 'v' }, "<leader>ca", ":Lspsaga code_action<CR>", opts)
+keymap({ "n", "v" }, "<leader>ca", ":Lspsaga code_action<CR>", opts)
 keymap("n", "grn", ":Lspsaga rename ++project<CR>", opts)
 keymap("n", "gh", ":Lspsaga finder<CR>", opts)
 keymap("n", "<leader>at", ":Lspsaga outline<CR>", opts)
@@ -210,7 +215,6 @@ keymap("n", "\\f", function()
     require("harpoon.ui").nav_file(4)
 end, merge(opts, { desc = "Harpoon goto file 4" }))
 
-
 keymap("n", "<leader>cp", "<cmd>PickColor<cr>", opts)
 -- vim.keymap.set('i', '<C-c>', '<cmd>PickColorInsert<cr>', opts)
 
@@ -227,7 +231,11 @@ keymap("n", "<leader>gb", ":Gitsign blame_line<cr>", opts)
 keymap("n", "[h", ":Gitsign prev_hunk<cr>", opts)
 keymap("n", "]h", ":Gitsign next_hunk<cr>", opts)
 
-keymap("n", "<leader>td", ":TodoTelescope theme=dropdown layout_config={width=0.5}<cr>", merge(opts, {
-    desc =
-    "Show all TODOs in project."
-}))
+keymap(
+    "n",
+    "<leader>td",
+    ":TodoTelescope theme=dropdown layout_config={width=0.5}<cr>",
+    merge(opts, {
+        desc = "Show all TODOs in project.",
+    })
+)

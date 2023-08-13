@@ -41,5 +41,5 @@ aucmd("BufWritePre", {
 aucmd("BufEnter", {
     group = create_augroup("TermAlwaysInsert", { clear = true }),
     pattern = "term://*toggleterm*",
-    command = "startinsert"
+    command = "startinsert",
 })

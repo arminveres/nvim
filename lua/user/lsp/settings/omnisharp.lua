@@ -1,3 +1,3 @@
 return {
-    cmd = { 'dotnet' }
+    cmd = { "dotnet" },
 }

@@ -17,11 +17,11 @@ local snippets = {
     }),
     s("diagign", {
         t("#pragma GCC diagnostic push", "\n"),
-        t("#pragma GCC diagnostic ignored \""),
+        t('#pragma GCC diagnostic ignored "'),
         i(1),
-        t("\"", "\n"),
+        t('"', "\n"),
         t("#pragma GCC diagnostic pop", "\n"),
-    })
+    }),
 }
 
 return snippets

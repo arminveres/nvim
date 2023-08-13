@@ -115,6 +115,7 @@ RGB
 RISCV
 RTOS
 Replacable
+Resolvers
 RockPi
 SCADA
 SQLite
@@ -129,6 +130,7 @@ SoC
 Solaar
 Sovrin
 Stefano
+Subcomponents
 TOCKos
 TODO
 TODOs
@@ -214,6 +216,7 @@ instantiation
 instantiations
 interledger
 interoperability
+interoperable
 io
 iterable
 json
@@ -253,6 +256,7 @@ representable
 reproducibility
 repurposed
 repurposing
+resolvers
 ripgrep
 rodio
 rodrigues
@@ -277,7 +281,9 @@ toolchain
 trustless
 typesystem
 typesystem
+unbureaucratic
 unclonable
+unmonitored
 usart2
 v1
 validator
@@ -288,9 +294,3 @@ wezterm
 whitepaper
 yaml
 zsh
-Resolvers
-resolvers
-interoperable
-unbureaucratic
-unmonitored
-Subcomponents
