@@ -7,7 +7,7 @@ local ts_opts = {
     },
     highlight = {
         enable = true, -- false will disable the whole extension
-        disable = { "latex", "bib" }, -- list of language that will be disabled
+        disable = { "latex", "bibtex" }, -- list of language that will be disabled
         additional_vim_regex_highlighting = { "markdown" },
     },
     indent = {

@@ -2,8 +2,12 @@ local merge = require("user.utils").merge
 
 ---@type function
 local keymap = vim.keymap.set
+
+-- Non recursive map map
 ---@type table
 local opts = { noremap = true, silent = true }
+
+-- Recurisve map
 ---@type table
 local remopts = { noremap = false, silent = true }
 
