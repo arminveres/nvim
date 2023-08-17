@@ -12,7 +12,7 @@ return {
     {
         "zbirenbaum/neodim", -- dim unused variables
         config = true,
-        lazy = true
+        lazy = true,
     },
     {
         "stevearc/dressing.nvim",
@@ -34,12 +34,18 @@ return {
         "uga-rosa/ccc.nvim",
         keys = {
             {
-                "<leader>bc", ":CccHighlighterToggle<CR>", mode = { "n" }, desc = "Toggles Color Highlighting"
+                "<leader>bc",
+                ":CccHighlighterToggle<CR>",
+                mode = { "n" },
+                desc = "Toggles Color Highlighting",
             },
             {
-                "<leader>cp", ":CccPick<CR>", mode = { "n" }, desc = "Toggles Color Picker"
-            }
-        }
+                "<leader>cp",
+                ":CccPick<CR>",
+                mode = { "n" },
+                desc = "Toggles Color Picker",
+            },
+        },
     },
     {
         "chrishrb/gx.nvim",
@@ -48,37 +54,28 @@ return {
         config = true, -- default settings
     },
     {
-        'codethread/qmk.nvim',
-        cmd = 'QMKFormat',
-        opts = {
-            name = 'LAYOUT',
-            layout = {
-                'x x x x x x _ _ _ x x x x x x',
-                'x x x x x x _ _ _ x x x x x x',
-                'x x x x x x _ _ _ x x x x x x',
-                'x x x x x x x _ x x x x x x x',
-                '_ _ x x x x x _ x x x x x _ _',
-            }
-        }
+        -- NOTE: See further config at lua/user/autocmds.lua
+        "codethread/qmk.nvim",
+        event = "BufEnter *arminveres/keymap.c",
     },
     {
-        'lukas-reineke/headlines.nvim',
+        "lukas-reineke/headlines.nvim",
         dependencies = "nvim-treesitter/nvim-treesitter",
         ft = {
-            'markdown',
-            'neorg',
-            'orgmode'
+            "markdown",
+            "neorg",
+            "orgmode",
         },
         opts = {
             markdown = {
                 headline_highlights = {
                     "Headline1",
                     "Headline2",
-                    "Headline3"
+                    "Headline3",
                 },
-            }
-        }
-    }
+            },
+        },
+    },
     -- TODO: (aver) setup function: https://github.com/tzachar/local-highlight.nvim
     -- {
     --   "tzachar/local-highlight.nvim",
