@@ -1,4 +1,4 @@
-local merge = require("user.utils").merge
+local merge_desc = require("user.utils").merge_desc
 
 ---@type function
 local keymap = vim.keymap.set
@@ -17,9 +17,9 @@ keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-----------------------------------------------------------------------------------------------------
+-- ================================================================================================
 -- NeoVIM CORE
-----------------------------------------------------------------------------------------------------
+-- ================================================================================================
 -- Normal Mode --
 keymap("n", "<ESC>", ":noh<CR>", remopts) -- recursively redefine escape; disable hlsearch until next search
 
@@ -98,9 +98,9 @@ keymap("i", "<F11><C-O>", ":set spell!<CR>", opts)
 keymap("n", "<C-u>", "<C-u>zz", opts)
 keymap("n", "<C-d>", "<C-d>zz", opts)
 
-----------------------------------------------------------------------------------------------------
+-- ================================================================================================
 -- CLIPBOARD
-----------------------------------------------------------------------------------------------------
+-- ================================================================================================
 -- keymap('n', '<leader>fe', ':Lex 30<cr>', opts) -- made obsolete by nvim-tree
 -- keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 keymap("n", "<leader>bq", ":Bdelete<CR>", opts)
@@ -136,42 +136,52 @@ keymap("x", "<leader>p", '"_dP', opts)
 -- end, opts)
 keymap("n", "\\e", function()
     require("telescope.builtin").find_files()
-end, opts)
+end, merge_desc(opts, "Telescope Find Files"))
 keymap("n", "\\g", function()
     require("telescope.builtin").git_files()
-end, opts)
+end, merge_desc(opts, "Telescope Find Git Files"))
 keymap("n", "\\b", function()
     require("telescope.builtin").buffers()
-end, opts)
+end, merge_desc(opts, "Telescope Find Open Buffers"))
 keymap("n", "<leader>sb", function()
     require("telescope.builtin").current_buffer_fuzzy_find()
-end, opts)
+end, merge_desc(opts, "Telescope fuzzy search current buffer"))
 keymap("n", "<leader>sh", function()
     require("telescope.builtin").help_tags()
-end, opts)
+end, merge_desc(opts, "Telescope search help tags"))
 -- allow to grep for string under cursor
 keymap("n", "<leader>sd", function()
     require("telescope.builtin").grep_string()
-end, opts)
+end, merge_desc(opts, "Telescope search for string under cursor"))
 keymap("n", "<leader>sp", function()
     require("telescope.builtin").live_grep()
-end, opts)
+end, merge_desc(opts, "Telescope search for string"))
 keymap(
     "n",
     "<leader>gfb",
     ":Telescope git_branches<CR>",
-    merge(opts, { desc = "Telescope [f]ind [g]it [b]ranches" })
+    merge_desc(opts, "Telescope [f]ind [g]it [b]ranches")
 )
-keymap("n", "<leader>?", ":Telescope keymaps<CR>", opts)
-keymap("n", "<leader>r", ":Telescope resume<CR>", opts)
-keymap("n", "<leader>sg", ":Telescope grep_string search=<cr>")
+keymap("n", "<leader>?", ":Telescope keymaps<CR>", merge_desc(opts, "Telescope List Keymaps"))
+keymap(
+    "n",
+    "<leader>r",
+    ":Telescope resume<CR>",
+    merge_desc(opts, "Telescope Resume Last Operation")
+)
+keymap(
+    "n",
+    "<leader>sg",
+    ":Telescope grep_string search=<cr>",
+    merge_desc(opts, "Telescope Search Globally")
+)
 -- keymap('n', '<leader>st', [[<cmd>lua require('telescope.builtin').tags()<CR>]], opts)
 -- keymap('n', '<leader>so', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]], opts)
 -- keymap('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], opts)
 
-----------------------------------------------------------------------------------------------------
+-- ================================================================================================
 -- LSP Saga
-----------------------------------------------------------------------------------------------------
+-- ================================================================================================
 keymap("n", "[d", ":Lspsaga diagnostic_jump_prev<CR>", opts)
 keymap("n", "]d", ":Lspsaga diagnostic_jump_next<CR>", opts)
 keymap("n", "K", ":Lspsaga hover_doc<CR>", opts)
@@ -197,27 +207,27 @@ keymap("n", "<Leader>li", ":LspInfo<CR>", opts)
 keymap("n", "<Leader>ll", ":LspLog<CR>", opts)
 keymap("n", "<Leader>lr", ":LspRestart<CR>", opts)
 
-----------------------------------------------------------------------------------------------------
+-- ================================================================================================
 -- Harpoon
-----------------------------------------------------------------------------------------------------
+-- ================================================================================================
 keymap("n", "<leader>ha", function()
     require("harpoon.mark").add_file()
-end, merge(opts, { desc = "Harpoon Add File" }))
+end, merge_desc(opts, "Harpoon Add File"))
 keymap("n", "\\h", function()
     require("harpoon.ui").toggle_quick_menu()
-end, merge(opts, { desc = "Harpoon Toggle Quick Menu" }))
+end, merge_desc(opts, "Harpoon Toggle Quick Menu"))
 keymap("n", "\\a", function()
     require("harpoon.ui").nav_file(1)
-end, merge(opts, { desc = "Harpoon goto file 1" }))
+end, merge_desc(opts, "Harpoon goto file 1"))
 keymap("n", "\\s", function()
     require("harpoon.ui").nav_file(2)
-end, merge(opts, { desc = "Harpoon goto file 2" }))
+end, merge_desc(opts, "Harpoon goto file 2"))
 keymap("n", "\\d", function()
     require("harpoon.ui").nav_file(3)
-end, merge(opts, { desc = "Harpoon goto file 3" }))
+end, merge_desc(opts, "Harpoon goto file 3"))
 keymap("n", "\\f", function()
     require("harpoon.ui").nav_file(4)
-end, merge(opts, { desc = "Harpoon goto file 4" }))
+end, merge_desc(opts, "Harpoon goto file 4"))
 
 keymap("n", "<leader>cp", "<cmd>PickColor<cr>", opts)
 -- vim.keymap.set('i', '<C-c>', '<cmd>PickColorInsert<cr>', opts)
@@ -239,7 +249,5 @@ keymap(
     "n",
     "<leader>td",
     ":TodoTelescope theme=dropdown layout_config={width=0.5}<cr>",
-    merge(opts, {
-        desc = "Show all TODOs in project.",
-    })
+    merge_desc(opts, "Show all TODOs in project.")
 )

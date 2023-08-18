@@ -1,9 +1,9 @@
 -- NOTE: Use for plugins that don't require more than a simple setup
 return {
-    -- {
-    --   "RaafatTurki/hex.nvim",
-    --   config = true,
-    -- },
+    {
+        "RaafatTurki/hex.nvim",
+        config = true,
+    },
     {
         "kylechui/nvim-surround",
         version = "*", -- Use for stability; omit to use `main` branch for the latest features

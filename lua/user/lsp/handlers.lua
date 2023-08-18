@@ -1,5 +1,5 @@
 local M = {}
-local merge = require("user.utils").merge
+local merge_desc = require("user.utils").merge_desc
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 
@@ -88,7 +88,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
         vim.keymap.set("n", "<space>bf", function()
             vim.lsp.buf.format({ async = true })
-        end, merge(opts, { desc = "Format current Buffer" }))
+        end, merge_desc(opts, "Format current Buffer"))
         -- vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
         -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
         -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
