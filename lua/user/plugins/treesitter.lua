@@ -31,7 +31,7 @@ local ts_opts = {
         -- strategy = require("ts-rainbow.strategy.global"), -- Highlight the entire buffer all at once
     },
     incremental_selection = {
-        enable = true,
+        enable = false,
         keymaps = {
             init_selection = "<cr>",
             node_incremental = "grn",
