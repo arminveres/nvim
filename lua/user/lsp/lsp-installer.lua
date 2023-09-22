@@ -50,6 +50,11 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
         opts = vim.tbl_deep_extend("force", pyright_opts, opts)
     end
 
+    -- if server == "pylizer" then
+    --     local pylyzer_opts = require("user.lsp.settings.pylizer")
+    --     opts = vim.tbl_deep_extend("force", pylyzer_opts, opts)
+    -- end
+
     if server == "pylsp" then
         local pylsp_opts = require("user.lsp.settings.pylsp")
         opts = vim.tbl_deep_extend("force", pylsp_opts, opts)
