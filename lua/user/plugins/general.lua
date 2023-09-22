@@ -10,11 +10,6 @@ return {
         config = true,
     },
     {
-        "zbirenbaum/neodim", -- dim unused variables
-        config = true,
-        lazy = true,
-    },
-    {
         "stevearc/dressing.nvim",
         config = true,
     },
