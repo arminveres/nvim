@@ -52,20 +52,89 @@ local color_overrides = {
     Headline3 = { bg = "#21262d" },
 }
 
+local gruvbox_options = {
+    transparent_mode = false,
+    contrast = "hard", -- can be "hard" or "soft"
+    dim_inactive = false, -- dim inactive window
+    -- overriding highlight groups
+    palette_overrides = {
+        dark0_hard = "#141414",
+    },
+    overrides = color_overrides,
+}
+
+local transparency_loc = os.getenv("XDG_STATE_HOME") .. "/nvim/.gruvbox_transparency"
+
+--- @brief returns the content of the state file
+local function get_content()
+    local transparency = io.open(transparency_loc, "r")
+    if not transparency then
+        vim.notify("failed to create file")
+        return ""
+    end
+    return transparency:read("*a")
+end
+
+--- @brief loads the transparency from the state file into the options
+--- @param do_toggle boolean Whether to toggle transparency or not
+local function load_transparency(do_toggle)
+    local content = get_content()
+
+    local transparency = io.open(transparency_loc, "w+")
+    if not transparency then
+        vim.notify("failed to create file")
+        return
+    end
+
+    if "" == content then
+        if do_toggle then
+            gruvbox_options.transparent_mode = not gruvbox_options.transparent_mode
+        end
+        transparency:write(tostring(gruvbox_options.transparent_mode))
+        transparency:close()
+        return
+    end
+
+    if "true" == content then
+        if do_toggle then
+            gruvbox_options.transparent_mode = false
+        else
+            gruvbox_options.transparent_mode = true
+        end
+    else
+        if do_toggle then
+            gruvbox_options.transparent_mode = true
+        else
+            gruvbox_options.transparent_mode = false
+        end
+    end
+
+    transparency:write(tostring(gruvbox_options.transparent_mode))
+    transparency:close()
+end
+
+local function toggle_transparency()
+    load_transparency(true)
+    require("gruvbox").setup(gruvbox_options)
+    vim.cmd.colorscheme("gruvbox")
+end
+
 return { -- colorschemes TODO: just write my own colorscheme based on gruvbox...
     {
         "ellisonleao/gruvbox.nvim",
         lazy = false,
         priority = 1001,
-        opts = {
-            transparent_mode = true,
-            contrast = "hard", -- can be "hard" or "soft"
-            dim_inactive = false, -- dim inactive window
-            -- overriding highlight groups
-            palette_overrides = {
-                dark0_hard = "#141414",
+        -- opts = gruvbox_options,
+        keys = {
+            {
+                "<leader>ctt",
+                toggle_transparency,
+                desc = "Toggle background transparency in gruvbox",
             },
-            overrides = color_overrides,
         },
+        config = function()
+            load_transparency(false)
+            require("gruvbox").setup(gruvbox_options)
+        end,
     },
 }

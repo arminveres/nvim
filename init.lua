@@ -10,8 +10,7 @@ vim.cmd([[highlight link TrailingSpaces Error | match TrailingSpaces /\s\+$/]])
 
 -- setting the colorscheme
 local colorscheme = "gruvbox"
-local colorscheme_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+local colorscheme_ok, _ = pcall(vim.cmd.colorscheme, colorscheme)
 if not colorscheme_ok then
     vim.notify("colorscheme " .. colorscheme .. " not found!")
-    vim.cmd([[colorscheme retrobox]])
 end

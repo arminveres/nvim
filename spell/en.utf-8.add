@@ -1,9 +1,13 @@
+AATH
 ACL
+AIP
 APIs
 ARINC
 Acknowledgements
 Alexandru
+AnonCreds
 Armin
+Askar
 Auralization
 AwesomeWM
 BC4CC
@@ -20,6 +24,7 @@ CFT
 CMDB
 COSE
 CRC
+CRCs
 CRP
 CSA
 CTIS
@@ -171,11 +176,11 @@ Warmup
 Wayland
 X11
 YAC
+ZKP
 Zettelkasten
 Zsh
 Zürich
 alacritty
-algos
 arminveres
 auralize
 backend
@@ -207,7 +212,6 @@ cyber
 cybersecurity
 datastores
 dbscan
-dec
 decrypt
 dereferencing
 destructor
@@ -324,5 +328,4 @@ wezterm
 whitepaper
 yaml
 zsh
-CRCs
-AIP
+SBC
