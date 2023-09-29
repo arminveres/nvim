@@ -100,6 +100,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
         -- vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
         -- vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
 
+        -- while not handled by LspSaga, we want specific goto next/prev error
+        vim.keymap.set("n", "]e", function()
+            vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
+        end, opts)
+        vim.keymap.set("n", "[e", function()
+            vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
+        end, opts)
+
         -- ========================================================================================
         -- Provider specific options
         -- ========================================================================================
