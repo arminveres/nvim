@@ -14,7 +14,7 @@ return {
                 -- Make the server aware of Neovim runtime files
                 -- WARN: need to manually set these in the .luarc.json
                 library = vim.api.nvim_get_runtime_file("", true),
-                checkThirdParty = true,
+                checkThirdParty = false,
             },
             -- Do not send telemetry data containing a randomized but unique identifier
             telemetry = {

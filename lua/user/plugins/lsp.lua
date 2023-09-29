@@ -8,6 +8,10 @@ return {
     "p00f/clangd_extensions.nvim", -- Clangd's off-spec features for neovim's LSP client
     "simrat39/rust-tools.nvim",
     {
+        "folke/neodev.nvim",
+        opts = {},
+    },
+    {
         -- give IntelliJ like lens features
         "VidocqH/lsp-lens.nvim",
         event = "LspAttach",
