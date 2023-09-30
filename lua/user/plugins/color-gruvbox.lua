@@ -50,6 +50,8 @@ local color_overrides = {
     Headline1 = { bg = "#442d30" },
     Headline2 = { bg = "#1e2718" },
     Headline3 = { bg = "#21262d" },
+
+    IblScope = { link = "GruvboxRedSign" },
 }
 
 local gruvbox_options = {
