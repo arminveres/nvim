@@ -35,7 +35,7 @@ end
 --- @brief setups up all lualine related configurations
 local function lualine_setup()
     local my_theme = require("lualine.themes.powerline")
-    local gruvbox_colors = require("gruvbox.palette").get_base_colors({}, nil, "")
+    local gruvbox_colors = require("gruvbox").palette
     local my_colors = {
         gray1 = "#262626",
         gray2 = "#303030",
@@ -47,10 +47,9 @@ local function lualine_setup()
     }
 
     my_theme.normal = {
-        -- a = { fg = gruvbox.dark0, bg = gruvbox.bright_orange, gui = 'bold' },
         a = { fg = gruvbox_colors.dark0, bg = "#d75f00", gui = "bold" },
         b = { fg = my_colors.gray10, bg = gruvbox_colors.dark1 },
-        c = { fg = my_colors.gray8, bg = gruvbox_colors.dark0 },
+        c = { fg = my_colors.gray10, bg = gruvbox_colors.dark0_hard },
     }
     my_theme.visual = {
         a = { fg = gruvbox_colors.light0, bg = gruvbox_colors.neutral_blue, gui = "bold" },
@@ -68,9 +67,7 @@ local function lualine_setup()
     require("lualine").setup({
         options = {
             icons_enabled = true,
-            theme = my_theme, -- "powerline", --"adwaita", "auto"
-            -- component_separators = { left = '|', right = '|' },
-            -- section_separators = { left = '', right = '' },
+            theme = my_theme,
             disabled_filetypes = {},
             always_divide_middle = true,
             globalstatus = true,
@@ -121,13 +118,9 @@ local function lualine_setup()
         },
         inactive_sections = {
             lualine_a = { get_inactive_winbar },
-            lualine_b = {},
             lualine_c = { "filename" },
             lualine_x = { "location" },
-            lualine_y = {},
-            lualine_z = {},
         },
-        extensions = {},
 
         -- TODO: (aver) add outline to lualine and then make status global again, as currently lualine hijackts outline in wibar
         -- So if winbar disabled in lspsaga, then this works, issue is, that some parts are
@@ -146,5 +139,6 @@ return {
         "nvim-lualine/lualine.nvim", -- Fancier statusline
         config = lualine_setup,
         dependencies = { "ellisonleao/gruvbox.nvim" },
+        lazy = false,
     },
 }

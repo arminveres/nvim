@@ -3,10 +3,6 @@ return {
     main = "ibl",
     event = "BufEnter",
     opts = {
-        -- char = "┊",
-        -- show_trailing_blankline_indent = false,
-        show_current_context_start = true,
-        show_current_context = true,
         scope = {
             -- add further node types for scope highlighting, especially in lua with tables
             include = {

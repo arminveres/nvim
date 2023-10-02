@@ -112,7 +112,6 @@ return {
             "hrsh7th/cmp-nvim-lsp-signature-help",
             "hrsh7th/cmp-path",
             "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-nvim-lua",
             "hrsh7th/cmp-cmdline",
             "lukas-reineke/cmp-rg",
             "f3fora/cmp-spell", -- spelling plugin
@@ -177,7 +176,6 @@ return {
                         vim_item.menu = ({
                             nvim_lsp = "[LSP]",
                             luasnip = "[Snip]",
-                            nvim_lua = "[Lua]",
                             path = "[Path]",
                             buffer = "[Buf]",
                             dictionary = "[Dict]",
@@ -187,7 +185,6 @@ return {
                 },
                 sources = cmp.config.sources({
                     { name = "nvim_lsp" },
-                    { name = "nvim_lua" },
                     { name = "luasnip", priority = 1000 },
                     { name = "nvim_lsp_signature_help" },
                     { name = "path" },
