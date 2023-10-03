@@ -1,7 +1,6 @@
 return {
     "neovim/nvim-lspconfig", -- Collection of configurations for built-in LSP client
-    -- TODO: (aver) replace null-ls
-    "jose-elias-alvarez/null-ls.nvim", -- Null LS
+    "nvimtools/none-ls.nvim", -- Null LS
     "williamboman/mason.nvim", -- installer for lsps
     "williamboman/mason-lspconfig.nvim",
     "jay-babu/mason-null-ls.nvim",

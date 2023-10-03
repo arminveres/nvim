@@ -3,9 +3,8 @@ return {
         python = {
             analysis = {
                 typeCheckingMode = "basic",
-                -- typeCheckingMode = "off",
                 autoSearchPaths = true,
-                useLibraryCodeForTypes = true,
+                useLibraryCodeForTypes = false,
                 diagnosticMode = "workspace",
             },
             single_file_support = true,
