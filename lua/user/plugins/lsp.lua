@@ -41,4 +41,13 @@ return {
             { "nvim-treesitter/nvim-treesitter" },
         },
     },
+    {
+        "ThePrimeagen/refactoring.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+        },
+        opts = {},
+        event = "LspAttach",
+    },
 }
