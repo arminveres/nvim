@@ -189,28 +189,6 @@ keymap("n", "<Leader>li", ":LspInfo<CR>", opts)
 keymap("n", "<Leader>ll", ":LspLog<CR>", opts)
 keymap("n", "<Leader>lr", ":LspRestart<CR>", opts)
 
--- ================================================================================================
--- Harpoon
--- ================================================================================================
-keymap("n", "<leader>ha", function()
-    require("harpoon.mark").add_file()
-end, merge_desc(opts, "Harpoon Add File"))
-keymap("n", "\\h", function()
-    require("harpoon.ui").toggle_quick_menu()
-end, merge_desc(opts, "Harpoon Toggle Quick Menu"))
-keymap("n", "\\a", function()
-    require("harpoon.ui").nav_file(1)
-end, merge_desc(opts, "Harpoon goto file 1"))
-keymap("n", "\\s", function()
-    require("harpoon.ui").nav_file(2)
-end, merge_desc(opts, "Harpoon goto file 2"))
-keymap("n", "\\d", function()
-    require("harpoon.ui").nav_file(3)
-end, merge_desc(opts, "Harpoon goto file 3"))
-keymap("n", "\\f", function()
-    require("harpoon.ui").nav_file(4)
-end, merge_desc(opts, "Harpoon goto file 4"))
-
 keymap("n", "<leader>cp", "<cmd>PickColor<cr>", opts)
 -- vim.keymap.set('i', '<C-c>', '<cmd>PickColorInsert<cr>', opts)
 

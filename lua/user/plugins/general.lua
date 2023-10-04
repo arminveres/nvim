@@ -23,9 +23,6 @@ return {
         end,
     },
     {
-        "ThePrimeagen/harpoon",
-    },
-    {
         "uga-rosa/ccc.nvim",
         keys = {
             {
