@@ -48,7 +48,7 @@ vim.opt.list = true
 vim.opt.listchars:append("space:⋅")
 -- vim.opt.listchars:append("eol:↴")
 
--- acticate spellcheck with <F11>
+-- activate spellcheck with <F11>
 vim.opt.spelllang = "en_us"
 
 vim.opt.pumblend = 15 -- blend popup

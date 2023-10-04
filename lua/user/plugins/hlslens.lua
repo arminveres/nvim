@@ -2,6 +2,7 @@ local kopts = { noremap = true, silent = true }
 return {
     {
         "kevinhwang91/nvim-hlslens", -- nicer search results
+        opts = {},
         keys = {
             {
                 "n",

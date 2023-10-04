@@ -1,5 +1,9 @@
+local opts = { noremap = true, silent = true }
 return {
     "ahmedkhalf/project.nvim", -- vim-rooter like replacement in neovim with many features
+    keys = {
+        { mode = "n", "<C-p>", "<Cmd>Telescope projects<CR>", opts },
+    },
     config = function()
         local t = require("telescope")
         require("project_nvim").setup({

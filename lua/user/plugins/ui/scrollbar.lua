@@ -1,5 +1,6 @@
 return {
     "petertriho/nvim-scrollbar", -- scrollbar
+    event = "BufReadPre",
     opts = {
         handlers = {
             cursor = true,

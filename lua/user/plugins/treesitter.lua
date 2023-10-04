@@ -157,7 +157,6 @@ local ts_opts = {
 return {
     -- Highlight, edit, and navigate code using a fast incremental parsing library
     "nvim-treesitter/nvim-treesitter",
-    -- commit = "82c948653909d8c1582f28313aa1cf9d68d66fe8",
     build = ":TSUpdate",
     dependencies = {
         "nvim-treesitter/nvim-treesitter-textobjects",
@@ -172,8 +171,8 @@ return {
             lazy = true,
         },
     },
-    opts = ts_opts,
-    config = function(_, opts)
-        require("nvim-treesitter.configs").setup(opts)
+    config = function()
+        require("nvim-treesitter.configs").setup(ts_opts)
     end,
+    event = "BufReadPre",
 }

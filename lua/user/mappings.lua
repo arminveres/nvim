@@ -182,8 +182,6 @@ keymap(
 -- Undo tree toggle
 keymap("n", "<Leader>u", "<Cmd>UndotreeToggle<CR>", opts)
 
-keymap("n", "<C-p>", "<Cmd>Telescope projects<CR>", opts)
-
 keymap("n", "<Leader>li", ":LspInfo<CR>", opts)
 keymap("n", "<Leader>ll", ":LspLog<CR>", opts)
 keymap("n", "<Leader>lr", ":LspRestart<CR>", opts)
