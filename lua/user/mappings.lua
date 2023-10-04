@@ -179,25 +179,6 @@ keymap(
 -- keymap('n', '<leader>so', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]], opts)
 -- keymap('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], opts)
 
--- ================================================================================================
--- LSP Saga
--- ================================================================================================
-keymap("n", "[d", ":Lspsaga diagnostic_jump_prev<CR>", opts)
-keymap("n", "]d", ":Lspsaga diagnostic_jump_next<CR>", opts)
-keymap("n", "K", ":Lspsaga hover_doc<CR>", opts)
-
-keymap({ "n", "v" }, "<leader>ca", ":Lspsaga code_action<CR>", opts)
-keymap("n", "grn", ":Lspsaga rename ++project<CR>", opts)
-keymap("n", "gh", ":Lspsaga finder<CR>", opts)
-keymap("n", "<leader>at", ":Lspsaga outline<CR>", opts)
-keymap("n", "gl", ":Lspsaga show_line_diagnostics<CR>", opts)
-keymap("n", "<leader>gl", ":Lspsaga show_cursor_diagnostics<CR>", opts)
-keymap("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
-keymap("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
--- keymap("n", "<leader>rn", ":Lspsaga rename ++project<CR>", opts)
--- keymap("v", "<leader>ca", "<cmd><C-U>Lspsaga range_code_action<CR>", opts)
--- keymap("n", "<leader>gd", "<cmd>Lspsaga preview_definition<CR>", opts)
-
 -- Undo tree toggle
 keymap("n", "<Leader>u", "<Cmd>UndotreeToggle<CR>", opts)
 

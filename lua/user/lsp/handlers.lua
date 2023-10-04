@@ -89,7 +89,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("n", "<space>bf", function()
             vim.lsp.buf.format({ async = true })
         end, merge_desc(opts, "Format current Buffer"))
-        -- vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+
+        -- vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
         -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
         -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
         -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
@@ -108,13 +109,40 @@ vim.api.nvim_create_autocmd("LspAttach", {
             vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
         end, opts)
 
+        -- ================================================================================================
+        -- LSP Saga
+        -- ================================================================================================
+        vim.keymap.set("n", "[d", ":Lspsaga diagnostic_jump_prev<CR>", opts)
+        vim.keymap.set("n", "]d", ":Lspsaga diagnostic_jump_next<CR>", opts)
+        vim.keymap.set("n", "K", ":Lspsaga hover_doc<CR>", opts)
+        vim.keymap.set({ "n", "v" }, "<leader>ca", ":Lspsaga code_action<CR>", opts)
+        vim.keymap.set("n", "grn", ":Lspsaga rename ++project<CR>", opts)
+        vim.keymap.set("n", "gh", ":Lspsaga finder<CR>", opts)
+        vim.keymap.set("n", "<leader>at", ":Lspsaga outline<CR>", opts)
+        vim.keymap.set("n", "gl", ":Lspsaga show_line_diagnostics<CR>", opts)
+        vim.keymap.set("n", "<leader>gl", ":Lspsaga show_cursor_diagnostics<CR>", opts)
+        vim.keymap.set("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
+        vim.keymap.set("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
+        -- keymap("n", "<leader>rn", ":Lspsaga rename ++project<CR>", opts)
+        -- keymap("v", "<leader>ca", "<cmd><C-U>Lspsaga range_code_action<CR>", opts)
+        -- keymap("n", "<leader>gd", "<cmd>Lspsaga preview_definition<CR>", opts)
+
         -- ========================================================================================
         -- Provider specific options
         -- ========================================================================================
         local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if not client then
+            vim.notify("ERROR opening client", vim.diagnostic.severity.ERROR)
+            return
+        end
+
         if client.server_capabilities.inlayHintProvider then
             vim.lsp.inlay_hint(args.buf, true)
         end
+
+        -- if client.server_capabilities.codeActionProvide.codeActionKind then
+        -- end
+
         -- NOTE: Format on save autocommand
         if client.server_capabilities.documentFormattingProvider then
             vim.api.nvim_create_autocmd({ "BufWrite" }, {
