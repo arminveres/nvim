@@ -1,12 +1,24 @@
-vim.keymap.set("n", "<leader>vc", ":VimtexCompile<CR>", { desc = "Compile and preview TeX file" })
-vim.keymap.set("n", "<leader>vv", ":VimtexView<CR>", { desc = "Open preview TeX file" })
-vim.keymap.set(
-    "n",
-    "<leader>vo",
-    ":VimtexTocToggle<CR>",
-    { desc = "Open Table of Contents for the TeX file" }
-)
-vim.keymap.set("n", "<leader>vsl", "120|gEa<CR><ESC>", { desc = "split line that are too long" })
+vim.keymap.set("n", "<leader>vc", function()
+    vim.cmd("VimtexCompile")
+end, { desc = "[V]imTex [C]ompile and preview TeX file" })
+
+vim.keymap.set("n", "<leader>vv", function()
+    vim.cmd("VimtexView")
+end, { desc = "[V]imTex Open pre[V]iew TeX file" })
+
+vim.keymap.set("n", "<leader>vo", function()
+    vim.cmd("VimtexTocToggle")
+end, { desc = "[V]imTex: [O]pen Table of Contents for the TeX file" })
+
+vim.keymap.set("n", "<leader>vcw", function()
+    vim.cmd("VimtexCountWords")
+end, { desc = "[V]imTex [C]ount [W]ords" })
+
+vim.keymap.set("n", "<leader>vsl", function()
+    vim.api.nvim_feedkeys("120|gEa\n", "n", true)
+    -- only way to stop insert ...
+    vim.api.nvim_input("<ESC>")
+end, { desc = "[V]imTex: [S]plit [l]ine that are too long" })
 
 vim.opt_local.spell = true
 vim.opt_local.conceallevel = 2 -- hide spaces too, add nice icons
