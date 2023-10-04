@@ -98,8 +98,8 @@ keymap("i", "<F11><C-O>", ":set spell!<CR>", opts)
 keymap("n", "<C-u>", "<C-u>zz", opts)
 keymap("n", "<C-d>", "<C-d>zz", opts)
 
--- CTRL-A		Insert previously inserted text.
-keymap("i", "<C-A>", "<Esc>A", opts)
+-- CTRL-A Insert previously inserted text.
+keymap("i", "<C-A>", "<ESC>A", opts)
 
 -- ================================================================================================
 -- CLIPBOARD
@@ -131,8 +131,7 @@ keymap("x", "<leader>p", '"_dP', opts)
 ----------------------------------------------------------------------------------------------------
 -- Telescope
 ----------------------------------------------------------------------------------------------------
--- NOTE: could move the builtins back to commands, not lua functions. Lua functions only useful
--- if I want to customize them further, differing from the options set up, which I don't do here.
+-- TODO: (aver) move into telescope plugin file
 
 -- keymap('n', '<leader><space>', function()
 --   require('telescope.builtin').buffers()
@@ -189,9 +188,6 @@ keymap("n", "<Leader>li", ":LspInfo<CR>", opts)
 keymap("n", "<Leader>ll", ":LspLog<CR>", opts)
 keymap("n", "<Leader>lr", ":LspRestart<CR>", opts)
 
-keymap("n", "<leader>cp", "<cmd>PickColor<cr>", opts)
--- vim.keymap.set('i', '<C-c>', '<cmd>PickColorInsert<cr>', opts)
-
 -- Easier window switching with leader + Number
 -- Creates mappings like this: km.set("n", "<Leader>2", "2<C-W>w", { desc = "Move to Window 2" })
 for i = 1, 6 do
@@ -205,9 +201,6 @@ keymap("n", "<leader>gb", ":Gitsign blame_line<cr>", opts)
 keymap("n", "[h", ":Gitsign prev_hunk<cr>", opts)
 keymap("n", "]h", ":Gitsign next_hunk<cr>", opts)
 
-keymap(
-    "n",
-    "<leader>td",
-    ":TodoTelescope theme=dropdown layout_config={width=0.5}<cr>",
-    merge_desc(opts, "Show all TODOs in project.")
-)
+keymap("n", "<leader>td", function()
+    vim.cmd("TodoTelescope theme=dropdown layout_config={width=0.5}")
+end, merge_desc(opts, "Show all TODOs in project."))

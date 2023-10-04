@@ -27,15 +27,17 @@ return {
         keys = {
             {
                 "<leader>bc",
-                ":CccHighlighterToggle<CR>",
-                mode = { "n" },
-                desc = "Toggles Color Highlighting",
+                function()
+                    vim.cmd("CccHighlighterToggle")
+                end,
+                desc = "[B]uffer [c]olorize",
             },
             {
                 "<leader>cp",
-                ":CccPick<CR>",
-                mode = { "n" },
-                desc = "Toggles Color Picker",
+                function()
+                    vim.cmd("CccPick")
+                end,
+                desc = "Toggles [C]olor [P]icker",
             },
         },
     },
