@@ -235,8 +235,6 @@ gruvbox
 hardcoded
 heapq
 html
-https
-https
 hyperledger
 ietf
 ifi
@@ -301,8 +299,6 @@ ripgrep
 rodio
 rodrigues
 rootkits
-runtime
-runtime
 scalability
 scalable
 sharding
@@ -320,8 +316,6 @@ timestamp
 tmux
 toolchain
 trustless
-typesystem
-typesystem
 unbureaucratic
 unclonable
 unmonitored
@@ -329,8 +323,7 @@ usart2
 v1
 validator
 validators
-verifier
-verifier
+webhook
 wezterm
 whitepaper
 yaml
