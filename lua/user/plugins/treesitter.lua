@@ -164,12 +164,6 @@ return {
         "nvim-treesitter/nvim-treesitter-context",
         "HiPhish/nvim-ts-rainbow2", -- rainbow parenthesis
         "JoosepAlviste/nvim-ts-context-commentstring", -- better context aware commenting
-        {
-            "numToStr/Comment.nvim", -- Comment out code easily
-            opts = { ignore = "^$" },
-            config = true,
-            lazy = true,
-        },
     },
     config = function()
         require("nvim-treesitter.configs").setup(ts_opts)

@@ -1,3 +1,4 @@
+-- TODO: (aver) move non plugins into a core!
 require("user.options")
 require("user.gui-options") -- Needs to be loaded before the plugins, otherwise shell does not get recognized for WIN Gui
 require("user.mappings") -- NOTE: could move this to bottom to make all mappings configurable there.

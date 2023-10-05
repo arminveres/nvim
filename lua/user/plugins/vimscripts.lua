@@ -49,6 +49,6 @@ return {
     "moll/vim-bbye", -- allows you to do delete buffers (close files) without closing your windows
 
     -- "ludovicchabant/vim-gutentags", -- Automatic tags management
-    -- { 'tpope/vim-fugitive' }, -- Git commands in nvim
-    -- { 'tpope/vim-rhubarb' }, -- Fugitive-companion to interact with github
+    -- 'tpope/vim-fugitive', -- Git commands in nvim
+    -- 'tpope/vim-rhubarb', -- Fugitive-companion to interact with github
 }

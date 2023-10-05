@@ -70,6 +70,11 @@ return {
             },
         },
     },
+    {
+        "numToStr/Comment.nvim", -- Comment out code easily
+        opts = { ignore = "^$" },
+        lazy = false,
+    },
     -- TODO: (aver) setup function: https://github.com/tzachar/local-highlight.nvim
     -- {
     --   "tzachar/local-highlight.nvim",

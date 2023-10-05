@@ -119,20 +119,18 @@ return {
             "rafamadriz/friendly-snippets",
             {
                 "windwp/nvim-autopairs", -- Autopairs {}, [], () etc
-                config = function()
-                    local Rule = require("nvim-autopairs.rule")
-                    local npairs = require("nvim-autopairs")
-                    npairs.setup({
-                        fast_wrap = {
-                            map = "<M-e>",
-                            chars = { "{", "[", "(", '"', "'", "<" },
-                            pattern = [=[[%'%"%>%]%)%}%;%,]]=],
-                        },
-                        check_ts = true,
-                        map_cr = false,
-                    })
+                event = "InsertEnter",
+                opts = {
+                    -- local Rule = require("nvim-autopairs.rule")
                     -- npairs.add_rule(Rule("<", ">")) -- finally add a tag rule
-                end,
+                    fast_wrap = {
+                        map = "<M-e>",
+                        chars = { "{", "[", "(", '"', "'", "<" },
+                        pattern = [=[[%'%"%>%]%)%}%;%,]]=],
+                    },
+                    check_ts = true,
+                    map_cr = false,
+                },
             },
         },
         config = function()
