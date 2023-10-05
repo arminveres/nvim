@@ -31,12 +31,12 @@ local ts_opts = {
         -- strategy = require("ts-rainbow.strategy.global"), -- Highlight the entire buffer all at once
     },
     incremental_selection = {
-        enable = false,
+        enable = true,
         keymaps = {
-            init_selection = "<cr>",
-            node_incremental = "grn",
-            scope_incremental = "grc",
-            node_decremental = "grm",
+            init_selection = "<c-space>",
+            node_incremental = "<c-space>",
+            scope_incremental = false,
+            node_decremental = "<bs>",
         },
     },
     textobjects = {
@@ -174,5 +174,5 @@ return {
     config = function()
         require("nvim-treesitter.configs").setup(ts_opts)
     end,
-    event = "BufReadPre",
+    event = { "BufReadPre", "BufNewFile" },
 }
