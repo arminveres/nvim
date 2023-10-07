@@ -75,6 +75,9 @@ return {
         opts = { ignore = "^$" },
         lazy = false,
     },
+    {
+        "RRethy/vim-illuminate", -- illuminate word under cursor lazy = true,
+    },
     -- TODO: (aver) setup function: https://github.com/tzachar/local-highlight.nvim
     -- {
     --   "tzachar/local-highlight.nvim",
