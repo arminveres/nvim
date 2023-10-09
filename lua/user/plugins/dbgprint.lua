@@ -1,8 +1,8 @@
 return {
-    {
-        "andrewferrier/debugprint.nvim",
-        version = "*",
-        event = "LspAttach",
-        opts = {},
-    },
+    -- {
+    --     "andrewferrier/debugprint.nvim",
+    --     version = "*",
+    --     event = "LspAttach",
+    --     opts = {},
+    -- },
 }

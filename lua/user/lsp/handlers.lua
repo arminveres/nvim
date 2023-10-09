@@ -112,17 +112,57 @@ vim.api.nvim_create_autocmd("LspAttach", {
         -- ================================================================================================
         -- LSP Saga
         -- ================================================================================================
-        vim.keymap.set("n", "[d", ":Lspsaga diagnostic_jump_prev<CR>", opts)
-        vim.keymap.set("n", "]d", ":Lspsaga diagnostic_jump_next<CR>", opts)
-        vim.keymap.set("n", "K", ":Lspsaga hover_doc<CR>", opts)
-        vim.keymap.set({ "n", "v" }, "<leader>ca", ":Lspsaga code_action<CR>", opts)
-        vim.keymap.set("n", "grn", ":Lspsaga rename ++project<CR>", opts)
-        vim.keymap.set("n", "gh", ":Lspsaga finder<CR>", opts)
-        vim.keymap.set("n", "<leader>at", ":Lspsaga outline<CR>", opts)
-        vim.keymap.set("n", "gl", ":Lspsaga show_line_diagnostics<CR>", opts)
-        vim.keymap.set("n", "<leader>gl", ":Lspsaga show_cursor_diagnostics<CR>", opts)
-        vim.keymap.set("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
-        vim.keymap.set("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
+        -- Further remaps can be found under lspsaga/command.lua
+        vim.keymap.set("n", "[d", function()
+            -- vim.cmd("Lspsaga diagnostic_jump_prev")
+            require("lspsaga.diagnostic"):goto_prev()
+        end, opts)
+        vim.keymap.set("n", "]d", function()
+            -- vim.cmd("Lspsaga diagnostic_jump_next")
+            require("lspsaga.diagnostic"):goto_next()
+        end, opts)
+        vim.keymap.set("n", "K", function(args)
+            -- FIXME: (aver) fix args
+            -- ":Lspsaga hover_doc<CR>"
+            require("lspsaga.hover"):render_hover_doc(args)
+        end, opts)
+        vim.keymap.set({ "n", "v" }, "<leader>ca", function()
+            -- ":Lspsaga code_action<CR>"
+            require("lspsaga.codeaction"):code_action()
+        end, opts)
+        vim.keymap.set("n", "grn", function(args)
+            -- FIXME: (aver) fix args
+            -- ":Lspsaga rename ++project<CR>"
+            require("lspsaga.rename"):lsp_rename(args)
+        end, opts)
+        vim.keymap.set("n", "gh", function(args)
+            vim.cmd("Lspsaga finder")
+            -- vim.notify(vim.inspect(args))
+            -- require("lspsaga.finder"):new(args)
+        end, opts)
+        vim.keymap.set("n", "<leader>at", function()
+            -- ":Lspsaga outline<CR>"
+            require("lspsaga.symbol"):outline()
+        end, opts)
+        vim.keymap.set("n", "gl", function()
+            -- FIXME: (aver) fix args
+            -- ":Lspsaga show_line_diagnostics<CR>"
+            require("lspsaga.diagnostic.show"):show_diagnostics({ line = true, args = args })
+        end, opts)
+        vim.keymap.set("n", "<leader>gl", function()
+            -- FIXME: (aver) fix args
+            -- ":Lspsaga show_cursor_diagnostics<CR>"
+            require("lspsaga.diagnostic.show"):show_diagnostics({ cursor = true, args = args })
+        end, opts)
+        vim.keymap.set("n", "<Leader>ci", function()
+            -- "<cmd>Lspsaga incoming_calls<CR>"
+            require("lspsaga.callhierarchy"):send_method(2, args)
+        end)
+        vim.keymap.set("n", "<Leader>co", function()
+            -- "<cmd>Lspsaga outgoing_calls<CR>"
+            require("lspsaga.callhierarchy"):send_method(3, args)
+        end)
+
         -- keymap("n", "<leader>rn", ":Lspsaga rename ++project<CR>", opts)
         -- keymap("v", "<leader>ca", "<cmd><C-U>Lspsaga range_code_action<CR>", opts)
         -- keymap("n", "<leader>gd", "<cmd>Lspsaga preview_definition<CR>", opts)
