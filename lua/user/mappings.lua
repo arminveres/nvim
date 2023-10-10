@@ -1,6 +1,4 @@
 local merge_desc = require("user.utils").merge_desc
-
----@type function
 local keymap = vim.keymap.set
 
 -- Non recursive map map
