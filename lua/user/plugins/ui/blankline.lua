@@ -3,6 +3,8 @@ return {
     main = "ibl",
     event = "BufEnter",
     opts = {
+        indent = { char = "▎", tab_char = "▎" }, -- 
+        whitespace = { remove_blankline_trail = false },
         scope = {
             -- add further node types for scope highlighting, especially in lua with tables
             include = {

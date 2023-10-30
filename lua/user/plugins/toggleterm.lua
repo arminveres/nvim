@@ -94,19 +94,25 @@ return {
     keys = {
         {
             [[<c-\>j]],
-            ":ToggleTerm direction=horizontal<CR>",
+            function()
+                vim.cmd("ToggleTerm direction=horizontal")
+            end,
             mode = "n",
             desc = "Open Toggleterm in horizontal window.",
         },
         {
             [[<c-\>l]],
-            ":ToggleTerm direction=vertical<CR>",
+            function()
+                vim.cmd("ToggleTerm direction=vertical")
+            end,
             mode = "n",
             desc = "Open Toggleterm in vertical window.",
         },
         {
             [[<c-\>k]],
-            ":ToggleTerm direction=tab<CR>",
+            function()
+                vim.cmd("ToggleTerm direction=tab")
+            end,
             mode = "n",
             desc = "Open Toggleterm in Tab.",
         },

@@ -99,11 +99,10 @@ keymap("n", "<C-d>", "<C-d>zz", opts)
 -- CTRL-A Insert previously inserted text.
 keymap("i", "<C-A>", "<ESC>A", opts)
 
+-- keymap('n', '<leader>fe', ':Lex 30<cr>', opts) -- made obsolete by nvim-tree
 -- ================================================================================================
 -- CLIPBOARD
 -- ================================================================================================
--- keymap('n', '<leader>fe', ':Lex 30<cr>', opts) -- made obsolete by nvim-tree
--- keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 keymap("n", "<leader>bq", ":Bdelete<CR>", opts)
 keymap("n", "\\q", ":q<CR>", opts)
 keymap("n", "\\Q", "<Cmd>qall<CR>", opts) -- quickquit
@@ -137,7 +136,7 @@ keymap("x", "<leader>p", '"_dP', opts)
 keymap("n", "\\e", function()
     require("telescope.builtin").find_files()
 end, merge_desc(opts, "Telescope Find Files"))
-keymap("n", "\\g", function()
+keymap("n", "<leader>g", function()
     require("telescope.builtin").git_files()
 end, merge_desc(opts, "Telescope Find Git Files"))
 keymap("n", "\\b", function()

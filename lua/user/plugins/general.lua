@@ -78,6 +78,18 @@ return {
     {
         "RRethy/vim-illuminate", -- illuminate word under cursor lazy = true,
     },
+    {
+        "folke/zen-mode.nvim",
+        opts = {
+            window = {
+                width = 180,
+            },
+            alacritty = {
+                enabled = true,
+                font = "14", -- font size
+            },
+        },
+    },
     -- TODO: (aver) setup function: https://github.com/tzachar/local-highlight.nvim
     -- {
     --   "tzachar/local-highlight.nvim",

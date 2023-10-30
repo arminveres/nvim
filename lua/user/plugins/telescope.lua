@@ -73,7 +73,8 @@ local function telescope_setup()
         },
         pickers = {
             find_files = file_finder_opts,
-            git_files = file_finder_opts,
+            -- git_files = file_finder_opts,
+            git_files = { recurse_submodules = false },
         },
         -- extensions = {},
     })
