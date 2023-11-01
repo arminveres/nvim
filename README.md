@@ -23,5 +23,5 @@
   and [dap-ui](https://github.com/rcarriga/nvim-dap-ui)
 - possibly replace `harpoon.nvim` with `graple.nvim`
 - move `json` snippets to `lua` snippets
-- more integration of `nvim-treesitter-textobjects`
 - possibly replace `nvim-scrollbar` with `satellite.nvim`
+- MAJOR rewrite, with new layout for core and plugins. (Also bring back the damned splashscreen!!!)

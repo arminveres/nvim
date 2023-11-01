@@ -1,16 +1,14 @@
 return {
-    {
-        -- dir = "~/Projects/md-pdf.nvim",
-        "arminveres/md-pdf.nvim",
-        lazy = true,
-        keys = { { "<leader>," } },
-        config = function()
-            vim.keymap.set(
-                "n",
-                "<leader>,",
-                require("md-pdf").convert_md_to_pdf,
-                { desc = "Markdown preview" }
-            )
-        end,
+    dir = "~/Projects/md-pdf.nvim",
+    lazy = true,
+    keys = {
+        {
+            "<leader>,",
+            function()
+                require("md-pdf").convert_md_to_pdf()
+            end,
+            desc = "Markdown preview",
+        },
     },
+    opts = { toc = false },
 }

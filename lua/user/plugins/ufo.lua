@@ -16,5 +16,8 @@ return {
             end,
         })
     end,
-    dependencies = "kevinhwang91/promise-async",
+    dependencies = {
+        "kevinhwang91/promise-async",
+        "nvim-treesitter/nvim-treesitter",
+    },
 }

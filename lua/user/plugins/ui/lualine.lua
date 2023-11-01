@@ -1,5 +1,5 @@
 local function get_active_lsps()
-    local msg = "No Active Lsp"
+    local msg = "no lsp"
     local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
     local clients = vim.lsp.get_clients()
     if next(clients) == nil then
@@ -106,7 +106,8 @@ local function lualine_setup()
             },
             lualine_x = {
                 {
-                    icon = "  LSP:",
+                    -- icon = "  LSP:",
+                    icon = ":",
                     get_active_lsps,
                 },
                 "encoding",

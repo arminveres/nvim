@@ -1,56 +1,59 @@
+local ts_langs = {
+    "arduino",
+    "awk",
+    "bash",
+    "c",
+    "cmake",
+    "comment",
+    "cpp",
+    "cuda",
+    "diff",
+    "dockerfile",
+    "doxygen",
+    "git_config",
+    "git_rebase",
+    "gitattributes",
+    "gitcommit",
+    "gitignore",
+    "glsl",
+    "go",
+    "gomod",
+    "gosum",
+    "html",
+    "htmldjango",
+    "http",
+    "java",
+    "javascript",
+    "jq",
+    "jsdoc",
+    "json",
+    "json5",
+    "jsonc",
+    "latex",
+    "llvm",
+    "lua",
+    "luadoc",
+    "markdown",
+    "markdown_inline",
+    "meson",
+    "ninja",
+    "query",
+    "requirements",
+    "ron",
+    "ruby",
+    "rust",
+    "scss",
+    "sql",
+    "typescript",
+    "vim",
+    "vimdoc",
+    "xml",
+    "yaml",
+    "zig",
+}
+
 local ts_opts = {
-    ensure_installed = {
-        "arduino",
-        "awk",
-        "bash",
-        "c",
-        "cpp",
-        "cmake",
-        "comment",
-        "cuda",
-        "diff",
-        "dockerfile",
-        "doxygen",
-        "git_config",
-        "git_rebase",
-        "gitattributes",
-        "gitcommit",
-        "gitignore",
-        "glsl",
-        "go",
-        "gomod",
-        "gosum",
-        "html",
-        "htmldjango",
-        "http",
-        "java",
-        "javascript",
-        "jq",
-        "json",
-        "jsdoc",
-        "json5",
-        "jsonc",
-        "llvm",
-        "lua",
-        "luadoc",
-        "markdown",
-        "markdown_inline",
-        "meson",
-        "ninja",
-        "query",
-        "requirements",
-        "rust",
-        "ruby",
-        "ron",
-        "scss",
-        "sql",
-        "typescript",
-        "vim",
-        "vimdoc",
-        "yaml",
-        "xml",
-        "zig",
-    },
+    ensure_installed = ts_langs,
     sync_install = true, -- install languages synchronously (only applied to `ensure_installed`)
     -- ignore_install = { "" }, -- List of parsers to ignore installing
     autopairs = {
@@ -62,6 +65,12 @@ local ts_opts = {
             local max_filesize = 100 * 1024 -- 100 KB
             local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
             if ok and stats and stats.size > max_filesize then
+                return true
+            end
+
+            -- we specifically disable highlighting, but as we need the parser for the folds, we
+            -- need to leave the parser.
+            if lang == "latex" then
                 return true
             end
         end,
@@ -183,13 +192,13 @@ local ts_opts = {
             enable = true,
             swap_next = {
                 ["<leader>na"] = "@parameter.inner", -- swap parameters/argument with next
-                ["<leader>n:"] = "@property.outer",  -- swap object property with next
-                ["<leader>nm"] = "@function.outer",  -- swap function with next
+                ["<leader>n:"] = "@property.outer", -- swap object property with next
+                ["<leader>nm"] = "@function.outer", -- swap function with next
             },
             swap_previous = {
                 ["<leader>pa"] = "@parameter.inner", -- swap parameters/argument with prev
-                ["<leader>p:"] = "@property.outer",  -- swap object property with prev
-                ["<leader>pm"] = "@function.outer",  -- swap function with previous
+                ["<leader>p:"] = "@property.outer", -- swap object property with prev
+                ["<leader>pm"] = "@function.outer", -- swap function with previous
             },
         },
         move = {
@@ -268,12 +277,13 @@ return {
     -- Highlight, edit, and navigate code using a fast incremental parsing library
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
         "nvim-treesitter/nvim-treesitter-textobjects",
         "nvim-treesitter/nvim-treesitter-refactor",
         "nvim-treesitter/nvim-treesitter-context",
         "JoosepAlviste/nvim-ts-context-commentstring", -- better context aware commenting
-        "HiPhish/nvim-ts-rainbow2",                    -- rainbow parenthesis
+        "HiPhish/nvim-ts-rainbow2", -- rainbow parenthesis
     },
     config = function()
         require("nvim-treesitter.configs").setup(ts_opts)
@@ -290,5 +300,4 @@ return {
         vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t)
         vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T)
     end,
-    event = { "BufReadPre", "BufNewFile" },
 }

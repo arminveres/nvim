@@ -10,9 +10,9 @@ vim.keymap.set("n", "<leader>vo", function()
     vim.cmd("VimtexTocToggle")
 end, { desc = "[V]imTex: [O]pen Table of Contents for the TeX file" })
 
-vim.keymap.set("n", "<leader>vcw", function()
+vim.keymap.set("n", "<leader>vwc", function()
     vim.cmd("VimtexCountWords")
-end, { desc = "[V]imTex [C]ount [W]ords" })
+end, { desc = "[V]imTex [W]ords [C]ount " })
 
 vim.keymap.set("n", "<leader>vsl", function()
     vim.api.nvim_feedkeys("120|gEa\n", "n", true)

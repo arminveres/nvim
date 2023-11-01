@@ -5,11 +5,10 @@ aucmd(
     { "BufRead", "BufNewFile" },
     { pattern = { "*.frag,*.vert" }, command = ":set filetype=glsl" }
 )
-aucmd({ "BufRead", "BufNewFile" }, {
-    pattern = "COMMIT_EDITMSG",
-    command = ":set colorcolumn=50,72",
-})
--- aucmd({ "BufReadPost", "FileReadPost" }, { command = ":normal zR" })
+-- aucmd({ "BufRead", "BufNewFile" }, {
+--     pattern = "COMMIT_EDITMSG",
+--     command = ":set colorcolumn=50,72",
+-- })
 
 -- callback for lua function callbacks
 -- pattern can be left out, if for all files
@@ -31,7 +30,6 @@ aucmd("BufWritePre", {
     group = create_augroup("auto_create_dir", { clear = true }),
     callback = function(event)
         local file = vim.loop.fs_realpath(event.match) or event.match
-
         vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
         local backup = vim.fn.fnamemodify(file, ":p:~:h")
         backup = backup:gsub("[/\\]", "%%")

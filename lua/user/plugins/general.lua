@@ -90,6 +90,7 @@ return {
             },
         },
     },
+    { "kevinhwang91/nvim-bqf", ft = "qf" },
     -- TODO: (aver) setup function: https://github.com/tzachar/local-highlight.nvim
     -- {
     --   "tzachar/local-highlight.nvim",
