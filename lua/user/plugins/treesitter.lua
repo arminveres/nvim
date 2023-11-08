@@ -279,6 +279,7 @@ return {
     build = ":TSUpdate",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
+        "luckasRanarison/tree-sitter-hypr",
         "nvim-treesitter/nvim-treesitter-textobjects",
         "nvim-treesitter/nvim-treesitter-refactor",
         "nvim-treesitter/nvim-treesitter-context",
@@ -299,5 +300,15 @@ return {
         vim.keymap.set({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F)
         vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t)
         vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T)
+
+        local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+        parser_config.hypr = {
+            install_info = {
+                url = "https://github.com/luckasRanarison/tree-sitter-hypr",
+                files = { "src/parser.c" },
+                branch = "master",
+            },
+            filetype = "hypr",
+        }
     end,
 }

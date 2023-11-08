@@ -16,7 +16,6 @@ return {
     { "fladson/vim-kitty", ft = "kitty" },
     -- { "ron-rs/ron.vim", ft = "ron" },
     { "mboughaba/i3config.vim", ft = "i3config" },
-    { "theRealCarneiro/hyprland-vim-syntax", ft = "hypr" },
     { "tridactyl/vim-tridactyl", ft = "tridactyl" },
     {
         "mbbill/undotree",
