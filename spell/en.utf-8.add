@@ -22,6 +22,7 @@ Bubblesort
 CBOR
 CCS
 CFT
+CLI
 CMDB
 COSE
 CRC
@@ -39,6 +40,7 @@ Cuda
 Cyberpass
 DAA
 DBSCAN
+DDR4
 DIDComm
 DIDs
 DIY
@@ -53,6 +55,7 @@ Dasymetric
 Datastores
 Deliverables
 Destructor
+Diffie-Hellman
 Distributable
 Dockerfiles
 Doxygen
@@ -92,6 +95,7 @@ Kerckhoffs
 Keychron
 LD
 LLM
+LPDDR4
 LRU
 LRUs
 LSP
@@ -103,9 +107,11 @@ Luminance
 M4
 MCU
 MCUs
+MITM
 MPT
 MUDs
 MULTISAVE
+MVC
 Makefiles
 Mergesort
 Merkle
@@ -121,8 +127,12 @@ OMA
 OOP
 OSS
 OTA
+Onboard
 OpenACC
 OpenAPI
+OpenDaylight
+P2P
+PDE
 PHM
 PKI
 PRNG
@@ -136,6 +146,7 @@ PoC
 PoW
 PostgreSQL
 Quicksort
+RFID
 RGB
 RISCV
 RSA
@@ -147,6 +158,8 @@ SBC
 SCA
 SCADA
 SDK
+SDN
+SDNs
 SQLite
 SRaM
 SSI
@@ -180,6 +193,7 @@ Undecipharable
 VC
 VCs
 VON
+VPN
 Veres
 Verifier
 Virtualization
@@ -194,6 +208,7 @@ Webhooks
 X11
 YAC
 ZKP
+ZeroTier
 Zettelkasten
 Zsh
 Zürich
@@ -202,6 +217,7 @@ arminveres
 auralize
 backend
 backlight
+base64
 bifroest
 bijection
 blockchain
@@ -233,6 +249,7 @@ cybersecurity
 datastores
 dbscan
 decrypt
+deployable
 dereferencing
 destructor
 differentiable
@@ -275,14 +292,17 @@ keymap
 lifecycle
 llvm
 lua
+malwares
 metadata
 microcontroller
 microcontrollers
 microstructure
 modularity
 monoalphabetic
+natively
 neovim
 nvim
+octa
 onboarded
 onboarding
 onboards
@@ -349,15 +369,9 @@ usart2
 v1
 validator
 validators
+verifier
 webhook
 wezterm
 whitepaper
 yaml
 zsh
-DDR4
-LPDDR4
-ZeroTier
-P2P
-VPN
-base64
-verifier

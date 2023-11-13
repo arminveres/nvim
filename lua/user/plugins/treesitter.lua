@@ -3,6 +3,7 @@ local ts_langs = {
     "awk",
     "bash",
     "c",
+    "python",
     "cmake",
     "comment",
     "cpp",
@@ -37,7 +38,9 @@ local ts_langs = {
     "markdown_inline",
     "meson",
     "ninja",
+    "python",
     "query",
+    "regex",
     "requirements",
     "ron",
     "ruby",
@@ -50,15 +53,16 @@ local ts_langs = {
     "xml",
     "yaml",
     "zig",
+    "make",
 }
 
 local ts_opts = {
     ensure_installed = ts_langs,
-    sync_install = true, -- install languages synchronously (only applied to `ensure_installed`)
-    -- ignore_install = { "" }, -- List of parsers to ignore installing
-    autopairs = {
-        enable = true,
-    },
+    sync_install = true, -- ignore_install = { "" }, -- List of parsers to ignore installing
+    indent = { enable = true },
+    context_commentstring = { enable = true },
+    fold = { enable = false },
+    autopairs = { enable = true },
     highlight = {
         enable = true,
         disable = function(lang, buf)
@@ -78,15 +82,6 @@ local ts_opts = {
             "dockerfile", -- nicer highlighting for some commands
             "markdown",
         },
-    },
-    indent = {
-        enable = true,
-    },
-    context_commentstring = {
-        enable = true,
-    },
-    fold = {
-        enable = false,
     },
     rainbow = {
         enable = false,
@@ -124,11 +119,11 @@ local ts_opts = {
                     query = "@assignment.inner",
                     desc = "Select inner part of an assignment",
                 },
-                ["l="] = {
+                ["=l"] = {
                     query = "@assignment.lhs",
                     desc = "Select left hand side of an assignment",
                 },
-                ["r="] = {
+                ["=r"] = {
                     query = "@assignment.rhs",
                     desc = "Select right hand side of an assignment",
                 },
@@ -279,12 +274,12 @@ return {
     build = ":TSUpdate",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-        "luckasRanarison/tree-sitter-hypr",
         "nvim-treesitter/nvim-treesitter-textobjects",
         "nvim-treesitter/nvim-treesitter-refactor",
         "nvim-treesitter/nvim-treesitter-context",
         "JoosepAlviste/nvim-ts-context-commentstring", -- better context aware commenting
         "HiPhish/nvim-ts-rainbow2", -- rainbow parenthesis
+        "luckasRanarison/tree-sitter-hypr",
     },
     config = function()
         require("nvim-treesitter.configs").setup(ts_opts)

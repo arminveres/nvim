@@ -14,7 +14,6 @@ vim.g.vimtex_quickfix_open_on_warning = 0
 return {
     { "lervag/vimtex", ft = "tex" },
     { "fladson/vim-kitty", ft = "kitty" },
-    -- { "ron-rs/ron.vim", ft = "ron" },
     { "mboughaba/i3config.vim", ft = "i3config" },
     { "tridactyl/vim-tridactyl", ft = "tridactyl" },
     {

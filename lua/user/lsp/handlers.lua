@@ -176,8 +176,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
             return
         end
 
-        if client.server_capabilities.inlayHintProvider then
-            vim.lsp.inlay_hint(args.buf, true)
+        if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+            vim.lsp.inlay_hint.enable(args.buf, true)
         end
 
         -- if client.server_capabilities.codeActionProvide.codeActionKind then

@@ -1,3 +1,6 @@
+---@diagnostic disable: missing-fields
+---
+
 local kind_icons = {
     Text = "",
     Method = "m",
