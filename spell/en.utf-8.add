@@ -231,6 +231,7 @@ checksum
 chloropleth
 ciphertext
 clonability
+codebase
 codebases
 collins
 config
@@ -375,3 +376,4 @@ wezterm
 whitepaper
 yaml
 zsh
+Multitenancy

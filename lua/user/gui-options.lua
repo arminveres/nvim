@@ -1,20 +1,14 @@
 local opts = { noremap = true, silent = true }
 local fonts = {
-    "Iosevka Nerd Font Mono:h12",
+    "MesloLGS Nerd Font Mono:h9",
+    "DejaVuSansM Nerd Font Mono:h9",
+    "IosevkaTerm Nerd Font Mono:h10",
     "JetBrainsMono Nerd Font Mono:h8.5",
-    "TamzenForPowerline:h14",
-    "TerminessTTF Nerd Font Mono:h11.5",
-    "DinaRemasterII:h12",
     "UbuntuMono Nerd Font Mono:h12",
-    --windows fonts
-    "UbuntuMono NFM:h12",
-    "Hack NFM:h9",
-    "NotoMono NFM:h10",
-    "MesloLGSDZ NFM:h10",
+    "Hack Nerd Font Mono:h9",
+    "NotoMono Nerd Font Mono:h9",
     -- Bitmap fonts
-    "TerminessTTF Nerd Font Mono:h11.5",
-    "DinaRemasterII:h12",
-    "TamzenForPowerline:h14"
+    "DinaRemasterII:h10",
 }
 
 -- NEOVIDE specific settings

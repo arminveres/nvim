@@ -43,36 +43,27 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
     if server == "lua-language-server" then
         local lua_opts = require("user.lsp.settings.lua_ls")
         opts = vim.tbl_deep_extend("force", lua_opts, opts)
-    end
-
-    if server == "pyright" then
+    elseif server == "pyright" then
         local pyright_opts = require("user.lsp.settings.pyright")
         opts = vim.tbl_deep_extend("force", pyright_opts, opts)
-    end
-
-    if server == "pylizer" then
+    elseif server == "pylizer" then
         local pylyzer_opts = require("user.lsp.settings.pylizer")
         opts = vim.tbl_deep_extend("force", pylyzer_opts, opts)
-    end
-
-    if server == "pylsp" then
+    elseif server == "pylsp" then
         local pylsp_opts = require("user.lsp.settings.pylsp")
         opts = vim.tbl_deep_extend("force", pylsp_opts, opts)
-    end
-
-    if server == "bashls" then
+    elseif server == "bashls" then
         local bashls_opts = require("user.lsp.settings.bashls")
         opts = vim.tbl_deep_extend("force", bashls_opts, opts)
-    end
-
-    if server == "ltex" then
+    elseif server == "ltex" then
         local ltex_opts = require("user.lsp.settings.ltex")
         opts = vim.tbl_deep_extend("force", ltex_opts, opts)
-    end
-
-    if server == "clangd" then
+    elseif server == "clangd" then
         local clangd_opts = require("user.lsp.settings.clangd").server_opts
         opts = vim.tbl_deep_extend("force", clangd_opts, opts)
+    elseif server == "texlab" then
+        local texlab_opts = require("user.lsp.settings.texlab")
+        opts = vim.tbl_deep_extend("force", texlab_opts, opts)
     end
 
     if server == "rust_analyzer" then

@@ -147,22 +147,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
             require("lspsaga.symbol"):outline()
         end, opts)
         vim.keymap.set("n", "gl", function()
-            -- FIXME: (aver) fix args
-            -- ":Lspsaga show_line_diagnostics<CR>"
-            require("lspsaga.diagnostic.show"):show_diagnostics({ line = true, args = args })
+            vim.cmd([[Lspsaga show_line_diagnostics]])
         end, opts)
         vim.keymap.set("n", "<leader>gl", function()
-            -- FIXME: (aver) fix args
-            -- ":Lspsaga show_cursor_diagnostics<CR>"
-            require("lspsaga.diagnostic.show"):show_diagnostics({ cursor = true, args = args })
+            vim.cmd([[Lspsaga show_cursor_diagnostics]])
         end, opts)
         vim.keymap.set("n", "<Leader>ci", function()
-            -- "<cmd>Lspsaga incoming_calls<CR>"
-            require("lspsaga.callhierarchy"):send_method(2, args)
+            vim.cmd([[Lspsaga incoming_calls]])
         end)
         vim.keymap.set("n", "<Leader>co", function()
-            -- "<cmd>Lspsaga outgoing_calls<CR>"
-            require("lspsaga.callhierarchy"):send_method(3, args)
+            vim.cmd([[Lspsaga outgoing_calls]])
         end)
 
         -- keymap("n", "<leader>rn", ":Lspsaga rename ++project<CR>", opts)
