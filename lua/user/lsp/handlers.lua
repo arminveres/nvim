@@ -121,10 +121,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
             -- vim.cmd("Lspsaga diagnostic_jump_next")
             require("lspsaga.diagnostic"):goto_next()
         end, opts)
-        vim.keymap.set("n", "K", function(args)
-            -- FIXME: (aver) fix args
-            -- ":Lspsaga hover_doc<CR>"
-            require("lspsaga.hover"):render_hover_doc(args)
+        vim.keymap.set("n", "K", function()
+            local winid = require("ufo").peekFoldedLinesUnderCursor()
+            if not winid then
+                -- vim.lsp.buf.hover()
+                vim.cmd([[Lspsaga hover_doc]])
+            end
         end, opts)
         vim.keymap.set({ "n", "v" }, "<leader>ca", function()
             -- ":Lspsaga code_action<CR>"
