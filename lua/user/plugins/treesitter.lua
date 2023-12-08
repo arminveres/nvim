@@ -60,7 +60,6 @@ local ts_opts = {
     ensure_installed = ts_langs,
     sync_install = true, -- ignore_install = { "" }, -- List of parsers to ignore installing
     indent = { enable = true },
-    context_commentstring = { enable = true },
     fold = { enable = false },
     autopairs = { enable = true },
     highlight = {
@@ -277,7 +276,6 @@ return {
         "nvim-treesitter/nvim-treesitter-textobjects",
         "nvim-treesitter/nvim-treesitter-refactor",
         "nvim-treesitter/nvim-treesitter-context",
-        "JoosepAlviste/nvim-ts-context-commentstring", -- better context aware commenting
         "HiPhish/nvim-ts-rainbow2", -- rainbow parenthesis
         "luckasRanarison/tree-sitter-hypr",
     },
