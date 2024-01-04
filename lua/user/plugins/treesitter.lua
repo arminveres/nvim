@@ -12,6 +12,7 @@ local ts_langs = {
     "dockerfile",
     "doxygen",
     "git_config",
+    "hyprlang",
     "git_rebase",
     "gitattributes",
     "gitcommit",
@@ -277,7 +278,7 @@ return {
         "nvim-treesitter/nvim-treesitter-refactor",
         "nvim-treesitter/nvim-treesitter-context",
         "HiPhish/nvim-ts-rainbow2", -- rainbow parenthesis
-        "luckasRanarison/tree-sitter-hypr",
+        "luckasRanarison/tree-sitter-hyprlang",
     },
     config = function()
         require("nvim-treesitter.configs").setup(ts_opts)
@@ -294,14 +295,8 @@ return {
         vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t)
         vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T)
 
-        local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-        parser_config.hypr = {
-            install_info = {
-                url = "https://github.com/luckasRanarison/tree-sitter-hypr",
-                files = { "src/parser.c" },
-                branch = "master",
-            },
-            filetype = "hypr",
-        }
+        vim.filetype.add({
+            pattern = { [".*/hyprland%.conf"] = "hyprlang" },
+        })
     end,
 }
