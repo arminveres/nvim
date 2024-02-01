@@ -1,0 +1,19 @@
+{
+  "name": "my-snips",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "lua",
+        "path": "./lua.json"
+      },
+      {
+        "language": "c",
+        "path": "./c_cpp.json"
+      },
+      {
+        "language": "cpp",
+        "path": "./c_cpp.json"
+      }
+    ]
+  }
+}
