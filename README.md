@@ -19,9 +19,4 @@
 
 #### TODO
 
-- add debug protocol DAP [nvim-dap](https://github.com/mfussenegger/nvim-dap)
-  and [dap-ui](https://github.com/rcarriga/nvim-dap-ui)
-- possibly replace `harpoon.nvim` with `graple.nvim`
-- move `json` snippets to `lua` snippets
-- possibly replace `nvim-scrollbar` with `satellite.nvim`
-- MAJOR rewrite, with new layout for core and plugins. (Also bring back the damned splashscreen!!!)
+- find alternative to lualine as it interferes with original dashboard
