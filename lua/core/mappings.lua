@@ -99,15 +99,13 @@ keymap("n", "<C-d>", "<C-d>zz", opts)
 -- CTRL-A Insert previously inserted text.
 keymap("i", "<C-A>", "<ESC>A", opts)
 
--- keymap('n', '<leader>fe', ':Lex 30<cr>', opts) -- made obsolete by nvim-tree
+keymap('n', '<leader>fe', ':Lex 30<cr>', opts) -- made obsolete by nvim-tree
 -- ================================================================================================
 -- CLIPBOARD
 -- ================================================================================================
-keymap("n", "<leader>bq", ":Bdelete<CR>", opts)
 keymap("n", "\\q", ":q<CR>", opts)
 keymap("n", "\\Q", "<Cmd>qall<CR>", opts) -- quickquit
 keymap("n", "\\w", "<Cmd>w<CR>", opts) -- quick save
--- keymap("n", "<leader>.", ":so ~/.config/nvim/init.lua<CR>", opts)
 
 -- Yank to clipboard
 keymap("v", "<leader>y", '"+y', opts)
@@ -124,66 +122,6 @@ keymap("v", "<leader>d", '"_d', opts)
 -- According to thePrimeagen, the greatest map ever
 keymap("x", "<leader>p", '"_dP', opts)
 
---Add leader shortcuts
-----------------------------------------------------------------------------------------------------
--- Telescope
-----------------------------------------------------------------------------------------------------
--- TODO: (aver) move into telescope plugin file
-
--- keymap('n', '<leader><space>', function()
---   require('telescope.builtin').buffers()
--- end, opts)
-keymap("n", "\\e", function()
-    require("telescope.builtin").find_files()
-end, merge_desc(opts, "Telescope Find Files"))
-keymap("n", "<leader>g", function()
-    require("telescope.builtin").git_files()
-end, merge_desc(opts, "Telescope Find Git Files"))
-keymap("n", "\\b", function()
-    require("telescope.builtin").buffers()
-end, merge_desc(opts, "Telescope Find Open Buffers"))
-keymap("n", "<leader>sb", function()
-    require("telescope.builtin").current_buffer_fuzzy_find()
-end, merge_desc(opts, "Telescope fuzzy search current buffer"))
-keymap("n", "<leader>sh", function()
-    require("telescope.builtin").help_tags()
-end, merge_desc(opts, "Telescope search help tags"))
--- allow to grep for string under cursor
-keymap("n", "<leader>sd", function()
-    require("telescope.builtin").grep_string()
-end, merge_desc(opts, "Telescope search for string under cursor"))
-keymap("n", "<leader>sp", function()
-    require("telescope.builtin").live_grep()
-end, merge_desc(opts, "Telescope search for string"))
-keymap(
-    "n",
-    "<leader>gfb",
-    ":Telescope git_branches<CR>",
-    merge_desc(opts, "Telescope [f]ind [g]it [b]ranches")
-)
-keymap("n", "<leader>?", ":Telescope keymaps<CR>", merge_desc(opts, "Telescope List Keymaps"))
-keymap(
-    "n",
-    "<leader>r",
-    ":Telescope resume<CR>",
-    merge_desc(opts, "Telescope Resume Last Operation")
-)
-keymap(
-    "n",
-    "<leader>sg",
-    ":Telescope grep_string search=<cr>",
-    merge_desc(opts, "Telescope Search Globally")
-)
--- keymap('n', '<leader>st', [[<cmd>lua require('telescope.builtin').tags()<CR>]], opts)
--- keymap('n', '<leader>so', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]], opts)
--- keymap('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], opts)
-
--- Undo tree toggle
-keymap("n", "<Leader>u", "<Cmd>UndotreeToggle<CR>", opts)
-
-keymap("n", "<Leader>li", ":LspInfo<CR>", opts)
-keymap("n", "<Leader>ll", ":LspLog<CR>", opts)
-keymap("n", "<Leader>lr", ":LspRestart<CR>", opts)
 
 -- Easier window switching with leader + Number
 -- Creates mappings like this: km.set("n", "<Leader>2", "2<C-W>w", { desc = "Move to Window 2" })
@@ -193,10 +131,6 @@ for i = 1, 6 do
     keymap("n", lhs, rhs, { desc = "Move to Window " .. i })
 end
 
-keymap("v", "<leader>ga", ":Gitsign stage_hunk<cr>", opts)
-keymap("n", "<leader>gb", ":Gitsign blame_line<cr>", opts)
-keymap("n", "[h", ":Gitsign prev_hunk<cr>", opts)
-keymap("n", "]h", ":Gitsign next_hunk<cr>", opts)
 
 keymap("n", "<leader>td", function()
     vim.cmd("TodoTelescope theme=dropdown layout_config={width=0.5}")
