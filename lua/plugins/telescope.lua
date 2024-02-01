@@ -171,4 +171,5 @@ return {
     },
     keys = telescope_mappings,
     config = telescope_setup,
+    cmd = "Telescope",
 }
