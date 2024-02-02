@@ -76,7 +76,7 @@ local function lualine_setup()
             lualine_a = { { "mode" } },
             lualine_b = {
                 { "branch", icon = { "", color = { fg = "#f34f29" } } },
-                { "diff" },
+                -- { "diff" },
                 { "diagnostics" },
             },
             lualine_c = {

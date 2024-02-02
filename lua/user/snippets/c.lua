@@ -23,5 +23,7 @@ local snippets = {
         t("#pragma GCC diagnostic pop", "\n"),
     }),
 }
+ls.add_snippets("c", snippets, { key = "c" })
+ls.add_snippets("cpp", snippets, { key = "cpp" })
 
-return snippets
+-- return snippets

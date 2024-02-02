@@ -103,7 +103,7 @@ keymap("i", "<C-A>", "<ESC>A", opts)
 -- ================================================================================================
 -- CLIPBOARD
 -- ================================================================================================
-keymap("n", "<leader>bq", ":Bdelete<CR>", opts)
+keymap("n", "<leader>bd", ":Bdelete<CR>", opts)
 keymap("n", "\\q", ":q<CR>", opts)
 keymap("n", "\\Q", "<Cmd>qall<CR>", opts) -- quickquit
 keymap("n", "\\w", "<Cmd>w<CR>", opts) -- quick save
@@ -136,25 +136,32 @@ keymap("x", "<leader>p", '"_dP', opts)
 keymap("n", "\\e", function()
     require("telescope.builtin").find_files()
 end, merge_desc(opts, "Telescope Find Files"))
-keymap("n", "<leader>g", function()
-    require("telescope.builtin").git_files()
-end, merge_desc(opts, "Telescope Find Git Files"))
+
+-- keymap("n", "<leader>g", function()
+--     require("telescope.builtin").git_files()
+-- end, merge_desc(opts, "Telescope Find Git Files"))
+
 keymap("n", "\\b", function()
     require("telescope.builtin").buffers()
 end, merge_desc(opts, "Telescope Find Open Buffers"))
+
 keymap("n", "<leader>sb", function()
     require("telescope.builtin").current_buffer_fuzzy_find()
 end, merge_desc(opts, "Telescope fuzzy search current buffer"))
+
 keymap("n", "<leader>sh", function()
     require("telescope.builtin").help_tags()
 end, merge_desc(opts, "Telescope search help tags"))
+
 -- allow to grep for string under cursor
 keymap("n", "<leader>sd", function()
     require("telescope.builtin").grep_string()
 end, merge_desc(opts, "Telescope search for string under cursor"))
+
 keymap("n", "<leader>sp", function()
     require("telescope.builtin").live_grep()
 end, merge_desc(opts, "Telescope search for string"))
+
 keymap(
     "n",
     "<leader>gfb",

@@ -33,6 +33,7 @@ return {
     {
         "L3MON4D3/LuaSnip",
         lazy = true,
+        -- tag = "v2.*",
         config = function()
             local types = require("luasnip.util.types")
             local ls = require("luasnip")
@@ -62,12 +63,13 @@ return {
                 })
             end
 
-            for _, lang in pairs({ "all", "sh", "c" }) do
-                if lang == "c" then
-                    ls.add_snippets("cpp", require("user.snippets." .. lang), { key = "cpp" })
-                end
-                ls.add_snippets(lang, require("user.snippets." .. lang), { key = lang })
-            end
+            require("user.snippets")
+            -- for _, lang in pairs({ "all", "sh", "c" }) do
+            --     if lang == "c" then
+            --         ls.add_snippets("cpp", require("user.snippets." .. lang), { key = "cpp" })
+            --     end
+            --     ls.add_snippets(lang, require("user.snippets." .. lang), { key = lang })
+            -- end
         end,
         keys = {
             {

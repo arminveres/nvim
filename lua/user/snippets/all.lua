@@ -4,7 +4,7 @@ local t = ls.text_node
 local c = ls.choice_node
 local p = require("luasnip.extras").partial
 
-local function get_comment_string()
+--[[ local function get_comment_string()
     local f = require("ts_context_commentstring.internal").calculate_commentstring()
     print(f)
     local splitted = vim.split(f, "%s", {})
@@ -12,7 +12,7 @@ local function get_comment_string()
         return ""
     end
     return splitted[1]
-end
+end ]]
 
 local snippets = {
     s("todo", {
@@ -26,4 +26,5 @@ local snippets = {
     }),
 }
 
-return snippets
+ls.add_snippets("all", snippets, { key = "all" })
+-- return snippets

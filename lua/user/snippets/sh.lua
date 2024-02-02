@@ -12,4 +12,6 @@ local snippets = {
     }),
 }
 
-return snippets
+ls.add_snippets("sh", snippets, { key = "sh" })
+ls.add_snippets("bash", snippets, { key = "bash" })
+-- return snippets

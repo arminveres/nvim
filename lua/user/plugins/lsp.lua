@@ -3,7 +3,7 @@ return {
     "nvimtools/none-ls.nvim", -- Null LS
     "williamboman/mason.nvim", -- installer for lsps
     "williamboman/mason-lspconfig.nvim",
-    "jay-babu/mason-null-ls.nvim",
+    { "jay-babu/mason-null-ls.nvim", ft = { "python", "lua" } },
     "p00f/clangd_extensions.nvim", -- Clangd's off-spec features for neovim's LSP client
     "simrat39/rust-tools.nvim",
     {

@@ -132,15 +132,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
             -- ":Lspsaga code_action<CR>"
             require("lspsaga.codeaction"):code_action()
         end, opts)
-        vim.keymap.set("n", "grn", function(args)
-            -- FIXME: (aver) fix args
-            -- ":Lspsaga rename ++project<CR>"
-            require("lspsaga.rename"):lsp_rename(args)
+        vim.keymap.set("n", "grn", function()
+            vim.cmd([[Lspsaga rename ++project]])
         end, opts)
-        vim.keymap.set("n", "gh", function(args)
+        vim.keymap.set("n", "gh", function()
             vim.cmd("Lspsaga finder")
-            -- vim.notify(vim.inspect(args))
-            -- require("lspsaga.finder"):new(args)
         end, opts)
         vim.keymap.set("n", "<leader>at", function()
             -- ":Lspsaga outline<CR>"
@@ -173,22 +169,28 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
 
         if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-            vim.lsp.inlay_hint.enable(args.buf, true)
+            local is_enabled = true
+            vim.lsp.inlay_hint.enable(args.buf, is_enabled)
+
+            vim.keymap.set("n", "<Leader>lh", function()
+                is_enabled = not is_enabled
+                vim.lsp.inlay_hint.enable(args.buf, is_enabled)
+            end, { desc = "Toggle [L]SP Inlay [H]int" })
         end
 
         -- if client.server_capabilities.codeActionProvide.codeActionKind then
         -- end
 
         -- NOTE: Format on save autocommand
-        if client.server_capabilities.documentFormattingProvider then
-            vim.api.nvim_create_autocmd({ "BufWrite" }, {
-                group = vim.api.nvim_create_augroup("FormatOnSave", { clear = true }),
-                callback = function()
-                    -- WARN: use false, otherwise not possible to save
-                    vim.lsp.buf.format({ async = false })
-                end,
-            })
-        end
+        -- if client.server_capabilities.documentFormattingProvider then
+        --     vim.api.nvim_create_autocmd({ "BufWrite" }, {
+        --         group = vim.api.nvim_create_augroup("FormatOnSave", { clear = true }),
+        --         callback = function()
+        --             -- WARN: use false, otherwise not possible to save
+        --             vim.lsp.buf.format({ async = false })
+        --         end,
+        --     })
+        -- end
     end,
 })
 

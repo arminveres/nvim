@@ -9,12 +9,13 @@ local fonts = {
     "NotoMono Nerd Font Mono:h9",
     -- Bitmap fonts
     "DinaRemasterII:h10",
+    "Terminuss Nerd Font Mono:h10.5",
 }
 
+vim.opt.guifont = fonts[8]
+-- vim.opt.title = true
 -- NEOVIDE specific settings
 if vim.g.neovide then
-    vim.opt.guifont = fonts[1]
-    vim.opt.title = true
     -- vim.opt.titlestring = "Neovide"
     -- vim.cmd([[:auto BufEnter * let &titlestring = expand("%:p")]])
 
@@ -29,14 +30,12 @@ if vim.g.neovide then
     vim.g.neovide_padding_left = 5
 
     vim.g.neovide_transparency = 0.95
-    vim.g.neovide_frame_rate = 60
-    vim.g.neovide_frame_rate_idle = 60
-    vim.g.neovide_cursor_animation_length = 0
-    vim.g.neovide_scroll_animation_length = 0
+    vim.g.neovide_frame_rate = 160
+    vim.g.neovide_frame_rate_idle = 160
     vim.g.neovide_no_idle = true
-
-    -- Other GUI options, e.g., nvim-Qt or Goneovim
-else
-    vim.opt.guifont = fonts[2]
-    vim.keymap.set("i", "<S-Insert>", "<C-R>+", opts)
+    -- vim.g.neovide_cursor_animation_length = 0
+    -- vim.g.neovide_scroll_animation_length = 0
+else -- Other GUI options, e.g., nvim-Qt or Goneovim
+    -- set font for neovim-gtk
+    vim.cmd([[call rpcnotify(1, "Gui", "Font", "DejaVuSansMono Nerd Font Mono 12")]])
 end

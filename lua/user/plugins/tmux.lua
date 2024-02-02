@@ -1,6 +1,6 @@
 return {
-    {
-        "aserowy/tmux.nvim",
-        config = true,
+    "aserowy/tmux.nvim",
+    opts = {
+        copy_sync = { enable = false },
     },
 }
