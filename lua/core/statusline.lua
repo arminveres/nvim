@@ -1,3 +1,7 @@
+--[[
+-- Custom Statusline based on a mixture of GPT4 prompts and reuse of my old config.
+--]]
+
 local reset = "%#Normal#"
 
 -- local id = vim.api.nvim_create_namespace("MyStatusLine")
@@ -11,7 +15,7 @@ vim.api.nvim_set_hl(id, "MyStatusLineCommand", { fg = "#282828", bg = "#792329",
 local function git_changes()
     local status = vim.b.gitsigns_status_dict
     if status and status.head then
-        local branch = string.format("%%#GruvboxOrange#  %%#Normal#%s ", status.head)
+        local branch = string.format("%%#GruvboxOrange# %%#Normal#%s ", status.head)
         local added = string.format("%%#GitSignsAdd# +%d", status.added or 0)
         local changed = string.format("%%#GitSignsChange# ~%d", status.changed or 0)
         local deleted = string.format("%%#GitSignsDelete# -%d", status.removed or 0)
@@ -67,15 +71,15 @@ local function get_mode()
         ["n"] = "%%#MyStatusLineNormal# NORMAL ",
         ["no"] = "N·Operator Pending",
         ["v"] = "%%#MyStatusLineVisual# VISUAL ",
-        ["V"] = "V·Line",
-        [""] = "V·Block",
+        ["V"] = "%%#MyStatusLineVisual# V·Line ",
+        [""] = "%%#MyStatusLineVisual# V·Block ",
         ["s"] = "SELECT",
         ["S"] = "S·Line",
         [""] = "S·Block",
         ["i"] = "%%#MyStatusLineInsert# INSERT ",
         ["ic"] = "%%#MyStatusLineInsert# INSERT ",
         ["R"] = "Replace",
-        ["Rv"] = "V·Replace",
+        ["Rv"] = "%%#MyStatusLineVisual# V·Replace ",
         ["c"] = "%%#MyStatusLineTerminal# COMMAND ",
         ["cv"] = "Vim Ex",
         ["ce"] = "Ex",
@@ -89,7 +93,7 @@ local function get_mode()
 
     local mode = mode_map[vim.api.nvim_get_mode().mode] or "Unknown"
     -- return mode .. " " .. reset
-    return string.format(mode) .. reset
+    return string.format(mode) .. reset .. " "
 end
 
 local function get_lsps()
@@ -136,7 +140,7 @@ vim.api.nvim_create_autocmd({
     "CursorHold",
     "CursorMoved",
     "InsertEnter",
-    "TextChanged"
+    "TextChanged",
     -- "InsertChange",
     -- "InsertCharPre",
 }, {

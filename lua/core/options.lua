@@ -70,3 +70,4 @@ else
 end
 
 vim.g.netrw_keepdir = 0
+vim.opt.laststatus = 3
