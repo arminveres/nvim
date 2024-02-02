@@ -8,4 +8,6 @@ return {
             "rust_analyzer",
         },
     },
+    cmd = "Mason",
+    event = "LspAttach",
 }
