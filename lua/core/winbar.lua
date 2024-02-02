@@ -14,7 +14,8 @@ vim.api.nvim_create_autocmd("WinEnter", {
             return
         end
 
-        vim.wo.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+        -- vim.wo.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+         vim.wo.winbar = '%{%v:lua.dropbar.get_dropbar_str()%}'
     end,
 })
 
