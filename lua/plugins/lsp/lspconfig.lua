@@ -27,22 +27,22 @@ local function setup()
             local clangd_opts = require("plugins.lsp.settings.clangd").server_opts
             lsp_opts = vim.tbl_deep_extend("force", clangd_opts, lsp_opts)
         elseif server == "pyright" then
-            local pyright_opts = require("user.lsp.settings.pyright")
+            local pyright_opts = require("plugins.lsp.settings.pyright")
             lsp_opts = vim.tbl_deep_extend("force", pyright_opts, lsp_opts)
         elseif server == "pylizer" then
-            local pylyzer_opts = require("user.lsp.settings.pylizer")
+            local pylyzer_opts = require("plugins.lsp.settings.pylizer")
             lsp_opts = vim.tbl_deep_extend("force", pylyzer_opts, lsp_opts)
         elseif server == "pylsp" then
-            local pylsp_opts = require("user.lsp.settings.pylsp")
+            local pylsp_opts = require("plugins.lsp.settings.pylsp")
             lsp_opts = vim.tbl_deep_extend("force", pylsp_opts, lsp_opts)
         elseif server == "bashls" then
-            local bashls_opts = require("user.lsp.settings.bashls")
+            local bashls_opts = require("plugins.lsp.settings.bashls")
             lsp_opts = vim.tbl_deep_extend("force", bashls_opts, lsp_opts)
         elseif server == "ltex" then
-            local ltex_opts = require("user.lsp.settings.ltex")
+            local ltex_opts = require("plugins.lsp.settings.ltex")
             lsp_opts = vim.tbl_deep_extend("force", ltex_opts, lsp_opts)
         elseif server == "texlab" then
-            local texlab_opts = require("user.lsp.settings.texlab")
+            local texlab_opts = require("plugins.lsp.settings.texlab")
             lsp_opts = vim.tbl_deep_extend("force", texlab_opts, lsp_opts)
         end
 
@@ -53,7 +53,7 @@ local function setup()
 end
 
 vim.api.nvim_create_autocmd("LspAttach", {
-    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+    group = vim.api.nvim_create_augroup("pluginsLspConfig", {}),
     callback = function(args)
         -- Enable completion triggered by <c-x><c-o>
         -- vim.bo[args.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
@@ -135,6 +135,7 @@ return {
         { "<Leader>lr", ":LspRestart<CR>", desc = "[l]sp [r]estart" },
     },
     dependencies = {
+    "williamboman/mason-lspconfig.nvim",
         "hrsh7th/nvim-cmp",
         "hrsh7th/cmp-nvim-lsp",
         "RRethy/vim-illuminate",
