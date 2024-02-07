@@ -2,9 +2,9 @@ local color_overrides = {
     -- ========================================================================================
     -- LSP and LspSaga colors
     -- ========================================================================================
-    SagaNormal = { link = "PMenu" },
-    -- FloatShadow = { link = 'PMenu' },
-    -- FloatShadowThrough = { link = 'PMenu' },
+    -- SagaNormal = { link = "PMenu" },
+    FloatShadow = { link = "PMenu" },
+    FloatShadowThrough = { link = "PMenu" },
     String = { fg = "#eb9664" }, -- #eb9664, #c89664
     Comment = { fg = "#919191", italic = true, bold = false },
     -- These highlights are special for undefined macros
@@ -122,22 +122,19 @@ local function toggle_transparency()
 end
 
 return { -- colorschemes TODO: just write my own colorscheme based on gruvbox...
-    {
-        "ellisonleao/gruvbox.nvim",
-        lazy = false,
-        priority = 1001,
-        -- opts = gruvbox_options,
-        keys = {
-            {
-                "<leader>ctt",
-                toggle_transparency,
-                desc = "Toggle background transparency in gruvbox",
-            },
+    "ellisonleao/gruvbox.nvim",
+    lazy = false,
+    priority = 1001,
+    keys = {
+        {
+            "<leader>ctt",
+            toggle_transparency,
+            desc = "Toggle background transparency in gruvbox",
         },
-        config = function()
-            load_transparency(false)
-            require("gruvbox").setup(gruvbox_options)
-            vim.cmd.colorscheme('gruvbox')
-        end,
     },
+    config = function()
+        load_transparency(false)
+        require("gruvbox").setup(gruvbox_options)
+        vim.cmd.colorscheme("gruvbox")
+    end,
 }

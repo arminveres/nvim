@@ -3,7 +3,6 @@ local ts_langs = {
     "awk",
     "bash",
     "c",
-    "python",
     "cmake",
     "comment",
     "cpp",
@@ -11,7 +10,6 @@ local ts_langs = {
     "diff",
     "dockerfile",
     "doxygen",
-    "hyprlang",
     "git_config",
     "hyprlang",
     "git_rebase",
@@ -36,10 +34,12 @@ local ts_langs = {
     "llvm",
     "lua",
     "luadoc",
+    "make",
     "markdown",
     "markdown_inline",
     "meson",
     "ninja",
+    "python",
     "python",
     "query",
     "regex",
@@ -55,7 +55,6 @@ local ts_langs = {
     "xml",
     "yaml",
     "zig",
-    "make",
 }
 
 local ts_opts = {
@@ -273,7 +272,7 @@ return {
     -- Highlight, edit, and navigate code using a fast incremental parsing library
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    event = { "BufReadPre", "BufNewFile" },
+    -- event = { "BufReadPre", "BufNewFile" },
     dependencies = {
         "nvim-treesitter/nvim-treesitter-textobjects",
         "nvim-treesitter/nvim-treesitter-refactor",

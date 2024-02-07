@@ -1,10 +1,15 @@
-local opts = { noremap = true, silent = true }
-
 return {
     "ahmedkhalf/project.nvim", -- vim-rooter like replacement in neovim with many features
-    dependencies = "nvim-telescope/telescope.nvim",
-    keys = { { "<C-p>", "<cmd>Telescope projects<cr>", opts } },
-    lazy = false,
+    keys = {
+        {
+            "<C-p>",
+            function()
+                require("telescope").extensions.projects.projects()
+            end,
+            {noremap = true}
+        },
+    },
+    -- lazy = false,
     config = function()
         local t = require("telescope")
         require("project_nvim").setup({
@@ -46,4 +51,5 @@ return {
         })
         t.load_extension("projects")
     end,
+    dependencies = "nvim-telescope/telescope.nvim",
 }

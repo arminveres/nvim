@@ -22,6 +22,7 @@ return {
                 pylsp_mypy = { enabled = true },
                 -- auto-completion options
                 jedi_completion = { fuzzy = true },
+                jedi_hover = { enabled = true },
                 -- import sorting
                 pyls_isort = { enabled = true },
                 -- formatter options
@@ -30,7 +31,8 @@ return {
                 yapf = { enabled = false },
                 -- linter options
                 pylint = {
-                    enabled = true,
+                    --  if we use ruff then we dont' need pylint
+                    enabled = false,
                     executable = "pylint",
                     args = {
                         -- messages_control = {
@@ -38,7 +40,7 @@ return {
                         -- },
                     },
                 },
-                pyflakes = { enabled = false },
+                pyflakes = { enabled = true },
                 pycodestyle = { enabled = false },
             },
         },

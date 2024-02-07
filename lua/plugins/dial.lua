@@ -1,5 +1,14 @@
 return {
     "monaqa/dial.nvim",
+    keys = {
+        { mode = { "n", "v" }, "<C-a>" },
+        {
+            mode = { "n", "v" },
+            "<C-x>",
+        },
+        { mode = "v",          "g<C-a>" },
+        { mode = "v",          "g<C-x>" },
+    },
     config = function()
         local augend = require("dial.augend")
         require("dial.config").augends:register_group({
