@@ -279,7 +279,6 @@ return {
         "nvim-treesitter/nvim-treesitter-context",
         "HiPhish/nvim-ts-rainbow2", -- rainbow parenthesis
         "luckasRanarison/tree-sitter-hyprlang",
-        "ahmedkhalf/project.nvim", -- vim-rooter like replacement in neovim with many features
     },
     config = function()
         require("nvim-treesitter.configs").setup(ts_opts)
@@ -299,6 +298,5 @@ return {
         vim.filetype.add({
             pattern = { [".*/hyprland%.conf"] = "hyprlang" },
         })
-        require("telescope").load_extension("projects")
     end,
 }

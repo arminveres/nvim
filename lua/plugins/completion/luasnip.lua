@@ -1,38 +1,11 @@
 return {
     "L3MON4D3/LuaSnip",
-    lazy = true,
-    -- tag = "v2.*",
-    config = function()
-        local types = require("luasnip.util.types")
-        local ls = require("luasnip")
-        ls.config.set_config({
-            history = true,
-            updateevents = "TextChanged,TextChangedI",
-            ext_opts = {
-                [types.choiceNode] = {
-                    active = {
-                        virt_text = { { " <- Current Choice", "NonTest" } },
-                    },
-                },
-            },
-        })
-
-        require("luasnip/loaders/from_vscode").lazy_load()
-
-        if vim.fn.has("win32") == 1 then -- Windows specific options
-            ---@diagnostic disable-next-line: different-requires
-            require("luasnip.loaders.from_vscode").lazy_load({
-                paths = { "~/AppData/Local/nvim/lua/user/snippets/vsc/" },
-            })
-        else
-            ---@diagnostic disable-next-line: different-requires
-            require("luasnip.loaders.from_vscode").lazy_load({
-                paths = { "~/.config/nvim/lua/user/snippets/vsc/" },
-            })
-        end
-
-        require("snippets")
-    end,
+    lazy = false,
+    tag = "v2.*",
+    dependencies = {
+        "saadparwaiz1/cmp_luasnip",
+        "rafamadriz/friendly-snippets",
+    },
     keys = {
         {
             "<C-k>",
@@ -69,4 +42,35 @@ return {
             mode = "i",
         },
     },
+    config = function()
+        local types = require("luasnip.util.types")
+        local ls = require("luasnip")
+        ls.config.set_config({
+            history = true,
+            updateevents = "TextChanged,TextChangedI",
+            ext_opts = {
+                [types.choiceNode] = {
+                    active = {
+                        virt_text = { { " <- Current Choice", "NonTest" } },
+                    },
+                },
+            },
+        })
+
+        require("luasnip/loaders/from_vscode").lazy_load()
+
+        if vim.fn.has("win32") == 1 then -- Windows specific options
+            ---@diagnostic disable-next-line: different-requires
+            require("luasnip.loaders.from_vscode").lazy_load({
+                paths = { "~/AppData/Local/nvim/lua/user/snippets/vsc/" },
+            })
+        else
+            ---@diagnostic disable-next-line: different-requires
+            require("luasnip.loaders.from_vscode").lazy_load({
+                paths = { "~/.config/nvim/lua/user/snippets/vsc/" },
+            })
+        end
+
+        require("snippets")
+    end,
 }

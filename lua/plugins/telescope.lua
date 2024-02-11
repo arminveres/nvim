@@ -58,22 +58,22 @@ local telescope_mappings = {
     },
     {
         "<leader>gfb",
-        ":Telescope git_branches<CR>",
+        "<cmd>Telescope git_branches<CR>",
         desc = "Telescope [f]ind [g]it [b]ranches",
     },
     {
-        "<leader>?",
-        ":Telescope keymaps<CR>",
+        "<leader>k?",
+        "<cmd>Telescope keymaps<CR>",
         desc = "Telescope List Keymaps",
     },
     {
         "<leader>r",
-        ":Telescope resume<CR>",
+        "<cmd>Telescope resume<CR>",
         desc = "Telescope Resume Last Operation",
     },
     {
         "<leader>sg",
-        ":Telescope grep_string search=<cr>",
+        "<cmd>Telescope grep_string search=<cr>",
         desc = "Telescope Search Globally",
     },
     {
@@ -83,8 +83,6 @@ local telescope_mappings = {
         end,
         desc = "List oldfiles",
     },
-    -- keymap('n', '<leader>st', [[<cmd>lua require('telescope.builtin').tags()<CR>]], opts)
-    -- keymap('n', '<leader>so', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]], opts)
 }
 
 local function telescope_setup()
@@ -158,7 +156,7 @@ local function telescope_setup()
             -- git_files = file_finder_opts,
             git_files = { recurse_submodules = false },
         },
-        -- extensions = {},
+        extensions = {},
     })
 end
 
