@@ -19,7 +19,7 @@ local snippets = {
         -- p(get_comment_string), -- BUG: does not work :( returns nil
         -- t(" "),
         c(1, { t("TODO"), t("NOTE"), t("WARN"), t("FIXME"), t("BUG"), t("MISC") }),
-        t(": (aver) "),
+        t("(aver): "),
     }),
     s("dmy", {
         p(os.date, "%d-%m-%Y"),

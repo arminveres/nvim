@@ -7,10 +7,12 @@ local color_overrides = {
     FloatShadowThrough = { link = "PMenu" },
     String = { fg = "#eb9664" }, -- #eb9664, #c89664
     Comment = { fg = "#919191", italic = true, bold = false },
+    -- Comment = { fg = "#c89664", italic = true, bold = false },
     -- These highlights are special for undefined macros
     ["@lsp.type.comment.c"] = { fg = "#91a573", bg = "#785032" },
     ["@lsp.type.comment.cpp"] = { fg = "#91a573", bg = "#785032" },
-    -- Comment = { fg = "#c89664", italic = true, bold = false },
+    ["@lsp.type.method.c"] = { link = "GruvboxOrangeBold" },
+    ["@lsp.type.method.cpp"] = { link = "GruvboxOrangeBold" },
     Define = { link = "GruvboxPurple" },
     Macro = { link = "GruvboxPurple" },
 
@@ -56,7 +58,7 @@ local color_overrides = {
 
 local gruvbox_options = {
     transparent_mode = false,
-    contrast = "hard", -- can be "hard" or "soft"
+    contrast = "hard",    -- can be "hard" or "soft"
     dim_inactive = false, -- dim inactive window
     -- overriding highlight groups
     palette_overrides = {

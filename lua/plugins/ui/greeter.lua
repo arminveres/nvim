@@ -5,7 +5,8 @@ return {
     opts = {
         config = {
             shortcut = {
-                { desc = "󰊳 Update ", group = "@property", action = "Lazy update", key = "u" },
+                { desc = "Lazy Plugin Manager ", group = "@lsp.type.class", action = "Lazy", key = "l" },
+                { desc = "󰊳 Update ", group = "@method", action = "Lazy update", key = "u" },
                 {
                     icon = " ",
                     icon_hl = "@variable",
@@ -14,6 +15,7 @@ return {
                     action = "Telescope find_files",
                     key = "f",
                 },
+                { desc = "Quit ", group = "@property", action = ":qa", key = "q" },
             },
         },
     },

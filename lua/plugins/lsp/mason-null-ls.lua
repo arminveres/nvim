@@ -7,7 +7,6 @@ return {
             "jq",
             "shfmt",
             "gitlint",
-            "shellcheck",
             -- "latexindent",
         },
         automatic_installation = false,

@@ -17,10 +17,8 @@ local function setup()
         sources = {
             -- code_actions.refactoring,
 
-            -- diagnostics.cpplint,
-            diagnostics.cppcheck,
+            diagnostics.cppcheck.with({ extra_args = { "--disable=unusedStructMember" } }),
             diagnostics.zsh,
-            diagnostics.shellcheck,
             -- diagnostics.commitlint,
             diagnostics.gitlint,
             diagnostics.stylelint,
@@ -29,7 +27,6 @@ local function setup()
             formatting.prettier,
             formatting.shfmt,
             formatting.black, --.with({ extra_args = { "--fast" } }),
-            formatting.beautysh,
             formatting.stylelint,
 
             hover.dictionary,

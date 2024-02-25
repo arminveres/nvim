@@ -120,6 +120,7 @@ return {
     "nvim-lualine/lualine.nvim", -- Fancier statusline
     config = lualine_setup,
     dependencies = {
+        "ahmedkhalf/project.nvim",
         "Bekaboo/dropbar.nvim",
         "ellisonleao/gruvbox.nvim",
     },
