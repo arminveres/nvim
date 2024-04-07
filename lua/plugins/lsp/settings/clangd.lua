@@ -2,7 +2,7 @@ local M = {}
 
 -- @brief Returns the number of processing cores for clangd to use, default is 4
 local nproc = function()
-    local procn = tonumber(vim.fn.system('nproc'))
+    local procn = tonumber(vim.fn.system("nproc"))
     if procn == nil then
         return 4
     else
@@ -14,7 +14,6 @@ end
 M.server_opts = {
     cmd = {
         "clangd",
-        -- '--query-driver=/opt/gcc-arm-none-eabi/bin/*g++',
         "--background-index",
         "--header-insertion=iwyu", -- never
         "--clang-tidy",
@@ -22,7 +21,8 @@ M.server_opts = {
         "--header-insertion-decorators",
         "--all-scopes-completion",
         "--pch-storage=memory",
-        '--offset-encoding=utf-16'
+        "--offset-encoding=utf-16",
+        "--query-driver=/opt/gcc-arm-none-eabi/bin/arm-none-eabi-g++",
     },
 }
 

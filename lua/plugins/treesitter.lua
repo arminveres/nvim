@@ -1,5 +1,4 @@
 local ts_langs = {
-    "arduino",
     "awk",
     "bash",
     "c",
@@ -39,7 +38,6 @@ local ts_langs = {
     "markdown_inline",
     "meson",
     "ninja",
-    "python",
     "python",
     "query",
     "regex",

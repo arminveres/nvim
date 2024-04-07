@@ -71,3 +71,5 @@ end
 
 vim.g.netrw_keepdir = 0
 vim.opt.laststatus = 3
+
+vim.opt.guifont="IosevkaTerm Nerd Font Propo:h9"

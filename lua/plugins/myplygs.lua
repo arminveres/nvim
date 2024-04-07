@@ -1,6 +1,5 @@
 return {
     dir = "~/Projects/md-pdf.nvim",
-    lazy = true,
     keys = {
         {
             "<leader>,",
