@@ -28,6 +28,7 @@ local function setup()
             formatting.shfmt,
             formatting.black, --.with({ extra_args = { "--fast" } }),
             formatting.stylelint,
+            formatting.nixpkgs_fmt,
 
             hover.dictionary,
         },
