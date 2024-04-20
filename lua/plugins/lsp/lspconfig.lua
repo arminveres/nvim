@@ -53,6 +53,12 @@ local function setup()
             lspconfig[server].setup(lsp_opts)
         end
     end
+
+    lspconfig["sourcekit"].setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+        root_dir = lspconfig.util.root_pattern(".git", "Package.swift", "compile_commands.json"),
+    })
 end
 
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -133,8 +139,8 @@ return {
     "neovim/nvim-lspconfig", -- Collection of configurations for built-in LSP client
     config = setup,
     keys = {
-        { "<Leader>li", ":LspInfo<CR>",    desc = "Open [l]sp [i]nfo" },
-        { "<Leader>ll", ":LspLog<CR>",     desc = "Open [l]sp [l]og" },
+        { "<Leader>li", ":LspInfo<CR>", desc = "Open [l]sp [i]nfo" },
+        { "<Leader>ll", ":LspLog<CR>", desc = "Open [l]sp [l]og" },
         { "<Leader>lr", ":LspRestart<CR>", desc = "[l]sp [r]estart" },
     },
     dependencies = {

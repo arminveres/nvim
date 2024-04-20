@@ -20,6 +20,7 @@ local ts_langs = {
     "gosum",
     "html",
     "htmldjango",
+    "swift",
     "http",
     "hyprlang",
     "java",

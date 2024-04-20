@@ -25,10 +25,12 @@ local function setup()
 
             formatting.stylua,
             formatting.prettier,
+            -- formatting.prettier,
             formatting.shfmt,
             formatting.black, --.with({ extra_args = { "--fast" } }),
             formatting.stylelint,
             formatting.nixpkgs_fmt,
+            formatting.swift_format,
 
             hover.dictionary,
         },
