@@ -54,11 +54,18 @@ local function setup()
         end
     end
 
-    lspconfig["sourcekit"].setup({
-        on_attach = on_attach,
-        capabilities = capabilities,
-        root_dir = lspconfig.util.root_pattern(".git", "Package.swift", "compile_commands.json"),
-    })
+    -- setup sourcekit on MacOS, ignore on other systems
+    if vim.loop.os_uname().sysname:match("Darwin") then
+        lspconfig["sourcekit"].setup({
+            on_attach = on_attach,
+            capabilities = capabilities,
+            root_dir = lspconfig.util.root_pattern(
+                ".git",
+                "Package.swift",
+                "compile_commands.json"
+            ),
+        })
+    end
 end
 
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -110,12 +117,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
 
         if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-            local is_enabled = true
-            vim.lsp.inlay_hint.enable(args.buf, is_enabled)
+            vim.lsp.inlay_hint.enable(true)
 
             vim.keymap.set("n", "<Leader>lh", function()
-                is_enabled = not is_enabled
-                vim.lsp.inlay_hint.enable(args.buf, is_enabled)
+                vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
             end, { desc = "Toggle [L]SP Inlay [H]int" })
         end
 

@@ -39,6 +39,7 @@ local ts_langs = {
     "markdown_inline",
     "meson",
     "ninja",
+    "nix",
     "python",
     "query",
     "regex",
