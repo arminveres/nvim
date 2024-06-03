@@ -55,7 +55,7 @@ local function setup()
     end
 
     -- setup sourcekit on MacOS, ignore on other systems
-    if vim.loop.os_uname().sysname:match("Darwin") then
+    if vim.uv.os_uname().sysname:match("Darwin") then
         lspconfig["sourcekit"].setup({
             on_attach = on_attach,
             capabilities = capabilities,
@@ -144,9 +144,9 @@ return {
     "neovim/nvim-lspconfig", -- Collection of configurations for built-in LSP client
     config = setup,
     keys = {
-        { "<Leader>li", ":LspInfo<CR>", desc = "Open [l]sp [i]nfo" },
-        { "<Leader>ll", ":LspLog<CR>", desc = "Open [l]sp [l]og" },
-        { "<Leader>lr", ":LspRestart<CR>", desc = "[l]sp [r]estart" },
+        { "<Leader>li", "<cmd>LspInfo<cr>",    desc = "Open [l]sp [i]nfo" },
+        { "<Leader>ll", "<cmd>LspLog<cr>",     desc = "Open [l]sp [l]og" },
+        { "<Leader>lr", "<cmd>LspRestart<cr>", desc = "[l]sp [r]estart" },
     },
     dependencies = {
         "williamboman/mason-lspconfig.nvim",

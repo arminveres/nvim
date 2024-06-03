@@ -83,6 +83,10 @@ local function cmp_config()
             { name = "path" },
             { name = "dictionary",             keyword_length = 2 },
             { name = "buffer" },
+            {
+                name = "lazydev",
+                group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+            },
             -- { name = "spell" },
             -- { name = 'rg' },
         }),
