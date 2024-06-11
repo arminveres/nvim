@@ -98,13 +98,22 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
 
         vim.keymap.set("n", "]e", function()
-            vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
+            vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR })
+            vim.diagnostic.open_float()
         end, opts)
         vim.keymap.set("n", "[e", function()
-            vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
+            vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR })
+            vim.diagnostic.open_float()
         end, opts)
-        vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-        vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+        vim.keymap.set("n", "]d", function()
+            vim.diagnostic.jump({ count = 1, float = true })
+        end, opts)
+        vim.keymap.set("n", "[d", function()
+            vim.diagnostic.jump({ count = -1, float = true })
+        end, opts)
+        vim.keymap.set("n", "gld", function()
+            vim.diagnostic.open_float()
+        end, opts)
 
         -- ========================================================================================
         -- Provider specific options
@@ -144,8 +153,8 @@ return {
     -- event = "VeryLazy",
     config = setup,
     keys = {
-        { "<Leader>li", "<cmd>LspInfo<cr>",    desc = "Open [l]sp [i]nfo" },
-        { "<Leader>ll", "<cmd>LspLog<cr>",     desc = "Open [l]sp [l]og" },
+        { "<Leader>li", "<cmd>LspInfo<cr>", desc = "Open [l]sp [i]nfo" },
+        { "<Leader>ll", "<cmd>LspLog<cr>", desc = "Open [l]sp [l]og" },
         { "<Leader>lr", "<cmd>LspRestart<cr>", desc = "[l]sp [r]estart" },
     },
     dependencies = {

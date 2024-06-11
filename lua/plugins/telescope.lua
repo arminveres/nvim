@@ -90,7 +90,7 @@ local function telescope_setup()
     local actions = require("telescope.actions")
     t.setup({
         defaults = {
-            file_ignore_patterns = { ".git", "node_modules", ".cache" },
+            file_ignore_patterns = { ".git", "node_modules", ".cache", ".pdf" },
             prompt_prefix = "➜ ",
             selection_caret = "> ",
             path_display = { "smart" },

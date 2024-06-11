@@ -19,18 +19,17 @@ local function setup()
 
             diagnostics.cppcheck.with({ extra_args = { "--disable=unusedStructMember" } }),
             diagnostics.zsh,
-            -- diagnostics.commitlint,
             diagnostics.gitlint,
             diagnostics.stylelint,
 
             formatting.stylua,
             formatting.prettier,
-            -- formatting.prettier,
             formatting.shfmt,
             formatting.black, --.with({ extra_args = { "--fast" } }),
             formatting.stylelint,
             formatting.nixpkgs_fmt,
             formatting.swift_format,
+            require("none-ls.formatting.latexindent"),
 
             hover.dictionary,
         },
@@ -41,5 +40,8 @@ return {
     "nvimtools/none-ls.nvim", -- Null LS replacement
     event = "VeryLazy",
     config = setup,
-    dependencies = "nvim-lua/plenary.nvim",
+    dependencies = {
+        "nvimtools/none-ls-extras.nvim",
+        "nvim-lua/plenary.nvim",
+    },
 }
