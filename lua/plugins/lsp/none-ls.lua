@@ -39,6 +39,7 @@ end
 
 return {
     "nvimtools/none-ls.nvim", -- Null LS replacement
+    event = "VeryLazy",
     config = setup,
     dependencies = "nvim-lua/plenary.nvim",
 }

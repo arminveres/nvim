@@ -21,6 +21,5 @@ return {
             auto_enable = true,
         },
     },
-    -- event = 'VeryLazy'
-    lazy=false
+    event = "VeryLazy",
 }

@@ -75,21 +75,22 @@ local function lualine_setup()
             lualine_c = {
                 { "%=", separator = "" },
                 {
-                    ---@brief Get the project root dir name
                     function()
-                        return vim.fn.fnamemodify(
-                        ---@diagnostic disable-next-line: param-type-mismatch
-                            require("project_nvim.project").find_pattern_root(),
-                            ":t"
-                        )
-                    end,
-                    cond = function()
                         local capture = vim.fn.fnamemodify(
-                        ---@diagnostic disable-next-line: param-type-mismatch
+                            require("project_nvim.project").find_lsp_root(),
+                            ":t"
+                        )
+                        if capture ~= "null" and capture ~= "v:null" then
+                            return capture
+                        end
+                        capture = vim.fn.fnamemodify(
                             require("project_nvim.project").find_pattern_root(),
                             ":t"
                         )
-                        return capture ~= "null" and capture ~= "v:null"
+                        if capture ~= "null" and capture ~= "v:null" then
+                            return capture
+                        end
+                        return ""
                     end,
                 },
                 {
@@ -118,11 +119,12 @@ end
 
 return {
     "nvim-lualine/lualine.nvim", -- Fancier statusline
+    event = "VeryLazy",
     config = lualine_setup,
     dependencies = {
         "ahmedkhalf/project.nvim",
         "Bekaboo/dropbar.nvim",
         "ellisonleao/gruvbox.nvim",
+        "neovim/nvim-lspconfig",
     },
-    lazy = false,
 }

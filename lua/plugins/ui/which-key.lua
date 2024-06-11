@@ -1,5 +1,6 @@
 return {
     "folke/which-key.nvim", -- displays a popup with possible key bindings
+    event = "VeryLazy",
     opts = {
         plugins = {
             spelling = {

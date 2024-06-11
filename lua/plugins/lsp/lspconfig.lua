@@ -7,7 +7,6 @@ local function on_attach(client, bufnr)
     capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
     -- Highlight words under current cursor
     require("illuminate").on_attach(client)
-    require("nvim-navic").attach(client, bufnr)
 end
 
 local function setup()
@@ -142,6 +141,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 return {
     "neovim/nvim-lspconfig", -- Collection of configurations for built-in LSP client
+    -- event = "VeryLazy",
     config = setup,
     keys = {
         { "<Leader>li", "<cmd>LspInfo<cr>",    desc = "Open [l]sp [i]nfo" },
@@ -153,6 +153,5 @@ return {
         "hrsh7th/nvim-cmp",
         "hrsh7th/cmp-nvim-lsp",
         "RRethy/vim-illuminate",
-        "SmiteshP/nvim-navic",
     },
 }

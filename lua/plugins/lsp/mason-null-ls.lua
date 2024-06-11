@@ -1,5 +1,6 @@
 return {
     "jay-babu/mason-null-ls.nvim",
+    event = "VeryLazy",
     opts = {
         ensure_installed = {
             -- Opt to list sources here, when available in mason.

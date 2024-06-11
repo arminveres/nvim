@@ -99,7 +99,7 @@ keymap("n", "<C-d>", "<C-d>zz", opts)
 -- CTRL-A Insert previously inserted text.
 keymap("i", "<C-A>", "<ESC>A", opts)
 
-keymap('n', '<leader>fe', ':Lex 30<cr>', opts) -- made obsolete by nvim-tree
+-- keymap('n', '<leader>fe', ':Lex 30<cr>', opts) -- made obsolete by oil.nvim
 -- ================================================================================================
 -- CLIPBOARD
 -- ================================================================================================

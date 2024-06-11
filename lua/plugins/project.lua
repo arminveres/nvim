@@ -1,5 +1,6 @@
 return {
     "ahmedkhalf/project.nvim", -- vim-rooter like replacement in neovim with many features
+    event = "VeryLazy",
     dependencies = {
         "neovim/nvim-lspconfig",
         "nvim-telescope/telescope.nvim",
