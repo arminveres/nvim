@@ -122,7 +122,7 @@ return {
     event = "VeryLazy",
     config = lualine_setup,
     dependencies = {
-        "ahmedkhalf/project.nvim",
+        "arminveres/project.nvim",
         "Bekaboo/dropbar.nvim",
         "ellisonleao/gruvbox.nvim",
         "neovim/nvim-lspconfig",

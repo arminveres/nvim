@@ -14,7 +14,7 @@ local telescope_mappings = {
         desc = "Telescope Find Files",
     },
     {
-        "<leader>g",
+        "\\g",
         function()
             require("telescope.builtin").git_files()
         end,
