@@ -150,7 +150,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 return {
     "neovim/nvim-lspconfig", -- Collection of configurations for built-in LSP client
-    -- event = "VeryLazy",
     config = setup,
     keys = {
         { "<Leader>li", "<cmd>LspInfo<cr>", desc = "Open [l]sp [i]nfo" },
