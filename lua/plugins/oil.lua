@@ -1,6 +1,6 @@
 return {
     "stevearc/oil.nvim",
-    lazy = false,
+    event = "VeryLazy",
     opts = {
         default_file_explorer = true,
         float = { max_width = 120, max_height = 230 },

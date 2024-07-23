@@ -1,13 +1,13 @@
 vim.opt.ignorecase = true
 vim.opt.smartcase = true --Case insensitive searching UNLESS /C or capital in search
 vim.opt.smarttab = true
-vim.opt.hlsearch = true  -- toggle off until next search w/ <BS>
+vim.opt.hlsearch = true -- toggle off until next search w/ <BS>
 vim.opt.backup = true
 vim.opt.writebackup = true
 vim.opt.breakindent = true
 vim.opt.inccommand = "nosplit"
 vim.opt.mouse = "a"
-vim.opt.hidden = true  --Do not save when switching buffers (note: this is now a default on master)
+vim.opt.hidden = true --Do not save when switching buffers (note: this is now a default on master)
 vim.opt.scrolloff = 10 -- keeps x lines of context, scrolls otherwise
 
 vim.opt.expandtab = true
@@ -66,7 +66,7 @@ if vim.fn.has("win32") == 1 then
     vim.opt.shellcmdflag = "--login -c" -- ignore '-i' for now
     vim.opt.shellxquote = ""
 else
-    vim.opt.shell = "/usr/bin/env zsh"
+    vim.opt.shell = "/usr/bin/env zsh -l"
 end
 
 vim.g.netrw_keepdir = 0
