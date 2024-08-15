@@ -66,7 +66,7 @@ if vim.fn.has("win32") == 1 then
     vim.opt.shellcmdflag = "--login -c" -- ignore '-i' for now
     vim.opt.shellxquote = ""
 else
-    vim.opt.shell = "/usr/bin/env zsh -l"
+    vim.opt.shell = "/usr/bin/env zsh -i"
 end
 
 vim.g.netrw_keepdir = 0

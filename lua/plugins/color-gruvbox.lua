@@ -49,9 +49,11 @@ local color_overrides = {
     -- ========================================================================================
     -- Markdown highlights
     -- ========================================================================================
-    Headline1 = { bg = "#442d30" },
-    Headline2 = { bg = "#1e2718" },
-    Headline3 = { bg = "#21262d" },
+
+    -- MeanderingProgrammer/markdown.nvim
+    RenderMarkdownH3Bg = { bg = "#442d30" },
+    RenderMarkdownH4Bg = { bg = "#442d30" },
+    RenderMarkdownH5Bg = { bg = "#442d30" },
 
     IblScope = { link = "GruvboxRedSign" },
 }

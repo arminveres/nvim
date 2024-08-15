@@ -270,13 +270,14 @@ local ts_opts = {
 return {
     -- Highlight, edit, and navigate code using a fast incremental parsing library
     "nvim-treesitter/nvim-treesitter",
+    event = "VeryLazy",
     build = ":TSUpdate",
     dependencies = {
         "nvim-treesitter/nvim-treesitter-textobjects",
         "nvim-treesitter/nvim-treesitter-refactor",
         "nvim-treesitter/nvim-treesitter-context",
         "HiPhish/nvim-ts-rainbow2", -- rainbow parenthesis
-        "luckasRanarison/tree-sitter-hyprlang",
+        "tree-sitter-grammars/tree-sitter-hyprlang",
     },
     config = function()
         require("nvim-treesitter.configs").setup(ts_opts)
@@ -294,7 +295,9 @@ return {
         vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T_expr, { expr = true })
 
         vim.filetype.add({
-            pattern = { [".*/hyprland%.conf"] = "hyprlang" },
+            pattern = {
+                [".*/hypr/.*%.conf"] = "hyprlang",
+            },
         })
     end,
 }

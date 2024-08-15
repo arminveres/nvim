@@ -1,14 +1,19 @@
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- enable snippet support
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+-- update default nvim capabilities with those of cmp
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true,
+}
 
 local function on_attach(client, bufnr)
-    -- enable snipper support
-    capabilities.textDocument.completion.completionItem.snippetSupport = true
-    -- update default nvim capabilities with those of cmp
-    capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
     -- Highlight words under current cursor
     require("illuminate").on_attach(client)
 end
 
+-- @brief Sets up individual language servers
 local function setup()
     local lspconfig = require("lspconfig")
     local mason_lspconfig = require("mason-lspconfig")
@@ -18,7 +23,6 @@ local function setup()
             on_attach = on_attach,
             capabilities = capabilities,
         }
-
         if server == "lua_ls" then
             local lua_opts = require("plugins.lsp.settings.lua_ls")
             lsp_opts = vim.tbl_deep_extend("force", lua_opts, lsp_opts)
@@ -63,6 +67,42 @@ local function setup()
                 "Package.swift",
                 "compile_commands.json"
             ),
+        })
+
+        -- NixOS specific setups
+    elseif vim.uv.os_uname().version:match("NixOS") then
+        lspconfig.marksman.setup({
+            on_attach = on_attach,
+            capabilities = capabilities,
+            root_dir = require("lspconfig.util").root_pattern(
+                ".git",
+                ".marksman.toml",
+                "README.md"
+            ),
+        })
+
+        lspconfig.nixd.setup({
+            on_attach = on_attach(),
+            capabilities = capabilities,
+            cmd = { "nixd", "--inlay-hints", "--semantic-tokens" },
+            settings = {
+                --[[ nixd = {
+                    nixpkgs = { expr = "import <nixpkgs> { }" },
+                    formatting = { command = { "nixfmt" } },
+                    options = {
+                        nixos = {
+                            expr = '(builtins.getFlake "/home/arminveres/nix-conf").nixosConfigurations.hostname.options',
+                        },
+                        home_manager = {
+                            expr = '(builtins.getFlake "/home/arminveres/nix-conf").homeConfigurations."user@hostname".options',
+                        },
+                        flake_parts = {
+                            expr =
+                            'let flake = builtins.getFlake ("/home/arminveres/nix-conf"); in flake.debug.options // flake.currentSystem.options',
+                        },
+                    },
+                }, ]]
+            },
         })
     end
 end
@@ -152,8 +192,8 @@ return {
     "neovim/nvim-lspconfig", -- Collection of configurations for built-in LSP client
     config = setup,
     keys = {
-        { "<Leader>li", "<cmd>LspInfo<cr>", desc = "Open [l]sp [i]nfo" },
-        { "<Leader>ll", "<cmd>LspLog<cr>", desc = "Open [l]sp [l]og" },
+        { "<Leader>li", "<cmd>LspInfo<cr>",    desc = "Open [l]sp [i]nfo" },
+        { "<Leader>ll", "<cmd>LspLog<cr>",     desc = "Open [l]sp [l]og" },
         { "<Leader>lr", "<cmd>LspRestart<cr>", desc = "[l]sp [r]estart" },
     },
     dependencies = {
