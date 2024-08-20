@@ -22,5 +22,6 @@ return {
             auto_enable = true,
         },
     },
+    -- TODO(aver): wait for newer version, where utf8 error does not interfere with nixd
     event = "VeryLazy",
 }

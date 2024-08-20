@@ -53,7 +53,6 @@ local ts_langs = {
     "vimdoc",
     "xml",
     "yaml",
-    "zig",
 }
 
 local ts_opts = {
