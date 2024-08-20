@@ -1,5 +1,6 @@
 return {
     "uga-rosa/ccc.nvim",
+    enabled = false,
     keys = {
         {
             "<leader>bc",

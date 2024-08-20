@@ -82,26 +82,26 @@ local function setup()
         })
 
         lspconfig.nixd.setup({
-            on_attach = on_attach(),
+            on_attach = on_attach,
             capabilities = capabilities,
             cmd = { "nixd", "--inlay-hints", "--semantic-tokens" },
             settings = {
-                --[[ nixd = {
-                    nixpkgs = { expr = "import <nixpkgs> { }" },
+                nixd = {
+                    -- nixpkgs = { expr = "import <nixpkgs> { }" },
                     formatting = { command = { "nixfmt" } },
                     options = {
                         nixos = {
-                            expr = '(builtins.getFlake "/home/arminveres/nix-conf").nixosConfigurations.hostname.options',
+                            expr = '(builtins.getFlake "~/nix-conf").nixosConfigurations.hostname.options',
                         },
                         home_manager = {
-                            expr = '(builtins.getFlake "/home/arminveres/nix-conf").homeConfigurations."user@hostname".options',
+                            expr = '(builtins.getFlake "~/nix-conf").homeConfigurations."user@hostname".options',
                         },
                         flake_parts = {
                             expr =
-                            'let flake = builtins.getFlake ("/home/arminveres/nix-conf"); in flake.debug.options // flake.currentSystem.options',
+                            'let flake = builtins.getFlake ("~/nix-conf"); in flake.debug.options // flake.currentSystem.options',
                         },
                     },
-                }, ]]
+                },
             },
         })
     end
