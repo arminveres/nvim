@@ -87,18 +87,22 @@ local function setup()
             cmd = { "nixd", "--inlay-hints", "--semantic-tokens" },
             settings = {
                 nixd = {
-                    -- nixpkgs = { expr = "import <nixpkgs> { }" },
+                    nixpkgs = { expr = "import (builtins.getFlake \"/home/arminveres/nix-conf\").inputs.nixpkgs" },
                     formatting = { command = { "nixfmt" } },
                     options = {
                         nixos = {
-                            expr = '(builtins.getFlake "~/nix-conf").nixosConfigurations.hostname.options',
+                            expr = '(builtins.getFlake "/home/arminveres/nix-conf").nixosConfigurations.'
+                                .. vim.uv.os_gethostname()
+                                .. ".options",
                         },
                         home_manager = {
-                            expr = '(builtins.getFlake "~/nix-conf").homeConfigurations."user@hostname".options',
+                            expr = '(builtins.getFlake "/home/arminveres/nix-conf").homeConfigurations.'
+                                .. "arminveres@"
+                                .. vim.uv.os_gethostname()
+                                .. ".options",
                         },
                         flake_parts = {
-                            expr =
-                            'let flake = builtins.getFlake ("~/nix-conf"); in flake.debug.options // flake.currentSystem.options',
+                            expr = 'let flake = builtins.getFlake ("/home/arminveres/nix-conf"); in flake.debug.options // flake.currentSystem.options',
                         },
                     },
                 },
@@ -192,8 +196,8 @@ return {
     "neovim/nvim-lspconfig", -- Collection of configurations for built-in LSP client
     config = setup,
     keys = {
-        { "<Leader>li", "<cmd>LspInfo<cr>",    desc = "Open [l]sp [i]nfo" },
-        { "<Leader>ll", "<cmd>LspLog<cr>",     desc = "Open [l]sp [l]og" },
+        { "<Leader>li", "<cmd>LspInfo<cr>", desc = "Open [l]sp [i]nfo" },
+        { "<Leader>ll", "<cmd>LspLog<cr>", desc = "Open [l]sp [l]og" },
         { "<Leader>lr", "<cmd>LspRestart<cr>", desc = "[l]sp [r]estart" },
     },
     dependencies = {
