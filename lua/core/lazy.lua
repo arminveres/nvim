@@ -34,7 +34,7 @@ require("lazy").setup({
                 -- "tohtml",
                 -- "tutor",
                 -- "zipPlugin",
-                -- "netrwPlugin",
+                "netrwPlugin",
                 -- Needed for highlighting parenthesis
                 -- "matchit",
                 -- "matchparen",

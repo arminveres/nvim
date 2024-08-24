@@ -1,11 +1,6 @@
 return {
     "stevearc/oil.nvim",
     event = "VeryLazy",
-    opts = {
-        default_file_explorer = true,
-        float = { max_width = 120, max_height = 230 },
-    },
-    dependencies = { "nvim-tree/nvim-web-devicons" },
     keys = {
         {
             "<leader>e",
@@ -15,4 +10,18 @@ return {
             desc = "Open parent directory",
         },
     },
+    opts = {
+        default_file_explorer = true,
+        float = { max_width = 120, max_height = 230 },
+        columns = {
+            "icon",
+            "permissions",
+            "size",
+            "mtime",
+        },
+        view_options = {
+            show_hidden = true,
+        },
+    },
+    dependencies = { "echasnovski/mini.icons" },
 }

@@ -163,10 +163,7 @@ end
 return {
     "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
-    dependencies = {
-        "nvim-lua/plenary.nvim",
-        "nvim-tree/nvim-web-devicons",
-    },
+    dependencies = { "nvim-lua/plenary.nvim", },
     keys = telescope_mappings,
     config = telescope_setup,
     cmd = "Telescope",
