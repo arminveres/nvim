@@ -87,7 +87,9 @@ local function setup()
             cmd = { "nixd", "--inlay-hints", "--semantic-tokens" },
             settings = {
                 nixd = {
-                    nixpkgs = { expr = "import (builtins.getFlake \"/home/arminveres/nix-conf\").inputs.nixpkgs" },
+                    nixpkgs = {
+                        expr = 'import (builtins.getFlake "/home/arminveres/nix-conf").inputs.nixpkgs',
+                    },
                     formatting = { command = { "nixfmt" } },
                     options = {
                         nixos = {
@@ -102,7 +104,8 @@ local function setup()
                                 .. ".options",
                         },
                         flake_parts = {
-                            expr = 'let flake = builtins.getFlake ("/home/arminveres/nix-conf"); in flake.debug.options // flake.currentSystem.options',
+                            expr =
+                            'let flake = builtins.getFlake ("/home/arminveres/nix-conf"); in flake.debug.options // flake.currentSystem.options',
                         },
                     },
                 },
@@ -195,11 +198,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
 return {
     "neovim/nvim-lspconfig", -- Collection of configurations for built-in LSP client
     config = setup,
+
+    -- allow lazyloading on these events, otherwise it does not load correctly
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "LspInfo", "LspInstall", "LspUninstall" },
     keys = {
-        { "<Leader>li", "<cmd>LspInfo<cr>", desc = "Open [l]sp [i]nfo" },
-        { "<Leader>ll", "<cmd>LspLog<cr>", desc = "Open [l]sp [l]og" },
+        { "<Leader>li", "<cmd>LspInfo<cr>",    desc = "Open [l]sp [i]nfo" },
+        { "<Leader>ll", "<cmd>LspLog<cr>",     desc = "Open [l]sp [l]og" },
         { "<Leader>lr", "<cmd>LspRestart<cr>", desc = "[l]sp [r]estart" },
     },
+
     dependencies = {
         "williamboman/mason-lspconfig.nvim",
         "hrsh7th/nvim-cmp",

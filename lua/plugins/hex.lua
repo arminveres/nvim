@@ -1,7 +1,6 @@
 return {
     "RaafatTurki/hex.nvim",
+    branch = "fix/lsp-deprecation",
     config = true,
     event = "VeryLazy",
-    -- TODO(aver): wait for update in dependencies
-    enabled = false,
 }

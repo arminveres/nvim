@@ -23,5 +23,5 @@ return {
             show_hidden = true,
         },
     },
-    dependencies = { "echasnovski/mini.icons" },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
 }
