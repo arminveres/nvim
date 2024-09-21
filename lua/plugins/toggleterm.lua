@@ -28,12 +28,6 @@ local function toggleterm_setup()
                 background = "Normal",
             },
         },
-        -- winbar = {
-        --   enabled = true,
-        --   name_formatter = function(term) --  term: Terminal
-        --     return term.name
-        --   end
-        -- },
     })
 
     function _G.set_terminal_keymaps()
@@ -54,6 +48,8 @@ local function toggleterm_setup()
 
     local Terminal = require("toggleterm.terminal").Terminal
 
+    -- TODO(aver): Find a nicer way to handle all these instantiations, such as a factory for the
+    -- final command
     local gitui = Terminal:new({ cmd = "gitui", hidden = true, direction = "float" })
     function _GITUI_TOGGLE()
         gitui:toggle()
@@ -89,6 +85,16 @@ local function toggleterm_setup()
     end
 end
 
+---@param func function
+---@param cmd string
+local function tmux_wrapper(func, cmd)
+    if vim.fn.exists("$TMUX") then
+        vim.system({ "tmux", "new-window", cmd })
+    else
+        func()
+    end
+end
+
 return {
     "akinsho/toggleterm.nvim", -- custom terminal for neovim
     keys = {
@@ -116,10 +122,11 @@ return {
             mode = "n",
             desc = "Open Toggleterm in Tab.",
         },
+
         {
             "<leader>gu",
             function()
-                _GITUI_TOGGLE()
+                tmux_wrapper(_GITUI_TOGGLE, "gitui")
             end,
             mode = "n",
             desc = "Toggle Gitui",
@@ -127,7 +134,7 @@ return {
         {
             "<leader>ld",
             function()
-                _LAZYDOCKER_TOGGLE()
+                tmux_wrapper(_LAZYDOCKER_TOGGLE, "lazydocker")
             end,
             mode = "n",
             desc = "Toggle LazyDocker",
@@ -135,7 +142,7 @@ return {
         {
             "<leader>lg",
             function()
-                _LAZYGIT_TOGGLE()
+                tmux_wrapper(_LAZYGIT_TOGGLE, "lazygit")
             end,
             mode = "n",
             desc = "Toggle LazyGit",
@@ -143,7 +150,7 @@ return {
         {
             "<leader>gr",
             function()
-                _RANGER_TOGGLE()
+                tmux_wrapper(_RANGER_TOGGLE(), "ranger")
             end,
             mode = "n",
             desc = "Toggle Ranger",
