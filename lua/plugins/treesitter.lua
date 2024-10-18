@@ -3,6 +3,7 @@ local ts_langs = {
     "bash",
     "c",
     "cmake",
+    "toml",
     "comment",
     "cpp",
     "cuda",
@@ -248,10 +249,8 @@ local ts_opts = {
         },
         highlight_current_scope = { enable = false }, -- I use the indent plugin
         smart_rename = {
-            enable = true,
-            keymaps = {
-                smart_rename = "grr",
-            },
+            enable = false,
+            keymaps = { smart_rename = "grr" },
         },
         navigation = {
             enable = true,

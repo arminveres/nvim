@@ -15,6 +15,7 @@ local color_overrides = {
     ["@lsp.type.method.cpp"] = { link = "GruvboxOrangeBold" },
     Define = { link = "GruvboxPurple" },
     Macro = { link = "GruvboxPurple" },
+    LspInlayHint = { fg = "#D0D0D0", bg = "#303030" },
 
     -- ========================================================================================
     -- Git Diff
@@ -60,7 +61,7 @@ local color_overrides = {
 
 local gruvbox_options = {
     transparent_mode = false,
-    contrast = "hard",    -- can be "hard" or "soft"
+    contrast = "hard", -- can be "hard" or "soft"
     dim_inactive = false, -- dim inactive window
     -- overriding highlight groups
     palette_overrides = {

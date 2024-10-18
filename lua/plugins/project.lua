@@ -1,10 +1,6 @@
 return {
-    event = "VeryLazy",
     "arminveres/project.nvim", -- vim-rooter like replacement in neovim with many features
-    dependencies = {
-        "neovim/nvim-lspconfig",
-        "nvim-telescope/telescope.nvim",
-    },
+    event = "VeryLazy",
     keys = {
         {
             "<C-p>",
@@ -31,5 +27,9 @@ return {
             ".bzr",
             ".svn",
         },
+    },
+    dependencies = {
+        "neovim/nvim-lspconfig",
+        "nvim-telescope/telescope.nvim",
     },
 }
