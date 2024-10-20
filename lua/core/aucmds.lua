@@ -29,7 +29,11 @@ aucmd({ "VimEnter", "WinEnter" }, {
 aucmd("BufWritePre", {
     group = create_augroup("auto_create_dir", { clear = true }),
     callback = function(event)
-        local file = vim.uv.fs_realpath(event.match) or event.match
+        local file = vim.uv.fs_realpath(event.match)
+        if not file then
+            return
+        end
+
         vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
         local backup = vim.fn.fnamemodify(file, ":p:~:h")
         backup = backup:gsub("[/\\]", "%%")

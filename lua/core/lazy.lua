@@ -31,10 +31,11 @@ require("lazy").setup({
             disabled_plugins = {
                 -- "gzip",
                 -- "tarPlugin",
-                -- "tohtml",
-                -- "tutor",
                 -- "zipPlugin",
+                -- "tohtml",
+                "tutor",
                 "netrwPlugin",
+
                 -- Needed for highlighting parenthesis
                 -- "matchit",
                 -- "matchparen",
