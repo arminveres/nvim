@@ -36,8 +36,9 @@ local color_overrides = {
     -- ========================================================================================
     -- statusline and column
     -- ========================================================================================
-    StatusLine = { bg = "#ffffff", fg = "#0E1018" },
-    StatusLineNC = { bg = "#3c3836", fg = "#0E1018" },
+    -- WARN(aver): The reverse false fixes the inversed colours from the nightly neovim version
+    StatusLine = { bg = "#ffffff", fg = "#0E1018", reverse = false },
+    StatusLineNC = { bg = "#3c3836", fg = "#0E1018", reverse = false },
     CursorLineNr = { fg = "#fabd2f", bg = "" },
     GruvboxOrangeSign = { fg = "#dfaf87", bg = "" },
     GruvboxAquaSign = { fg = "#8EC07C", bg = "" },
@@ -64,9 +65,7 @@ local gruvbox_options = {
     contrast = "hard", -- can be "hard" or "soft"
     dim_inactive = false, -- dim inactive window
     -- overriding highlight groups
-    palette_overrides = {
-        dark0_hard = "#141414",
-    },
+    palette_overrides = { dark0_hard = "#141414" },
     overrides = color_overrides,
 }
 
