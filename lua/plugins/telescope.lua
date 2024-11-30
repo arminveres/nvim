@@ -7,21 +7,21 @@ local file_finder_opts = {
 
 local telescope_mappings = {
     {
-        "\\e",
+        "<bslash>e",
         function()
             require("telescope.builtin").find_files()
         end,
         desc = "Telescope Find Files",
     },
     {
-        "\\g",
+        "<bslash>g",
         function()
             require("telescope.builtin").git_files()
         end,
         desc = "Telescope Find Git Files",
     },
     {
-        "\\b",
+        "<bslash>b",
         function()
             require("telescope.builtin").buffers()
         end,
