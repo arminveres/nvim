@@ -32,8 +32,6 @@ vim.opt.textwidth = 100
 vim.opt.clipboard = "unnamedplus"
 
 vim.opt.undofile = true --Save undo history
-vim.opt.undodir = os.getenv("XDG_CACHE_HOME") .. "/nvim/undo//"
-vim.opt.backupdir = os.getenv("XDG_CACHE_HOME") .. "/nvim/backup//"
 
 --Decrease update time
 vim.opt.updatetime = 250
@@ -62,11 +60,23 @@ end
 
 -- Windows specific options
 if vim.fn.has("win32") == 1 then
-    vim.opt.shell = [[C:/Programme/Git/bin/bash.exe]]
+    --[[
+    vim.opt.shell = "bash.exe"
     vim.opt.shellcmdflag = "--login -c" -- ignore '-i' for now
     vim.opt.shellxquote = ""
+    ]]
+    vim.opt.shell = "pwsh"
+    vim.opt.shellcmdflag = "-NoLogo -ExecutionPolicy RemoteSigned -Command"
+    vim.opt.shellquote = [[\"]]
+    vim.opt.shellxquote = ""
+
+    vim.opt.undodir = os.getenv("LOCALAPPDATA") .. "/Temp/nvim/undo//"
+    vim.opt.backupdir = os.getenv("LOCALAPPDATA") .. "/Temp/nvim/backup//"
 else
     vim.opt.shell = "/usr/bin/env zsh -i"
+
+    vim.opt.undodir = os.getenv("XDG_CACHE_HOME") .. "/nvim/undo//"
+    vim.opt.backupdir = os.getenv("XDG_CACHE_HOME") .. "/nvim/backup//"
 end
 
 vim.g.netrw_keepdir = 0

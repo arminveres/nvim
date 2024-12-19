@@ -62,14 +62,18 @@ local color_overrides = {
 
 local gruvbox_options = {
     transparent_mode = false,
-    contrast = "hard", -- can be "hard" or "soft"
+    contrast = "hard",    -- can be "hard" or "soft"
     dim_inactive = false, -- dim inactive window
     -- overriding highlight groups
     palette_overrides = { dark0_hard = "#141414" },
     overrides = color_overrides,
 }
-
-local transparency_loc = os.getenv("XDG_STATE_HOME") .. "/nvim/.gruvbox_transparency"
+local transparency_loc = ""
+if vim.fn.has("win32") == 1 then
+    transparency_loc = os.getenv("LOCALAPPDATA") .. "/nvim-data/.gruvbox_transparency"
+else
+    transparency_loc = os.getenv("XDG_STATE_HOME") .. "/nvim/.gruvbox_transparency"
+end
 
 --- @brief returns the content of the state file
 local function get_content()
