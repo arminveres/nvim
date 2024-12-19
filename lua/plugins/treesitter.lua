@@ -296,6 +296,9 @@ return {
             pattern = {
                 [".*/hypr/.*%.conf"] = "hyprlang",
             },
+            extension = {
+                xaml = "xml", -- filetype for C# Window configurations
+            },
         })
     end,
 }
