@@ -68,7 +68,7 @@ local function lualine_setup()
         sections = {
             lualine_a = { { "mode" } },
             lualine_b = {
-                { "branch", icon = { "", color = { fg = "#f34f29" } } },
+                { "branch", icon = { "", color = { fg = "#f34f29" } } },
                 { "diff" },
                 { "diagnostics" },
             },
@@ -112,7 +112,7 @@ local function lualine_setup()
             lualine_y = { "progress" },
             lualine_z = { "location" },
         },
-        winbar = { lualine_c = { "%{%v:lua.dropbar.get_dropbar_str()%}" } },
+        winbar = { lualine_c = { "%{%v:lua.dropbar()%}" } },
         inactive_winbar = { lualine_c = { get_inactive_winbar } },
     })
 end
