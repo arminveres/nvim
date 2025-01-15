@@ -66,7 +66,19 @@ local function lualine_setup()
             -- disabled_filetypes = {},
         },
         sections = {
-            lualine_a = { { "mode" } },
+            lualine_a = {
+                {
+                    "mode",
+                    fmt = function(mode)
+                        local recording = vim.fn.reg_recording()
+                        if recording ~= "" then
+                            return mode .. " (Recording @" .. recording .. ")"
+                        else
+                            return mode
+                        end
+                    end,
+                },
+            },
             lualine_b = {
                 { "branch", icon = { "", color = { fg = "#f34f29" } } },
                 { "diff" },

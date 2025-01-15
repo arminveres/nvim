@@ -2,8 +2,8 @@ return {
     "iamcco/markdown-preview.nvim",
     keys = {
         {
-            "<leader>m",
-            "<cmd>MarkdownPreview<CR>",
+            "<leader>mp",
+            vim.cmd.MarkdownPreview,
             desc = "Preview markdown file in browser",
         }, -- open markdown preview
     },
