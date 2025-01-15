@@ -104,8 +104,7 @@ local function setup()
                                 .. ".options",
                         },
                         flake_parts = {
-                            expr =
-                            'let flake = builtins.getFlake ("/home/arminveres/nix-conf"); in flake.debug.options // flake.currentSystem.options',
+                            expr = 'let flake = builtins.getFlake ("/home/arminveres/nix-conf"); in flake.debug.options // flake.currentSystem.options',
                         },
                     },
                 },
@@ -177,15 +176,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
         -- end
 
         -- NOTE: Format on save autocommand
-        -- if client.server_capabilities.documentFormattingProvider then
-        --     vim.api.nvim_create_autocmd({ "BufWrite" }, {
-        --         group = vim.api.nvim_create_augroup("FormatOnSave", { clear = true }),
-        --         callback = function()
-        --             -- WARN: use false, otherwise not possible to save
-        --             vim.lsp.buf.format({ async = false })
-        --         end,
-        --     })
-        -- end
+        if client.server_capabilities.documentFormattingProvider then
+            vim.api.nvim_create_autocmd({ "BufWrite" }, {
+                group = vim.api.nvim_create_augroup("FormatOnSave", { clear = true }),
+                callback = function()
+                    -- WARN: use false, otherwise not possible to save
+                    vim.lsp.buf.format({ async = false })
+                end,
+            })
+        end
+        vim.lsp.log.set_format_func(vim.inspect)
     end,
 })
 
@@ -197,9 +197,34 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "LspInfo", "LspInstall", "LspUninstall" },
     keys = {
-        { "<Leader>li", "<cmd>LspInfo<cr>",    desc = "Open [l]sp [i]nfo" },
-        { "<Leader>ll", "<cmd>LspLog<cr>",     desc = "Open [l]sp [l]og" },
-        { "<Leader>lr", "<cmd>LspRestart<cr>", desc = "[l]sp [r]estart" },
+        { "<Leader>li", vim.cmd.LspInfo, desc = "Open [l]sp [i]nfo" },
+        {
+            "<Leader>ll",
+            function()
+                local function rotate_log()
+                    local log_path = vim.fn.stdpath("state") .. "\\lsp.log"
+                    local backup_path = log_path .. ".old"
+
+                    local stat = vim.loop.fs_stat(log_path)
+                    if stat and stat.size > 1024 * 1024 then -- Limit to 1 MB
+                        -- Rename the current log file
+                        local succ, msg = os.rename(log_path, backup_path)
+                        -- local succ, msg = os.remove(log_path)
+                        if not succ then
+                            ---@diagnostic disable-next-line: param-type-mismatch
+                            vim.notify(msg, vim.log.levels.ERROR)
+                            return
+                        end
+                        vim.notify("Neovim log rotated", vim.log.levels.INFO)
+                    end
+                end
+
+                rotate_log()
+                vim.cmd.LspLog()
+            end,
+            desc = "Open [l]sp [l]og",
+        },
+        { "<Leader>lr", vim.cmd.LspRestart, desc = "[l]sp [r]estart" },
     },
 
     dependencies = {
