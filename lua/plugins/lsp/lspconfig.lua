@@ -207,5 +207,6 @@ return {
         "hrsh7th/nvim-cmp",
         "hrsh7th/cmp-nvim-lsp",
         "RRethy/vim-illuminate",
+        "Decodetalkers/csharpls-extended-lsp.nvim",
     },
 }
