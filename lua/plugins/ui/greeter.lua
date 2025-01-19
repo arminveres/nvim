@@ -1,41 +1,45 @@
 return {
     "nvimdev/dashboard-nvim",
+    enabled = true,
     event = "VimEnter",
     dependencies = "nvim-tree/nvim-web-devicons",
     opts = {
+        theme = "doom",
         config = {
-            shortcut = {
+            header = require("extras.ascii-art").arasaka_ascii_m,
+            week_header = { enable = false },
+            center = {
                 {
                     desc = "Open new buffer ",
-                    group = "@property",
+                    group = "property",
                     action = ":enew | startinsert",
                     key = "i",
                 },
                 {
                     desc = "Lazy Plugin Manager ",
-                    group = "@lsp.type.class",
+                    group = "lsp.type.class",
                     action = "Lazy",
                     key = "l",
                 },
                 {
                     icon = "󰊳  ",
-                    icon_hl = "@variable",
+                    icon_hl = "variable",
                     desc = "Lazy Sync ",
-                    group = "@method",
+                    group = "method",
                     action = "Lazy sync",
                     key = "s",
                 },
                 {
                     icon = "󰊳  ",
-                    icon_hl = "@variable",
+                    icon_hl = "variable",
                     desc = "Lazy Profile ",
-                    group = "@method",
+                    group = "method",
                     action = "Lazy profile",
                     key = "p",
                 },
                 {
                     icon = "  ",
-                    icon_hl = "@variable",
+                    icon_hl = "variable",
                     desc = "Files ",
                     group = "Label",
                     action = "Telescope find_files",
@@ -43,14 +47,17 @@ return {
                 },
                 {
                     icon = "  ",
-                    icon_hl = "@variable",
+                    icon_hl = "variable",
                     desc = "Old Files ",
                     group = "Label",
                     action = "Telescope oldfiles",
                     key = "o",
                 },
-                { desc = "Quit ", group = "@property", action = ":qa", key = "q" },
+                { desc = "Quit ", group = "property", action = ":qa", key = "q" },
             },
+            mru = { enable = false },
+            project = { enable = false },
+            -- footer = {},
         },
     },
 }
