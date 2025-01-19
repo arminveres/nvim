@@ -77,7 +77,7 @@ local telescope_mappings = {
         desc = "Telescope Search Globally",
     },
     {
-        "<leader>?",
+        "<leader>fo",
         function()
             require("telescope.builtin").oldfiles()
         end,
@@ -90,7 +90,14 @@ local function telescope_setup()
     local actions = require("telescope.actions")
     t.setup({
         defaults = {
-            file_ignore_patterns = { ".git", "node_modules", ".cache", ".pdf" },
+            file_ignore_patterns = {
+                ".git/",
+                "node_modules/",
+                ".cache/",
+                "*.pdf",
+                "*.png",
+                "*.jpg",
+            },
             prompt_prefix = "➜ ",
             selection_caret = "> ",
             path_display = { "smart" },
@@ -163,7 +170,7 @@ end
 return {
     "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
-    dependencies = { "nvim-lua/plenary.nvim", },
+    dependencies = { "nvim-lua/plenary.nvim" },
     keys = telescope_mappings,
     config = telescope_setup,
     cmd = "Telescope",

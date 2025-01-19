@@ -1,5 +1,6 @@
 return {
     "stevearc/dressing.nvim",
+    event = "VeryLazy",
     opts = {
         select = {
             -- Set to false to disable the vim.ui.select implementation

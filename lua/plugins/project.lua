@@ -26,6 +26,8 @@ return {
             ".hg",
             ".bzr",
             ".svn",
+            ".sln",
+            ".slxn",
         },
     },
     dependencies = {

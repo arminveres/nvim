@@ -12,7 +12,7 @@ return {
     },
     opts = {
         default_file_explorer = true,
-        float = { max_width = 120, max_height = 230 },
+        float = { max_width = 120, max_height = 40 },
         columns = {
             "icon",
             "permissions",

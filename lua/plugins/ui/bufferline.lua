@@ -1,5 +1,6 @@
 return {
     "akinsho/bufferline.nvim", -- tabline replacement
+    event = "VeryLazy",
     version = "*",
     opts = {
         options = {
