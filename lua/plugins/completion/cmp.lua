@@ -39,14 +39,15 @@ local function cmp_config()
         -- preselect = 'None',
         snippet = {
             expand = function(args)
-                luasnip.lsp_expand(args.body) -- For `luasnip` users.
+                -- For `luasnip` users.
+                luasnip.lsp_expand(args.body)
             end,
         },
         mapping = cmp.mapping.preset.insert({
             -- ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
             ["<Tab>"] = cmp.mapping.select_next_item(),
             ["<S-Tab>"] = cmp.mapping.select_prev_item(),
-            ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }), -- 'forward'
+            ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),  -- 'forward'
             ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }), -- 'backward'
             -- ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
             ["<C-e>"] = cmp.mapping({
@@ -77,11 +78,11 @@ local function cmp_config()
             end,
         },
         sources = cmp.config.sources({
-            { name = "luasnip", priority = 1000 },
+            { name = "luasnip",                priority = 1000 },
             { name = "nvim_lsp_signature_help" },
             { name = "nvim_lsp" },
             { name = "path" },
-            { name = "dictionary", keyword_length = 2 },
+            { name = "dictionary",             keyword_length = 2 },
             { name = "buffer" },
             {
                 name = "lazydev",
@@ -94,16 +95,11 @@ local function cmp_config()
             behavior = cmp.ConfirmBehavior.Replace,
             select = false,
         },
-        experimental = {
-            ghost_text = true,
+        window = {
+            completion = cmp.config.window.bordered(),
+            documentation = cmp.config.window.bordered(),
         },
-
-        -- window = {
-        --   completion = cmp.config.window.bordered(),
-        --   documentation = cmp.config.window.bordered(),
-        -- },
-        -- WARN: Disable native completion, conflicting with preview
-        -- view = { entries = "native" },
+        experimental = { ghost_text = true },
     })
 
     -- `:` cmdline setup.
@@ -169,10 +165,10 @@ return {
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-cmdline",
-        "lukas-reineke/cmp-rg",
         "f3fora/cmp-spell", -- spelling plugin
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
         "rafamadriz/friendly-snippets",
+        -- "lukas-reineke/cmp-rg",
     },
 }

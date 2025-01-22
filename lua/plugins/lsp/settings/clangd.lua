@@ -28,7 +28,7 @@ M.server_opts = {
 M.extensions = {
     -- defaults:
     -- Automatically set inlay hints (type hints)
-    autoSetHints = true,
+    inlay_hints = false,
     -- These apply to the default ClangdSetInlayHints command
 }
 

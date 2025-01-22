@@ -11,6 +11,7 @@ capabilities.textDocument.foldingRange = {
 local function on_attach(client, bufnr)
     -- Highlight words under current cursor
     require("illuminate").on_attach(client)
+    -- require("clangd_extensions.inlay_hints").setup_autocmd()
 end
 
 -- @brief Sets up individual language servers
@@ -125,7 +126,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
         vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
         vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts)
-        vim.keymap.set("n", "<bslash>bf", function()
+        vim.keymap.set("n", "<bslash>fb", function()
             vim.lsp.buf.format({ async = true })
         end, opts)
 
@@ -185,7 +186,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 end,
             })
         end
+
         vim.lsp.log.set_format_func(vim.inspect)
+
+        vim.diagnostic.config({ virtual_text = false })
     end,
 })
 
@@ -197,7 +201,7 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "LspInfo", "LspInstall", "LspUninstall" },
     keys = {
-        { "<Leader>li", vim.cmd.LspInfo, desc = "Open [l]sp [i]nfo" },
+        { "<Leader>li", vim.cmd.LspInfo,    desc = "Open [l]sp [i]nfo" },
         {
             "<Leader>ll",
             function()
