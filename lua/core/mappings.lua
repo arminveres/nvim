@@ -104,8 +104,10 @@ keymap("i", "<C-A>", "<ESC>A", opts)
 -- CLIPBOARD
 -- ================================================================================================
 keymap("n", "<bslash>q", ":q<CR>", opts)
-keymap("n", "<bslash>Q", "<Cmd>qall<CR>", opts) -- quickquit
-keymap("n", "<bslash>w", "<Cmd>w<CR>", opts)    -- quick save
+keymap("n", "<bslash>Q", "<Cmd>qall!<CR>", opts) -- quickquit
+keymap("n", "<bslash>w", "<Cmd>w<CR>", opts) -- quick save
+keymap("n", "<bslash>W", "<Cmd>w!<CR>", opts) -- quick save
+-- keymap("n", "<bslash>WQ", "<Cmd>wq!<CR>", opts) -- quick save
 
 -- Yank to clipboard
 keymap("v", "<leader>y", '"+y', opts)
@@ -122,7 +124,6 @@ keymap("v", "<leader>d", '"_d', opts)
 -- According to thePrimeagen, the greatest map ever
 keymap("x", "<leader>p", '"_dP', opts)
 
-
 -- Easier window switching with leader + Number
 -- Creates mappings like this: km.set("n", "<Leader>2", "2<C-W>w", { desc = "Move to Window 2" })
 for i = 1, 6 do
@@ -130,7 +131,6 @@ for i = 1, 6 do
     local rhs = i .. "<C-W>w"
     keymap("n", lhs, rhs, { desc = "Move to Window " .. i })
 end
-
 
 keymap("n", "<leader>td", function()
     vim.cmd("TodoTelescope theme=dropdown layout_config={width=0.5}")

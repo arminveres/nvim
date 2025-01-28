@@ -82,4 +82,7 @@ end
 vim.g.netrw_keepdir = 0
 vim.opt.laststatus = 3
 
-vim.opt.guifont = "IosevkaTerm Nerd Font Propo:h12"
+vim.opt.guifont = "IosevkaTerm Nerd Font Propo:h10.5"
+vim.opt.linespace = 0 -- adjust for lineheight
+
+-- vim.opt.fixeol = false -- stop adding automatic newline, relevant for DOS files
