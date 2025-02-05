@@ -9,5 +9,6 @@ return {
             desc = "Markdown preview",
         },
     },
-    opts = { toc = false },
+    ---@type md-pdf.config
+    opts = { toc = false, ignore_viewer_state = true },
 }

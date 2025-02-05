@@ -405,3 +405,9 @@ SyCL
 submodules
 NVIDIA
 subproject
+pygments
+PDFs
+loc
+pandoc
+Zathura
+MacOS
