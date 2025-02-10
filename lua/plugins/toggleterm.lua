@@ -96,6 +96,7 @@ local function tmux_wrapper(func, cmd)
 end
 
 return {
+    enabled = false,
     "akinsho/toggleterm.nvim", -- custom terminal for neovim
     keys = {
         {

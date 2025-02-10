@@ -41,11 +41,6 @@ aucmd("BufWritePre", {
     end,
 })
 
-aucmd("BufEnter", {
-    group = create_augroup("TermAlwaysInsert", { clear = true }),
-    pattern = "term://*toggleterm*",
-    command = "startinsert",
-})
 
 -- ================================================================================================
 -- Configure QMK.nvim for multiple layouts
