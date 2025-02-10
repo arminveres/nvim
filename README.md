@@ -15,3 +15,10 @@
 - `pandoc` for document conversions
 - `ripgrep` for faster and more modern grepping
 - `fd-find` for more modern file finding
+
+## TODO
+
+- [ ] replace plugins with snacks.nvim
+  - [ ] telescope
+  - [ ] notifier
+  - etc.
