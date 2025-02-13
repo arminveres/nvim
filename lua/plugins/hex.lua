@@ -1,5 +1,12 @@
 return {
     "RaafatTurki/hex.nvim",
-    config = true,
-    event = "VeryLazy",
+    keys = {
+        {
+            "<leader>ht",
+            function()
+                require("hex").toggle() -- switch back and forth
+            end,
+            desc = "[h]ex [t]oggle",
+        },
+    },
 }
