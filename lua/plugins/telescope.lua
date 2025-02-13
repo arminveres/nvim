@@ -21,7 +21,7 @@ local telescope_mappings = {
         desc = "Telescope Find Git Files",
     },
     {
-        "<bslash>b",
+        "<leader>lb",
         function()
             require("telescope.builtin").buffers()
         end,

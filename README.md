@@ -21,4 +21,6 @@
 - [ ] replace plugins with snacks.nvim
   - [ ] telescope
   - [ ] notifier
+  - [ ] project.nvim
+    - find ways to get lsp+pattern root, see `vim.fs.root()`
   - etc.
