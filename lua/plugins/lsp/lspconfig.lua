@@ -51,6 +51,9 @@ local function setup()
         elseif server == "marksman" then
             local marksman_opts = require("plugins.lsp.settings.marksman")
             lsp_opts = vim.tbl_deep_extend("force", marksman_opts, lsp_opts)
+        elseif server == "jsonls" then
+            local jsonls_opts = require("plugins.lsp.settings.jsonls")
+            lsp_opts = vim.tbl_deep_extend("force", jsonls_opts, lsp_opts)
         end
 
         if server ~= "rust_analyzer" then
@@ -105,7 +108,8 @@ local function setup()
                                 .. ".options",
                         },
                         flake_parts = {
-                            expr = 'let flake = builtins.getFlake ("/home/arminveres/nix-conf"); in flake.debug.options // flake.currentSystem.options',
+                            expr =
+                            'let flake = builtins.getFlake ("/home/arminveres/nix-conf"); in flake.debug.options // flake.currentSystem.options',
                         },
                     },
                 },
