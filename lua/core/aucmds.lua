@@ -29,18 +29,15 @@ aucmd({ "VimEnter", "WinEnter" }, {
 aucmd("BufWritePre", {
     group = create_augroup("auto_create_dir", { clear = true }),
     callback = function(event)
-        local file = vim.uv.fs_realpath(event.match)
-        if not file then
+        local file = event.match
+        -- Ignore creation of oil:// directories, which get created on each save in an Oil.nvim buffer.
+        if file:match("^oil://") then
             return
         end
-
-        vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
-        local backup = vim.fn.fnamemodify(file, ":p:~:h")
-        backup = backup:gsub("[/\\]", "%%")
-        vim.go.backupext = backup
-    end,
-})
-
-
+        local dir = vim.fn.fnamemodify(file, ":p:h")
+        if vim.fn.isdirectory(dir) == 1 then
+            return
+        end
+        vim.fn.mkdir(dir, "p")
     end,
 })
