@@ -1,7 +1,7 @@
 return {
     "folke/noice.nvim",
-    keys = { { "<leader>mh", vim.cmd.Noice, desc = "Open Noice History and message" } },
     event = "VeryLazy",
+    keys = { { "<leader>mh", vim.cmd.Noice, desc = "Open Noice History and message" } },
     opts = {
         lsp = {
             -- override markdown rendering so that **cmp** and other plugins use **Treesitter**

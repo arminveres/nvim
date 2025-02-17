@@ -65,31 +65,16 @@ local ts_opts = {
         disable = function(lang, buf)
             local max_filesize = 100 * 1024 -- 100 KB
             local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
-            if ok and stats and stats.size > max_filesize then
-                return true
-            end
+            if ok and stats and stats.size > max_filesize then return true end
 
             -- we specifically disable highlighting, but as we need the parser for the folds, we
             -- need to leave the parser.
-            if lang == "latex" then
-                return true
-            end
+            if lang == "latex" then return true end
         end,
         additional_vim_regex_highlighting = {
             "dockerfile", -- nicer highlighting for some commands
             "markdown",
         },
-    },
-    rainbow = {
-        enable = false,
-        -- disable = { "jsx", "cpp" }, -- list of languages you want to disable the plugin for
-        -- extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-        query = {
-            "rainbow-parens",
-            html = "rainbow-tags",
-            latex = "rainbow-blocks",
-        }, -- Which query to use for finding delimiters
-        -- strategy = require("ts-rainbow.strategy.global"), -- Highlight the entire buffer all at once
     },
     incremental_selection = {
         enable = true,
@@ -272,7 +257,6 @@ return {
         "nvim-treesitter/nvim-treesitter-textobjects",
         "nvim-treesitter/nvim-treesitter-refactor",
         "nvim-treesitter/nvim-treesitter-context",
-        "HiPhish/nvim-ts-rainbow2", -- rainbow parenthesis
         "tree-sitter-grammars/tree-sitter-hyprlang",
     },
     config = function()
