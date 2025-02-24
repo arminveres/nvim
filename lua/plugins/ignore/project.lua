@@ -1,6 +1,6 @@
 return {
     "arminveres/project.nvim", -- vim-rooter like replacement in neovim with many features
-    event = "VeryLazy",
+    -- event = "VeryLazy",
     keys = {
         {
             "<C-p>",

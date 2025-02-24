@@ -1,16 +1,17 @@
+local root_dir = ""
+
 local function get_active_lsps()
     local msg = "no lsp"
     local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
     local clients = vim.lsp.get_clients()
-    if next(clients) == nil then
-        return msg
-    end
+    if next(clients) == nil then return msg end
     local lsps = ""
     for _, client in ipairs(clients) do
         ---@diagnostic disable-next-line: undefined-field
         local filetypes = client.config.filetypes
         if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
             lsps = lsps .. client.name .. " "
+            root_dir = client.config.root_dir
         end
     end
 
@@ -88,21 +89,19 @@ local function lualine_setup()
                 { "%=", separator = "" },
                 {
                     function()
-                        local capture = vim.fn.fnamemodify(
-                            require("project_nvim.project").find_lsp_root(),
-                            ":t"
-                        )
-                        if capture ~= "null" and capture ~= "v:null" then
-                            return capture
-                        end
-                        capture = vim.fn.fnamemodify(
-                            require("project_nvim.project").find_pattern_root(),
-                            ":t"
-                        )
-                        if capture ~= "null" and capture ~= "v:null" then
-                            return capture
-                        end
-                        return ""
+                        -- local capture = vim.fn.fnamemodify(
+                        --     require("project_nvim.project").find_lsp_root(),
+                        --     ":t"
+                        -- )
+                        -- if capture ~= "null" and capture ~= "v:null" then return capture end
+                        -- capture = vim.fn.fnamemodify(
+                        --     require("project_nvim.project").find_pattern_root(),
+                        --     ":t"
+                        -- )
+                        -- if capture ~= "null" and capture ~= "v:null" then return capture end
+                        -- return ""
+                        get_active_lsps()
+                        return vim.fn.fnamemodify(root_dir, ":t")
                     end,
                 },
                 {
@@ -114,7 +113,7 @@ local function lualine_setup()
             },
             lualine_x = {
                 {
-                    icon = ":",
+                    icon = "",
                     get_active_lsps,
                 },
                 "encoding",
@@ -134,7 +133,7 @@ return {
     event = "VeryLazy",
     config = lualine_setup,
     dependencies = {
-        "arminveres/project.nvim",
+        -- "arminveres/project.nvim",
         "Bekaboo/dropbar.nvim",
         "ellisonleao/gruvbox.nvim",
         "neovim/nvim-lspconfig",

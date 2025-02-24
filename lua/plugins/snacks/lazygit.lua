@@ -1,12 +1,11 @@
 return {
     "folke/snacks.nvim",
     lazy = false,
+    priority = 1000,
     keys = {
         {
             "<leader>lg",
-            function()
-                Snacks.lazygit()
-            end,
+            function() Snacks.lazygit() end,
             desc = "Lazygit",
         },
     },
