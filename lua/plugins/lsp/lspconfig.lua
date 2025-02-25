@@ -1,3 +1,4 @@
+local merge_desc = require("core.utils").merge_desc
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 -- enable snippet support
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -56,9 +57,7 @@ local function setup()
             lsp_opts = vim.tbl_deep_extend("force", jsonls_opts, lsp_opts)
         end
 
-        if server ~= "rust_analyzer" then
-            lspconfig[server].setup(lsp_opts)
-        end
+        if server ~= "rust_analyzer" then lspconfig[server].setup(lsp_opts) end
     end
 
     -- setup sourcekit on MacOS, ignore on other systems
@@ -126,13 +125,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
         -- ========================================================================================
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         local opts = { buffer = args.buf }
-        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-        vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, merge_desc(opts, "[g]o to [D]eclaration"))
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition, merge_desc(opts, "[g]o to [d]efinition"))
+        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, merge_desc(opts, "[g]o to [i]mplementation"))
         vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts)
-        vim.keymap.set("n", "<bslash>fb", function()
-            vim.lsp.buf.format({ async = true })
-        end, opts)
+        vim.keymap.set("n", "<bslash>bf", function() vim.lsp.buf.format({ async = true }) end,
+            merge_desc(opts, "[b]uffer [f]ormat"))
 
         -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
         -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
@@ -150,15 +148,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
             vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR })
             vim.diagnostic.open_float()
         end, opts)
-        vim.keymap.set("n", "]d", function()
-            vim.diagnostic.jump({ count = 1, float = true })
-        end, opts)
-        vim.keymap.set("n", "[d", function()
-            vim.diagnostic.jump({ count = -1, float = true })
-        end, opts)
-        vim.keymap.set("n", "gld", function()
-            vim.diagnostic.open_float()
-        end, opts)
+        vim.keymap.set(
+            "n",
+            "]d",
+            function() vim.diagnostic.jump({ count = 1, float = true }) end,
+            opts
+        )
+        vim.keymap.set(
+            "n",
+            "[d",
+            function() vim.diagnostic.jump({ count = -1, float = true }) end,
+            opts
+        )
+        vim.keymap.set("n", "gld", function() vim.diagnostic.open_float() end, opts)
 
         -- ========================================================================================
         -- Provider specific options
@@ -172,9 +174,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
         if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
             vim.lsp.inlay_hint.enable(true)
 
-            vim.keymap.set("n", "<Leader>lh", function()
-                vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-            end, { desc = "Toggle [L]SP Inlay [H]int" })
+            vim.keymap.set(
+                "n",
+                "<Leader>lh",
+                function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end,
+                { desc = "Toggle [L]SP Inlay [H]int" }
+            )
         end
 
         -- if client.server_capabilities.codeActionProvide.codeActionKind then
