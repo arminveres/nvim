@@ -14,4 +14,6 @@ local snippets = {
 
 ls.add_snippets("sh", snippets, { key = "sh" })
 ls.add_snippets("bash", snippets, { key = "bash" })
--- return snippets
+ls.add_snippets("all", snippets, { key = "shell-all" })
+
+return snippets
