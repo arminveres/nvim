@@ -107,8 +107,7 @@ local function setup()
                                 .. ".options",
                         },
                         flake_parts = {
-                            expr =
-                            'let flake = builtins.getFlake ("/home/arminveres/nix-conf"); in flake.debug.options // flake.currentSystem.options',
+                            expr = 'let flake = builtins.getFlake ("/home/arminveres/nix-conf"); in flake.debug.options // flake.currentSystem.options',
                         },
                     },
                 },
@@ -125,12 +124,26 @@ vim.api.nvim_create_autocmd("LspAttach", {
         -- ========================================================================================
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         local opts = { buffer = args.buf }
-        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, merge_desc(opts, "[g]o to [D]eclaration"))
+        vim.keymap.set(
+            "n",
+            "gD",
+            vim.lsp.buf.declaration,
+            merge_desc(opts, "[g]o to [D]eclaration")
+        )
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, merge_desc(opts, "[g]o to [d]efinition"))
-        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, merge_desc(opts, "[g]o to [i]mplementation"))
+        vim.keymap.set(
+            "n",
+            "gi",
+            vim.lsp.buf.implementation,
+            merge_desc(opts, "[g]o to [i]mplementation")
+        )
         vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts)
-        vim.keymap.set("n", "<bslash>bf", function() vim.lsp.buf.format({ async = true }) end,
-            merge_desc(opts, "[b]uffer [f]ormat"))
+        vim.keymap.set(
+            "n",
+            "<bslash>bf",
+            function() vim.lsp.buf.format({ async = true }) end,
+            merge_desc(opts, "[b]uffer [f]ormat")
+        )
 
         -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
         -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
@@ -140,14 +153,30 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         vim.keymap.set("n", "grr", vim.lsp.buf.references, opts)
 
-        vim.keymap.set("n", "]e", function()
-            vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR })
-            vim.diagnostic.open_float()
-        end, opts)
-        vim.keymap.set("n", "[e", function()
-            vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR })
-            vim.diagnostic.open_float()
-        end, opts)
+        vim.keymap.set(
+            "n",
+            "]e",
+            function()
+                vim.diagnostic.jump({
+                    count = 1,
+                    float = true,
+                    severity = vim.diagnostic.severity.ERROR,
+                })
+            end,
+            opts
+        )
+        vim.keymap.set(
+            "n",
+            "[e",
+            function()
+                vim.diagnostic.jump({
+                    count = -1,
+                    float = true,
+                    severity = vim.diagnostic.severity.ERROR,
+                })
+            end,
+            opts
+        )
         vim.keymap.set(
             "n",
             "]d",
@@ -160,7 +189,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
             function() vim.diagnostic.jump({ count = -1, float = true }) end,
             opts
         )
-        vim.keymap.set("n", "gld", function() vim.diagnostic.open_float() end, opts)
+        -- vim.keymap.set("n", "gld", function() vim.diagnostic.open_float() end, opts)
 
         -- ========================================================================================
         -- Provider specific options
@@ -210,7 +239,7 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "LspInfo", "LspInstall", "LspUninstall" },
     keys = {
-        { "<Leader>li", vim.cmd.LspInfo,    desc = "Open [l]sp [i]nfo" },
+        { "<Leader>li", vim.cmd.LspInfo, desc = "Open [l]sp [i]nfo" },
         {
             "<Leader>ll",
             function()
