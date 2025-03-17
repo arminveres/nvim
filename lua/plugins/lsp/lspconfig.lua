@@ -60,6 +60,9 @@ local function setup()
         if server ~= "rust_analyzer" then lspconfig[server].setup(lsp_opts) end
     end
 
+    -- FIXME(aver): For some reason, mason does not recognize the installed server
+    lspconfig["bitbake_ls"].setup({ on_attach = on_attach, capabilities = capabilities })
+
     -- setup sourcekit on MacOS, ignore on other systems
     if vim.uv.os_uname().sysname:match("Darwin") then
         lspconfig["sourcekit"].setup({
@@ -107,7 +110,8 @@ local function setup()
                                 .. ".options",
                         },
                         flake_parts = {
-                            expr = 'let flake = builtins.getFlake ("/home/arminveres/nix-conf"); in flake.debug.options // flake.currentSystem.options',
+                            expr =
+                            'let flake = builtins.getFlake ("/home/arminveres/nix-conf"); in flake.debug.options // flake.currentSystem.options',
                         },
                     },
                 },
@@ -143,6 +147,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
             "<bslash>bf",
             function() vim.lsp.buf.format({ async = true }) end,
             merge_desc(opts, "[b]uffer [f]ormat")
+        )
+        vim.keymap.set(
+            "n",
+            "gsi",
+            vim.lsp.buf.incoming_calls,
+            merge_desc(opts, "Show incoming lsp call")
+        )
+        vim.keymap.set(
+            "n",
+            "gso",
+            vim.lsp.buf.outgoing_calls,
+            merge_desc(opts, "Show incoming lsp call")
         )
 
         -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
@@ -232,48 +248,53 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 return {
-    "neovim/nvim-lspconfig", -- Collection of configurations for built-in LSP client
-    config = setup,
+    {
+        "neovim/nvim-lspconfig", -- Collection of configurations for built-in LSP client
+        config = setup,
 
-    -- allow lazyloading on these events, otherwise it does not load correctly
-    event = { "BufReadPost", "BufNewFile" },
-    cmd = { "LspInfo", "LspInstall", "LspUninstall" },
-    keys = {
-        { "<Leader>li", vim.cmd.LspInfo, desc = "Open [l]sp [i]nfo" },
-        {
-            "<Leader>ll",
-            function()
-                local function rotate_log()
-                    local log_path = vim.fn.stdpath("state") .. "\\lsp.log"
-                    local backup_path = log_path .. ".old"
+        -- allow lazyloading on these events, otherwise it does not load correctly
+        event = { "BufReadPost", "BufNewFile" },
+        cmd = { "LspInfo", "LspInstall", "LspUninstall" },
+        keys = {
+            { "<Leader>li", vim.cmd.LspInfo,    desc = "Open [l]sp [i]nfo" },
+            { "<Leader>lr", vim.cmd.LspRestart, desc = "[l]sp [r]estart" },
+            {
+                "<Leader>ll",
+                function()
+                    local function rotate_log()
+                        local log_path = vim.fn.stdpath("state") .. "/lsp.log"
+                        local backup_path = log_path .. ".old"
 
-                    local stat = vim.loop.fs_stat(log_path)
-                    if stat and stat.size > 1024 * 1024 then -- Limit to 1 MB
-                        -- Rename the current log file
-                        local succ, msg = os.rename(log_path, backup_path)
-                        -- local succ, msg = os.remove(log_path)
-                        if not succ then
-                            ---@diagnostic disable-next-line: param-type-mismatch
-                            vim.notify(msg, vim.log.levels.ERROR)
-                            return
+                        local stat = vim.loop.fs_stat(log_path)
+                        if stat and stat.size > 1024 * 1024 then -- Limit to 1 MB
+                            -- Rename the current log file
+                            local succ, msg = os.rename(log_path, backup_path)
+                            -- local succ, msg = os.remove(log_path)
+                            if not succ then
+                                ---@diagnostic disable-next-line: param-type-mismatch
+                                vim.notify(msg, vim.log.levels.ERROR)
+                                return
+                            end
+                            vim.notify("Neovim log rotated", vim.log.levels.INFO)
                         end
-                        vim.notify("Neovim log rotated", vim.log.levels.INFO)
                     end
-                end
 
-                rotate_log()
-                vim.cmd.LspLog()
-            end,
-            desc = "Open [l]sp [l]og",
+                    rotate_log()
+                    vim.cmd.LspLog()
+                end,
+                desc = "Open [l]sp [l]og",
+            },
         },
-        { "<Leader>lr", vim.cmd.LspRestart, desc = "[l]sp [r]estart" },
-    },
 
-    dependencies = {
-        "williamboman/mason-lspconfig.nvim",
-        "hrsh7th/nvim-cmp",
-        "hrsh7th/cmp-nvim-lsp",
-        "RRethy/vim-illuminate",
+        dependencies = {
+            "williamboman/mason-lspconfig.nvim",
+            "hrsh7th/nvim-cmp",
+            "hrsh7th/cmp-nvim-lsp",
+            "RRethy/vim-illuminate",
+        },
+    },
+    {
         "Decodetalkers/csharpls-extended-lsp.nvim",
+        ft = "cs",
     },
 }
