@@ -1,33 +1,14 @@
 local aucmd = vim.api.nvim_create_autocmd
 local create_augroup = vim.api.nvim_create_augroup
 
-aucmd(
-    { "BufRead", "BufNewFile" },
-    { pattern = { "*.frag,*.vert" }, command = ":set filetype=glsl" }
-)
--- aucmd({ "BufRead", "BufNewFile" }, {
---     pattern = "COMMIT_EDITMSG",
---     command = ":set colorcolumn=50,72",
--- })
-
--- callback for lua function callbacks
--- pattern can be left out, if for all files
--- aucmd({ 'CursorHold' }, { callback = function() vim.diagnostic.open_float() end,})
-
 aucmd({ "TextYankPost" }, {
     callback = function()
         vim.highlight.on_yank()
     end,
 })
 
-aucmd({ "VimEnter", "WinEnter" }, {
-    group = create_augroup("TrailingSpace", { clear = true }),
-    pattern = "defx",
-    command = "highlight clear TrailingSpaces",
-})
-
 aucmd("BufWritePre", {
-    group = create_augroup("auto_create_dir", { clear = true }),
+    group = create_augroup("AutoCreateDir", { clear = true }),
     callback = function(event)
         local file = event.match
         -- Ignore creation of oil:// directories, which get created on each save in an Oil.nvim buffer.
@@ -40,4 +21,40 @@ aucmd("BufWritePre", {
         end
         vim.fn.mkdir(dir, "p")
     end,
+})
+
+aucmd("BufEnter", {
+    group = create_augroup("CustomRooter", { clear = true }),
+    callback = function(ev)
+        -- TODO(aver): 17/03/2025 add lsp rooting, remove from lualine callback
+        -- vim.notify(vim.inspect(ev))
+        local patterns = {
+            ".git",
+            "Makefile",
+            "README.md",
+            "readme.md",
+            -- "CMakeLists.txt"
+        }
+        local root_dir = nil
+        local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = ev.buf })
+        local clients = vim.lsp.get_clients()
+
+        if next(clients) ~= nil then
+            for _, client in ipairs(clients) do
+                ---@diagnostic disable-next-line: undefined-field
+                local filetypes = client.config.filetypes
+                if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+                    -- look for first root dir
+                    root_dir = client.config.root_dir
+                    break
+                end
+            end
+        else
+            root_dir = vim.fs.root(ev.buf, patterns)
+        end
+        if root_dir then
+            -- :h nvim_parse_cmd()
+            vim.cmd.tcd({ args = { root_dir }, mods = { silent = true } })
+        end
+    end
 })

@@ -1,4 +1,4 @@
-local root_dir = ""
+-- local root_dir = ""
 
 local function get_active_lsps()
     local msg = "no lsp"
@@ -11,7 +11,11 @@ local function get_active_lsps()
         local filetypes = client.config.filetypes
         if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
             lsps = lsps .. client.name .. " "
-            root_dir = client.config.root_dir
+            -- root_dir = client.config.root_dir
+            -- if root_dir then
+            -- -- vim.uv.chdir(root_dir)
+            -- vim.cmd.tcd(root_dir)
+            -- end
         end
     end
 
@@ -89,19 +93,8 @@ local function lualine_setup()
                 { "%=", separator = "" },
                 {
                     function()
-                        -- local capture = vim.fn.fnamemodify(
-                        --     require("project_nvim.project").find_lsp_root(),
-                        --     ":t"
-                        -- )
-                        -- if capture ~= "null" and capture ~= "v:null" then return capture end
-                        -- capture = vim.fn.fnamemodify(
-                        --     require("project_nvim.project").find_pattern_root(),
-                        --     ":t"
-                        -- )
-                        -- if capture ~= "null" and capture ~= "v:null" then return capture end
-                        -- return ""
-                        get_active_lsps()
-                        return vim.fn.fnamemodify(root_dir, ":t")
+                        ---@diagnostic disable-next-line: param-type-mismatch
+                        return vim.fn.fnamemodify(vim.uv.cwd(), ":t")
                     end,
                 },
                 {
