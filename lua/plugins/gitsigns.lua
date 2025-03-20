@@ -9,25 +9,21 @@ local gs_opts = {
         end
 
         -- Navigation
-        map("n", "]c", function()
+        map("n", "]h", function()
             if vim.wo.diff then
-                return "]c"
+                return "]h"
             end
-            vim.schedule(function()
-                gs.next_hunk()
-            end)
+            vim.schedule(gs.next_hunk)
             return "<Ignore>"
-        end, { expr = true, desc = "Next Git Change" })
+        end, { expr = true, desc = "Next Git [H]unk" })
 
-        map("n", "[c", function()
+        map("n", "[h", function()
             if vim.wo.diff then
-                return "[c"
+                return "[h"
             end
-            vim.schedule(function()
-                gs.prev_hunk()
-            end)
+            vim.schedule(gs.prev_hunk)
             return "<Ignore>"
-        end, { expr = true, desc = "Previous Git Change" })
+        end, { expr = true, desc = "Previous Git [H]unk" })
 
         -- Actions
         map("n", "<leader>hs", gs.stage_hunk, { desc = "GitSigns [h]unk [s]tage" })

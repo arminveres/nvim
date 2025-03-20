@@ -23,7 +23,7 @@ aucmd("BufWritePre", {
     end,
 })
 
-aucmd("BufEnter", {
+aucmd({ "BufEnter", "BufRead" }, {
     group = create_augroup("CustomRooter", { clear = true }),
     callback = function(ev)
         -- TODO(aver): 17/03/2025 add lsp rooting, remove from lualine callback
