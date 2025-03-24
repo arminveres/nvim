@@ -12,7 +12,6 @@ capabilities.textDocument.foldingRange = {
 local function on_attach(client, bufnr)
     -- Highlight words under current cursor
     require("illuminate").on_attach(client)
-    -- require("clangd_extensions.inlay_hints").setup_autocmd()
 end
 
 -- @brief Sets up individual language servers
