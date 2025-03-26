@@ -20,7 +20,12 @@ end
 local function conditional_space()
     local col_pos = vim.api.nvim_win_get_cursor(0)[2]
     local line = vim.api.nvim_get_current_line()
-    if col_pos > 1 and line:sub(col_pos - 1, col_pos + 1):match(" ") then return "" end
+    if col_pos > 1 and line:sub(col_pos - 1, col_pos + 1):match(" ") then
+        -- still return a space if we are not inside a comment, otherwise on indents it will think
+        -- we have enoug space
+        if not vim.treesitter.get_node():type():match("comment*") then return " " end
+        return ""
+    end
     return " "
 end
 
@@ -32,7 +37,10 @@ local snippets = {
         t("("),
         c(2, { t("AVE"), t("aver") }),
         t("): "),
+        p(os.date, "%d-%m-%Y"),
+        t(" "),
     }),
+
     s("dmy", {
         p(os.date, "%d-%m-%Y"),
     }),

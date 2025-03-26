@@ -9,7 +9,6 @@ local nproc = function()
     return 10
 end
 
--- TODO: find a way to use gcc for c files and g++ for cpp files, as otherwise the diagnostics are not correct
 M.server_opts = {
     cmd = {
         "clangd",
