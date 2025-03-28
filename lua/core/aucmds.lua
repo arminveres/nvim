@@ -17,7 +17,7 @@ aucmd("BufWritePre", {
     end,
 })
 
-aucmd({ "BufEnter", "WinEnter" }, {
+aucmd("BufEnter", {
     group = create_augroup("CustomRooter", { clear = true }),
     callback = function(ev)
         -- TODO(aver): 17/03/2025 add lsp rooting, remove from lualine callback
@@ -27,6 +27,7 @@ aucmd({ "BufEnter", "WinEnter" }, {
             "Makefile",
             "README.md",
             "readme.md",
+            "compile_commands.json",
             -- "CMakeLists.txt"
         }
         local root_dir = nil
@@ -46,12 +47,20 @@ aucmd({ "BufEnter", "WinEnter" }, {
         end
         -- end
 
+        -- try to get a root dir by a marker
         if not root_dir then root_dir = vim.fs.root(ev.buf, patterns) end
+        -- early return on failure or no change
+        if not root_dir then return end
+        -- TODO(aver): 27-03-2025 try to find a cleaner call to this
+        local pwd = vim.fs.normalize(vim.uv.cwd())
+        -- don't update on same dir
+        if pwd == root_dir then return end
 
-        if root_dir then
-            vim.notify("ROOTER: updating to " .. root_dir, vim.log.levels.INFO)
-            -- :h nvim_parse_cmd()
-            vim.cmd.tcd({ args = { root_dir }, mods = { silent = true } })
-        end
+        vim.notify(
+            "ROOTER: Changing from '" .. pwd .. "' to' " .. root_dir .. "'",
+            vim.log.levels.INFO
+        )
+        -- :h nvim_parse_cmd()
+        vim.cmd.tcd({ args = { root_dir }, mods = { silent = true } })
     end,
 })
