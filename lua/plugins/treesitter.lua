@@ -236,7 +236,8 @@ local ts_opts = {
             keymaps = { smart_rename = "grr" },
         },
         navigation = {
-            enable = true,
+            -- TODO(aver): 17-04-2025 correct the keybinds and don't overwrite the default lsps
+            enable = false,
             keymaps = {
                 goto_definition = "gnd",
                 list_definitions = "gnD",

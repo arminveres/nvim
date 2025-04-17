@@ -109,8 +109,7 @@ local function setup()
                                 .. ".options",
                         },
                         flake_parts = {
-                            expr =
-                            'let flake = builtins.getFlake ("/home/arminveres/nix-conf"); in flake.debug.options // flake.currentSystem.options',
+                            expr = 'let flake = builtins.getFlake ("/home/arminveres/nix-conf"); in flake.debug.options // flake.currentSystem.options',
                         },
                     },
                 },
@@ -134,12 +133,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
             merge_desc(opts, "[g]o to [D]eclaration")
         )
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, merge_desc(opts, "[g]o to [d]efinition"))
-        vim.keymap.set(
-            "n",
-            "gi",
-            vim.lsp.buf.implementation,
-            merge_desc(opts, "[g]o to [i]mplementation")
-        )
         vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts)
         vim.keymap.set(
             "n",
@@ -165,8 +158,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         -- vim.keymap.set('n', '<space>wl', function()
         --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
         -- end, opts)
-
-        vim.keymap.set("n", "grr", vim.lsp.buf.references, opts)
 
         vim.keymap.set(
             "n",
@@ -255,7 +246,7 @@ return {
         event = { "BufReadPost", "BufNewFile" },
         cmd = { "LspInfo", "LspInstall", "LspUninstall" },
         keys = {
-            { "<Leader>li", vim.cmd.LspInfo,    desc = "Open [l]sp [i]nfo" },
+            { "<Leader>li", vim.cmd.LspInfo, desc = "Open [l]sp [i]nfo" },
             { "<Leader>lr", vim.cmd.LspRestart, desc = "[l]sp [r]estart" },
             {
                 "<Leader>ll",
