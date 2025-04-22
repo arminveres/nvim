@@ -48,9 +48,6 @@ local function setup()
         elseif server == "texlab" then
             local texlab_opts = require("plugins.lsp.settings.texlab")
             lsp_opts = vim.tbl_deep_extend("force", texlab_opts, lsp_opts)
-        elseif server == "marksman" then
-            local marksman_opts = require("plugins.lsp.settings.marksman")
-            lsp_opts = vim.tbl_deep_extend("force", marksman_opts, lsp_opts)
         elseif server == "jsonls" then
             local jsonls_opts = require("plugins.lsp.settings.jsonls")
             lsp_opts = vim.tbl_deep_extend("force", jsonls_opts, lsp_opts)
