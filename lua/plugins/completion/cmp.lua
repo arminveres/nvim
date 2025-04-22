@@ -47,8 +47,8 @@ local function cmp_config()
             -- ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
             ["<Tab>"] = cmp.mapping.select_next_item(),
             ["<S-Tab>"] = cmp.mapping.select_prev_item(),
-            ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }), -- 'forward'
-            ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }), -- 'backward'
+            ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "n", "i", "c" }),  -- 'forward'
+            ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "n", "i", "c" }), -- 'backward'
             -- ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
             ["<C-e>"] = cmp.mapping({
                 i = cmp.mapping.abort(),
@@ -78,11 +78,11 @@ local function cmp_config()
             end,
         },
         sources = cmp.config.sources({
-            { name = "luasnip", priority = 1000 },
+            { name = "luasnip",                priority = 1000 },
             { name = "nvim_lsp_signature_help" },
             { name = "nvim_lsp" },
             { name = "path" },
-            { name = "dictionary", keyword_length = 2 },
+            { name = "dictionary",             keyword_length = 2 },
             { name = "buffer" },
             {
                 name = "lazydev",
@@ -146,8 +146,7 @@ local function cmp_config()
                         handler = handlers["*"],
                     },
                 },
-                -- Disable for tex
-                tex = false,
+                tex = false, -- Disable for tex
             },
         })
     )
