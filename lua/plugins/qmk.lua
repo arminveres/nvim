@@ -9,7 +9,7 @@ return {
         local aucmd = vim.api.nvim_create_autocmd
         local create_augroup = vim.api.nvim_create_augroup
         local qmk_group = create_augroup("MyQMK", {})
-        local qmk_path = "*sofle/keymaps/arminveres/keymap.c"
+        local qmk_path = "*sofle/rev1/keymaps/arminveres/keymap.c"
         aucmd("BufEnter", {
             desc = "Format simple keymap",
             group = qmk_group,
