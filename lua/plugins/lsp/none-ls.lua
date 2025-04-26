@@ -32,6 +32,9 @@ local function setup()
             require("none-ls.formatting.latexindent"),
 
             hover.dictionary,
+
+            require("none-ls-shellcheck.diagnostics"),
+            require("none-ls-shellcheck.code_actions"),
         },
     })
 end
@@ -43,5 +46,6 @@ return {
     dependencies = {
         "nvimtools/none-ls-extras.nvim",
         "nvim-lua/plenary.nvim",
+        "gbprod/none-ls-shellcheck.nvim",
     },
 }
