@@ -1,5 +1,3 @@
--- local root_dir = ""
-
 local function get_active_lsps()
     local msg = "no lsp"
     local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
@@ -11,11 +9,6 @@ local function get_active_lsps()
         local filetypes = client.config.filetypes
         if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
             lsps = lsps .. client.name .. " "
-            -- root_dir = client.config.root_dir
-            -- if root_dir then
-            -- -- vim.uv.chdir(root_dir)
-            -- vim.cmd.tcd(root_dir)
-            -- end
         end
     end
 
@@ -123,10 +116,8 @@ end
 
 return {
     "nvim-lualine/lualine.nvim", -- Fancier statusline
-    event = "VeryLazy",
     config = lualine_setup,
     dependencies = {
-        -- "arminveres/project.nvim",
         "Bekaboo/dropbar.nvim",
         "ellisonleao/gruvbox.nvim",
         "neovim/nvim-lspconfig",
