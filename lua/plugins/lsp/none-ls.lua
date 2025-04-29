@@ -16,11 +16,16 @@ local function setup()
         debug = false,
         sources = {
             -- code_actions.refactoring,
+            require("none-ls-shellcheck.code_actions"),
 
-            diagnostics.cppcheck.with({ extra_args = { "--disable=unusedStructMember" } }),
+            diagnostics.cppcheck.with({
+                -- filetypes = { "c, cpp, cuda" },
+                extra_args = { "--disable=unusedStructMember" },
+            }),
             diagnostics.zsh,
             diagnostics.gitlint,
             diagnostics.stylelint,
+            require("none-ls-shellcheck.diagnostics"),
 
             formatting.stylua,
             formatting.prettier,
@@ -32,9 +37,7 @@ local function setup()
             require("none-ls.formatting.latexindent"),
 
             hover.dictionary,
-
-            require("none-ls-shellcheck.diagnostics"),
-            require("none-ls-shellcheck.code_actions"),
+            hover.printenv,
         },
     })
 end

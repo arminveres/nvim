@@ -1,4 +1,25 @@
 local merge_desc = require("core.utils").merge_desc
+
+--- @brief Trims log on startup, to ensure timely log checks
+local function rotate_log()
+    local log_path = vim.fn.stdpath("state") .. "/lsp.log"
+    local backup_path = log_path .. ".old"
+
+    local stat = vim.loop.fs_stat(log_path)
+    if stat and stat.size > 1024 * 1024 then -- Limit to 1 MB
+        -- Rename the current log file
+        local succ, msg = os.rename(log_path, backup_path)
+        -- local succ, msg = os.remove(log_path)
+        if not succ then
+            ---@diagnostic disable-next-line: param-type-mismatch
+            vim.notify(msg, vim.log.levels.ERROR)
+            return
+        end
+        vim.notify("Neovim log rotated", vim.log.levels.INFO)
+    end
+end
+
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 -- enable snippet support
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -187,9 +208,13 @@ local function setup()
             vim.lsp.log.set_format_func(vim.inspect)
 
             vim.diagnostic.config({ virtual_text = false })
+
+            -- NOTE(aver): ensure lsp logs don't get too large
+            rotate_log()
         end,
     })
 end
+
 
 return {
     {
@@ -201,34 +226,9 @@ return {
         event = { "BufReadPost", "BufNewFile" },
         cmd = { "LspInfo", "LspInstall", "LspUninstall" },
         keys = {
-            { "<Leader>li", vim.cmd.LspInfo, desc = "Open [l]sp [i]nfo" },
+            { "<Leader>li", vim.cmd.LspInfo,    desc = "Open [l]sp [i]nfo" },
             { "<Leader>lr", vim.cmd.LspRestart, desc = "[l]sp [r]estart" },
-            {
-                "<Leader>ll",
-                function()
-                    local function rotate_log()
-                        local log_path = vim.fn.stdpath("state") .. "/lsp.log"
-                        local backup_path = log_path .. ".old"
-
-                        local stat = vim.loop.fs_stat(log_path)
-                        if stat and stat.size > 1024 * 1024 then -- Limit to 1 MB
-                            -- Rename the current log file
-                            local succ, msg = os.rename(log_path, backup_path)
-                            -- local succ, msg = os.remove(log_path)
-                            if not succ then
-                                ---@diagnostic disable-next-line: param-type-mismatch
-                                vim.notify(msg, vim.log.levels.ERROR)
-                                return
-                            end
-                            vim.notify("Neovim log rotated", vim.log.levels.INFO)
-                        end
-                    end
-
-                    rotate_log()
-                    vim.cmd.LspLog()
-                end,
-                desc = "Open [l]sp [l]og",
-            },
+            { "<Leader>ll", vim.cmd.LspLog,     desc = "Open [l]sp [l]og", },
         },
 
         dependencies = {
@@ -238,8 +238,5 @@ return {
             "RRethy/vim-illuminate",
         },
     },
-    {
-        "Decodetalkers/csharpls-extended-lsp.nvim",
-        ft = "cs",
-    },
+    { "Decodetalkers/csharpls-extended-lsp.nvim", ft = "cs" },
 }
