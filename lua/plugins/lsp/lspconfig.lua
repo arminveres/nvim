@@ -43,50 +43,6 @@ local function setup()
     vim.lsp.enable(lsp_servers)
     vim.lsp.config("*", { capabilities = capabilities, on_attach = on_attach })
 
-    --[[
-        elseif server == "clangd" then
-            local clangd_opts = require("plugins.lsp.settings.clangd").server_opts
-            lsp_opts = vim.tbl_deep_extend("force", clangd_opts, lsp_opts)
-        elseif server == "pyright" then
-            local pyright_opts = require("plugins.lsp.settings.pyright")
-            lsp_opts = vim.tbl_deep_extend("force", pyright_opts, lsp_opts)
-        elseif server == "pylizer" then
-            local pylyzer_opts = require("plugins.lsp.settings.pylizer")
-            lsp_opts = vim.tbl_deep_extend("force", pylyzer_opts, lsp_opts)
-        elseif server == "pylsp" then
-            local pylsp_opts = require("plugins.lsp.settings.pylsp")
-            lsp_opts = vim.tbl_deep_extend("force", pylsp_opts, lsp_opts)
-        elseif server == "bashls" then
-            local bashls_opts = require("plugins.lsp.settings.bashls")
-            lsp_opts = vim.tbl_deep_extend("force", bashls_opts, lsp_opts)
-        elseif server == "ltex" then
-            local ltex_opts = require("plugins.lsp.settings.ltex")
-            lsp_opts = vim.tbl_deep_extend("force", ltex_opts, lsp_opts)
-        elseif server == "texlab" then
-            local texlab_opts = require("plugins.lsp.settings.texlab")
-            lsp_opts = vim.tbl_deep_extend("force", texlab_opts, lsp_opts)
-        elseif server == "jsonls" then
-            local jsonls_opts = require("plugins.lsp.settings.jsonls")
-            lsp_opts = vim.tbl_deep_extend("force", jsonls_opts, lsp_opts)
-        end
-
-        if server ~= "rust_analyzer" then lspconfig[server].setup(lsp_opts) end
-    end
-
-        -- NixOS specific setups
-    elseif vim.uv.os_uname().version:match("NixOS") then
-        lspconfig.marksman.setup({
-            on_attach = on_attach,
-            capabilities = capabilities,
-            root_dir = require("lspconfig.util").root_pattern(
-                ".git",
-                ".marksman.toml",
-                "README.md"
-            ),
-        })
-
-        ]]
-
     vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("pluginsLspConfig", {}),
         callback = function(args)
