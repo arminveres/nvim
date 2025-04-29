@@ -16,7 +16,6 @@ M.command_template = {
     "--header-insertion-decorators",
     "--all-scopes-completion",
     "--pch-storage=memory",
-    "--offset-encoding=utf-16",
 }
 
 M.server_opts = {
