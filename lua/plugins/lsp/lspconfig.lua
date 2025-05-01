@@ -19,7 +19,6 @@ local function rotate_log()
     end
 end
 
-
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 -- enable snippet support
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -171,20 +170,17 @@ local function setup()
     })
 end
 
-
 return {
     {
         "neovim/nvim-lspconfig", -- Collection of configurations for built-in LSP client
         init = setup,
-        lazy = false,
-
         -- allow lazyloading on these events, otherwise it does not load correctly
         event = { "BufReadPost", "BufNewFile" },
         cmd = { "LspInfo", "LspInstall", "LspUninstall" },
         keys = {
-            { "<Leader>li", vim.cmd.LspInfo,    desc = "Open [l]sp [i]nfo" },
+            { "<Leader>li", vim.cmd.LspInfo, desc = "Open [l]sp [i]nfo" },
             { "<Leader>lr", vim.cmd.LspRestart, desc = "[l]sp [r]estart" },
-            { "<Leader>ll", vim.cmd.LspLog,     desc = "Open [l]sp [l]og", },
+            { "<Leader>ll", vim.cmd.LspLog, desc = "Open [l]sp [l]og" },
         },
 
         dependencies = {

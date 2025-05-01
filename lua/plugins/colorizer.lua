@@ -1,6 +1,7 @@
 return {
     {
         "brenoprata10/nvim-highlight-colors",
+        event = "VeryLazy",
         opts = {},
     },
     {
@@ -10,16 +11,12 @@ return {
         keys = {
             {
                 "<leader>bc",
-                function()
-                    vim.cmd("CccHighlighterToggle")
-                end,
+                function() vim.cmd("CccHighlighterToggle") end,
                 desc = "[B]uffer [c]olorize",
             },
             {
                 "<leader>cp",
-                function()
-                    vim.cmd("CccPick")
-                end,
+                function() vim.cmd("CccPick") end,
                 desc = "Toggles [C]olor [P]icker",
             },
         },

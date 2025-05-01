@@ -29,9 +29,11 @@ return {
                 "jq",
                 "shfmt",
                 "gitlint",
+                "shellcheck",
             },
             automatic_installation = false,
             automatic_setup = true, -- Recommended, but optional
+            dependencies = { "nvimtools/none-ls.nvim" }
         },
     },
 }

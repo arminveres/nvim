@@ -1,12 +1,10 @@
 return {
     "stevearc/oil.nvim",
-    event = "VeryLazy",
+    lazy = false,
     keys = {
         {
             "<leader>e",
-            function()
-                require("oil").toggle_float()
-            end,
+            function() require("oil").toggle_float() end,
             desc = "Open parent directory",
         },
     },

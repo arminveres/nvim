@@ -56,7 +56,8 @@ local ts_langs = {
 
 local ts_opts = {
     ensure_installed = ts_langs,
-    sync_install = true, -- ignore_install = { "" }, -- List of parsers to ignore installing
+    sync_install = true,
+    -- ignore_install = { "" }, -- List of parsers to ignore installing
     indent = { enable = true },
     fold = { enable = false },
     autopairs = { enable = true },
@@ -71,10 +72,7 @@ local ts_opts = {
             -- need to leave the parser.
             if lang == "latex" then return true end
         end,
-        additional_vim_regex_highlighting = {
-            "dockerfile", -- nicer highlighting for some commands
-            "markdown",
-        },
+        additional_vim_regex_highlighting = { "markdown", },
     },
     incremental_selection = {
         enable = true,
