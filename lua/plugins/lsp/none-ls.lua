@@ -43,8 +43,7 @@ local function setup()
 end
 
 return {
-    -- "nvimtools/none-ls.nvim", -- Null LS replacement
-    "https://github.com/ulisses-cruz/none-ls.nvim",
+    "nvimtools/none-ls.nvim", -- Null LS replacement
     event = "VeryLazy",
     config = setup,
     dependencies = {
