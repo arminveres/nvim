@@ -2,7 +2,13 @@ return {
     {
         "brenoprata10/nvim-highlight-colors",
         event = "VeryLazy",
-        opts = {},
+        opts = {
+            exclude_filetypes = {
+                "lazy",
+                "dashboard",
+                "snack_dashboard",
+            },
+        },
     },
     {
         -- TODO(aver): wait for newer version, where utf8 error does not interfere with nixd
