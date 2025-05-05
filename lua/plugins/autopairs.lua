@@ -1,6 +1,6 @@
 return {
     "windwp/nvim-autopairs", -- Autopairs {}, [], () etc
-    event = "VeryLazy",
+    event = "InsertEnter",
     opts = {
         -- local Rule = require("nvim-autopairs.rule")
         -- npairs.add_rule(Rule("<", ">")) -- finally add a tag rule
@@ -12,5 +12,4 @@ return {
         check_ts = true,
         map_cr = false,
     },
-    dependencies = "hrsh7th/nvim-cmp",
 }

@@ -47,7 +47,7 @@ local function cmp_config()
             -- ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
             ["<Tab>"] = cmp.mapping.select_next_item(),
             ["<S-Tab>"] = cmp.mapping.select_prev_item(),
-            ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "n", "i", "c" }),  -- 'forward'
+            ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "n", "i", "c" }), -- 'forward'
             ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "n", "i", "c" }), -- 'backward'
             -- ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
             ["<C-e>"] = cmp.mapping({
@@ -78,17 +78,16 @@ local function cmp_config()
             end,
         },
         sources = cmp.config.sources({
-            { name = "luasnip",                priority = 1000 },
-            { name = "nvim_lsp_signature_help" },
+            { name = "luasnip", priority = 1000 },
+            -- { name = "nvim_lsp_signature_help" },
             { name = "nvim_lsp" },
             { name = "path" },
-            { name = "dictionary",             keyword_length = 2 },
+            { name = "dictionary", keyword_length = 2 },
             { name = "buffer" },
             {
                 name = "lazydev",
                 group_index = 0, -- set group index to 0 to skip loading LuaLS completions
             },
-            -- { name = "spell" },
             -- { name = 'rg' },
         }),
         confirm_opts = {
@@ -137,15 +136,6 @@ local function cmp_config()
         cmp_autopairs.on_confirm_done({
             filetypes = {
                 -- "*" is a alias to all filetypes
-                ["*"] = {
-                    ["("] = {
-                        kind = {
-                            cmp.lsp.CompletionItemKind.Function,
-                            cmp.lsp.CompletionItemKind.Method,
-                        },
-                        handler = handlers["*"],
-                    },
-                },
                 tex = false, -- Disable for tex
             },
         })
@@ -164,10 +154,10 @@ return {
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-cmdline",
-        "f3fora/cmp-spell", -- spelling plugin
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
         "rafamadriz/friendly-snippets",
+        "windwp/nvim-autopairs",
         -- "lukas-reineke/cmp-rg",
     },
 }
