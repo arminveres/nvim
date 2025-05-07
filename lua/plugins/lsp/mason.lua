@@ -1,13 +1,13 @@
 return {
     {
-        "williamboman/mason.nvim", -- installer for lsps
+        "mason-org/mason.nvim", -- installer for lsps
         event = "VeryLazy",
         opts = {
             ui = { border = "rounded" },
         },
     },
     {
-        "williamboman/mason-lspconfig.nvim",
+        "mason-org/mason-lspconfig.nvim",
         event = "VeryLazy",
         opts = {
             ensure_installed = {
