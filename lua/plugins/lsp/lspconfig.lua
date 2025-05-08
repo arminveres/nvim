@@ -9,11 +9,12 @@ local function init()
     -- enable snippet support
     capabilities.textDocument.completion.completionItem.snippetSupport = true
     -- update default nvim capabilities with those of cmp
-    capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+    -- capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
     capabilities.textDocument.foldingRange = {
-        dynamicRegistration = false,
+        dynamicRegistration = true,
         lineFoldingOnly = true,
     }
+    capabilities.textDocument.semanticTokens.multilineTokenSupport = true
 
     vim.lsp.config("*", { capabilities = capabilities, on_attach = on_attach })
 
@@ -29,6 +30,7 @@ end
 return {
     {
         "neovim/nvim-lspconfig", -- Collection of configurations for built-in LSP client
+        -- needs to be init, otherwise not ready to setup and lazy load
         init = init,
         -- allow lazyloading on these events, otherwise it does not load correctly
         event = { "BufReadPost", "BufNewFile" },
@@ -40,8 +42,6 @@ return {
         },
 
         dependencies = {
-            "williamboman/mason-lspconfig.nvim",
-            "hrsh7th/nvim-cmp",
             "RRethy/vim-illuminate",
             { "Decodetalkers/csharpls-extended-lsp.nvim", ft = "cs" },
         },

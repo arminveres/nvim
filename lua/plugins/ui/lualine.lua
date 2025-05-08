@@ -1,4 +1,5 @@
 local function get_active_lsps()
+    -- Plugin is already loaded, safe to run plugin-dependent code
     local msg = "no lsp"
     local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
     local clients = vim.lsp.get_clients()
@@ -92,8 +93,8 @@ local function lualine_setup()
                 },
                 {
                     "filename",
-                    path = 0,             -- 0: Just the filename, 1: Relative path, 2: Absolute path
-                    file_status = true,   -- Displays file status (readonly status, modified status)
+                    path = 0, -- 0: Just the filename, 1: Relative path, 2: Absolute path
+                    file_status = true, -- Displays file status (readonly status, modified status)
                     shorting_target = 40, -- Shortens path to leave 40 spaces in the window for other components.
                 },
             },
@@ -120,6 +121,5 @@ return {
     dependencies = {
         "Bekaboo/dropbar.nvim",
         "ellisonleao/gruvbox.nvim",
-        "neovim/nvim-lspconfig",
     },
 }

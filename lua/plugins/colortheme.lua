@@ -62,7 +62,7 @@ local color_overrides = {
 
 local gruvbox_options = {
     transparent_mode = false,
-    contrast = "hard",    -- can be "hard" or "soft"
+    contrast = "hard", -- can be "hard" or "soft"
     dim_inactive = false, -- dim inactive window
     -- overriding highlight groups
     palette_overrides = { dark0_hard = "#141414" },
@@ -131,8 +131,6 @@ end
 
 return { -- colorschemes TODO: just write my own colorscheme based on gruvbox...
     "ellisonleao/gruvbox.nvim",
-    lazy = false,
-    priority = 1001,
     keys = {
         {
             "<leader>ctt",
@@ -140,7 +138,7 @@ return { -- colorschemes TODO: just write my own colorscheme based on gruvbox...
             desc = "Toggle background transparency in gruvbox",
         },
     },
-    config = function()
+    init = function()
         load_transparency(false)
         require("gruvbox").setup(gruvbox_options)
         vim.cmd.colorscheme("gruvbox")
