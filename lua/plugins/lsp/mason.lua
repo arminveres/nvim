@@ -17,6 +17,8 @@ return {
                 "rust_analyzer",
                 "basedpyright",
             },
+            -- I am setting up my servers anyhow
+            automatic_enable = false,
         },
     },
     {
@@ -33,7 +35,7 @@ return {
             },
             automatic_installation = false,
             automatic_setup = true, -- Recommended, but optional
-            dependencies = { "nvimtools/none-ls.nvim" }
+            dependencies = { "nvimtools/none-ls.nvim" },
         },
     },
 }
