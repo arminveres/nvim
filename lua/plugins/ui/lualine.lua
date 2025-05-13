@@ -24,6 +24,19 @@ local function get_inactive_winbar()
     return string.format(" [%d] %s", vim.api.nvim_win_get_number(0), "%f")
 end
 
+--- @brief use gitsigns as a source, otherwise lualine creates it's own git processes, resulting in
+--- too manu open files for git.
+local function diff_source()
+    local gitsigns = vim.b.gitsigns_status_dict
+    if gitsigns then
+        return {
+            added = gitsigns.added,
+            modified = gitsigns.changed,
+            removed = gitsigns.removed,
+        }
+    end
+end
+
 --- @brief setups up all lualine related configurations
 local function lualine_setup()
     local my_theme = require("lualine.themes.powerline")
@@ -79,8 +92,8 @@ local function lualine_setup()
                 },
             },
             lualine_b = {
-                { "branch", icon = { "", color = { fg = "#f34f29" } } },
-                { "diff" },
+                { "b:gitsigns_head", icon = { "", color = { fg = "#f34f29" } } },
+                { "diff", source = diff_source },
                 { "diagnostics" },
             },
             lualine_c = {
