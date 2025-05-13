@@ -169,15 +169,15 @@ aucmd("LspAttach", {
         -- end
 
         -- NOTE: Format on save autocommand
-        if client.server_capabilities.documentFormattingProvider then
-            vim.api.nvim_create_autocmd({ "BufWrite" }, {
-                group = vim.api.nvim_create_augroup("FormatOnSave", { clear = true }),
-                callback = function()
-                    -- WARN: use false, otherwise not possible to save
-                    vim.lsp.buf.format({ async = false })
-                end,
-            })
-        end
+        -- if client.server_capabilities.documentFormattingProvider then
+        --     vim.api.nvim_create_autocmd({ "BufWrite" }, {
+        --         group = vim.api.nvim_create_augroup("FormatOnSave", { clear = true }),
+        --         callback = function()
+        --             -- WARN: use false, otherwise not possible to save
+        --             vim.lsp.buf.format({ async = false })
+        --         end,
+        --     })
+        -- end
 
         vim.lsp.log.set_format_func(vim.inspect)
 
