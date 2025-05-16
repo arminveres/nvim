@@ -1,5 +1,7 @@
 # nvim config
 
+[![Requires Neovim 0.11+](https://img.shields.io/badge/requires-nvim%200.7%2B-9cf?logo=neovim)](https://neovim.io/)
+
 ![image](https://github.com/arminveres/nvim/assets/45210978/b7a9d79d-b725-4011-ad9c-898a3b7179d2)
 
 ## Features
@@ -10,7 +12,6 @@
 
 ## Requirements
 
-- nvim >= 0.9
 - TeX distribution like `texlive`
 - `pandoc` for document conversions
 - `ripgrep` for faster and more modern grepping
