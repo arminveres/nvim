@@ -2,14 +2,14 @@ return {
     "folke/snacks.nvim",
     keys = {
         {
-            "<bslash>bdc",
+            ",bdc",
             function()
                 Snacks.bufdelete()
             end,
             desc = "[b]uffer [d]elete [c]urrent",
         },
         {
-            "<bslash>bdo",
+            ",bdo",
             function()
                 Snacks.bufdelete.other()
             end,

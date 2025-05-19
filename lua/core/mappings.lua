@@ -103,11 +103,11 @@ keymap("i", "<C-A>", "<ESC>A", opts)
 -- ================================================================================================
 -- CLIPBOARD
 -- ================================================================================================
-keymap("n", "<bslash>q", ":q<CR>", opts)
-keymap("n", "<bslash>Q", "<Cmd>qall!<CR>", opts) -- quickquit
-keymap("n", "<bslash>w", "<Cmd>w<CR>", opts) -- quick save
-keymap("n", "<bslash>W", "<Cmd>w!<CR>", opts) -- quick save
--- keymap("n", "<bslash>WQ", "<Cmd>wq!<CR>", opts) -- quick save
+keymap("n", ",q", ":q<CR>", opts)
+keymap("n", ",Q", "<Cmd>qall!<CR>", opts) -- quickquit
+keymap("n", ",w", "<Cmd>w<CR>", opts) -- quick save
+keymap("n", ",W", "<Cmd>w!<CR>", opts) -- quick save
+-- keymap("n", ",WQ", "<Cmd>wq!<CR>", opts) -- quick save
 
 -- Yank to clipboard
 keymap("v", "<leader>y", '"+y', opts)

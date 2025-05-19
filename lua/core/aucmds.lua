@@ -84,7 +84,7 @@ aucmd("LspAttach", {
         vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts)
         vim.keymap.set(
             "n",
-            "<bslash>bf",
+            ",bf",
             function() vim.lsp.buf.format({ async = true }) end,
             merge_desc(opts, "[b]uffer [f]ormat")
         )
