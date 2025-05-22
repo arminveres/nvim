@@ -67,9 +67,6 @@ keymap("n", "<leader>tmp", ":-tabmove<CR>", opts)
 keymap("n", "<leader>tmn", ":+tabmove<CR>", opts)
 
 -- Insert Mode --
--- Map kj to the escape key
-keymap("i", "kj", "<Esc>", opts)
-
 -- Visual Mode --
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
