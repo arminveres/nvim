@@ -72,18 +72,21 @@ if vim.fn.has("win32") == 1 then
 
     vim.opt.undodir = os.getenv("LOCALAPPDATA") .. "/Temp/nvim/undo//"
     vim.opt.backupdir = os.getenv("LOCALAPPDATA") .. "/Temp/nvim/backup//"
+
+    vim.opt.guifont = "JetBrainsMono Nerd Font Propo:h10:e-subpixelantialias"
 else
     vim.opt.shell = "/usr/bin/env zsh"
-    -- vim.opt.shellcmdflag = "-i"
+    vim.opt.shellcmdflag = "--login --interactive"
 
     vim.opt.undodir = os.getenv("XDG_CACHE_HOME") .. "/nvim/undo//"
     vim.opt.backupdir = os.getenv("XDG_CACHE_HOME") .. "/nvim/backup//"
+
+    vim.opt.guifont = "JetBrainsMono Nerd Font Propo:h10"
 end
 
 vim.g.netrw_keepdir = 0
 vim.opt.laststatus = 3
 
-vim.opt.guifont = "IosevkaTerm Nerd Font Propo:h10.5"
 vim.opt.linespace = 0 -- adjust for lineheight
 vim.opt.exrc = true
 
