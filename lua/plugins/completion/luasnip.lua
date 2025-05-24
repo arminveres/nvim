@@ -2,7 +2,7 @@ return {
     "L3MON4D3/LuaSnip",
     event = "VeryLazy",
     dependencies = {
-        "saadparwaiz1/cmp_luasnip",
+        -- "saadparwaiz1/cmp_luasnip",
         "rafamadriz/friendly-snippets",
     },
     keys = {
