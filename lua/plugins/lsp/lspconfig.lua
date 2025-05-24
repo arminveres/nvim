@@ -16,6 +16,8 @@ local function init()
     }
     capabilities.textDocument.semanticTokens.multilineTokenSupport = true
 
+    capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
+
     vim.lsp.config("*", { capabilities = capabilities, on_attach = on_attach })
 
     local lsp_servers = require("mason-lspconfig").get_installed_servers()

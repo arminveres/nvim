@@ -144,6 +144,7 @@ end
 
 return {
     "hrsh7th/nvim-cmp",
+    enabled = false,
     -- event = { "InsertEnter", "CmdlineEnter" },
     event = "VeryLazy",
     config = cmp_config,
