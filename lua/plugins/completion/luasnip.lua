@@ -56,17 +56,7 @@ return {
             },
         })
 
-        require("luasnip/loaders/from_vscode").lazy_load()
-
-        if vim.fn.has("win32") == 1 then -- Windows specific options
-            require("luasnip.loaders.from_vscode").lazy_load({
-                paths = { "~/AppData/Local/nvim/lua/user/snippets/vsc/" },
-            })
-        else
-            require("luasnip.loaders.from_vscode").lazy_load({
-                paths = { "~/.config/nvim/lua/user/snippets/vsc/" },
-            })
-        end
+        require("luasnip.loaders.from_vscode").lazy_load()
 
         require("snippets")
     end,
