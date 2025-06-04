@@ -5,15 +5,40 @@ local t = ls.text_node
 local c = ls.choice_node
 local p = require("luasnip.extras").partial
 
+-- TODO(aver):
+-- - one could implement a parameter parser and dynamically get the parameter names into the snippet.
+
 local snippets = {
     s("funcdesc", {
+        t({ "/// " }),
+        c(1, { t({ "@brief ", "" }), t({ " ", "" }) }),
+        i(1, "brief description"),
+        c(2, { t({ "/// @returns ", "" }), t({ "" }) }),
+    }),
+    s("doxstar", {
         t("/**"),
-        i(1),
-        c(1, { t("@brief ") }),
-        i(2),
-        c(2, { t("@returns ") }),
-        i(3),
-        t("*/"),
+        t({ "", " * " }),
+        i(1, "Description"),
+        t({ "", " * " }),
+        t({ "", " * @param " }),
+        i(2, "param_name"),
+        t({ " " }),
+        i(3, "param_description"),
+        t({ "", " * @return " }),
+        i(4, "return_description"),
+        t({ "", " */" }),
+    }),
+    s("doxtriple", {
+        t("/// "),
+        i(1, "Description"),
+        t({ "", "/// " }),
+        t({ "", "/// @param " }),
+        i(2, "param_name"),
+        t({ " " }),
+        i(3, "param_description"),
+        t({ "", "/// @return " }),
+        i(4, "return_description"),
+        t({ "", "///" }),
     }),
     s("diagign", {
         t("#pragma GCC diagnostic push", "\n"),
