@@ -76,7 +76,7 @@ if vim.fn.has("win32") == 1 then
     vim.opt.guifont = "JetBrainsMono Nerd Font Propo:h10:e-subpixelantialias"
 else
     vim.opt.shell = "/usr/bin/env zsh"
-    vim.opt.shellcmdflag = "--login --interactive"
+    vim.opt.shellcmdflag = "-c"
 
     vim.opt.undodir = os.getenv("XDG_CACHE_HOME") .. "/nvim/undo//"
     vim.opt.backupdir = os.getenv("XDG_CACHE_HOME") .. "/nvim/backup//"
