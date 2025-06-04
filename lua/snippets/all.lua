@@ -1,5 +1,4 @@
 local ls = require("luasnip")
-local utils = require("core.utils")
 local s = ls.snippet
 local t = ls.text_node
 local c = ls.choice_node
@@ -37,8 +36,7 @@ local snippets = {
         t("("),
         c(2, { t("AVE"), t("aver") }),
         t("): "),
-        p(os.date, "%d-%m-%Y"),
-        t(" "),
+        c(3, { p(os.date, "%d-%m-%Y"), t("") }),
     }),
 
     s("dmy", {
