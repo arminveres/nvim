@@ -1,7 +1,11 @@
 return {
     "saghen/blink.cmp",
     -- optional: provides snippets for the snippet source
-    dependencies = { "rafamadriz/friendly-snippets", "L3MON4D3/LuaSnip", version = "v2.*" },
+    dependencies = {
+        "rafamadriz/friendly-snippets",
+        "L3MON4D3/LuaSnip",
+    },
+    event = "InsertEnter",
 
     -- use a release tag to download pre-built binaries
     version = "1.*",
@@ -39,7 +43,11 @@ return {
         -- Default list of enabled providers defined so that you can extend it
         -- elsewhere in your config, without redefining it, due to `opts_extend`
         sources = {
-            default = { "lsp", "path", "snippets", "buffer" },
+            default = { "snippets", "lsp", "path", "buffer" },
+            providers = {
+                -- defaults to `{ 'buffer' }`
+                lsp = { fallbacks = {} },
+            },
         },
         snippets = { preset = "luasnip" },
 

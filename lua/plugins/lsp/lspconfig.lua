@@ -4,19 +4,20 @@ local function on_attach(client, bufnr)
 end
 
 -- @brief Sets up individual language servers
-local function init()
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    -- enable snippet support
-    capabilities.textDocument.completion.completionItem.snippetSupport = true
-    -- update default nvim capabilities with those of cmp
-    -- capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-    capabilities.textDocument.foldingRange = {
-        dynamicRegistration = true,
-        lineFoldingOnly = true,
+local function setup_lsp()
+    local capabilities = {
+        -- enable snippet support
+        textDocument = {
+            -- completion.completionItem.snippetSupport = true,
+            foldingRange = {
+                dynamicRegistration = true,
+                lineFoldingOnly = true,
+            },
+            semanticTokens = { multilineTokenSupport = true },
+        },
     }
-    capabilities.textDocument.semanticTokens.multilineTokenSupport = true
 
-    capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
+    capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
     vim.lsp.config("*", { capabilities = capabilities, on_attach = on_attach })
 
@@ -30,22 +31,19 @@ local function init()
 end
 
 return {
-    {
-        "neovim/nvim-lspconfig", -- Collection of configurations for built-in LSP client
-        -- needs to be init, otherwise not ready to setup and lazy load
-        init = init,
-        -- allow lazyloading on these events, otherwise it does not load correctly
-        event = { "BufReadPost", "BufNewFile" },
-        cmd = { "LspInfo", "LspInstall", "LspUninstall" },
-        keys = {
-            { "<Leader>li", vim.cmd.LspInfo, desc = "Open [l]sp [i]nfo" },
-            { "<Leader>lr", vim.cmd.LspRestart, desc = "[l]sp [r]estart" },
-            { "<Leader>ll", vim.cmd.LspLog, desc = "Open [l]sp [l]og" },
-        },
+    "neovim/nvim-lspconfig", -- Collection of configurations for built-in LSP client
+    config = setup_lsp,
+    -- allow lazyloading on these events, otherwise it does not load correctly
+    event = { "BufReadPost", "BufNewFile", "BufEnter" },
+    cmd = { "LspInfo", "LspInstall", "LspUninstall" },
+    keys = {
+        { "<Leader>li", vim.cmd.LspInfo,    desc = "Open [l]sp [i]nfo" },
+        { "<Leader>lr", vim.cmd.LspRestart, desc = "[l]sp [r]estart" },
+        { "<Leader>ll", vim.cmd.LspLog,     desc = "Open [l]sp [l]og" },
+    },
 
-        dependencies = {
-            "RRethy/vim-illuminate",
-            { "Decodetalkers/csharpls-extended-lsp.nvim", ft = "cs" },
-        },
+    dependencies = {
+        "RRethy/vim-illuminate",
+        { "Decodetalkers/csharpls-extended-lsp.nvim", ft = "cs" },
     },
 }
