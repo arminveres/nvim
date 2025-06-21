@@ -1,6 +1,6 @@
 -- Source:
 -- https://github.com/kevinhwang91/nvim-bqf/tree/654c904d5ad9dc4846445056086168e25bd8ba2d?tab=readme-ov-file#customize-quickfix-window-easter-egg
-function _G.qftf(info)
+--[[ function _G.qftf(info)
     local items
     local ret = {}
     -- The name of item in list is based on the directory of quickfix window.
@@ -51,16 +51,23 @@ function _G.qftf(info)
 end
 
 vim.o.qftf = "{info -> v:lua._G.qftf(info)}"
+]]
 
 return {
-    "kevinhwang91/nvim-bqf",
-    ft = "qf",
-    opts = {
-        auto_resize_height = true,
-        filter = {
-            fzf = {
-                extra_opts = { "--bind", "ctrl-o:toggle-all", "--delimiter", "│" },
-            },
+    {
+        "kevinhwang91/nvim-bqf",
+        ft = "qf",
+        opts = {
+            auto_resize_height = true,
+            -- filter = { fzf = { extra_opts = { "--bind", "ctrl-o:toggle-all", "--delimiter", "│" }, },
         },
+    },
+    {
+        "stevearc/quicker.nvim",
+        -- event = "FileType qf",
+        ft = "qf",
+        ---@module "quicker"
+        ---@type quicker.SetupOptions
+        opts = {},
     },
 }
