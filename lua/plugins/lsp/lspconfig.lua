@@ -34,8 +34,7 @@ return {
     "neovim/nvim-lspconfig", -- Collection of configurations for built-in LSP client
     config = setup_lsp,
     -- allow lazyloading on these events, otherwise it does not load correctly
-    event = { "BufReadPost", "BufNewFile", "BufEnter" },
-    cmd = { "LspInfo", "LspInstall", "LspUninstall" },
+    event = "VeryLazy",
     keys = {
         { "<Leader>li", vim.cmd.LspInfo,    desc = "Open [l]sp [i]nfo" },
         { "<Leader>lr", vim.cmd.LspRestart, desc = "[l]sp [r]estart" },

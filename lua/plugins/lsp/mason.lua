@@ -1,10 +1,11 @@
 return {
     {
         "mason-org/mason.nvim", -- installer for lsps
-        event = "VeryLazy",
-        opts = {
-            ui = { border = "rounded" },
-        },
+        -- event = "VeryLazy",
+        opts = { ui = { border = "rounded" } },
+        cmd = "Mason",
+        keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
+        build = ":MasonUpdate",
     },
     {
         "mason-org/mason-lspconfig.nvim",
