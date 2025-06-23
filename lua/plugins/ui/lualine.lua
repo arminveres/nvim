@@ -106,12 +106,19 @@ local function lualine_setup()
                 },
                 {
                     "filename",
-                    path = 0, -- 0: Just the filename, 1: Relative path, 2: Absolute path
-                    file_status = true, -- Displays file status (readonly status, modified status)
+                    path = 0,             -- 0: Just the filename, 1: Relative path, 2: Absolute path
+                    file_status = true,   -- Displays file status (readonly status, modified status)
                     shorting_target = 40, -- Shortens path to leave 40 spaces in the window for other components.
                 },
             },
             lualine_x = {
+                {
+                    function() return require("noice").api.status.command.get() end,
+                    cond = function()
+                        return package.loaded["noice"] and require("noice").api.status.command.has()
+                    end,
+                    color = function() return { fg = Snacks.util.color("Statement") } end,
+                },
                 {
                     icon = "",
                     get_active_lsps,
@@ -130,6 +137,16 @@ end
 
 return {
     "nvim-lualine/lualine.nvim", -- Fancier statusline
+    init = function()
+        vim.g.lualine_laststatus = vim.o.laststatus
+        if vim.fn.argc(-1) > 0 then
+            -- set an empty statusline till lualine loads
+            vim.o.statusline = " "
+        else
+            -- hide the statusline on the starter page
+            vim.o.laststatus = 0
+        end
+    end,
     config = lualine_setup,
     dependencies = {
         "Bekaboo/dropbar.nvim",
