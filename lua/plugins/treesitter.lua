@@ -43,7 +43,6 @@ local ts_langs = {
     "query",
     "regex",
     "requirements",
-    "ron",
     "rust",
     "scss",
     "sql",
@@ -72,10 +71,10 @@ local ts_opts = {
             -- need to leave the parser.
             if lang == "latex" then return true end
         end,
-        additional_vim_regex_highlighting = { "markdown", },
+        additional_vim_regex_highlighting = { "markdown" },
     },
     incremental_selection = {
-        enable = true,
+        enable = false,
         keymaps = {
             init_selection = "<c-space>",
             node_incremental = "<c-space>",
@@ -167,13 +166,13 @@ local ts_opts = {
             enable = true,
             swap_next = {
                 ["<leader>na"] = "@parameter.inner", -- swap parameters/argument with next
-                ["<leader>n:"] = "@property.outer", -- swap object property with next
-                ["<leader>nm"] = "@function.outer", -- swap function with next
+                ["<leader>n:"] = "@property.outer",  -- swap object property with next
+                ["<leader>nm"] = "@function.outer",  -- swap function with next
             },
             swap_previous = {
                 ["<leader>pa"] = "@parameter.inner", -- swap parameters/argument with prev
-                ["<leader>p:"] = "@property.outer", -- swap object property with prev
-                ["<leader>pm"] = "@function.outer", -- swap function with previous
+                ["<leader>p:"] = "@property.outer",  -- swap object property with prev
+                ["<leader>pm"] = "@function.outer",  -- swap function with previous
             },
         },
         move = {
@@ -222,17 +221,14 @@ local ts_opts = {
             },
         },
     },
-    refactor = {
+    --[[ refactor = {
         highlight_definitions = {
-            enable = true,
+            enable = false,
             -- Set to false if you have an `updatetime` of ~100.
             clear_on_cursor_move = true,
         },
         highlight_current_scope = { enable = false }, -- I use the indent plugin
-        smart_rename = {
-            enable = false,
-            keymaps = { smart_rename = "grr" },
-        },
+        smart_rename = { enable = false, keymaps = { smart_rename = "grr" } },
         navigation = {
             -- TODO(aver): 17-04-2025 correct the keybinds and don't overwrite the default lsps
             enable = false,
@@ -244,18 +240,21 @@ local ts_opts = {
                 goto_previous_usage = "<a-#>",
             },
         },
-    },
+    } ]]
 }
 
 return {
+    enabled = true,
     -- Highlight, edit, and navigate code using a fast incremental parsing library
     "nvim-treesitter/nvim-treesitter",
+    -- TODO(AVE): 27-06-2025 migrate to main branch once textobjects is ready: https://github.com/nvim-treesitter/nvim-treesitter-textobjects/issues/772
+    -- branch = "main",
     event = "VeryLazy",
     build = ":TSUpdate",
     dependencies = {
         "nvim-treesitter/nvim-treesitter-textobjects",
-        "nvim-treesitter/nvim-treesitter-refactor",
-        "nvim-treesitter/nvim-treesitter-context",
+        -- "nvim-treesitter/nvim-treesitter-refactor",
+        -- "nvim-treesitter/nvim-treesitter-context",
         "tree-sitter-grammars/tree-sitter-hyprlang",
     },
     config = function()
