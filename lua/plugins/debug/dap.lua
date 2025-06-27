@@ -7,21 +7,22 @@
 -- kickstart.nvim and not kitchen-sink.nvim ;)
 
 return {
-    enabled = false,
+    enabled = true,
     -- NOTE: Yes, you can install new plugins here!
     "mfussenegger/nvim-dap",
 
     -- NOTE: And you can specify dependencies as well
     dependencies = {
         -- Creates a beautiful debugger UI
-        "rcarriga/nvim-dap-ui",
-
-        -- Installs the debug adapters for you
+        {
+            "rcarriga/nvim-dap-ui",
+            dependencies = {
+                "nvim-neotest/nvim-nio",
+            },
+        },
         "williamboman/mason.nvim",
         "jay-babu/mason-nvim-dap.nvim",
-
-        -- Add your own debuggers here
-        -- "leoluz/nvim-dap-go",
+        "theHamsta/nvim-dap-virtual-text",
     },
     config = function()
         local dap = require("dap")
@@ -45,19 +46,22 @@ return {
         })
 
         -- Basic debugging keymaps, feel free to change to your liking!
-        vim.keymap.set("n", "<F5>", dap.continue, { desc = "Debug: Start/Continue" })
-        vim.keymap.set("n", "<F1>", dap.step_into, { desc = "Debug: Step Into" })
-        vim.keymap.set("n", "<F2>", dap.step_over, { desc = "Debug: Step Over" })
-        vim.keymap.set("n", "<F3>", dap.step_out, { desc = "Debug: Step Out" })
+        vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "Debug: Start/Continue" })
+        vim.keymap.set("n", "<leader>ds", dap.step_into, { desc = "Debug: Step Into" })
+        vim.keymap.set("n", "<leader>dn", dap.step_over, { desc = "Debug: Step Over" })
+        vim.keymap.set("n", "<leader>df", dap.step_out, { desc = "Debug: Step Out" })
         vim.keymap.set(
             "n",
-            "<leader>b",
+            "<leader>db",
             dap.toggle_breakpoint,
             { desc = "Debug: Toggle Breakpoint" }
         )
-        vim.keymap.set("n", "<leader>B", function()
-            dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
-        end, { desc = "Debug: Set Breakpoint" })
+        vim.keymap.set(
+            "n",
+            "<leader>dB",
+            function() dap.set_breakpoint(vim.fn.input("Breakpoint condition: ")) end,
+            { desc = "Debug: Set Breakpoint" }
+        )
 
         -- Dap UI setup
         -- For more information, see |:help nvim-dap-ui|
@@ -90,5 +94,61 @@ return {
 
         -- Install golang specific config
         -- require("dap-go").setup()
+
+        -- See
+        -- https://sourceware.org/gdb/current/onlinedocs/gdb.html/Interpreters.html
+        -- https://sourceware.org/gdb/current/onlinedocs/gdb.html/Debugger-Adapter-Protocol.html
+        -- dap.adapters.gdb = {
+        --     id = "gdb",
+        --     type = "executable",
+        --     command = "gdb",
+        --     args = { "--quiet", "--interpreter=dap" },
+        -- }
+        -- dap.configurations.cpp = {
+        --     {
+        --         name = "Run executable (GDB)",
+        --         type = "gdb",
+        --         request = "launch",
+        --         -- This requires special handling of 'run_last', see
+        --         -- https://github.com/mfussenegger/nvim-dap/issues/1025#issuecomment-1695852355
+        --         program = function()
+        --             local path = vim.fn.input({
+        --                 prompt = "Path to executable: ",
+        --                 default = vim.fn.getcwd() .. "/",
+        --                 completion = "file",
+        --             })
+
+        --             return (path and path ~= "") and path or dap.ABORT
+        --         end,
+        --     },
+        --     {
+        --         name = "Run executable with arguments (GDB)",
+        --         type = "gdb",
+        --         request = "launch",
+        --         -- This requires special handling of 'run_last', see
+        --         -- https://github.com/mfussenegger/nvim-dap/issues/1025#issuecomment-1695852355
+        --         program = function()
+        --             local path = vim.fn.input({
+        --                 prompt = "Path to executable: ",
+        --                 default = vim.fn.getcwd() .. "/",
+        --                 completion = "file",
+        --             })
+
+        --             return (path and path ~= "") and path or dap.ABORT
+        --         end,
+        --         args = function()
+        --             local args_str = vim.fn.input({
+        --                 prompt = "Arguments: ",
+        --             })
+        --             return vim.split(args_str, " +")
+        --         end,
+        --     },
+        --     {
+        --         name = "Attach to process (GDB)",
+        --         type = "gdb",
+        --         request = "attach",
+        --         processId = require("dap.utils").pick_process,
+        --     },
+        -- }
     end,
 }
