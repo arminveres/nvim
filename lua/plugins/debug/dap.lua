@@ -1,16 +1,115 @@
--- debug.lua
---
--- Shows how to use the DAP plugin to debug your code.
---
--- Primarily focused on configuring the debugger for Go, but can
--- be extended to other languages as well. That's why it's called
--- kickstart.nvim and not kitchen-sink.nvim ;)
+-- Reference:
+-- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/extras/dap/core.lua
+
+---@param config {type?:string, args?:string[]|fun():string[]?}
+local function get_args(config)
+    local args = type(config.args) == "function" and (config.args() or {}) or config.args or {} --[[@as string[] | string ]]
+    local args_str = type(args) == "table" and table.concat(args, " ") or args --[[@as string]]
+
+    config = vim.deepcopy(config)
+    ---@cast args string[]
+    config.args = function()
+        local new_args = vim.fn.expand(vim.fn.input("Run with args: ", args_str)) --[[@as string]]
+        if config.type and config.type == "java" then
+            ---@diagnostic disable-next-line: return-type-mismatch
+            return new_args
+        end
+        return require("dap.utils").splitstr(new_args)
+    end
+    return config
+end
 
 return {
-    enabled = true,
     -- NOTE: Yes, you can install new plugins here!
     "mfussenegger/nvim-dap",
-
+    -- event = "VeryLazy",
+    keys = {
+        {
+            "<leader>dB",
+            function() require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: ")) end,
+            desc = "Breakpoint Condition",
+        },
+        {
+            "<leader>db",
+            function() require("dap").toggle_breakpoint() end,
+            desc = "Toggle Breakpoint",
+        },
+        {
+            "<leader>dc",
+            function() require("dap").continue() end,
+            desc = "Run/Continue",
+        },
+        {
+            "<leader>da",
+            function() require("dap").continue({ before = get_args }) end,
+            desc = "Run with Args",
+        },
+        {
+            "<leader>dC",
+            function() require("dap").run_to_cursor() end,
+            desc = "Run to Cursor",
+        },
+        {
+            "<leader>dg",
+            function() require("dap").goto_() end,
+            desc = "Go to Line (No Execute)",
+        },
+        {
+            "<leader>di",
+            function() require("dap").step_into() end,
+            desc = "Step Into",
+        },
+        {
+            "<leader>dj",
+            function() require("dap").down() end,
+            desc = "Down",
+        },
+        {
+            "<leader>dk",
+            function() require("dap").up() end,
+            desc = "Up",
+        },
+        {
+            "<leader>dl",
+            function() require("dap").run_last() end,
+            desc = "Run Last",
+        },
+        {
+            "<leader>do",
+            function() require("dap").step_out() end,
+            desc = "Step Out",
+        },
+        {
+            "<leader>dO",
+            function() require("dap").step_over() end,
+            desc = "Step Over",
+        },
+        {
+            "<leader>dP",
+            function() require("dap").pause() end,
+            desc = "Pause",
+        },
+        {
+            "<leader>dr",
+            function() require("dap").repl.toggle() end,
+            desc = "Toggle REPL",
+        },
+        {
+            "<leader>ds",
+            function() require("dap").session() end,
+            desc = "Session",
+        },
+        {
+            "<leader>dt",
+            function() require("dap").terminate() end,
+            desc = "Terminate",
+        },
+        {
+            "<leader>dw",
+            function() require("dap.ui.widgets").hover() end,
+            desc = "Widgets",
+        },
+    },
     -- NOTE: And you can specify dependencies as well
     dependencies = {
         -- Creates a beautiful debugger UI
@@ -44,24 +143,6 @@ return {
                 -- "delve",
             },
         })
-
-        -- Basic debugging keymaps, feel free to change to your liking!
-        vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "Debug: Start/Continue" })
-        vim.keymap.set("n", "<leader>ds", dap.step_into, { desc = "Debug: Step Into" })
-        vim.keymap.set("n", "<leader>dn", dap.step_over, { desc = "Debug: Step Over" })
-        vim.keymap.set("n", "<leader>df", dap.step_out, { desc = "Debug: Step Out" })
-        vim.keymap.set(
-            "n",
-            "<leader>db",
-            dap.toggle_breakpoint,
-            { desc = "Debug: Toggle Breakpoint" }
-        )
-        vim.keymap.set(
-            "n",
-            "<leader>dB",
-            function() dap.set_breakpoint(vim.fn.input("Breakpoint condition: ")) end,
-            { desc = "Debug: Set Breakpoint" }
-        )
 
         -- Dap UI setup
         -- For more information, see |:help nvim-dap-ui|
