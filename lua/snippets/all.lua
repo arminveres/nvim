@@ -32,11 +32,24 @@ local snippets = {
     s("todo", {
         p(get_comment_string),
         p(conditional_space),
-        c(1, { t("TODO"), t("NOTE"), t("WARN"), t("FIXME"), t("BUG"), t("MISC") }),
+        c(1, {
+            t("TODO"),
+            t("NOTE"),
+            t("WARN"),
+            t("BUG"),
+            -- t("FIXME"),
+            -- t("MISC")
+        }),
         t("("),
         c(2, { t("AVE"), t("aver") }),
         t("): "),
-        c(3, { p(os.date, "%d-%m-%Y"), t("") }),
+        c(3, {
+            p(function()
+                -- add space after the date
+                return os.date("%d-%m-%Y") .. " "
+            end),
+            t(""),
+        }),
     }),
 
     s("dmy", {
