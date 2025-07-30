@@ -116,7 +116,7 @@ keymap("n", "<leader>P", '"+P', opts)
 --[[ keymap('v', '<leader>p', '"+p', opts) ]]
 --[[ keymap('v', '<leader>P', '"+P', opts) ]]
 -- delete into nirvana
-keymap("n", "<leader>d", '"_d', opts)
+-- keymap("n", "<leader>d", '"_d', opts)
 keymap("v", "<leader>d", '"_d', opts)
 -- According to thePrimeagen, the greatest map ever
 keymap("x", "<leader>p", '"_dP', opts)
