@@ -2,7 +2,7 @@ local aucmd = vim.api.nvim_create_autocmd
 local create_augroup = vim.api.nvim_create_augroup
 local merge_desc = require("core.utils").merge_desc
 
-aucmd({ "TextYankPost" }, {
+aucmd("TextYankPost", {
     callback = function() vim.highlight.on_yank() end,
 })
 
@@ -18,17 +18,19 @@ aucmd("BufWritePre", {
     end,
 })
 
-aucmd("BufEnter", {
+aucmd({ "BufEnter", LspAttach }, {
     group = create_augroup("CustomRooter", { clear = true }),
     callback = function(ev)
-        -- TODO(aver): 17/03/2025 add lsp rooting, remove from lualine callback
         -- vim.notify(vim.inspect(ev))
         local patterns = {
+            "compile_commands.json",
+            ".clangd",
+            ".clang-format",
+            ".clang-tidy",
             ".git",
             "Makefile",
             "README.md",
             "readme.md",
-            "compile_commands.json",
             -- "CMakeLists.txt"
         }
         local root_dir = nil
@@ -37,13 +39,18 @@ aucmd("BufEnter", {
 
         -- if next(clients) ~= nil then
         for _, client in ipairs(clients) do
-            ---@diagnostic disable-next-line: undefined-field
-            local filetypes = client.config.filetypes
-            -- look for first root dir of a client that matches the current buffer and its
-            -- file type
-            if filetypes == buf_ft and vim.fn.index(filetypes, buf_ft) ~= -1 then
-                root_dir = client.config.root_dir
-                break
+            if client.name ~= "null-ls" then
+                ---@diagnostic disable-next-line: undefined-field
+                local filetypes = client.config.filetypes
+                -- look for first root dir of a client that matches the current buffer and its
+                -- file type
+                -- if filetypes == buf_ft and vim.fn.index(filetypes, buf_ft) ~= -1 then
+                if vim.fn.index(filetypes, buf_ft) ~= -1 then
+                    root_dir = client.config.root_dir
+                    -- vim.notify("lsp: " .. vim.inspect(client), vim.log.levels.DEBUG)
+                    -- vim.notify("root dir lsp: " .. root_dir, vim.log.levels.DEBUG)
+                    break
+                end
             end
         end
         -- end
