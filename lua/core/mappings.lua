@@ -100,10 +100,10 @@ keymap("i", "<C-A>", "<ESC>A", opts)
 -- ================================================================================================
 -- CLIPBOARD
 -- ================================================================================================
-keymap("n", ",q", ":q<CR>", opts)
-keymap("n", ",Q", "<Cmd>qall!<CR>", opts) -- quickquit
-keymap("n", ",w", "<Cmd>w<CR>", opts) -- quick save
-keymap("n", ",W", "<Cmd>w!<CR>", opts) -- quick save
+keymap("n", "<leader>q", ":q<CR>", opts)
+keymap("n", "<leader>Q", "<Cmd>qall!<CR>", opts) -- quickquit
+keymap("n", "<leader>w", "<Cmd>w<CR>", opts) -- quick save
+keymap("n", "<leader>W", "<Cmd>w!<CR>", opts) -- quick save
 -- keymap("n", ",WQ", "<Cmd>wq!<CR>", opts) -- quick save
 
 -- Yank to clipboard
