@@ -255,7 +255,6 @@ return {
         "nvim-treesitter/nvim-treesitter-textobjects",
         -- "nvim-treesitter/nvim-treesitter-refactor",
         -- "nvim-treesitter/nvim-treesitter-context",
-        "tree-sitter-grammars/tree-sitter-hyprlang",
     },
     config = function()
         require("nvim-treesitter.configs").setup(ts_opts)
@@ -273,9 +272,6 @@ return {
         vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T_expr, { expr = true })
 
         vim.filetype.add({
-            pattern = {
-                [".*/hypr/.*%.conf"] = "hyprlang",
-            },
             extension = {
                 xaml = "xml", -- filetype for C# Window configurations
                 cl = "c",
