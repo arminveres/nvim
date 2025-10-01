@@ -16,13 +16,14 @@ M.command_template = {
     "--header-insertion-decorators",
     "--all-scopes-completion",
     "--pch-storage=memory",
+    "--query-driver=**",
 }
 
 M.server_opts = {
     cmd = M.command_template,
     root_markers = {
-        "compile_commands.json",
         ".clangd",
+        "compile_commands.json",
         ".clang-tidy",
         ".clang-format",
         "compile_flags.txt",
