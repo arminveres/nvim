@@ -18,13 +18,12 @@ aucmd("BufWritePre", {
     end,
 })
 
-aucmd({ "BufEnter", LspAttach }, {
+aucmd({ "BufEnter", "LspAttach" }, {
     group = create_augroup("CustomRooter", { clear = true }),
     callback = function(ev)
-        -- vim.notify(vim.inspect(ev))
         local patterns = {
-            "compile_commands.json",
             ".clangd",
+            "compile_commands.json",
             ".clang-format",
             ".clang-tidy",
             ".git",
@@ -33,33 +32,32 @@ aucmd({ "BufEnter", LspAttach }, {
             "readme.md",
             -- "CMakeLists.txt"
         }
+        local ignored_lsps = {
+            "null-ls",
+        }
         local root_dir = nil
         local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = ev.buf })
         local clients = vim.lsp.get_clients({ bufnr = ev.buf })
 
-        -- if next(clients) ~= nil then
         for _, client in ipairs(clients) do
-            if client.name ~= "null-ls" then
+            if vim.fn.index(ignored_lsps, client.name) == -1 then -- only if not found
                 ---@diagnostic disable-next-line: undefined-field
-                local filetypes = client.config.filetypes
+                local filetypes = client.config.filetypes or {}
                 -- look for first root dir of a client that matches the current buffer and its
                 -- file type
-                -- if filetypes == buf_ft and vim.fn.index(filetypes, buf_ft) ~= -1 then
                 if vim.fn.index(filetypes, buf_ft) ~= -1 then
                     root_dir = client.config.root_dir
-                    -- vim.notify("lsp: " .. vim.inspect(client), vim.log.levels.DEBUG)
-                    -- vim.notify("root dir lsp: " .. root_dir, vim.log.levels.DEBUG)
                     break
                 end
             end
         end
-        -- end
 
         -- try to get a root dir by a marker
         if not root_dir then root_dir = vim.fs.root(ev.buf, patterns) end
         -- early return on failure or no change
         if not root_dir then return end
         -- TODO(aver): 27-03-2025 try to find a cleaner call to this
+        ---@diagnostic disable-next-line: param-type-mismatch
         local pwd = vim.fs.normalize(vim.uv.cwd())
         -- don't update on same dir
         if pwd == root_dir then return end
