@@ -22,8 +22,8 @@ M.command_template = {
 M.server_opts = {
     cmd = M.command_template,
     root_markers = {
-        ".clangd",
         "compile_commands.json",
+        ".clangd",
         ".clang-tidy",
         ".clang-format",
         "compile_flags.txt",
