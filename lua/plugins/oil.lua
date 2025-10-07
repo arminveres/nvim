@@ -7,6 +7,11 @@ return {
             function() require("oil").toggle_float() end,
             desc = "Open parent directory",
         },
+        {
+            "<leader>E",
+            "<cmd>Oil<cr>",
+            desc = "Open parent directory",
+        },
     },
     opts = {
         default_file_explorer = true,
