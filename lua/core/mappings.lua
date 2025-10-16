@@ -128,7 +128,3 @@ for i = 1, 6 do
     local rhs = i .. "<C-W>w"
     keymap("n", lhs, rhs, { desc = "Move to Window " .. i })
 end
-
-keymap("n", "<leader>td", function()
-    vim.cmd("TodoTelescope theme=dropdown layout_config={width=0.5}")
-end, merge_desc(opts, "Show all TODOs in project."))

@@ -15,7 +15,6 @@ return {
                 "lua_ls",
                 "clangd",
                 "bashls",
-                "rust_analyzer",
                 "basedpyright",
             },
             -- I am setting up my servers anyhow
