@@ -27,6 +27,7 @@ M.server_opts = {
         ".clang-tidy",
         ".clang-format",
         "compile_flags.txt",
+        "Makefile",
         "configure.ac",
         ".git",
     },
