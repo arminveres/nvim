@@ -1,7 +1,7 @@
 return {
     "folke/snacks.nvim",
-    ---@type snacks.picker.Config
     opts = {
+        ---@type snacks.picker.Config
         picker = { layout = { preset = "vertical" } },
     },
     keys = {
