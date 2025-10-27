@@ -15,16 +15,19 @@ return {
     },
     opts = {
         default_file_explorer = true,
-        float = { max_width = 120, max_height = 40 },
+        float = {
+            max_width = 120,
+            max_height = 40,
+            border = "rounded",
+        },
         columns = {
             "icon",
             "permissions",
             "size",
             "mtime",
         },
-        view_options = {
-            show_hidden = true,
-        },
+        view_options = { show_hidden = true },
+        confirmation = { border = "rounded" },
     },
     dependencies = { "nvim-tree/nvim-web-devicons" },
 }
