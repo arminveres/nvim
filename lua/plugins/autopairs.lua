@@ -5,11 +5,11 @@ return {
         -- local Rule = require("nvim-autopairs.rule")
         -- npairs.add_rule(Rule("<", ">")) -- finally add a tag rule
         fast_wrap = {
-            map = "<M-e>",
+            map = "<C-e>",
             chars = { "{", "[", "(", '"', "'", "<" },
             pattern = [=[[%'%"%>%]%)%}%;%,]]=],
         },
         check_ts = true,
-        map_cr = false,
+        map_cr = true,
     },
 }
