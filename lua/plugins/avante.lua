@@ -1,4 +1,5 @@
 return {
+    enabled = true,
     "yetone/avante.nvim",
     build = vim.fn.has("win32") ~= 0
         and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
@@ -9,6 +10,8 @@ return {
     ---@type avante.Config
     opts = {
         provider = "copilot",
+        auto_suggestions_provider = "copilot",
+        behaviour = { auto_approve_tool_permissions = false },
     },
     dependencies = {
         "nvim-lua/plenary.nvim",
@@ -18,24 +21,10 @@ return {
         "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
         {
             "zbirenbaum/copilot.lua",  -- for providers='copilot'
-            opts = {},
-        },
-        {
-            enabled = false,
-            -- support for image pasting
-            "HakonHarnes/img-clip.nvim",
-            event = "VeryLazy",
             opts = {
-                -- recommended settings
-                default = {
-                    embed_image_as_base64 = false,
-                    prompt_for_file_name = false,
-                    drag_and_drop = {
-                        insert_mode = true,
-                    },
-                    -- required for Windows users
-                    use_absolute_path = true,
-                },
+                -- copilot_node_command = vim.fn.expand("$HOME")
+                --     .. "/.config/nvm/versions/node/v24.8.0/bin/node", -- Node.js version must be > 22
+                -- copilot_model = "claude-sonnet-4.5",
             },
         },
         {

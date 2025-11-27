@@ -36,9 +36,9 @@ return {
     -- Allow lazyloading on these events, otherwise it does not load correctly
     event = "VeryLazy",
     keys = {
-        { "<Leader>li", vim.cmd.LspInfo,    desc = "Open [l]sp [i]nfo" },
+        { "<Leader>li", vim.cmd.LspInfo, desc = "Open [l]sp [i]nfo" },
         { "<Leader>lr", vim.cmd.LspRestart, desc = "[l]sp [r]estart" },
-        { "<Leader>ll", vim.cmd.LspLog,     desc = "Open [l]sp [l]og" },
+        { "<Leader>ll", vim.cmd.LspLog, desc = "Open [l]sp [l]og" },
     },
 
     dependencies = {
