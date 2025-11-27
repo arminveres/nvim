@@ -28,6 +28,9 @@ return {
         },
         view_options = { show_hidden = true },
         confirmation = { border = "rounded" },
+        progress = { border = "rounded" },
+        ssh = { border = "rounded" },
+        keymaps_help = { border = "rounded" },
     },
     dependencies = { "nvim-tree/nvim-web-devicons" },
 }
