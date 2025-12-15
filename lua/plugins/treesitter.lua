@@ -3,7 +3,6 @@ local ts_langs = {
     "bash",
     "c",
     "cmake",
-    "toml",
     "comment", -- handy for todo items, hyprlinks
     "cpp",
     "cuda",
@@ -42,6 +41,8 @@ local ts_langs = {
     "rust",
     "scss",
     "sql",
+    "tmux",
+    "toml",
     "typescript",
     "vim",
     "vimdoc",
@@ -66,6 +67,7 @@ local ts_opts = {
             -- we specifically disable highlighting, but as we need the parser for the folds, we
             -- need to leave the parser.
             if lang == "latex" then return true end
+            if lang == "tmux" then return true end
         end,
         additional_vim_regex_highlighting = { "markdown" },
     },
