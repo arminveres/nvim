@@ -1,10 +1,6 @@
 return {
     "saghen/blink.cmp",
     -- optional: provides snippets for the snippet source
-    dependencies = {
-        "rafamadriz/friendly-snippets",
-        "L3MON4D3/LuaSnip",
-    },
     event = "InsertEnter",
 
     -- use a release tag to download pre-built binaries
@@ -47,13 +43,12 @@ return {
         -- Default list of enabled providers defined so that you can extend it
         -- elsewhere in your config, without redefining it, due to `opts_extend`
         sources = {
-            default = { "snippets", "lsp", "path", "buffer" },
+            default = { "lsp", "path", "buffer" },
             providers = {
                 -- defaults to `{ 'buffer' }`
                 lsp = { fallbacks = {} },
             },
         },
-        snippets = { preset = "luasnip" },
 
         -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
         -- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,

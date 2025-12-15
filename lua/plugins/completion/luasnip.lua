@@ -1,10 +1,7 @@
+-- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#config-options
 return {
     "L3MON4D3/LuaSnip",
     event = "VeryLazy",
-    dependencies = {
-        -- "saadparwaiz1/cmp_luasnip",
-        "rafamadriz/friendly-snippets",
-    },
     keys = {
         {
             "<C-k>",
@@ -18,28 +15,18 @@ return {
         {
             "<C-j>",
             function()
-                if require("luasnip").jumpable(-1) then
-                    require("luasnip").jump(-1)
-                end
+                if require("luasnip").jumpable(-1) then require("luasnip").jump(-1) end
             end,
             mode = { "i", "s" },
         },
         {
             "<C-l>",
             function()
-                if require("luasnip").choice_active() then
-                    require("luasnip").change_choice(1)
-                end
+                if require("luasnip").choice_active() then require("luasnip").change_choice(1) end
             end,
             mode = "i",
         },
-        {
-            "<C-u>",
-            function()
-                require("luasnip.extras.select_choice")
-            end,
-            mode = "i",
-        },
+        { "<C-u>", function() require("luasnip.extras.select_choice") end, mode = "i" },
     },
     config = function()
         local types = require("luasnip.util.types")
@@ -49,15 +36,12 @@ return {
             updateevents = "TextChanged,TextChangedI",
             ext_opts = {
                 [types.choiceNode] = {
-                    active = {
-                        virt_text = { { " <- Current Choice", "NonTest" } },
-                    },
+                    active = { virt_text = { { " <- Current Choice", "NonTest" } } },
                 },
             },
         })
 
-        require("luasnip.loaders.from_vscode").lazy_load()
-
+        -- require("luasnip.loaders.from_vscode").lazy_load()
         require("snippets")
     end,
 }
