@@ -1,6 +1,5 @@
 return {
-    -- TODO(aver): add mappings to use this
-    -- FIXME(aver): or alternatively fix code-action insertion
+    -- BUG: does not run, causes segfault or other crash
     "ThePrimeagen/refactoring.nvim",
     event = "LspAttach",
     dependencies = {
@@ -8,4 +7,5 @@ return {
         "nvim-treesitter/nvim-treesitter",
     },
     opts = {},
+    -- TODO: add mappings to use this
 }
