@@ -5,6 +5,7 @@ local t = ls.text_node
 local c = ls.choice_node
 local p = require("luasnip.extras").partial
 local fmt = require("luasnip.extras.fmt").fmt
+local fmta = require("luasnip.extras.fmt").fmta
 
 -- TODO(aver):
 -- - one could implement a parameter parser and dynamically get the parameter names into the snippet.
@@ -48,8 +49,8 @@ local snippets = {
         t('"', "\n"),
         t("#pragma GCC diagnostic pop", "\n"),
     }),
-    s("inca", fmt("#include <{iNode1}>", { iNode1 = i(1, "example") })),
-    s("incq", fmt('#include "{iNode1}"', { iNode1 = i(1, "example") })),
+    s({ trig = "incq", snippetType = "autosnippet" }, fmta('#include "<>"', { i(1, "...") })),
+    s({ trig = "inca", snippetType = "autosnippet" }, fmt("#include <{}>", { i(1, "...") })),
 }
 ls.add_snippets("c", snippets, { key = "c" })
 ls.add_snippets("cpp", snippets, { key = "cpp" })

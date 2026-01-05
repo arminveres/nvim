@@ -32,8 +32,9 @@ return {
         local types = require("luasnip.util.types")
         local ls = require("luasnip")
         ls.config.set_config({
-            history = true,
             updateevents = "TextChanged,TextChangedI",
+            history = true,
+            enable_autosnippets = true,
             ext_opts = {
                 [types.choiceNode] = {
                     active = { virt_text = { { " <- Current Choice", "NonTest" } } },
