@@ -94,7 +94,6 @@ map("n", "<C-u>", "<C-u>zz", opts)
 map("n", "<C-d>", "<C-d>zz", opts)
 
 -- CTRL-A Insert previously inserted text.
-map("i", "<C-A>", "<ESC>A", opts)
 
 -- Map Tab to go to the right if the next character is a closing pair
 map("i", "<Tab>", function()

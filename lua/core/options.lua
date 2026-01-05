@@ -35,7 +35,7 @@ vim.opt.undofile = true --Save undo history
 
 --Decrease update time
 vim.opt.updatetime = 250
--- vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = "yes"
 
 vim.opt.termguicolors = true
 
