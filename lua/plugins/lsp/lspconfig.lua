@@ -41,9 +41,8 @@ return {
             function() vim.cmd.checkhealth("vim.lsp") end,
             desc = "Open [l]sp [i]nfo",
         },
-        -- TODO(aver): 12-01-2026 refactor these commands to use vim.lsp.* functions
-        { "<Leader>lr", vim.cmd.LspRestart, desc = "[l]sp [r]estart" },
-        { "<Leader>ll", vim.cmd.LspLog, desc = "Open [l]sp [l]og" },
+        { "<Leader>lr", function() vim.cmd.lsp("restart") end, desc = "[l]sp [r]estart" },
+        -- { "<Leader>ll", vim.cmd.LspLog,         desc = "Open [l]sp [l]og" },
     },
 
     dependencies = {
