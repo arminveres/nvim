@@ -33,6 +33,7 @@ require("lazy").setup({
         { import = "plugins.ui" },
         { import = "plugins.debug" },
         { import = "plugins.snacks" },
+        { import = "plugins.ai" },
     },
     performance = {
         cache = { enabled = true },

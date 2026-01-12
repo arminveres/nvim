@@ -2,7 +2,7 @@ return {
     enabled = true,
     "yetone/avante.nvim",
     build = vim.fn.has("win32") ~= 0
-        and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+            and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
         or "make",
     event = "VeryLazy",
     version = false, -- Never set this value to "*"! Never!
@@ -10,21 +10,19 @@ return {
     ---@type avante.Config
     opts = {
         provider = "copilot",
-        auto_suggestions_provider = "copilot",
-        behaviour = { auto_approve_tool_permissions = false },
+        -- auto_suggestions_provider = "copilot",
+        -- behaviour = { auto_approve_tool_permissions = false },
     },
     dependencies = {
         "nvim-lua/plenary.nvim",
         "MunifTanjim/nui.nvim",
         --- The below dependencies are optional,
-        "folke/snacks.nvim",           -- for input provider snacks
+        "folke/snacks.nvim", -- for input provider snacks
         "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
         {
-            "zbirenbaum/copilot.lua",  -- for providers='copilot'
+            "zbirenbaum/copilot.lua", -- for providers='copilot'
             opts = {
-                -- copilot_node_command = vim.fn.expand("$HOME")
-                --     .. "/.config/nvm/versions/node/v24.8.0/bin/node", -- Node.js version must be > 22
-                -- copilot_model = "claude-sonnet-4.5",
+                copilot_node_command = vim.fn.expand("$NVM_BIN") .. "/node", -- Node.js version must be > 22
             },
         },
         {
