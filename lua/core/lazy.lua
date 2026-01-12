@@ -28,6 +28,7 @@ require("lazy").setup({
     install = { missing = true },
     spec = {
         { import = "plugins" },
+        { import = "plugins.treesitter" },
         { import = "plugins.completion" },
         { import = "plugins.lsp" },
         { import = "plugins.ui" },

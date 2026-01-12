@@ -94,8 +94,6 @@ map("i", "<F11><C-O>", ":set spell!<CR>", opts)
 map("n", "<C-u>", "<C-u>zz", opts)
 map("n", "<C-d>", "<C-d>zz", opts)
 
--- CTRL-A Insert previously inserted text.
-
 -- Map Tab to go to the right if the next character is a closing pair
 map("i", "<Tab>", function()
     local col = vim.fn.col(".") - 1
