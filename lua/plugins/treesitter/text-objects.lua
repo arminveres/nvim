@@ -122,8 +122,18 @@ return {
 
         -- Swaps
         local swap = require("nvim-treesitter-textobjects.swap")
-        vim.keymap.set("n", "<leader>a", function() swap.swap_next("@parameter.inner") end)
-        vim.keymap.set("n", "<leader>A", function() swap.swap_previous("@parameter.outer") end)
+        vim.keymap.set(
+            "n",
+            "<leader>ta",
+            function() swap.swap_next("@parameter.inner") end,
+            { desc = "Swap [t]reesitter parameter [a]vance (forward)" }
+        )
+        vim.keymap.set(
+            "n",
+            "<leader>tA",
+            function() swap.swap_previous("@parameter.outer") end,
+            { desc = "Swap [t]reesitter parameter [A]vance (previous)" }
+        )
 
         -- Functions
         local move = require("nvim-treesitter-textobjects.move")
