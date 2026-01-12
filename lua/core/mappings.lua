@@ -1,4 +1,5 @@
-local merge_desc = require("core.utils").merge_desc
+local utils = require("core.utils")
+local merge_desc = utils.merge_desc
 local map = vim.keymap.set
 
 -- Non recursive map map
@@ -139,3 +140,10 @@ for i = 1, 6 do
     local rhs = i .. "<C-W>w"
     map("n", lhs, rhs, { desc = "Move to Window " .. i })
 end
+
+map(
+    "n",
+    "<leader>cr",
+    function() utils.root_project(vim.api.nvim_get_current_buf()) end,
+    merge_desc(opts, "[C]hange the [r]oot of the current buffer to the project root.")
+)
