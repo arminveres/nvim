@@ -9,13 +9,15 @@
 - Easy and simple LSP usage, automatic install and setup [Mason](https://github.com/williamboman/mason.nvimhttps://github.com/williamboman/mason.nvim)
 - Plugin management through [Lazy](https://github.com/folke/lazy.nvimhttps://github.com/folke/lazy.nvim)
 - Custom statusline and winbar (partly based on `dropbar.nvim`)
+- Treesitter `main` branch support
 
 ## Requirements
 
+- `tree-sitter-cli` for Treesitter setup. `cargo binstall tree-sitter-cli`
+- `ripgrep` for faster and more modern grepping. `cargo binstall ripgrep`
+- `fd-find` for more modern file finding. `cargo binstall fd-find`
 - TeX distribution like `texlive`
 - `pandoc` for document conversions
-- `ripgrep` for faster and more modern grepping
-- `fd-find` for more modern file finding
 
 ## TODO
 
