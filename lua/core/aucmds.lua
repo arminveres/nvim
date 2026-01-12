@@ -19,10 +19,10 @@ aucmd("BufWritePre", {
     end,
 })
 
--- aucmd({ "BufEnter", "LspAttach" }, {
---     group = create_augroup("CustomRooter", { clear = true }),
---     callback = function(ev) utils.root_project(ev.buf) end,
--- })
+aucmd({ "BufEnter", "LspAttach" }, {
+    group = create_augroup("CustomRooter", { clear = true }),
+    callback = function(ev) utils.root_project(ev.buf) end,
+})
 
 aucmd("LspAttach", {
     group = create_augroup("pluginsLspConfig", {}),
