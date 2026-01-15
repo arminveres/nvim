@@ -29,6 +29,7 @@ local function conditional_space()
 end
 
 local snippets = {
+
     s("todo", {
         p(get_comment_string),
         p(conditional_space),
@@ -48,13 +49,12 @@ local snippets = {
                 -- add space after the date
                 return os.date("%d-%m-%Y") .. " "
             end),
+            t("Linux - "),
             t(""),
         }),
     }),
 
-    s("dmy", {
-        p(os.date, "%d-%m-%Y"),
-    }),
+    s("dmy", { p(os.date, "%d-%m-%Y"), }),
 }
 
 ls.add_snippets("all", snippets, { key = "all" })
