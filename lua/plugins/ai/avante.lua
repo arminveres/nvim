@@ -1,5 +1,5 @@
 return {
-    enabled = true,
+    enabled = false,
     "yetone/avante.nvim",
     build = vim.fn.has("win32") ~= 0
             and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
@@ -19,12 +19,7 @@ return {
         --- The below dependencies are optional,
         "folke/snacks.nvim", -- for input provider snacks
         "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-        {
-            "zbirenbaum/copilot.lua", -- for providers='copilot'
-            opts = {
-                copilot_node_command = vim.fn.expand("$NVM_BIN") .. "/node", -- Node.js version must be > 22
-            },
-        },
+        "zbirenbaum/copilot.lua", -- for providers='copilot'
         {
             -- Make sure to set this up properly if you have lazy=true
             "MeanderingProgrammer/render-markdown.nvim",
