@@ -1,6 +1,1 @@
-return {
-    handlers = {
-        ["textDocument/definition"] = require("csharpls_extended").handler,
-        ["textDocument/typeDefinition"] = require("csharpls_extended").handler,
-    },
-}
+require("csharpls_extended").buf_read_cmd_bind()
