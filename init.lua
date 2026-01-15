@@ -1,5 +1,6 @@
 require("core.options")
-require("core.aucmds")
+require("core.autocmds")
+require("core.usercmds")
 require("core.mappings")
 require("core.lazy")
 require("core.lsp")

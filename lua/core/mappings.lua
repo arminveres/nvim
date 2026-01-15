@@ -145,3 +145,13 @@ map(
     function() utils.root_project(vim.api.nvim_get_current_buf()) end,
     merge_desc(opts, "[C]hange the [r]oot of the current buffer to the project root.")
 )
+
+-- Quickfix
+map("n", "<leader>xn", "<cmd>cnext<cr>", { desc = "next quickfix" })
+map("n", "<leader>xp", "<cmd>cprev<cr>", { desc = "previous quickfix" })
+
+map("n", "<leader>tl", function()
+    local config = vim.diagnostic.config() or {}
+    local new_value = not config.virtual_lines
+    vim.diagnostic.config({ virtual_lines = new_value })
+end, { desc = "[Toggle] diagnostic [l]ines" })

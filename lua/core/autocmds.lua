@@ -1,14 +1,14 @@
-local aucmd = vim.api.nvim_create_autocmd
-local create_augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
 local utils = require("core.utils")
 local merge_desc = utils.merge_desc
 
-aucmd("TextYankPost", {
+autocmd("TextYankPost", {
     callback = function() vim.highlight.on_yank() end,
 })
 
-aucmd("BufWritePre", {
-    group = create_augroup("AutoCreateDir", { clear = true }),
+autocmd("BufWritePre", {
+    group = augroup("AutoCreateDir", { clear = true }),
     callback = function(event)
         local file = event.match
         -- Ignore creation of oil:// directories, which get created on each save in an Oil.nvim buffer.
@@ -19,13 +19,13 @@ aucmd("BufWritePre", {
     end,
 })
 
-aucmd({ "BufEnter", "LspAttach" }, {
-    group = create_augroup("CustomRooter", { clear = true }),
+autocmd({ "BufEnter", "LspAttach" }, {
+    group = augroup("CustomRooter", { clear = true }),
     callback = function(ev) utils.root_project(ev.buf) end,
 })
 
-aucmd("LspAttach", {
-    group = create_augroup("pluginsLspConfig", {}),
+autocmd("LspAttach", {
+    group = augroup("pluginsLspConfig", {}),
     callback = function(args)
         -- ========================================================================================
         -- Buffer local mappings.
@@ -144,6 +144,31 @@ aucmd("LspAttach", {
         -- NOTE(aver): ensure lsp logs don't get too large
         -- rotate_log()
     end,
+})
+
+-- Close certain filetypes with q
+-- Note: 'man' is excluded because Neovim has built-in q handling for man pages
+autocmd('FileType', {
+  group = augroup('close_with_q', { clear = true }),
+  pattern = {
+    'checkhealth',
+    'git',
+    'gitsigns-blame',
+    'help',
+    'lspinfo',
+    'notify',
+    'qf',
+    'startuptime',
+  },
+  callback = function(event)
+    vim.bo[event.buf].buflisted = false
+    vim.keymap.set('n', 'q', function()
+      local ok = pcall(vim.cmd.bdelete, { bang = true })
+      if not ok then
+        vim.cmd.quit()
+      end
+    end, { buffer = event.buf, silent = true, desc = 'Close buffer' })
+  end,
 })
 
 -- aucmd("BufLeave", {
