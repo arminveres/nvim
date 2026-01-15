@@ -1,6 +1,7 @@
 local map = vim.keymap.set
 return {
     "nvim-treesitter/nvim-treesitter-textobjects",
+    lazy = true,
     branch = "main",
     dependencies = { "nvim-treesitter/nvim-treesitter", branch = "main" },
     init = function() vim.g.no_plugin_maps = true end,
@@ -13,7 +14,7 @@ return {
 
                 selection_modes = {
                     ["@parameter.outer"] = "v", -- charwise
-                    ["@function.outer"] = "V",  -- linewise
+                    ["@function.outer"] = "V", -- linewise
                 },
                 include_surrounding_whitespace = false,
             },

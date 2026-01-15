@@ -1,4 +1,5 @@
 return {
+    enabled = false, -- superceded by Snacks.picker
     "mbbill/undotree",
     lazy = false,
     cmd = "UndotreeToggle",
