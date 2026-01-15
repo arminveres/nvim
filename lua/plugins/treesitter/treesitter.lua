@@ -46,6 +46,7 @@ local parsers = {
     "vimdoc",
     "xml",
     "yaml",
+    "zsh",
 }
 
 return {
