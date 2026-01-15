@@ -39,10 +39,6 @@ return {
             -- do not select the first entry
             list = { selection = { preselect = true, auto_insert = false } },
         },
-        signature = {
-            enabled = true,
-            window = { border = "single" },
-        },
 
         -- Default list of enabled providers defined so that you can extend it
         -- elsewhere in your config, without redefining it, due to `opts_extend`
