@@ -8,7 +8,8 @@ function M.merge_desc(opts, description) return M.merge(opts, { desc = descripti
 
 ---Change the cwd of the current tab to the root of the open project, if possible.
 ---@param bufnr number Buffer ID
-function M.root_project(bufnr)
+---@param select_lsp_only boolean skip marker based change.
+function M.root_project(bufnr, select_lsp_only)
     local patterns = {
         ".clangd",
         "compile_commands.json",
@@ -40,10 +41,15 @@ function M.root_project(bufnr)
         end
     end
 
-    -- try to get a root dir by a marker
-    if not root_dir then root_dir = vim.fs.root(bufnr, patterns) end
-    -- early return on failure or no change
-    if not root_dir then return end
+    if not root_dir then
+        if select_lsp_only then return end
+        -- try to get a root dir by a marker
+        root_dir = vim.fs.root(bufnr, patterns)
+    end
+    if not root_dir then
+        -- early return on failure or no change
+        return
+    end
     -- TODO(aver): 27-03-2025 try to find a cleaner call to this
     ---@diagnostic disable-next-line: param-type-mismatch
     local pwd = vim.fs.normalize(vim.uv.cwd())
