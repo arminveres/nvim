@@ -1,18 +1,21 @@
+local grep_layout = { layout = { preset = "top" } }
+local select_layout = { layout = { preset = "select" } }
+
 return {
     "folke/snacks.nvim",
     opts = {
         ---@type snacks.picker.Config
-        picker = { layout = { preset = "vertical" } },
+        picker = { layout = { preset = "top" } },
     },
     keys = {
         -- =============================================================================================================
         -- Top Pickers & Explorer
         {
             "<leader><space>",
-            function() Snacks.picker.smart() end,
+            function() Snacks.picker.smart(select_layout) end,
             desc = "Smart Find Files",
         },
-        { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
+        { "<leader>/", function() Snacks.picker.grep(grep_layout) end, desc = "Grep" },
         {
             "<leader>:",
             function() Snacks.picker.command_history() end,
@@ -23,7 +26,11 @@ return {
         -- =============================================================================================================
         -- find
         -- { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
-        { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
+        {
+            "<leader>fb",
+            function() Snacks.picker.buffers(select_layout) end,
+            desc = "Buffers",
+        },
         {
             "<leader>fc",
             function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end,
@@ -83,13 +90,12 @@ return {
         },
         {
             "<leader>sB",
-            function() Snacks.picker.grep_buffers() end,
+            function() Snacks.picker.grep_buffers(grep_layout) end,
             desc = "Grep Open Buffers",
         },
-        -- { "<leader>sg", function() Snacks.picker.grep() end,         desc = "Grep" },
         {
             "<leader>sw",
-            function() Snacks.picker.grep_word() end,
+            function() Snacks.picker.grep_word(grep_layout) end,
             desc = "Visual selection or word",
             mode = { "n", "x" },
         },
@@ -129,7 +135,12 @@ return {
             function() Snacks.picker.qflist() end,
             desc = "Quickfix List",
         },
-        { "<leader>sR", function() Snacks.picker.resume() end, desc = "Resume" },
+        {
+            -- "<leader>sR",
+            "<leader>R",
+            function() Snacks.picker.resume() end,
+            desc = "Resume",
+        },
         { "<leader>su", function() Snacks.picker.undo() end, desc = "Undo History" },
         { "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
         -- =============================================================================================================
