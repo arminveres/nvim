@@ -1,1 +1,1 @@
-vim.opt_local.ft = "xml"
+vim.bo.ft = "xml"
