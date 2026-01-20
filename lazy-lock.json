@@ -7,6 +7,7 @@
   "blink.cmp": { "branch": "main", "commit": "b19413d214068f316c78978b08264ed1c41830ec" },
   "blink.indent": { "branch": "main", "commit": "9c80820ca77218a8d28e70075d6f44a1609911fe" },
   "bufferline.nvim": { "branch": "main", "commit": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3" },
+  "codediff.nvim": { "branch": "main", "commit": "d0032e109ea7342215bd1338c99f610e1adca322" },
   "copilot-lsp": { "branch": "main", "commit": "1b6d8273594643f51bb4c0c1d819bdb21b42159d" },
   "copilot.lua": { "branch": "master", "commit": "9688ca7ad7583c659979591d006e5ff0b0b0da07" },
   "csharpls-extended-lsp.nvim": { "branch": "master", "commit": "bb33582d75bc3c45b1abe47712f3b96e969a6fe6" },
