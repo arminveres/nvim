@@ -21,32 +21,30 @@ autocmd("BufWritePre", {
 
 autocmd({ "BufEnter", "LspAttach" }, {
     group = augroup("CustomRooter", { clear = true }),
-    callback = function(ev) utils.root_project(ev.buf) end,
+    callback = function(ev) utils.root_project(ev.buf, true) end,
 })
 
 -- Close certain filetypes with q
 -- Note: 'man' is excluded because Neovim has built-in q handling for man pages
-autocmd('FileType', {
-  group = augroup('close_with_q', { clear = true }),
-  pattern = {
-    'checkhealth',
-    'git',
-    'gitsigns-blame',
-    'help',
-    'lspinfo',
-    'notify',
-    'qf',
-    'startuptime',
-  },
-  callback = function(event)
-    vim.bo[event.buf].buflisted = false
-    vim.keymap.set('n', 'q', function()
-      local ok = pcall(vim.cmd.bdelete, { bang = true })
-      if not ok then
-        vim.cmd.quit()
-      end
-    end, { buffer = event.buf, silent = true, desc = 'Close buffer' })
-  end,
+autocmd("FileType", {
+    group = augroup("close_with_q", { clear = true }),
+    pattern = {
+        "checkhealth",
+        "git",
+        "gitsigns-blame",
+        "help",
+        "lspinfo",
+        "notify",
+        "qf",
+        "startuptime",
+    },
+    callback = function(event)
+        vim.bo[event.buf].buflisted = false
+        vim.keymap.set("n", "q", function()
+            local ok = pcall(vim.cmd.bdelete, { bang = true })
+            if not ok then vim.cmd.quit() end
+        end, { buffer = event.buf, silent = true, desc = "Close buffer" })
+    end,
 })
 
 -- aucmd("BufLeave", {
