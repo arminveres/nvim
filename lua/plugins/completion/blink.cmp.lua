@@ -37,7 +37,7 @@ return {
             -- (Default) Only show the documentation popup when manually triggered
             documentation = { auto_show = true },
             -- do not select the first entry
-            list = { selection = { preselect = true, auto_insert = false } },
+            list = { selection = { preselect = false, auto_insert = false } },
         },
 
         -- Default list of enabled providers defined so that you can extend it
