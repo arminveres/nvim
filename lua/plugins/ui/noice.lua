@@ -3,14 +3,19 @@ return {
     event = "VeryLazy",
     keys = {
         {
+            "<leader>na",
+            function() require("noice").cmd("all") end,
+            desc = "Open [n]oice message [a]ll",
+        },
+        {
             "<leader>nh",
             function() require("noice").cmd("history") end,
-            desc = "Open [N]oice message [H]istory",
+            desc = "Open [n]oice message [h]istory",
         },
         {
             "<leader>nl",
             function() require("noice").cmd("last") end,
-            desc = "Open [N]oice [L]ast message",
+            desc = "Open [n]oice [l]ast message",
         },
     },
     opts = {
@@ -21,9 +26,7 @@ return {
                 ["vim.lsp.util.stylize_markdown"] = true,
                 ["cmp.entry.get_documentation"] = true,
             },
-            signature = {
-                auto_open = false,
-            },
+            signature = { auto_open = false },
         },
         -- you can enable a preset for easier configuration
         presets = {
