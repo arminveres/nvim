@@ -86,24 +86,25 @@ return {
             "ii",
             function() select.select_textobject("@conditional.inner", "textobjects") end
         )
+        -- TODO(aver): find better replacement for call operators
+        -- map(
+        --     { "x", "o" },
+        --     "af",
+        --     function() select.select_textobject("@call.outer", "textobjects") end
+        -- )
+        -- map(
+        --     { "x", "o" },
+        --     "if",
+        --     function() select.select_textobject("@call.inner", "textobjects") end
+        -- )
         map(
             { "x", "o" },
             "af",
-            function() select.select_textobject("@call.outer", "textobjects") end
-        )
-        map(
-            { "x", "o" },
-            "if",
-            function() select.select_textobject("@call.inner", "textobjects") end
-        )
-        map(
-            { "x", "o" },
-            "am",
             function() select.select_textobject("@function.outer", "textobjects") end
         )
         map(
             { "x", "o" },
-            "im",
+            "if",
             function() select.select_textobject("@function.inner", "textobjects") end
         )
 
