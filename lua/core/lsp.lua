@@ -37,6 +37,39 @@ vim.diagnostic.config({
     },
 })
 
+map(
+    "n",
+    "]e",
+    function()
+        vim.diagnostic.jump({ count = 1, float = true, severity = vim.diagnostic.severity.ERROR })
+    end,
+    { desc = "Jump to next error" }
+)
+map(
+    "n",
+    "[e",
+    function()
+        vim.diagnostic.jump({
+            count = -1,
+            float = true,
+            severity = vim.diagnostic.severity.ERROR,
+        })
+    end,
+    { desc = "Jump to previous error" }
+)
+map(
+    "n",
+    "]d",
+    function() vim.diagnostic.jump({ count = 1, float = true }) end,
+    { desc = "Jump to next diagnostic" }
+)
+map(
+    "n",
+    "[d",
+    function() vim.diagnostic.jump({ count = -1, float = true }) end,
+    { desc = "Jump to next diagnostic" }
+)
+
 autocmd("LspAttach", {
     group = augroup("pluginsLspConfig", {}),
     callback = function(args)
@@ -62,34 +95,6 @@ autocmd("LspAttach", {
         -- map('n', '<space>wl', function()
         --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
         -- end, opts)
-
-        map(
-            "n",
-            "]e",
-            function()
-                vim.diagnostic.jump({
-                    count = 1,
-                    float = true,
-                    severity = vim.diagnostic.severity.ERROR,
-                })
-            end,
-            opts
-        )
-        map(
-            "n",
-            "[e",
-            function()
-                vim.diagnostic.jump({
-                    count = -1,
-                    float = true,
-                    severity = vim.diagnostic.severity.ERROR,
-                })
-            end,
-            opts
-        )
-        map("n", "]d", function() vim.diagnostic.jump({ count = 1, float = true }) end, opts)
-        map("n", "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end, opts)
-        -- map("n", "gld", function() vim.diagnostic.open_float() end, opts)
 
         -- ========================================================================================
         -- Provider specific options
