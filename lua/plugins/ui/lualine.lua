@@ -75,6 +75,8 @@ local function lualine_setup()
             theme = my_theme,
             always_divide_middle = true,
             globalstatus = true,
+            component_separators = { left = "|", right = "|" },
+            section_separators = { left = "", right = "" },
             -- disabled_filetypes = {},
         },
         sections = {
@@ -91,12 +93,10 @@ local function lualine_setup()
                     end,
                 },
             },
-            lualine_b = {
-                { "b:gitsigns_head", icon = { "", color = { fg = "#f34f29" } } },
+            lualine_b = { { "b:gitsigns_head", icon = { "", color = { fg = "#f34f29" } } } },
+            lualine_c = {
                 { "diff", source = diff_source },
                 { "diagnostics" },
-            },
-            lualine_c = {
                 { "%=", separator = "" },
                 {
                     function()
