@@ -1,6 +1,7 @@
 local parsers = {
     "awk",
     "bash",
+    "bitbake",
     "c",
     "cmake",
     "comment", -- handy for todo items, hyprlinks
