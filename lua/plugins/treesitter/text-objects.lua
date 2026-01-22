@@ -5,6 +5,10 @@ return {
     dependencies = { "nvim-treesitter/nvim-treesitter", branch = "main" },
     init = function() vim.g.no_plugin_maps = true end,
     config = function()
+        -- Disable entire built-in ftplugin mappings to avoid conflicts.
+        -- See https://github.com/neovim/neovim/tree/master/runtime/ftplugin for built-in ftplugins.
+        vim.g.no_plugin_maps = true
+
         require("nvim-treesitter-textobjects").setup({
             select = {
                 -- Automatically jump forward to textobj, similar to targets.vim
