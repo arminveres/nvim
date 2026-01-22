@@ -1,11 +1,11 @@
-local grep_layout = { layout = { preset = "top" } }
+local grep_layout = { layout = { preset = "left", layout = { width = 120 } } }
 local select_layout = { layout = { preset = "select" } }
 
 return {
     "folke/snacks.nvim",
     opts = {
         ---@type snacks.picker.Config
-        picker = { layout = { preset = "top" } },
+        picker = { layout = { preset = "dropdown" } },
     },
     keys = {
         -- =============================================================================================================
