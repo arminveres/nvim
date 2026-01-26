@@ -1,6 +1,7 @@
 local gs_opts = {
     -- current_line_blame_opts = { ignore_whitespace = true, },
     on_attach = function(bufnr)
+        local repeat_move = require("repeatable_move")
         local gs = package.loaded.gitsigns
 
         local function map(mode, l, r, opts)
@@ -9,16 +10,25 @@ local gs_opts = {
             vim.keymap.set(mode, l, r, opts)
         end
 
+        -- make sure forward function comes first
+        local next_hunk_repeat, prev_hunk_repeat =
+            repeat_move.make_repeatable_move_pair(gs.next_hunk, gs.prev_hunk)
+
+        -- vim.keymap.set({ "n", "x", "o" }, "]h", next_hunk_repeat)
+        -- vim.keymap.set({ "n", "x", "o" }, "[h", prev_hunk_repeat)
+
         -- Navigation
         map("n", "]h", function()
             if vim.wo.diff then return "]h" end
-            vim.schedule(gs.next_hunk)
+            -- vim.schedule(gs.next_hunk)
+            vim.schedule(next_hunk_repeat)
             return "<Ignore>"
         end, { expr = true, desc = "Next Git [H]unk" })
 
         map("n", "[h", function()
             if vim.wo.diff then return "[h" end
-            vim.schedule(gs.prev_hunk)
+            -- vim.schedule(gs.prev_hunk)
+            vim.schedule(prev_hunk_repeat)
             return "<Ignore>"
         end, { expr = true, desc = "Previous Git [H]unk" })
 
@@ -66,4 +76,7 @@ return {
     "lewis6991/gitsigns.nvim",
     tag = "release",
     opts = gs_opts,
+    dependencies = {
+        "kiyoon/repeatable-move.nvim",
+    },
 }
