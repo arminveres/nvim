@@ -47,6 +47,7 @@ vim.opt.list = true
 
 -- activate spellcheck with <F11>
 vim.opt.spelllang = "en_us"
+vim.o.wrapscan = true
 
 vim.opt.pumblend = 15 -- blend popup
 vim.opt.winblend = 15

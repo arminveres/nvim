@@ -20,15 +20,13 @@ local pairs_to_wrap = {
     "q", -- quickfix list
     "l", -- loclist
     "b", -- Buffer
-    "a", -- Files
-    "n", -- conflict marker
-    "f", -- files, open
-    -- "s", -- spelling
+    "s", -- spelling
+    -- "f", -- files, open
+    -- "a", -- Files
     -- "t",
     -- " ",
-    -- "d", -- vim.diagnostics
-    -- "e", -- vim.diagnostics, errors
 }
+
 return {
     "kiyoon/repeatable-move.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
@@ -50,5 +48,14 @@ return {
             vim.keymap.set({ "n", "x", "o" }, forward_lhs, next_move, { desc = fwd_desc })
             vim.keymap.set({ "n", "x", "o" }, backward_lhs, prev_move, { desc = back_desc })
         end
+
+        -- spell does not get wrapped, so add by feeding the keys.
+        local next_spell, prev_spell = repeat_move.make_repeatable_move_pair(
+            function() vim.api.nvim_feedkeys("]s", "n", {}) end,
+            function() vim.api.nvim_feedkeys("[s", "n", {}) end
+        )
+
+        vim.keymap.set({ "n", "x", "o" }, "]s", next_spell, { desc = "Next Spell" })
+        vim.keymap.set({ "n", "x", "o" }, "[s", prev_spell, { desc = "Previous Spell" })
     end,
 }

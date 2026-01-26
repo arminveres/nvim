@@ -28,47 +28,14 @@ vim.diagnostic.config({
     underline = true,
     severity_sort = true,
     float = {
-        focusable = false,
+        focusable = true,
         style = "minimal",
         border = "rounded",
-        source = "always",
-        header = "",
-        prefix = "",
+        source = true,
+        -- header = "",
+        -- prefix = "",
     },
 })
-
-map(
-    "n",
-    "]e",
-    function()
-        vim.diagnostic.jump({ count = 1, float = true, severity = vim.diagnostic.severity.ERROR })
-    end,
-    { desc = "Jump to next error" }
-)
-map(
-    "n",
-    "[e",
-    function()
-        vim.diagnostic.jump({
-            count = -1,
-            float = true,
-            severity = vim.diagnostic.severity.ERROR,
-        })
-    end,
-    { desc = "Jump to previous error" }
-)
-map(
-    "n",
-    "]d",
-    function() vim.diagnostic.jump({ count = 1, float = true }) end,
-    { desc = "Jump to next diagnostic" }
-)
-map(
-    "n",
-    "[d",
-    function() vim.diagnostic.jump({ count = -1, float = true }) end,
-    { desc = "Jump to next diagnostic" }
-)
 
 autocmd("LspAttach", {
     group = augroup("pluginsLspConfig", {}),
@@ -134,5 +101,44 @@ autocmd("LspAttach", {
 
         -- NOTE(aver): ensure lsp logs don't get too large
         -- rotate_log()
+
+        -- ========================================================================================
+        -- Diagnostics
+        -- ========================================================================================
+        local repeat_move = require("repeatable_move")
+
+        local next_warn = function()
+            vim.diagnostic.jump({ count = 1, float = true, severity = vim.diagnostic.severity.WARN })
+        end
+        local prev_warn = function()
+            vim.diagnostic.jump({
+                count = -1,
+                float = true,
+                severity = vim.diagnostic.severity.WARN,
+            })
+        end
+        local next_err = function()
+            vim.diagnostic.jump({
+                count = 1,
+                float = true,
+                severity = vim.diagnostic.severity.ERROR,
+            })
+        end
+        local prev_err = function()
+            vim.diagnostic.jump({
+                count = -1,
+                float = true,
+                severity = vim.diagnostic.severity.ERROR,
+            })
+        end
+
+        -- make sure forward function comes first
+        next_warn, prev_warn = repeat_move.make_repeatable_move_pair(next_warn, prev_warn)
+        next_err, prev_err = repeat_move.make_repeatable_move_pair(next_err, prev_err)
+
+        map({ "n", "x", "o" }, "]w", next_warn, merge_desc(opts, "Jump to next warning"))
+        map({ "n", "x", "o" }, "[w", prev_warn, merge_desc(opts, "Jump to previous warning"))
+        map({ "n", "x", "o" }, "]e", next_err, merge_desc(opts, "Jump to next error"))
+        map({ "n", "x", "o" }, "[e", prev_err, merge_desc(opts, "Jump to previous error."))
     end,
 })
