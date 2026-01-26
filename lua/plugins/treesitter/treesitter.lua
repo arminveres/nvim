@@ -24,7 +24,6 @@ local parsers = {
     "jq",
     "jsdoc",
     "json",
-    "llvm",
     "lua",
     "luadoc",
     "make",

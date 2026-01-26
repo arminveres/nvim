@@ -90,25 +90,24 @@ return {
             "ii",
             function() select.select_textobject("@conditional.inner", "textobjects") end
         )
-        -- TODO(aver): find better replacement for call operators
-        -- map(
-        --     { "x", "o" },
-        --     "af",
-        --     function() select.select_textobject("@call.outer", "textobjects") end
-        -- )
-        -- map(
-        --     { "x", "o" },
-        --     "if",
-        --     function() select.select_textobject("@call.inner", "textobjects") end
-        -- )
         map(
             { "x", "o" },
             "af",
-            function() select.select_textobject("@function.outer", "textobjects") end
+            function() select.select_textobject("@call.outer", "textobjects") end
         )
         map(
             { "x", "o" },
             "if",
+            function() select.select_textobject("@call.inner", "textobjects") end
+        )
+        map(
+            { "x", "o" },
+            "am",
+            function() select.select_textobject("@function.outer", "textobjects") end
+        )
+        map(
+            { "x", "o" },
+            "im",
             function() select.select_textobject("@function.inner", "textobjects") end
         )
 
@@ -131,25 +130,27 @@ return {
         local move = require("nvim-treesitter-textobjects.move")
         map(
             { "n", "x", "o" },
-            "]f",
+            "]m",
             function() move.goto_next_start("@function.outer", "textobjects") end,
             { desc = "Next Function" }
         )
         map(
             { "n", "x", "o" },
-            "[f",
+            "[m",
             function() move.goto_previous_start("@function.outer", "textobjects") end,
             { desc = "Previous Function" }
         )
         -- Classes
         map(
             { "n", "x", "o" },
-            "]c",
+            -- "]c",
+            "]]",
             function() move.goto_next_start("@class.outer", "textobjects") end
         )
         map(
             { "n", "x", "o" },
-            "[c",
+            -- "[c",
+            "[[",
             function() move.goto_previous_start("@class.outer", "textobjects") end
         )
 
@@ -198,8 +199,12 @@ return {
 
         -- Repeat movement with ; and ,
         -- ensure ; goes forward and , goes backward regardless of the last direction
-        map({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move_next)
-        map({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_previous)
+        -- map({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move_next)
+        -- map({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_previous)
+
+        -- vim way: ; goes to the direction you were moving.
+        map({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
+        map({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite)
 
         -- Optionally, make builtin f, F, t, T also repeatable with ; and ,
         map({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f_expr, { expr = true })

@@ -18,13 +18,13 @@ return {
         -- Recommended/example keymaps.
         vim.keymap.set(
             { "n", "x" },
-            "<C-a>",
+            "<leader>a",
             function() require("opencode").ask("@this: ", { submit = true }) end,
             { desc = "Ask opencode…" }
         )
         vim.keymap.set(
             { "n", "x" },
-            "<C-x>",
+            "<leader>xa",
             function() require("opencode").select() end,
             { desc = "Execute opencode action…" }
         )
