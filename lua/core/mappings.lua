@@ -94,12 +94,14 @@ map("i", "<F11><C-O>", ":set spell!<CR>", opts)
 map("n", "<C-u>", "<C-u>zz", opts)
 map("n", "<C-d>", "<C-d>zz", opts)
 
--- Map Tab to go to the right if the next character is a closing pair
+-- Map Tab to go to the right if the next character is a closing pair (TABOUT)
 map("i", "<Tab>", function()
-    local col = vim.fn.col(".") - 1
-    local line = vim.fn.getline(".")
-    local char = line:sub(col + 1, col + 1)
-    if char:match("[%)%]%}%\"']%>") then
+    local tabout_chars = "[%)%}%]'\"`;,>]"
+    local col = vim.fn.col(".")
+    local line = vim.api.nvim_get_current_line()
+    local next_char = line:sub(col, col)
+
+    if next_char:match(tabout_chars) ~= nil then
         return "<Right>"
     else
         return "<Tab>"
@@ -112,8 +114,8 @@ end, { expr = true, noremap = true })
 -- ================================================================================================
 map("n", "<leader>q", "<cmd>q<CR>", opts)
 map("n", "<leader>Q", "<Cmd>qall!<CR>", opts) -- quickquit
-map("n", "<leader>w", "<Cmd>w<CR>", opts) -- quick save
-map("n", "<leader>W", "<Cmd>w!<CR>", opts) -- quick save
+map("n", "<leader>w", "<Cmd>w<CR>", opts)     -- quick save
+map("n", "<leader>W", "<Cmd>w!<CR>", opts)    -- quick save
 -- keymap("n", ",WQ", "<Cmd>wq!<CR>", opts) -- quick save
 
 -- Yank to clipboard
@@ -145,10 +147,6 @@ map(
     function() utils.root_project(vim.api.nvim_get_current_buf()) end,
     merge_desc(opts, "[C]hange the [r]oot of the current buffer to the project root.")
 )
-
--- Quickfix
-map("n", "<leader>xn", "<cmd>cnext<cr>", { desc = "next quickfix" })
-map("n", "<leader>xp", "<cmd>cprev<cr>", { desc = "previous quickfix" })
 
 map("n", "<leader>tl", function()
     local config = vim.diagnostic.config() or {}
