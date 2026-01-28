@@ -59,7 +59,7 @@ return {
         end
 
         vim.treesitter.language.register("bash", "sh")
-        vim.treesitter.language.register("xaml", "xml")
+        vim.treesitter.language.register("xml", "xaml")
         vim.treesitter.language.register("c", "cl")
         vim.treesitter.language.register("cpp", "clpp")
 
