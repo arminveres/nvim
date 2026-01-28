@@ -42,6 +42,11 @@ return {
             desc = "Find Files",
         },
         {
+            "<leader>fi",
+            function() Snacks.picker.files({ hidden = true, ignored = true }) end,
+            desc = "Find Files",
+        },
+        {
             "<leader>fg",
             function() Snacks.picker.git_files() end,
             desc = "Find Git Files",
