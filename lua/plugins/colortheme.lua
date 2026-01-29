@@ -2,29 +2,31 @@ local color_overrides = {
     -- ========================================================================================
     -- LSP and LspSaga colors
     -- ========================================================================================
-    -- SagaNormal = { link = "PMenu" },
     FloatShadow = { link = "PMenu" },
     FloatShadowThrough = { link = "PMenu" },
     String = { fg = "#eb9664" }, -- #eb9664, #c89664
-    Comment = { fg = "#919191", italic = true, bold = false },
+    -- Comment = { fg = "#919191", italic = true, bold = false },
     -- Comment = { fg = "#c89664", italic = true, bold = false },
+    -- Comment = { fg = "#91a573", italic = true, bold = false },
+
+    -- ["@lsp.type.method.c"] = { link = "GruvboxOrangeBold" },
+    -- ["@lsp.type.method.cpp"] = { link = "GruvboxOrangeBold" },
+    LspInlayHint = { fg = "#919191", italic = true, bold = true },
+
     -- These highlights are special for undefined macros
-    ["@lsp.type.comment.c"] = { fg = "#91a573", bg = "#785032" },
-    ["@lsp.type.comment.cpp"] = { fg = "#91a573", bg = "#785032" },
-    ["@lsp.type.method.c"] = { link = "GruvboxOrangeBold" },
-    ["@lsp.type.method.cpp"] = { link = "GruvboxOrangeBold" },
-    Define = { link = "GruvboxPurple" },
+    ["@lsp.type.comment.c"] = { fg = "#91a573", bg = "#785032", italic = true },
+    ["@lsp.type.comment.cpp"] = { fg = "#91a573", bg = "#785032", italic = true },
+    -- Define = { link = "GruvboxPurple" },
     Macro = { link = "GruvboxPurple" },
-    LspInlayHint = { fg = "#D0D0D0", bg = "#303030" },
 
     -- ========================================================================================
     -- Git Diff
     -- ========================================================================================
-    DiffAdd = { bold = true, reverse = false, fg = "", bg = "#2a4333" },
-    DiffChange = { bold = true, reverse = false, fg = "", bg = "#333841" },
-    DiffDelete = { bold = true, reverse = false, fg = "#442d30", bg = "#442d30" },
-    DiffText = { bold = true, reverse = false, fg = "", bg = "#213352" },
-    GitSignsCurrentLineBlame = { link = "GruvboxFg3" },
+    -- DiffAdd = { bold = true, reverse = false, fg = "", bg = "#2a4333" },
+    -- DiffChange = { bold = true, reverse = false, fg = "", bg = "#333841" },
+    -- DiffDelete = { bold = true, reverse = false, fg = "#442d30", bg = "#442d30" },
+    -- DiffText = { bold = true, reverse = false, fg = "", bg = "#213352" },
+    -- GitSignsCurrentLineBlame = { link = "GruvboxFg3" },
 
     -- ========================================================================================
     -- Fold
@@ -57,7 +59,11 @@ local color_overrides = {
     RenderMarkdownH4Bg = { bg = "#442d30" },
     RenderMarkdownH5Bg = { bg = "#442d30" },
 
-    IblScope = { link = "GruvboxRedSign" },
+    -- ========================================================================================
+    -- Deprecated plugins
+    -- ========================================================================================
+    -- SagaNormal = { link = "PMenu" },
+    -- IblScope = { link = "GruvboxRedSign" },
 }
 
 local gruvbox_options = {
@@ -75,22 +81,19 @@ else
     transparency_loc = os.getenv("XDG_STATE_HOME") .. "/nvim/.gruvbox_transparency"
 end
 
---- @brief returns the content of the state file
-local function get_content()
-    local transparency = io.open(transparency_loc, "r")
-    if not transparency then
-        vim.notify("failed to create file")
-        return ""
-    end
-    return transparency:read("*a")
-end
-
 --- @brief loads the transparency from the state file into the options
 --- @param do_toggle boolean Whether to toggle transparency or not
 local function load_transparency(do_toggle)
-    local content = get_content()
+    local transparency = io.open(transparency_loc, "r")
+    local content
+    if not transparency then
+        vim.notify("failed to create file")
+        content = ""
+    else
+        content = transparency:read("*a")
+    end
 
-    local transparency = io.open(transparency_loc, "w+")
+    transparency = io.open(transparency_loc, "w+")
     if not transparency then
         vim.notify("failed to create file")
         return
@@ -133,7 +136,7 @@ return { -- colorschemes TODO: just write my own colorscheme based on gruvbox...
     "ellisonleao/gruvbox.nvim",
     keys = {
         {
-            "<leader>ctt",
+            "<leader>cot",
             toggle_transparency,
             desc = "Toggle background transparency in gruvbox",
         },
