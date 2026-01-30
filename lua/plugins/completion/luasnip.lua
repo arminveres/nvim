@@ -1,7 +1,7 @@
 -- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#config-options
 return {
     "L3MON4D3/LuaSnip",
-    event = "VeryLazy",
+    event = "InsertEnter",
     keys = {
         {
             "<C-k>",
@@ -30,8 +30,7 @@ return {
     },
     config = function()
         local types = require("luasnip.util.types")
-        local ls = require("luasnip")
-        ls.config.set_config({
+        require("luasnip.config").setup({
             updateevents = "TextChanged,TextChangedI",
             history = true,
             enable_autosnippets = true,
@@ -41,8 +40,6 @@ return {
                 },
             },
         })
-
-        -- require("luasnip.loaders.from_vscode").lazy_load()
-        require("snippets")
+        require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/lua/snippets" })
     end,
 }
