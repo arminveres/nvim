@@ -1,11 +1,11 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 local utils = require("core.utils")
-local merge_desc = utils.merge_desc
 
-autocmd("TextYankPost", {
-    callback = function() vim.highlight.on_yank() end,
-})
+autocmd("TextYankPost", { callback = function() vim.highlight.on_yank() end })
+
+-- always only show tabline when multiple tabs exist
+autocmd("TabClosed", { callback = function() vim.o.showtabline = 1 end })
 
 autocmd("BufWritePre", {
     group = augroup("AutoCreateDir", { clear = true }),
