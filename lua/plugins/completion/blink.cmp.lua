@@ -1,14 +1,14 @@
 return {
     {
         "saghen/blink.cmp",
-        event = "InsertEnter",
+        -- event = "InsertEnter",
 
         -- use a release tag to download pre-built binaries
         version = "1.*",
         -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
         -- build = 'cargo build --release',
         -- If you use nix, you can build from source using latest nightly rust with:
-        -- build = 'nix run .#build-plugin',
+        build = "nix run .#build-plugin",
 
         ---@module 'blink.cmp'
         ---@type blink.cmp.Config
@@ -25,31 +25,7 @@ return {
             -- C-k: Toggle signature help (if signature.enabled = true)
             --
             -- See :h blink-cmp-config-keymap for defining your own keymap
-            keymap = {
-                preset = "enter",
-                --[[ ["<Tab>"] = {
-                function(cmp)
-                    local col = vim.fn.col(".")
-                    local line = vim.fn.getline(".")
-                    local char = line:sub(col , col + 1)
-                    vim.notify("col: " .. tostring(col))
-                    vim.notify("line: " .. tostring(line))
-                    vim.notify("char: " .. char        )
-                    if char:match("%)") then
-                        vim.notify("hi")
-                        return "<Right>"
-                    else
-                        if cmp.snippet_active() then
-                            return cmp.accept()
-                        else
-                            return cmp.select_and_accept()
-                        end
-                    end
-                end,
-                "snippet_forward",
-                "fallback",
-            }, ]]
-            },
+            keymap = { preset = "enter" },
 
             appearance = {
                 -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
