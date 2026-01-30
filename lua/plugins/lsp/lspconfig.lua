@@ -32,6 +32,7 @@ end
 
 return {
     "neovim/nvim-lspconfig", -- Collection of configurations for built-in LSP client
+    lazy = false,
     config = setup_lsp,
     -- Allow lazyloading on these events, otherwise it does not load correctly
     event = "VeryLazy",
@@ -47,6 +48,5 @@ return {
 
     dependencies = {
         "RRethy/vim-illuminate",
-        { "Decodetalkers/csharpls-extended-lsp.nvim", ft = "cs" },
     },
 }
