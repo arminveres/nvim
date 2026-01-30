@@ -52,6 +52,10 @@ local parsers = {
 return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
+    ft = parsers,
+    init = function()
+        vim.g.no_plugin_maps = true
+    end,
     config = function()
         local ts = require("nvim-treesitter")
         for _, parser in ipairs(parsers) do

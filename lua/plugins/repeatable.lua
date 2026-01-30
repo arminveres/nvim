@@ -30,6 +30,7 @@ local pairs_to_wrap = {
 return {
     "kiyoon/repeatable-move.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
+    keys = { { "]" }, {"["} },
     config = function()
         local repeat_move = require("repeatable_move")
         for _, suffix in ipairs(pairs_to_wrap) do
