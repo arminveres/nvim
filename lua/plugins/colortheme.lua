@@ -144,6 +144,6 @@ return { -- colorschemes TODO: just write my own colorscheme based on gruvbox...
     init = function()
         load_transparency(false)
         require("gruvbox").setup(gruvbox_options)
-        vim.cmd.colorscheme("gruvbox")
+        -- vim.cmd.colorscheme("gruvbox")
     end,
 }
