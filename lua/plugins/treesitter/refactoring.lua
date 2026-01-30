@@ -1,7 +1,6 @@
 -- BUG: does not run, causes segfault or other crash
 return {
     "ThePrimeagen/refactoring.nvim",
-    lazy = false,
     opts = {},
     keys = {
         {

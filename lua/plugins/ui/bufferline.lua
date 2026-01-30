@@ -1,6 +1,6 @@
 return {
     "akinsho/bufferline.nvim", -- tabline replacement
-    event = "VeryLazy",
+    event = "TabEnter",
     version = "*",
     opts = {
         options = {
@@ -9,8 +9,4 @@ return {
             indicator = { style = "▎" },
         },
     },
-    config = function(_, opts)
-        require("bufferline").setup(opts)
-        vim.opt.showtabline = 1
-    end,
 }

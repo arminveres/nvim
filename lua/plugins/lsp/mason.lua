@@ -1,7 +1,6 @@
 return {
     {
         "mason-org/mason.nvim", -- installer for lsps
-        -- event = "VeryLazy",
         opts = { ui = { border = "rounded" } },
         cmd = "Mason",
         keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
@@ -9,7 +8,6 @@ return {
     },
     {
         "mason-org/mason-lspconfig.nvim",
-        event = "VeryLazy",
         opts = {
             ensure_installed = {
                 "lua_ls",
@@ -23,7 +21,6 @@ return {
     },
     {
         "jay-babu/mason-null-ls.nvim",
-        event = "VeryLazy",
         opts = {
             ensure_installed = {
                 -- Opt to list sources here, when available in mason.
