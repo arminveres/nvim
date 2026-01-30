@@ -1,6 +1,7 @@
 return {
     "https://git.sr.ht/~p00f/godbolt.nvim",
-    event = "VeryLazy",
+    -- event = "VeryLazy",
+    cmd = { "Godbolt", "GodboltCompiler" },
     opts = {
         languages = {
             cpp = { compiler = "g122", options = {} },
