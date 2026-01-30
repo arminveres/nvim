@@ -1,10 +1,10 @@
-local function on_attach(client, bufnr)
-    -- Highlight words under current cursor
-    require("illuminate").on_attach(client)
-end
-
 -- @brief Sets up individual language servers
 local function setup_lsp()
+    local on_attach = function(client, bufnr)
+        -- Highlight words under current cursor
+        require("illuminate").on_attach(client)
+    end
+
     local capabilities = {
         -- enable snippet support
         textDocument = {
@@ -23,7 +23,7 @@ local function setup_lsp()
 
     local lsp_servers = require("mason-lspconfig").get_installed_servers()
 
-    -- FIXME(aver): For some reason, mason does not recognize the installed server
+    -- manually insert servers, that are not recognized
     table.insert(lsp_servers, "bitbake_ls")
     table.insert(lsp_servers, "nixd")
 
@@ -35,7 +35,7 @@ return {
     lazy = false,
     config = setup_lsp,
     -- Allow lazyloading on these events, otherwise it does not load correctly
-    event = "VeryLazy",
+    -- event = "VeryLazy",
     keys = {
         {
             "<Leader>li",
@@ -43,10 +43,12 @@ return {
             desc = "Open [l]sp [i]nfo",
         },
         { "<Leader>lr", function() vim.cmd.lsp("restart") end, desc = "[l]sp [r]estart" },
-        -- { "<Leader>ll", vim.cmd.LspLog,         desc = "Open [l]sp [l]og" },
+        {
+            "<Leader>ll",
+            function() vim.cmd("tabnew " .. vim.lsp.log.get_filename()) end,
+            desc = "Open [l]sp [l]og",
+        },
     },
 
-    dependencies = {
-        "RRethy/vim-illuminate",
-    },
+    dependencies = { "RRethy/vim-illuminate" },
 }
