@@ -3,12 +3,12 @@ return {
     "nvim-treesitter/nvim-treesitter-textobjects",
     branch = "main",
     dependencies = { "nvim-treesitter/nvim-treesitter", branch = "main" },
-    init = function() vim.g.no_plugin_maps = true end,
-    config = function()
+    init = function()
         -- Disable entire built-in ftplugin mappings to avoid conflicts.
         -- See https://github.com/neovim/neovim/tree/master/runtime/ftplugin for built-in ftplugins.
         vim.g.no_plugin_maps = true
-
+    end,
+    config = function()
         require("nvim-treesitter-textobjects").setup({
             select = {
                 -- Automatically jump forward to textobj, similar to targets.vim
@@ -140,6 +140,21 @@ return {
             function() move.goto_previous_start("@function.outer", "textobjects") end,
             { desc = "Previous Function" }
         )
+
+        -- calls
+        map(
+            { "n", "x", "o" },
+            "]f",
+            function() move.goto_next_start("@call.outer", "textobjects") end,
+            { desc = "Next Function" }
+        )
+        map(
+            { "n", "x", "o" },
+            "[f",
+            function() move.goto_previous_start("@call.outer", "textobjects") end,
+            { desc = "Previous Function" }
+        )
+
         -- Classes
         map(
             { "n", "x", "o" },
