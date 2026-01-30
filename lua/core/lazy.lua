@@ -40,14 +40,13 @@ require("lazy").setup({
         cache = { enabled = true },
         rtp = {
             disabled_plugins = {
-                -- "gzip",
-                -- "tarPlugin",
-                -- "zipPlugin",
-                -- "tohtml",
+                "gzip",
+                "tarPlugin",
+                "zipPlugin",
+                "tohtml",
                 "tutor",
                 "netrwPlugin",
-
-                -- Needed for highlighting parenthesis
+                -- Needed for highlighting parenthesis, but replaceable by blink.pairs
                 -- "matchit",
                 -- "matchparen",
             },
