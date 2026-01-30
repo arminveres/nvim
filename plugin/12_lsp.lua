@@ -2,7 +2,7 @@ local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 local map = vim.keymap.set
 
-local merge_desc = require("core.utils").merge_desc
+local merge_desc = require("utils").merge_desc
 
 vim.diagnostic.config({
     -- disable virtual text

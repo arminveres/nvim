@@ -34,21 +34,5 @@ return {
     "neovim/nvim-lspconfig", -- Collection of configurations for built-in LSP client
     lazy = false,
     config = setup_lsp,
-    -- Allow lazyloading on these events, otherwise it does not load correctly
-    -- event = "VeryLazy",
-    keys = {
-        {
-            "<Leader>li",
-            function() vim.cmd.checkhealth("vim.lsp") end,
-            desc = "Open [l]sp [i]nfo",
-        },
-        { "<Leader>lr", function() vim.cmd.lsp("restart") end, desc = "[l]sp [r]estart" },
-        {
-            "<Leader>ll",
-            function() vim.cmd("tabnew " .. vim.lsp.log.get_filename()) end,
-            desc = "Open [l]sp [l]og",
-        },
-    },
-
     dependencies = { "RRethy/vim-illuminate" },
 }

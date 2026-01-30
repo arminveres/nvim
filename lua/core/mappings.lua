@@ -1,4 +1,4 @@
-local utils = require("core.utils")
+local utils = require("utils")
 local merge_desc = utils.merge_desc
 local map = vim.keymap.set
 
@@ -114,8 +114,8 @@ end, { expr = true, noremap = true })
 -- ================================================================================================
 map("n", "<leader>q", "<cmd>q<CR>", opts)
 map("n", "<leader>Q", "<Cmd>qall!<CR>", opts) -- quickquit
-map("n", "<leader>w", "<Cmd>w<CR>", opts)     -- quick save
-map("n", "<leader>W", "<Cmd>w!<CR>", opts)    -- quick save
+map("n", "<leader>w", "<Cmd>w<CR>", opts) -- quick save
+map("n", "<leader>W", "<Cmd>w!<CR>", opts) -- quick save
 -- keymap("n", ",WQ", "<Cmd>wq!<CR>", opts) -- quick save
 
 -- Yank to clipboard
@@ -153,3 +153,16 @@ map("n", "<leader>tl", function()
     local new_value = not config.virtual_lines
     vim.diagnostic.config({ virtual_lines = new_value })
 end, { desc = "[Toggle] diagnostic [l]ines" })
+
+-- lsp maps
+
+map("n", "<Leader>li", function() vim.cmd.checkhealth("vim.lsp") end, {
+    desc = "Open [l]sp [i]nfo",
+})
+map("n", "<Leader>lr", function() vim.cmd.lsp("restart") end, { desc = "[l]sp [r]estart" })
+
+map("n", "<Leader>ll", function() vim.cmd("tabnew " .. vim.lsp.log.get_filename()) end, {
+    desc = "Open [l]sp [l]og",
+})
+
+vim.keymap.set("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Open Lazy" })
