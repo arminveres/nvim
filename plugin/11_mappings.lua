@@ -8,13 +8,7 @@ local opts = { noremap = true, silent = true }
 
 -- Recurisve map
 ---@type table
-local remopts = { noremap = false, silent = true }
-
--- Leader --
---Remap space as leader key
-map("", "<Space>", "<Nop>", opts)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+local remopts = { remap = true, silent = true }
 
 -- ================================================================================================
 -- NeoVIM CORE
