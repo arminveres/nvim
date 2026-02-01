@@ -1,6 +1,5 @@
 return {
     "kevinhwang91/nvim-ufo",
-    event = "VeryLazy",
     init = function()
         -- use Neovim nightly branch
         vim.o.fillchars = "eob: ,fold: ,foldopen:,foldsep: ,foldinner: ,foldclose:"
@@ -15,6 +14,6 @@ return {
     },
     dependencies = {
         "kevinhwang91/promise-async",
-        "nvim-treesitter/nvim-treesitter",
+        -- "nvim-treesitter/nvim-treesitter", -- not really needed
     },
 }

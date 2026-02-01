@@ -35,6 +35,7 @@ local function setup()
             formatting.nixfmt.with({ extra_args = { "--width=100" } }),
             formatting.swift_format,
             require("none-ls.formatting.latexindent"),
+            formatting.mdformat,
 
             hover.dictionary,
             hover.printenv,
@@ -44,10 +45,11 @@ end
 
 return {
     "nvimtools/none-ls.nvim", -- Null LS replacement
+    -- event = "VeryLazy",
     config = setup,
     dependencies = {
-        "nvimtools/none-ls-extras.nvim",
         "nvim-lua/plenary.nvim",
+        "nvimtools/none-ls-extras.nvim",
         "gbprod/none-ls-shellcheck.nvim",
     },
 }

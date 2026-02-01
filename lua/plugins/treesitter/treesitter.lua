@@ -51,16 +51,18 @@ local parsers = {
 
 return {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
     build = ":TSUpdate",
     ft = parsers,
     init = function()
         vim.g.no_plugin_maps = true
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern = parsers,
+            callback = function(ev) vim.treesitter.start(ev.buf) end,
+        })
     end,
     config = function()
-        local ts = require("nvim-treesitter")
-        for _, parser in ipairs(parsers) do
-            ts.install(parser)
-        end
+        require("nvim-treesitter").install(parsers)
 
         vim.treesitter.language.register("bash", "sh")
         vim.treesitter.language.register("xml", "xaml")
@@ -69,10 +71,5 @@ return {
 
         vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
         vim.wo[0][0].foldmethod = "expr"
-
-        vim.api.nvim_create_autocmd("FileType", {
-            pattern = parsers,
-            callback = function() vim.treesitter.start() end,
-        })
     end,
 }

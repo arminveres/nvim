@@ -31,8 +31,9 @@ local function setup_lsp()
 end
 
 return {
-    "neovim/nvim-lspconfig", -- Collection of configurations for built-in LSP client
-    lazy = false,
-    config = setup_lsp,
-    dependencies = { "RRethy/vim-illuminate" },
+    {
+        "neovim/nvim-lspconfig", -- Collection of configurations for built-in LSP client
+        config = setup_lsp,
+    },
+    { "RRethy/vim-illuminate" },
 }

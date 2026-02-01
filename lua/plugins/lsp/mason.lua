@@ -21,6 +21,7 @@ return {
     },
     {
         "jay-babu/mason-null-ls.nvim",
+        event = "VeryLazy",
         opts = {
             ensure_installed = {
                 -- Opt to list sources here, when available in mason.
@@ -32,7 +33,7 @@ return {
             },
             automatic_installation = false,
             automatic_setup = true, -- Recommended, but optional
-            dependencies = { "nvimtools/none-ls.nvim" },
+            -- dependencies = { "nvimtools/none-ls.nvim" },
         },
     },
 }
