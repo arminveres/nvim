@@ -21,13 +21,23 @@ local function setup_lsp()
 
     vim.lsp.config("*", { capabilities = capabilities, on_attach = on_attach })
 
-    local lsp_servers = require("mason-lspconfig").get_installed_servers()
-
+    -- local lsp_servers = require("mason-lspconfig").get_installed_servers()
     -- manually insert servers, that are not recognized
-    table.insert(lsp_servers, "bitbake_ls")
-    table.insert(lsp_servers, "nixd")
+    -- table.insert(lsp_servers, "bitbake_ls")
+    -- table.insert(lsp_servers, "nixd")
 
-    vim.lsp.enable(lsp_servers)
+    vim.lsp.enable({
+        "bitbake_ls",
+        "nixd",
+        "clangd",
+        "lua_ls",
+        "basedpyright",
+        "bashls",
+        "yamlls",
+        "jsonls",
+        "neocmake",
+        "taplo",
+    })
 end
 
 return {

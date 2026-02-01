@@ -8,6 +8,7 @@ return {
     },
     {
         "mason-org/mason-lspconfig.nvim",
+        enabled = false,
         opts = {
             ensure_installed = {
                 "lua_ls",
@@ -21,6 +22,7 @@ return {
     },
     {
         "jay-babu/mason-null-ls.nvim",
+        enabled = false,
         event = "VeryLazy",
         opts = {
             ensure_installed = {
