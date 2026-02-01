@@ -14,7 +14,9 @@ return {
             { desc = "Execute opencode action…" },
         },
         {
-            mode = { "n", "t" },
+            mode = {
+                "n", --[[ "t" ]]
+            },
             "<leader>at",
             function() require("opencode").toggle() end,
             desc = "Toggle opencode",
