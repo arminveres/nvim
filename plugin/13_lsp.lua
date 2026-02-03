@@ -35,6 +35,7 @@ vim.diagnostic.config({
         -- header = "",
         -- prefix = "",
     },
+    jump = { float = true },
 })
 
 autocmd("LspAttach", {
@@ -108,26 +109,23 @@ autocmd("LspAttach", {
         local repeat_move = require("repeatable_move")
 
         local next_warn = function()
-            vim.diagnostic.jump({ count = 1, float = true, severity = vim.diagnostic.severity.WARN })
+            vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.WARN })
         end
         local prev_warn = function()
             vim.diagnostic.jump({
                 count = -1,
-                float = true,
                 severity = vim.diagnostic.severity.WARN,
             })
         end
         local next_err = function()
             vim.diagnostic.jump({
                 count = 1,
-                float = true,
                 severity = vim.diagnostic.severity.ERROR,
             })
         end
         local prev_err = function()
             vim.diagnostic.jump({
                 count = -1,
-                float = true,
                 severity = vim.diagnostic.severity.ERROR,
             })
         end
