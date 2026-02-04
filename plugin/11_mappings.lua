@@ -24,11 +24,12 @@ map("n", "j", "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent
 map("n", "<Up>", "<Nop>", opts)
 map("n", "<Down>", "<Nop>", opts)
 
+--[[ replaced by tmux.nvim
 -- Better window navigation
 map("n", "<C-h>", "<C-w>h", opts)
 map("n", "<C-j>", "<C-w>j", opts)
 map("n", "<C-k>", "<C-w>k", opts)
-map("n", "<C-l>", "<C-w>l", opts)
+map("n", "<C-l>", "<C-w>l", opts) ]]
 
 -- Resize with arrows
 map("n", "<C-Up>", ":resize -2<CR>", opts)
@@ -108,8 +109,8 @@ end, { expr = true, noremap = true })
 -- ================================================================================================
 map("n", "<leader>q", "<cmd>q<CR>", opts)
 map("n", "<leader>Q", "<Cmd>qall!<CR>", opts) -- quickquit
-map("n", "<leader>w", "<Cmd>w<CR>", opts) -- quick save
-map("n", "<leader>W", "<Cmd>w!<CR>", opts) -- quick save
+map("n", "<leader>w", "<Cmd>w<CR>", opts)     -- quick save
+map("n", "<leader>W", "<Cmd>w!<CR>", opts)    -- quick save
 -- keymap("n", ",WQ", "<Cmd>wq!<CR>", opts) -- quick save
 
 -- Yank to clipboard
