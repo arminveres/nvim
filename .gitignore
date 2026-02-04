@@ -3,3 +3,5 @@ tags
 log
 *.spl
 README.pdf
+.direnv
+result
