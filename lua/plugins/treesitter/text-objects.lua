@@ -94,7 +94,9 @@ return {
         },
         {
             mode = { "x", "o" },
-            "l=",
+            -- "l=", this is annoying in visual mode, becase l, i.e., the right movement will wait
+            -- for an operator.
+            "=l",
             function()
                 require("nvim-treesitter-textobjects.select").select_textobject(
                     "@assignment.lhs",
