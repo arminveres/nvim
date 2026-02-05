@@ -1,6 +1,6 @@
---[[
+--
 -- Custom Statusline based on a mixture of GPT4 prompts and reuse of my old config.
---]]
+--
 
 local reset = "%#Normal#"
 
@@ -28,42 +28,28 @@ local function git_changes()
 end
 
 local function get_diagnostics_info()
-    local diagnostics = vim.diagnostic.get(0) -- 0 for the current buffer
-    local counts = { errors = 0, warnings = 0, hints = 0, info = 0 }
+    local counts = {
+        errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR }),
+        warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN }),
+        hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT }),
+        info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO }),
+    }
 
-    for _, diag in ipairs(diagnostics) do
-        if diag.severity == vim.diagnostic.severity.ERROR then
-            counts.errors = counts.errors + 1
-        elseif diag.severity == vim.diagnostic.severity.WARN then
-            counts.warnings = counts.warnings + 1
-        elseif diag.severity == vim.diagnostic.severity.HINT then
-            counts.hints = counts.hints + 1
-        elseif diag.severity == vim.diagnostic.severity.INFO then
-            counts.info = counts.info + 1
-        end
-    end
-
-    local errors = string.format("%%#DiagnosticError#  %d", counts.errors)
-    local warnings = string.format("%%#DiagnosticWarn#  %d", counts.warnings)
-    local hints = string.format("%%#DiagnosticHint#  %d", counts.hints)
-    local infos = string.format("%%#DiagnosticInfo# 󰋼 %d", counts.info)
-
-    local return_str = ""
+    local result = {}
     if counts.errors > 0 then
-        return_str = return_str .. errors
-    elseif counts.warnings > 0 then
-        return_str = return_str .. warnings
-    elseif counts.hints > 0 then
-        return_str = return_str .. hints
-    elseif counts.info > 0 then
-        return_str = return_str .. infos
+        table.insert(result, string.format("%%#DiagnosticError#  %d", counts.errors))
+    end
+    if counts.warnings > 0 then
+        table.insert(result, string.format("%%#DiagnosticWarn#  %d", counts.warnings))
+    end
+    if counts.hints > 0 then
+        table.insert(result, string.format("%%#DiagnosticHint#  %d", counts.hints))
+    end
+    if counts.info > 0 then
+        table.insert(result, string.format("%%#DiagnosticInfo# 󰋼 %d", counts.info))
     end
 
-    if return_str ~= "" then
-        return return_str .. reset .. " | "
-    else
-        return return_str
-    end
+    return #result > 0 and table.concat(result, " ") .. reset .. " | " or ""
 end
 
 local function get_mode()
@@ -104,34 +90,6 @@ local function get_lsps()
     return " [" .. table.concat(names, " ") .. "]"
 end
 
-local function statusline()
-    local file_name = "%f"
-    local modified = "%m"
-    local align_right = "%="
-    local fileencoding = " %{&fileencoding?&fileencoding:&encoding}"
-    local fileformat = " [%{&fileformat}]"
-    local filetype = " %y"
-    local percentage = " %p%%"
-    local linecol = " %l:%c"
-
-    return string.format(
-        "%s%s%s%s%s%s%s%s%s%s%s%s%s",
-        reset,
-        get_mode(),
-        git_changes(),
-        get_diagnostics_info(),
-        file_name,
-        modified,
-        align_right,
-        get_lsps(),
-        filetype,
-        fileencoding,
-        fileformat,
-        percentage,
-        linecol
-    )
-end
-
 vim.api.nvim_create_autocmd({
     "ModeChanged",
     "CmdlineEnter",
@@ -141,10 +99,33 @@ vim.api.nvim_create_autocmd({
     "CursorMoved",
     "InsertEnter",
     "TextChanged",
+    -- TODO(aver): make it work in insert mode, consider using vim.schedule for performance reasons,
+    -- not to overload in insert mode
     -- "InsertChange",
     -- "InsertCharPre",
 }, {
     callback = function()
-        vim.o.statusline = statusline()
+        local file_name = "%f"
+        local modified = "%m"
+        local align_right = "%="
+        local fileencoding = " %{&fileencoding?&fileencoding:&encoding}"
+        local fileformat = " [%{&fileformat}]"
+        local filetype = " %y"
+        local percentage = " %p%%"
+        local linecol = " %l:%c"
+
+        vim.o.statusline = reset
+            .. get_mode()
+            .. git_changes()
+            .. get_diagnostics_info()
+            .. file_name
+            .. modified
+            .. align_right
+            .. get_lsps()
+            .. filetype
+            .. fileencoding
+            .. fileformat
+            .. percentage
+            .. linecol
     end,
 })
