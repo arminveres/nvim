@@ -1,5 +1,6 @@
 return {
     "Bekaboo/dropbar.nvim",
+    lazy = false,
     keys = {
         {
             "<leader>o",
@@ -7,5 +8,4 @@ return {
             desc = "Dropbar [o]pen",
         },
     },
-    opts = {},
 }

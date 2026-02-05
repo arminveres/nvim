@@ -136,6 +136,7 @@ local function lualine_setup()
 end
 
 return {
+    enabled = false,
     "nvim-lualine/lualine.nvim", -- Fancier statusline
     init = function()
         vim.g.lualine_laststatus = vim.o.laststatus
