@@ -2,9 +2,8 @@
 -- Custom Statusline based on a mixture of GPT4 prompts and reuse of my old config.
 --
 -- TODO(aver):
--- - consider loading gruvbox colorscheme earlier and linking against those colors or moving the 
+-- - consider loading gruvbox colorscheme earlier and linking against those colors or moving the
 --   Highlight definitions to the colorscheme.
--- - Add lsp root from lualine
 -- - Add inactive winbar from lualine
 
 local set_hi = vim.api.nvim_set_hl
@@ -97,6 +96,15 @@ local function get_lsps()
     return " [" .. table.concat(names, " ") .. "]"
 end
 
+local function get_cwd()
+    local cwd = vim.uv.cwd()
+    if cwd then
+        local dirname = vim.fn.fnamemodify(cwd, ":t")
+        return dirname .. " > "
+    end
+    return ""
+end
+
 local statusline_cache = ""
 
 local function update_statusline()
@@ -113,6 +121,7 @@ local function update_statusline()
         .. get_mode()
         .. git_changes()
         .. get_diagnostics_info()
+        .. get_cwd()
         .. file_name
         .. modified
         .. align_right
