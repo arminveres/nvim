@@ -1,16 +1,23 @@
 --
 -- Custom Statusline based on a mixture of GPT4 prompts and reuse of my old config.
 --
+-- TODO(aver):
+-- - consider loading gruvbox colorscheme earlier and linking against those colors or moving the 
+--   Highlight definitions to the colorscheme.
+-- - Add lsp root from lualine
+-- - Add inactive winbar from lualine
 
-local reset = "%#Normal#"
+local set_hi = vim.api.nvim_set_hl
+local global_hi_id = 0
 
--- local id = vim.api.nvim_create_namespace("MyStatusLine")
-local id = 0
-vim.api.nvim_set_hl(id, "MyStatusLineNormal", { fg = "#282828", bg = "#d75f00", bold = true })
-vim.api.nvim_set_hl(id, "MyStatusLineVisual", { fg = "#fbf1c7", bg = "#458588", bold = true })
-vim.api.nvim_set_hl(id, "MyStatusLineInsert", { fg = "#282828", bg = "#98971a", bold = true })
-vim.api.nvim_set_hl(id, "MyStatusLineTerminal", { fg = "#282828", bg = "#83a598", bold = true })
-vim.api.nvim_set_hl(id, "MyStatusLineCommand", { fg = "#282828", bg = "#792329", bold = true })
+set_hi(global_hi_id, "MyStatusLineNormal", { fg = "#282828", bg = "#d75f00", bold = true })
+set_hi(global_hi_id, "MyStatusLineVisual", { fg = "#fbf1c7", bg = "#458588", bold = true })
+set_hi(global_hi_id, "MyStatusLineInsert", { fg = "#282828", bg = "#98971a", bold = true })
+set_hi(global_hi_id, "MyStatusLineTerminal", { fg = "#282828", bg = "#83a598", bold = true })
+set_hi(global_hi_id, "MyStatusLineReplace", { fg = "#282828", bg = "#fb4934", bold = true })
+-- set_hi(id, "MyStatusLineCommand", { fg = "#282828", bg = "#792329", bold = true })
+
+local reset = "%#StatusLine#"
 
 local function git_changes()
     local status = vim.b.gitsigns_status_dict
@@ -64,7 +71,7 @@ local function get_mode()
         [""] = "S·Block",
         ["i"] = "%%#MyStatusLineInsert# INSERT ",
         ["ic"] = "%%#MyStatusLineInsert# INSERT ",
-        ["R"] = "Replace",
+        ["R"] = "%%#MyStatusLineReplace# REPLACE ",
         ["Rv"] = "%%#MyStatusLineVisual# V·Replace ",
         ["c"] = "%%#MyStatusLineTerminal# COMMAND ",
         ["cv"] = "Vim Ex",
@@ -90,6 +97,40 @@ local function get_lsps()
     return " [" .. table.concat(names, " ") .. "]"
 end
 
+local statusline_cache = ""
+
+local function update_statusline()
+    local file_name = "%f"
+    local modified = "%m"
+    local align_right = "%="
+    local fileencoding = " %{&fileencoding?&fileencoding:&encoding}"
+    local fileformat = " [%{&fileformat}]"
+    local filetype = " %y"
+    local percentage = " %p%%"
+    local linecol = " %l:%c"
+
+    local new_statusline = reset
+        .. get_mode()
+        .. git_changes()
+        .. get_diagnostics_info()
+        .. file_name
+        .. modified
+        .. align_right
+        .. get_lsps()
+        .. filetype
+        .. fileencoding
+        .. fileformat
+        .. percentage
+        .. linecol
+
+    -- use a cached update, possibly improving performance (untested)
+    if statusline_cache ~= new_statusline then
+        statusline_cache = new_statusline
+        vim.o.statusline = new_statusline
+        vim.cmd("redrawstatus")
+    end
+end
+
 vim.api.nvim_create_autocmd({
     "ModeChanged",
     "CmdlineEnter",
@@ -99,33 +140,7 @@ vim.api.nvim_create_autocmd({
     "CursorMoved",
     "InsertEnter",
     "TextChanged",
-    -- TODO(aver): make it work in insert mode, consider using vim.schedule for performance reasons,
-    -- not to overload in insert mode
-    -- "InsertChange",
-    -- "InsertCharPre",
+    "DiagnosticChanged", -- ensure diagnostics trigger an update, especially in InsertMode
 }, {
-    callback = function()
-        local file_name = "%f"
-        local modified = "%m"
-        local align_right = "%="
-        local fileencoding = " %{&fileencoding?&fileencoding:&encoding}"
-        local fileformat = " [%{&fileformat}]"
-        local filetype = " %y"
-        local percentage = " %p%%"
-        local linecol = " %l:%c"
-
-        vim.o.statusline = reset
-            .. get_mode()
-            .. git_changes()
-            .. get_diagnostics_info()
-            .. file_name
-            .. modified
-            .. align_right
-            .. get_lsps()
-            .. filetype
-            .. fileencoding
-            .. fileformat
-            .. percentage
-            .. linecol
-    end,
+    callback = function() vim.schedule(update_statusline) end,
 })
