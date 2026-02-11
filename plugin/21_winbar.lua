@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd("WinEnter", {
 
         if win_config.relative ~= "" then return end
 
-        vim.wo.winbar = "%{%v:lua.dropbar()%}"
+        vim.wo.winbar = "%!v:lua.dropbar()"
     end,
 })
 
