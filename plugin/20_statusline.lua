@@ -62,7 +62,7 @@ end
 local function get_mode()
     local mode_map = {
         ["n"] = "%%#MyStatusLineNormal# NORMAL ",
-        ["no"] = "N·Operator Pending",
+        ["no"] = "%%#MyStatusLineNormal# N·Operator Pending ",
         ["v"] = "%%#MyStatusLineVisual# VISUAL ",
         ["V"] = "%%#MyStatusLineVisual# V·Line ",
         [""] = "%%#MyStatusLineVisual# V·Block ",
@@ -86,6 +86,10 @@ local function get_mode()
 
     local mode = mode_map[vim.api.nvim_get_mode().mode] or "Unknown"
     -- return mode .. " " .. reset
+    -- return string.format(mode) .. reset .. " "
+
+    local recording = vim.fn.reg_recording()
+    if recording ~= "" then mode = mode .. "(REC @" .. recording .. ") " end
     return string.format(mode) .. reset .. " "
 end
 
