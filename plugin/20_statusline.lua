@@ -1,13 +1,16 @@
 --
 -- Custom Statusline based on a mixture of GPT4 prompts and reuse of my old config.
+-- Features:
+--  - Lualine like components, crafted manually.
+--  - Only load available components, making this blazingly fast!
 --
 -- TODO(aver):
 -- - consider loading gruvbox colorscheme earlier and linking against those colors or moving the
 --   Highlight definitions to the colorscheme.
--- - Add inactive winbar from lualine
 
 local set_hi = vim.api.nvim_set_hl
 local global_hi_id = 0
+local reset = "%#StatusLine#"
 
 set_hi(global_hi_id, "MyStatusLineNormal", { fg = "#282828", bg = "#d75f00", bold = true })
 set_hi(global_hi_id, "MyStatusLineVisual", { fg = "#fbf1c7", bg = "#458588", bold = true })
@@ -15,8 +18,6 @@ set_hi(global_hi_id, "MyStatusLineInsert", { fg = "#282828", bg = "#98971a", bol
 set_hi(global_hi_id, "MyStatusLineTerminal", { fg = "#282828", bg = "#83a598", bold = true })
 set_hi(global_hi_id, "MyStatusLineReplace", { fg = "#282828", bg = "#fb4934", bold = true })
 -- set_hi(id, "MyStatusLineCommand", { fg = "#282828", bg = "#792329", bold = true })
-
-local reset = "%#StatusLine#"
 
 local function git_changes()
     local status = vim.b.gitsigns_status_dict
@@ -26,11 +27,10 @@ local function git_changes()
         local changed = string.format("%%#GitSignsChange# ~%d", status.changed or 0)
         local deleted = string.format("%%#GitSignsDelete# -%d", status.removed or 0)
 
-        return branch .. "|" .. added .. changed .. deleted .. reset .. " | "
-    else
-        -- Return a placeholder or empty string if gitsigns data is not available
-        return ""
+        return branch .. "|" .. added .. changed .. deleted .. reset
     end
+    -- Return a placeholder or empty string if gitsigns data is not available
+    return ""
 end
 
 local function get_diagnostics_info()
@@ -55,7 +55,8 @@ local function get_diagnostics_info()
         table.insert(result, string.format("%%#DiagnosticInfo# 󰋼 %d", counts.info))
     end
 
-    return #result > 0 and table.concat(result, " ") .. reset .. " | " or ""
+    if #result > 0 then return " |" .. table.concat(result, " ") .. reset end
+    return ""
 end
 
 local function get_mode()
@@ -93,7 +94,8 @@ local function get_lsps()
     for _, server in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
         table.insert(names, server.name)
     end
-    return " [" .. table.concat(names, " ") .. "]"
+    if #names > 0 then return " [" .. table.concat(names, " ") .. "] |" end
+    return ""
 end
 
 local function get_cwd()
@@ -108,27 +110,31 @@ end
 local statusline_cache = ""
 
 local function update_statusline()
+    local align = "%=" -- Single align: left-right. Two aligns: 3 sections.
     local file_name = "%f"
     local modified = "%m"
-    local align_right = "%="
-    local fileencoding = " %{&fileencoding?&fileencoding:&encoding}"
-    local fileformat = " [%{&fileformat}]"
-    local filetype = " %y"
-    local percentage = " %p%%"
+    local fileencoding = "%{&fileencoding?&fileencoding:&encoding}"
+    local fileformat = "[%{&fileformat}]"
+    local filetype = "  %y"
+    local percentage = "%p%%"
     local linecol = " %l:%c"
 
-    local new_statusline = reset
+    local new_statusline = reset -- left segment
         .. get_mode()
         .. git_changes()
         .. get_diagnostics_info()
+        .. align -- middle segment
         .. get_cwd()
         .. file_name
         .. modified
-        .. align_right
+        .. align -- right segment
         .. get_lsps()
         .. filetype
+        .. " | "
         .. fileencoding
+        .. " "
         .. fileformat
+        .. " | "
         .. percentage
         .. linecol
 
