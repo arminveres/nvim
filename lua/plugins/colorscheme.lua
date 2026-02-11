@@ -57,22 +57,17 @@ local color_overrides = {
     RenderMarkdownH3Bg = { bg = "#442d30" },
     RenderMarkdownH4Bg = { bg = "#442d30" },
     RenderMarkdownH5Bg = { bg = "#442d30" },
-
-    -- ========================================================================================
-    -- Deprecated plugins
-    -- ========================================================================================
-    -- SagaNormal = { link = "PMenu" },
-    -- IblScope = { link = "GruvboxRedSign" },
 }
 
 local gruvbox_options = {
     transparent_mode = false,
-    contrast = "hard", -- can be "hard" or "soft"
+    contrast = "hard",    -- can be "hard" or "soft"
     dim_inactive = false, -- dim inactive window
     -- overriding highlight groups
     palette_overrides = { dark0_hard = "#141414" },
     overrides = color_overrides,
 }
+
 local transparency_loc = ""
 if vim.fn.has("win32") == 1 then
     transparency_loc = os.getenv("LOCALAPPDATA") .. "/nvim-data/.gruvbox_transparency"
