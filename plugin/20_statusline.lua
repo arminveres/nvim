@@ -1,5 +1,5 @@
 --
--- Custom Statusline based on a mixture of GPT4 prompts and reuse of my old config.
+-- Custom Statusline built with some LLM help and my old config.
 -- Features:
 --  - Lualine like components, crafted manually.
 --  - Only load available components, making this blazingly fast!
@@ -11,6 +11,7 @@
 local set_hi = vim.api.nvim_set_hl
 local global_hi_id = 0
 local reset = "%#StatusLine#"
+local warn = "%#WarningMsg#"
 
 set_hi(global_hi_id, "MyStatusLineNormal", { fg = "#282828", bg = "#d75f00", bold = true })
 set_hi(global_hi_id, "MyStatusLineVisual", { fg = "#fbf1c7", bg = "#458588", bold = true })
@@ -88,8 +89,8 @@ local function get_mode()
     -- return mode .. " " .. reset
     -- return string.format(mode) .. reset .. " "
 
-    local recording = vim.fn.reg_recording()
-    if recording ~= "" then mode = mode .. "(REC @" .. recording .. ") " end
+    -- local recording = vim.fn.reg_recording()
+    -- if recording ~= "" then mode = mode .. "(REC @" .. recording .. ") " end
     return string.format(mode) .. reset .. " "
 end
 
@@ -111,9 +112,16 @@ local function get_cwd()
     return ""
 end
 
+local function get_macro_state()
+    local r = vim.fn.reg_recording()
+    local e = vim.fn.reg_executing()
+    local rec = (r ~= "" and ("recording @" .. r)) or (e ~= "" and ("playing @" .. e)) or ""
+    return " " .. warn .. rec .. reset .. " "
+end
+
 local statusline_cache = ""
 
-local function update_statusline()
+function _G.MyStatusline()
     local align = "%=" -- Single align: left-right. Two aligns: 3 sections.
     local file_name = "%f"
     local modified = "%m"
@@ -132,6 +140,7 @@ local function update_statusline()
         .. file_name
         .. modified
         .. align -- right segment
+        .. get_macro_state()
         .. get_lsps()
         .. filetype
         .. " | "
@@ -143,23 +152,8 @@ local function update_statusline()
         .. linecol
 
     -- use a cached update, possibly improving performance (untested)
-    if statusline_cache ~= new_statusline then
-        statusline_cache = new_statusline
-        vim.o.statusline = new_statusline
-        vim.cmd("redrawstatus")
-    end
+    if statusline_cache ~= new_statusline then statusline_cache = new_statusline end
+    return statusline_cache
 end
 
-vim.api.nvim_create_autocmd({
-    "ModeChanged",
-    "CmdlineEnter",
-    "BufEnter",
-    "BufWritePost",
-    "CursorHold",
-    "CursorMoved",
-    "InsertEnter",
-    "TextChanged",
-    "DiagnosticChanged", -- ensure diagnostics trigger an update, especially in InsertMode
-}, {
-    callback = function() vim.schedule(update_statusline) end,
-})
+vim.o.statusline = "%!v:lua.MyStatusline()"
