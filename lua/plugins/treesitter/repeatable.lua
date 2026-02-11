@@ -21,16 +21,13 @@ local pairs_to_wrap = {
     "l", -- loclist
     "b", -- Buffer
     "s", -- spelling
-    -- "f", -- files, open
-    -- "a", -- Files
-    -- "t",
-    -- " ",
+    "d", -- built-in diagnostics
 }
 
 return {
     "kiyoon/repeatable-move.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
-    keys = { { "]" }, {"["} },
+    keys = { { "]" }, { "[" } },
     config = function()
         local repeat_move = require("repeatable_move")
         for _, suffix in ipairs(pairs_to_wrap) do
