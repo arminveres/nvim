@@ -54,8 +54,8 @@ require("lazy").setup({
                 "tutor",
                 "netrwPlugin",
                 -- Needed for highlighting parenthesis, but replaceable by blink.pairs
-                -- "matchit",
-                -- "matchparen",
+                "matchit",
+                "matchparen",
             },
         },
     },
