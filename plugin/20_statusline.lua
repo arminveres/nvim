@@ -123,7 +123,7 @@ local statusline_cache = ""
 
 function _G.MyStatusline()
     local align = "%=" -- Single align: left-right. Two aligns: 3 sections.
-    local file_name = "%f"
+    local file_name = "%<%t"
     local modified = "%m"
     local fileencoding = "%{&fileencoding?&fileencoding:&encoding}"
     local fileformat = "[%{&fileformat}]"
