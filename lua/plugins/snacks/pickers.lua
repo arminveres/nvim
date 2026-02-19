@@ -1,4 +1,4 @@
-local grep_layout = { layout = { preset = "left", layout = { width = 120 } } }
+local grep_layout = { layout = { preset = "dropdown", layout = { width = 140 } } }
 local select_layout = { layout = { preset = "select" } }
 
 return {
