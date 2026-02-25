@@ -19,13 +19,10 @@ local function setup_lsp()
 
     capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
+    -- update capabilities and on_attach function for all configs
     vim.lsp.config("*", { capabilities = capabilities, on_attach = on_attach })
 
-    -- local lsp_servers = require("mason-lspconfig").get_installed_servers()
-    -- manually insert servers, that are not recognized
-    -- table.insert(lsp_servers, "bitbake_ls")
-    -- table.insert(lsp_servers, "nixd")
-
+    -- enable selected lsps, installed externally.
     vim.lsp.enable({
         "bitbake_ls",
         "nixd",
@@ -37,6 +34,7 @@ local function setup_lsp()
         "jsonls",
         "neocmake",
         "taplo",
+        "systemd_lsp",
     })
 end
 
