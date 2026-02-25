@@ -22,16 +22,31 @@ set_hi(global_hi_id, "MyStatusLineReplace", { fg = "#282828", bg = "#fb4934", bo
 
 local function git_changes()
     local status = vim.b.gitsigns_status_dict
+    local result = ""
     if status and status.head then
         local branch = string.format("%%#GruvboxOrange# %%#Normal#%s ", status.head)
-        local added = string.format("%%#GitSignsAdd# +%d", status.added or 0)
-        local changed = string.format("%%#GitSignsChange# ~%d", status.changed or 0)
-        local deleted = string.format("%%#GitSignsDelete# -%d", status.removed or 0)
+        local changes = ""
 
-        return branch .. "|" .. added .. changed .. deleted .. reset
+        if status.added and status.added > 0 then
+            local added = string.format("%%#GitSignsAdd# +%d", status.added)
+            changes = changes .. added
+        end
+
+        if status.changed and status.changed > 0 then
+            local changed = string.format("%%#GitSignsChange# ~%d", status.changed)
+            changes = changes .. changed
+        end
+
+        if status.removed and status.removed > 0 then
+            local deleted = string.format("%%#GitSignsDelete# -%d", status.removed)
+            changes = changes .. deleted
+        end
+
+        result = branch .. reset
+        if changes ~= "" then result = result .. "|" .. changes .. reset end
     end
     -- Return a placeholder or empty string if gitsigns data is not available
-    return ""
+    return result
 end
 
 local function get_diagnostics_info()
