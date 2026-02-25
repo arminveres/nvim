@@ -39,7 +39,7 @@ vim.diagnostic.config({
 })
 
 autocmd("LspAttach", {
-    group = augroup("pluginsLspConfig", {}),
+    group = augroup("plugins.lspconfig-nvim", {}),
     callback = function(args)
         -- ========================================================================================
         -- Buffer local mappings.
@@ -139,33 +139,4 @@ autocmd("LspAttach", {
         map({ "n", "x", "o" }, "]e", next_err, merge_desc(opts, "Jump to next error"))
         map({ "n", "x", "o" }, "[e", prev_err, merge_desc(opts, "Jump to previous error."))
     end,
-})
-
--- systemd is not always registered, so set a pattern of filestypes for it, which auto starts
--- systemd_lsp.
-autocmd("BufEnter", {
-    group = augroup("pluginsLspConfig", {}),
-    pattern = {
-        -- systemd unit files
-        "*.service",
-        "*.socket",
-        "*.timer",
-        "*.mount",
-        "*.automount",
-        "*.swap",
-        "*.target",
-        "*.path",
-        "*.slice",
-        "*.scope",
-        "*.device",
-        -- Podman Quadlet files
-        "*.container",
-        "*.volume",
-        "*.network",
-        "*.kube",
-        "*.pod",
-        "*.build",
-        "*.image",
-    },
-    callback = function() vim.bo.filetype = "systemd" end,
 })

@@ -8,7 +8,7 @@ autocmd("TextYankPost", { callback = function() vim.highlight.on_yank() end })
 autocmd("TabClosed", { callback = function() vim.o.showtabline = 1 end })
 
 autocmd("BufWritePre", {
-    group = augroup("AutoCreateDir", { clear = true }),
+    group = augroup("plugins.AutoCreateDir", {}),
     callback = function(event)
         local file = event.match
         -- Ignore creation of oil:// directories, which get created on each save in an Oil.nvim buffer.
@@ -27,7 +27,7 @@ autocmd({ "BufEnter", "LspAttach" }, {
 -- Close certain filetypes with q
 -- Note: 'man' is excluded because Neovim has built-in q handling for man pages
 autocmd("FileType", {
-    group = augroup("close_with_q", { clear = true }),
+    group = augroup("plugins.CloseWithQ", {}),
     pattern = {
         "checkhealth",
         "git",
@@ -45,6 +45,36 @@ autocmd("FileType", {
             if not ok then vim.cmd.quit() end
         end, { buffer = event.buf, silent = true, desc = "Close buffer" })
     end,
+})
+
+
+-- systemd is not always registered, so set a pattern of filestypes for it, which auto starts
+-- systemd_lsp.
+autocmd("BufEnter", {
+    group = augroup("plugins.filtypes", {}),
+    pattern = {
+        -- systemd unit files
+        "*.service",
+        "*.socket",
+        "*.timer",
+        "*.mount",
+        "*.automount",
+        "*.swap",
+        "*.target",
+        "*.path",
+        "*.slice",
+        "*.scope",
+        "*.device",
+        -- Podman Quadlet files
+        "*.container",
+        "*.volume",
+        "*.network",
+        "*.kube",
+        "*.pod",
+        "*.build",
+        "*.image",
+    },
+    callback = function() vim.bo.filetype = "systemd" end,
 })
 
 -- aucmd("BufLeave", {
