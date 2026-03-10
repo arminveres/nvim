@@ -35,6 +35,7 @@ local function setup_lsp()
         "neocmake",
         "taplo",
         "systemd_lsp",
+        "dockerls",
     })
 end
 
