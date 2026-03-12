@@ -2,6 +2,7 @@ local parsers = {
     "bash",
     "bitbake",
     "c",
+    "c_sharp",
     "cmake",
     "comment", -- handy for todo items, hyprlinks
     "cpp",
@@ -41,7 +42,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     branch = "main",
     build = ":TSUpdate",
-    ft = parsers,
+    ft = require("utils").merge(parsers, { "cs" }),
     init = function()
         vim.g.no_plugin_maps = true
         vim.api.nvim_create_autocmd("FileType", {
@@ -56,6 +57,7 @@ return {
         vim.treesitter.language.register("xml", "xaml")
         vim.treesitter.language.register("c", "cl")
         vim.treesitter.language.register("cpp", "clpp")
+        vim.treesitter.language.register("c_sharp", "cs")
 
         vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
         vim.wo[0][0].foldmethod = "expr"
