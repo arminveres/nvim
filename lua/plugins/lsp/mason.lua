@@ -1,6 +1,7 @@
 return {
     {
         "mason-org/mason.nvim", -- installer for lsps
+        enabled = vim.fn.has("win32") == 1,
         opts = { ui = { border = "rounded" } },
         cmd = "Mason",
         keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
@@ -8,8 +9,9 @@ return {
     },
     {
         "mason-org/mason-lspconfig.nvim",
-        enabled = false,
+        enabled = vim.fn.has("win32") == 1,
         opts = {
+            --[[
             ensure_installed = {
                 "lua_ls",
                 "clangd",
@@ -25,6 +27,7 @@ return {
         enabled = false,
         event = "VeryLazy",
         opts = {
+            --[[
             ensure_installed = {
                 -- Opt to list sources here, when available in mason.
                 "stylua",
@@ -33,6 +36,7 @@ return {
                 "gitlint",
                 "shellcheck",
             },
+            ]]
             automatic_installation = false,
             automatic_setup = true, -- Recommended, but optional
             -- dependencies = { "nvimtools/none-ls.nvim" },

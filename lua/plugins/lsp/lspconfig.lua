@@ -22,6 +22,13 @@ local function setup_lsp()
     -- update capabilities and on_attach function for all configs
     vim.lsp.config("*", { capabilities = capabilities, on_attach = on_attach })
 
+    -- Windows still uses mason
+if vim.fn.has("win32") == 1 then
+    local lsp_servers = require("mason-lspconfig").get_installed_servers()
+    vim.lsp.enable(lsp_servers)
+end
+
+
     -- enable selected lsps, installed externally.
     vim.lsp.enable({
         "bitbake_ls",
