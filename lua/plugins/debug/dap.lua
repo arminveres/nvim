@@ -3,7 +3,8 @@
 
 ---@param config {type?:string, args?:string[]|fun():string[]?}
 local function get_args(config)
-    local args = type(config.args) == "function" and (config.args() or {}) or config.args or {} --[[@as string[] | string ]]
+    local args = type(config.args) == "function" and (config.args() or {}) or config.args or
+    {} --[[@as string[] | string ]]
     local args_str = type(args) == "table" and table.concat(args, " ") or args --[[@as string]]
 
     config = vim.deepcopy(config)
@@ -120,29 +121,34 @@ return {
             },
         },
         "williamboman/mason.nvim",
-        "jay-babu/mason-nvim-dap.nvim",
+        {
+            "jay-babu/mason-nvim-dap.nvim",
+            enabled = vim.fn.has("win32") == 1,
+        },
         "theHamsta/nvim-dap-virtual-text",
     },
     config = function()
         local dap = require("dap")
         local dapui = require("dapui")
 
-        require("mason-nvim-dap").setup({
-            -- Makes a best effort to setup the various debuggers with
-            -- reasonable debug configurations
-            automatic_setup = true,
+        if vim.fn.has("win32") == 1 then
+            require("mason-nvim-dap").setup({
+                -- Makes a best effort to setup the various debuggers with
+                -- reasonable debug configurations
+                automatic_setup = true,
 
-            -- You can provide additional configuration to the handlers,
-            -- see mason-nvim-dap README for more information
-            handlers = {},
+                -- You can provide additional configuration to the handlers,
+                -- see mason-nvim-dap README for more information
+                handlers = {},
 
-            -- You'll need to check that you have the required things installed
-            -- online, please don't ask me how to install them :)
-            ensure_installed = {
-                -- Update this to ensure that you have the debuggers for the langs you want
-                -- "delve",
-            },
-        })
+                -- You'll need to check that you have the required things installed
+                -- online, please don't ask me how to install them :)
+                ensure_installed = {
+                    -- Update this to ensure that you have the debuggers for the langs you want
+                    -- "delve",
+                },
+            })
+        end
 
         -- Dap UI setup
         -- For more information, see |:help nvim-dap-ui|
