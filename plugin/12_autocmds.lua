@@ -37,6 +37,7 @@ autocmd("FileType", {
         "notify",
         "qf",
         "startuptime",
+        "outputpanel"
     },
     callback = function(event)
         vim.bo[event.buf].buflisted = false
