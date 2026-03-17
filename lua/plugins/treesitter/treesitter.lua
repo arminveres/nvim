@@ -42,6 +42,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     branch = "main",
     build = ":TSUpdate",
+    cmd = { "TSUpdate", "TSInstall", "TSUninstall" },
     ft = require("utils").merge(parsers, { "cs" }),
     init = function()
         vim.g.no_plugin_maps = true
