@@ -5,7 +5,7 @@ return {
     "folke/snacks.nvim",
     opts = {
         ---@type snacks.picker.Config
-        picker = { layout = { preset = "dropdown" } },
+        picker = { layout = { preset = "dropdown", border = "none" } },
     },
     keys = {
         -- =============================================================================================================

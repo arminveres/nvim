@@ -61,7 +61,7 @@ local color_overrides = {
 
 local gruvbox_options = {
     transparent_mode = false,
-    contrast = "hard",    -- can be "hard" or "soft"
+    contrast = "hard", -- can be "hard" or "soft"
     dim_inactive = false, -- dim inactive window
     -- overriding highlight groups
     palette_overrides = { dark0_hard = "#141414" },
@@ -126,18 +126,25 @@ local function toggle_transparency()
     vim.cmd.colorscheme("gruvbox")
 end
 
-return { -- colorschemes TODO: just write my own colorscheme based on gruvbox...
-    "ellisonleao/gruvbox.nvim",
-    keys = {
-        {
-            "<leader>cot",
-            toggle_transparency,
-            desc = "Toggle background transparency in gruvbox",
+return {
+    { -- colorschemes TODO: just write my own colorscheme based on gruvbox...
+        "ellisonleao/gruvbox.nvim",
+        keys = {
+            {
+                "<leader>cot",
+                toggle_transparency,
+                desc = "Toggle background transparency in gruvbox",
+            },
         },
+        init = function()
+            load_transparency(false)
+            require("gruvbox").setup(gruvbox_options)
+        end,
     },
-    init = function()
-        load_transparency(false)
-        require("gruvbox").setup(gruvbox_options)
-        -- vim.cmd.colorscheme("gruvbox")
-    end,
+    {
+        "wtfox/jellybeans.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+    },
 }

@@ -11,7 +11,7 @@ return {
     opts = {
         menu = {
             win_configs = {
-                border = "rounded", -- Border style for the menu
+                border = BorderStyle, -- Border style for the menu
             },
         },
     },

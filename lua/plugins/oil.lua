@@ -18,7 +18,7 @@ return {
         float = {
             max_width = 120,
             max_height = 40,
-            border = "rounded",
+            border = BorderStyle,
         },
         columns = {
             "icon",
@@ -27,10 +27,10 @@ return {
             "mtime",
         },
         view_options = { show_hidden = true },
-        confirmation = { border = "rounded" },
-        progress = { border = "rounded" },
-        ssh = { border = "rounded" },
-        keymaps_help = { border = "rounded" },
+        confirmation = { border = BorderStyle },
+        progress = { border = BorderStyle },
+        ssh = { border = BorderStyle },
+        keymaps_help = { border = BorderStyle },
     },
     dependencies = { "nvim-tree/nvim-web-devicons" },
 }

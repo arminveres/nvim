@@ -49,8 +49,8 @@ vim.o.list = true
 vim.o.spelllang = "en_us"
 vim.o.wrapscan = true
 
-vim.o.pumblend = 15 -- blend popup
-vim.o.winblend = 15
+-- vim.o.pumblend = 15 -- blend popup
+-- vim.o.winblend = 15
 
 vim.o.cmdheight = 1
 -- configure ripgrep as grep program if available
