@@ -61,7 +61,7 @@ local color_overrides = {
 
 local gruvbox_options = {
     transparent_mode = false,
-    contrast = "hard", -- can be "hard" or "soft"
+    contrast = "hard",    -- can be "hard" or "soft"
     dim_inactive = false, -- dim inactive window
     -- overriding highlight groups
     palette_overrides = { dark0_hard = "#141414" },
@@ -147,4 +147,10 @@ return {
         priority = 1000,
         opts = {},
     },
+    {
+        "Mofiqul/vscode.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+    }
 }
