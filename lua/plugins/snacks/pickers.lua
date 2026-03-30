@@ -1,11 +1,32 @@
-local grep_layout = { layout = { preset = "dropdown", layout = { width = 140 } } }
 local select_layout = { layout = { preset = "select" } }
 
 return {
     "folke/snacks.nvim",
     opts = {
         ---@type snacks.picker.Config
-        picker = { layout = { preset = "dropdown", border = "none" } },
+        picker = {
+            layouts = {
+                fullscreen_vertical = {
+                    layout = {
+                        box = "horizontal",
+                        fullscreen = true,
+                        {
+                            box = "vertical",
+                            border = true,
+                            width = 0.4,
+                            title = "{title} {live} {flags}",
+                            { win = "input", height = 1, border = "bottom" },
+                            { win = "list", border = "none" },
+                        },
+                        { win = "preview", title = "{preview}", border = true, width = 0.6 },
+                    },
+                },
+            },
+            sources = {
+                grep_word = { layout = { preset = "fullscreen_vertical" } },
+                grep = { layout = { preset = "fullscreen_vertical" } },
+            },
+        },
     },
     keys = {
         -- =============================================================================================================
@@ -15,7 +36,7 @@ return {
             function() Snacks.picker.smart(select_layout) end,
             desc = "Smart Find Files",
         },
-        { "<leader>/", function() Snacks.picker.grep(grep_layout) end, desc = "Grep" },
+        { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
         {
             "<leader>:",
             function() Snacks.picker.command_history() end,
@@ -95,12 +116,12 @@ return {
         },
         {
             "<leader>sB",
-            function() Snacks.picker.grep_buffers(grep_layout) end,
+            function() Snacks.picker.grep_buffers() end,
             desc = "Grep Open Buffers",
         },
         {
             "<leader>sw",
-            function() Snacks.picker.grep_word(grep_layout) end,
+            function() Snacks.picker.grep_word() end,
             desc = "Visual selection or word",
             mode = { "n", "x" },
         },
