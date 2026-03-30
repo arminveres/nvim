@@ -37,7 +37,7 @@ autocmd("FileType", {
         "notify",
         "qf",
         "startuptime",
-        "outputpanel"
+        "outputpanel",
     },
     callback = function(event)
         vim.bo[event.buf].buflisted = false
@@ -48,11 +48,10 @@ autocmd("FileType", {
     end,
 })
 
-
 -- systemd is not always registered, so set a pattern of filestypes for it, which auto starts
 -- systemd_lsp.
 autocmd("BufEnter", {
-    group = augroup("plugins.filtypes", {}),
+    group = augroup("plugins.filetypes", {}),
     pattern = {
         -- systemd unit files
         "*.service",
@@ -76,6 +75,12 @@ autocmd("BufEnter", {
         "*.image",
     },
     callback = function() vim.bo.filetype = "systemd" end,
+})
+
+autocmd("FileType", {
+    group = augroup("plugins.colorcolumn", {}),
+    pattern = { "oil", "noice", "qf", "lspinfo" },
+    callback = function() vim.opt.colorcolumn = "" end,
 })
 
 -- aucmd("BufLeave", {
