@@ -62,4 +62,4 @@ require("lazy").setup({
 })
 
 -- move here, for some reason "SIXEL IMAGE 1x1" gets logged if called too early...
-vim.cmd.colorscheme("jellybeans")
+vim.cmd.colorscheme("gruvbox")

@@ -1,13 +1,8 @@
 local color_overrides = {
     -- ========================================================================================
-    -- LSP and LspSaga colors
+    -- LSP
     -- ========================================================================================
-    FloatShadow = { link = "PMenu" },
-    FloatShadowThrough = { link = "PMenu" },
     String = { fg = "#eb9664" }, -- #eb9664, #c89664
-    -- Comment = { fg = "#919191", italic = true, bold = false },
-    -- Comment = { fg = "#c89664", italic = true, bold = false },
-    -- Comment = { fg = "#91a573", italic = true, bold = false },
 
     -- ["@lsp.type.method.c"] = { link = "GruvboxOrangeBold" },
     -- ["@lsp.type.method.cpp"] = { link = "GruvboxOrangeBold" },
@@ -61,10 +56,13 @@ local color_overrides = {
 
 local gruvbox_options = {
     transparent_mode = false,
-    contrast = "hard",    -- can be "hard" or "soft"
     dim_inactive = false, -- dim inactive window
+    -- contrast = "hard", -- can be "hard" or "soft"
     -- overriding highlight groups
-    palette_overrides = { dark0_hard = "#141414" },
+    palette_overrides = {
+        dark0 = "#101010",
+        dark1 = "#141414"
+    },
     overrides = color_overrides,
 }
 
