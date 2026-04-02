@@ -66,12 +66,9 @@ local gruvbox_options = {
     overrides = color_overrides,
 }
 
-local transparency_loc = ""
-if vim.fn.has("win32") == 1 then
-    transparency_loc = os.getenv("LOCALAPPDATA") .. "/nvim-data/.gruvbox_transparency"
-else
-    transparency_loc = os.getenv("XDG_STATE_HOME") .. "/nvim/.gruvbox_transparency"
-end
+local transparency_loc = vim.fn.has("win32") == 1
+    and os.getenv("LOCALAPPDATA") .. "/nvim-data/.gruvbox_transparency"
+    or os.getenv("XDG_STATE_HOME") .. "/nvim/.gruvbox_transparency"
 
 --- @brief loads the transparency from the state file into the options
 --- @param do_toggle boolean Whether to toggle transparency or not
@@ -91,29 +88,8 @@ local function load_transparency(do_toggle)
         return
     end
 
-    if "" == content then
-        if do_toggle then
-            gruvbox_options.transparent_mode = not gruvbox_options.transparent_mode
-        end
-        transparency:write(tostring(gruvbox_options.transparent_mode))
-        transparency:close()
-        return
-    end
-
-    if "true" == content then
-        if do_toggle then
-            gruvbox_options.transparent_mode = false
-        else
-            gruvbox_options.transparent_mode = true
-        end
-    else
-        if do_toggle then
-            gruvbox_options.transparent_mode = true
-        else
-            gruvbox_options.transparent_mode = false
-        end
-    end
-
+    local is_content_true = "true" == content
+    gruvbox_options.transparent_mode = not (is_content_true and do_toggle)
     transparency:write(tostring(gruvbox_options.transparent_mode))
     transparency:close()
 end
@@ -135,7 +111,7 @@ return {
             },
         },
         init = function()
-            load_transparency(false)
+            -- load_transparency(false)
             require("gruvbox").setup(gruvbox_options)
         end,
     },
@@ -150,5 +126,5 @@ return {
         lazy = false,
         priority = 1000,
         opts = {},
-    }
+    },
 }
