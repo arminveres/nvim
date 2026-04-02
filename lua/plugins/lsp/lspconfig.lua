@@ -25,18 +25,19 @@ local function setup_lsp()
 
     -- enable selected lsps, installed externally.
     vim.lsp.enable({
-        "bitbake_ls",
-        "nixd",
-        "clangd",
-        "lua_ls",
         "basedpyright",
         "bashls",
-        "yamlls",
-        "jsonls",
-        "neocmake",
-        "taplo",
-        "systemd_lsp",
+        "bitbake_ls",
+        "clangd",
         "dockerls",
+        "jsonls",
+        "lua_ls",
+        "marksman",
+        "neocmake",
+        "nixd",
+        "systemd_lsp",
+        "taplo",
+        "yamlls",
     })
 end
 
