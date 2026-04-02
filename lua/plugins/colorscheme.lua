@@ -62,8 +62,8 @@ local gruvbox_options = {
     -- contrast = "hard", -- can be "hard" or "soft"
     -- overriding highlight groups
     palette_overrides = {
-        dark0 = "#101010",
-        dark1 = "#141414",
+        dark0 = "#0F0F0F",
+        dark1 = "#1F1F1F"
     },
     overrides = color_overrides,
 }
