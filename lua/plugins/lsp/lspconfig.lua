@@ -1,10 +1,5 @@
 -- @brief Sets up individual language servers
 local function setup_lsp()
-    local on_attach = function(client, bufnr)
-        -- Highlight words under current cursor
-        require("illuminate").on_attach(client)
-    end
-
     local capabilities = {
         -- enable snippet support
         textDocument = {
@@ -20,14 +15,13 @@ local function setup_lsp()
     capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
     -- update capabilities and on_attach function for all configs
-    vim.lsp.config("*", { capabilities = capabilities, on_attach = on_attach })
+    vim.lsp.config("*", { capabilities = capabilities })
 
     -- Windows still uses mason
-if vim.fn.has("win32") == 1 then
-    local lsp_servers = require("mason-lspconfig").get_installed_servers()
-    vim.lsp.enable(lsp_servers)
-end
-
+    if vim.fn.has("win32") == 1 then
+        local lsp_servers = require("mason-lspconfig").get_installed_servers()
+        vim.lsp.enable(lsp_servers)
+    end
 
     -- enable selected lsps, installed externally.
     vim.lsp.enable({
@@ -51,5 +45,4 @@ return {
         "neovim/nvim-lspconfig", -- Collection of configurations for built-in LSP client
         config = setup_lsp,
     },
-    { "RRethy/vim-illuminate" },
 }

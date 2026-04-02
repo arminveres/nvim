@@ -8,6 +8,8 @@ local color_overrides = {
     -- ["@lsp.type.method.cpp"] = { link = "GruvboxOrangeBold" },
     LspInlayHint = { fg = "#919191", italic = true, bold = true },
 
+    LspReferenceText = { fg = "#FABD2F", underline = true },
+
     -- These highlights are special for undefined macros
     ["@lsp.type.comment.c"] = { fg = "#91a573", bg = "#785032", italic = true },
     ["@lsp.type.comment.cpp"] = { fg = "#91a573", bg = "#785032", italic = true },
@@ -61,13 +63,13 @@ local gruvbox_options = {
     -- overriding highlight groups
     palette_overrides = {
         dark0 = "#101010",
-        dark1 = "#141414"
+        dark1 = "#141414",
     },
     overrides = color_overrides,
 }
 
 local transparency_loc = vim.fn.has("win32") == 1
-    and os.getenv("LOCALAPPDATA") .. "/nvim-data/.gruvbox_transparency"
+        and os.getenv("LOCALAPPDATA") .. "/nvim-data/.gruvbox_transparency"
     or os.getenv("XDG_STATE_HOME") .. "/nvim/.gruvbox_transparency"
 
 --- @brief loads the transparency from the state file into the options
