@@ -35,7 +35,6 @@ vim.diagnostic.config({
         -- header = "",
         -- prefix = "",
     },
-    jump = { float = true },
 })
 
 autocmd("LspAttach", {
@@ -107,24 +106,29 @@ autocmd("LspAttach", {
         -- Diagnostics
         -- ========================================================================================
         local repeat_move = require("repeatable_move")
+        local next_diag = function() vim.diagnostic.jump({ float = true, count = 1 }) end
+        local prev_diag = function() vim.diagnostic.jump({ float = true, count = -1 }) end
 
         local next_warn = function()
-            vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.WARN })
+            vim.diagnostic.jump({ float = true, count = 1, severity = vim.diagnostic.severity.WARN })
         end
         local prev_warn = function()
             vim.diagnostic.jump({
+                float = true,
                 count = -1,
                 severity = vim.diagnostic.severity.WARN,
             })
         end
         local next_err = function()
             vim.diagnostic.jump({
+                float = true,
                 count = 1,
                 severity = vim.diagnostic.severity.ERROR,
             })
         end
         local prev_err = function()
             vim.diagnostic.jump({
+                float = true,
                 count = -1,
                 severity = vim.diagnostic.severity.ERROR,
             })
@@ -134,6 +138,8 @@ autocmd("LspAttach", {
         next_warn, prev_warn = repeat_move.make_repeatable_move_pair(next_warn, prev_warn)
         next_err, prev_err = repeat_move.make_repeatable_move_pair(next_err, prev_err)
 
+        map({ "n", "x", "o" }, "]d", next_diag, merge_desc(opts, "Jump to next diagnostic"))
+        map({ "n", "x", "o" }, "[d", prev_diag, merge_desc(opts, "Jump to previous diagnostic"))
         map({ "n", "x", "o" }, "]w", next_warn, merge_desc(opts, "Jump to next warning"))
         map({ "n", "x", "o" }, "[w", prev_warn, merge_desc(opts, "Jump to previous warning"))
         map({ "n", "x", "o" }, "]e", next_err, merge_desc(opts, "Jump to next error"))

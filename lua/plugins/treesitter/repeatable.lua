@@ -21,7 +21,6 @@ local pairs_to_wrap = {
     "l", -- loclist
     "b", -- Buffer
     "s", -- spelling
-    "d", -- built-in diagnostics
 }
 
 return {
