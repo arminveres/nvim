@@ -11,7 +11,7 @@ return {
     opts = {
         menu = {
             win_configs = {
-                border = BorderStyle, -- Border style for the menu
+                border = vim.g.BorderStyle, -- Border style for the menu
             },
         },
     },

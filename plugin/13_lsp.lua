@@ -30,7 +30,7 @@ vim.diagnostic.config({
     float = {
         focusable = true,
         style = "minimal",
-        border = BorderStyle,
+        border = vim.g.BorderStyle,
         source = true,
         -- header = "",
         -- prefix = "",
