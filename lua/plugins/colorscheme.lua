@@ -1,4 +1,4 @@
-local color_overrides = {
+local gruvbox_overrides = {
     -- ========================================================================================
     -- LSP
     -- ========================================================================================
@@ -29,22 +29,20 @@ local color_overrides = {
     -- Fold
     -- ========================================================================================
     Folded = { fg = "#fe8019", bg = "#3c3836", italic = true },
-    FoldColumn = { fg = "#fe8019", bg = "#0E1018" },
+    FoldColumn = { fg = "#fe8019" },
     SignColumn = { link = "GruvboxBg0" },
 
     -- ========================================================================================
     -- statusline and column
     -- ========================================================================================
-    StatusLine = { fg = "#ffffff", bg = "#0E1018" },
-    StatusLineNC = { fg = "#3c3836", bg = "#0E1018" },
+    StatusLine = { fg = "#ffffff", bg = "#1F1F1F" },
+    StatusLineNC = { fg = "#3c3836", bg = "#1F1F1F" },
     CursorLineNr = { fg = "#fabd2f", bg = "" },
     GruvboxOrangeSign = { fg = "#dfaf87", bg = "" },
     GruvboxAquaSign = { fg = "#8EC07C", bg = "" },
     GruvboxGreenSign = { fg = "#b8bb26", bg = "" },
     GruvboxRedSign = { fg = "#fb4934", bg = "" },
     GruvboxBlueSign = { fg = "#83a598", bg = "" },
-    WilderMenu = { fg = "#ebdbb2", bg = "" },
-    WilderAccent = { fg = "#f4468f", bg = "" },
 
     -- ========================================================================================
     -- Markdown highlights
@@ -62,14 +60,14 @@ local gruvbox_options = {
     -- contrast = "hard", -- can be "hard" or "soft"
     -- overriding highlight groups
     palette_overrides = {
-        dark0 = "#0F0F0F",
-        dark1 = "#1F1F1F"
+        -- dark0 = "#0F0F0F",
+        -- dark1 = "#1F1F1F"
     },
-    overrides = color_overrides,
+    overrides = gruvbox_overrides,
 }
 
 local transparency_loc = vim.fn.has("win32") == 1
-        and os.getenv("LOCALAPPDATA") .. "/nvim-data/.gruvbox_transparency"
+    and os.getenv("LOCALAPPDATA") .. "/nvim-data/.gruvbox_transparency"
     or os.getenv("XDG_STATE_HOME") .. "/nvim/.gruvbox_transparency"
 
 --- @brief loads the transparency from the state file into the options
@@ -113,7 +111,7 @@ return {
             },
         },
         init = function()
-            -- load_transparency(false)
+            load_transparency(false)
             require("gruvbox").setup(gruvbox_options)
         end,
     },

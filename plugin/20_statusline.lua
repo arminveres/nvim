@@ -24,7 +24,7 @@ local function git_changes()
     local status = vim.b.gitsigns_status_dict
     local result = ""
     if status and status.head then
-        local branch = string.format("%%#GruvboxOrange# %%#Normal#%s ", status.head)
+        local branch = string.format("%%#GruvboxOrange# %s%s ", reset, status.head)
         local changes = ""
 
         if status.added and status.added > 0 then
