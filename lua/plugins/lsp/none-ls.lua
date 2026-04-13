@@ -28,14 +28,23 @@ local function setup()
             require("none-ls-shellcheck.diagnostics"),
 
             formatting.stylua,
-            formatting.prettier,
+            -- exclude markdown so we can let other formatter do it (bullet point formatting)
+            formatting.prettier.with({
+                disabled_filetypes = { "markdown" },
+            }),
+            formatting.mdformat.with({
+                extra_args = {
+                    -- https://github.com/hukkin/mdformat
+                    -- apply consecutive numbering
+                    "--number",
+                },
+            }),
             formatting.shfmt,
             formatting.black, --.with({ extra_args = { "--fast" } }),
             formatting.stylelint,
             formatting.nixfmt.with({ extra_args = { "--width=100" } }),
             formatting.swift_format,
             require("none-ls.formatting.latexindent"),
-            formatting.mdformat,
 
             hover.dictionary,
             hover.printenv,
