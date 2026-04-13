@@ -27,6 +27,7 @@ local function setup()
             diagnostics.stylelint,
             require("none-ls-shellcheck.diagnostics"),
 
+            formatting.dockerfmt,
             formatting.stylua,
             -- exclude markdown so we can let other formatter do it (bullet point formatting)
             formatting.prettier.with({
