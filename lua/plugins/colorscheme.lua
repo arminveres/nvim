@@ -58,7 +58,7 @@ local function gruvbox_init()
         RenderMarkdownH4Bg = { bg = "#442d30" },
         RenderMarkdownH5Bg = { bg = "#442d30" },
     }
-    vim.notify(vim.o.winborder)
+
     if vim.o.winborder == "solid" then
         gruvbox_overrides = require("utils").merge(gruvbox_overrides, {
             NormalFloat = { fg = palette.light1, bg = palette.dark1 },
@@ -130,6 +130,7 @@ return {
                 -- skip transparency for neovide, messes with colors
                 load_transparency(false)
             end
+            vim.cmd.colorscheme("gruvbox")
         end,
     },
     {
