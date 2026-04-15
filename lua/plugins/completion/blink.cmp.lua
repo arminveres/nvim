@@ -40,6 +40,8 @@ return {
             },
 
             completion = {
+                -- remove border from the main popup
+                menu = { border = "none" },
                 -- (Default) Only show the documentation popup when manually triggered
                 documentation = { auto_show = true },
                 -- do not select the first entry
