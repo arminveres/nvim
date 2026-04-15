@@ -1,13 +1,13 @@
 vim.o.ignorecase = true
 vim.o.smartcase = true --Case insensitive searching UNLESS /C or capital in search
 vim.o.smarttab = true
-vim.o.hlsearch = true  -- toggle off until next search w/ <BS>
+vim.o.hlsearch = true -- toggle off until next search w/ <BS>
 vim.o.backup = true
 vim.o.writebackup = true
 vim.o.breakindent = true
 vim.o.inccommand = "nosplit"
 vim.o.mouse = "a"
-vim.o.hidden = true  --Do not save when switching buffers (note: this is now a default on master)
+vim.o.hidden = true --Do not save when switching buffers (note: this is now a default on master)
 vim.o.scrolloff = 10 -- keeps x lines of context, scrolls otherwise
 
 vim.o.expandtab = true
@@ -74,7 +74,7 @@ if vim.fn.has("win32") == 1 then
     vim.o.undodir = os.getenv("LOCALAPPDATA") .. "/Temp/nvim/undo//"
     vim.o.backupdir = os.getenv("LOCALAPPDATA") .. "/Temp/nvim/backup//"
 else
-    vim.o.shell = "/usr/bin/env zsh"
+    vim.o.shell = "zsh"
     vim.o.shellcmdflag = "-c"
 
     vim.o.undodir = os.getenv("XDG_CACHE_HOME") .. "/nvim/undo//"
@@ -88,7 +88,5 @@ vim.o.laststatus = 3
 
 vim.o.linespace = 0 -- adjust for lineheight
 vim.o.exrc = true
-
-vim.o.winborder="single"
 
 -- vim.o.fixeol = false -- stop adding automatic newline, relevant for DOS files

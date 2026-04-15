@@ -1,73 +1,86 @@
-local gruvbox_overrides = {
-    -- ========================================================================================
-    -- LSP
-    -- ========================================================================================
-    String = { fg = "#eb9664" }, -- #eb9664, #c89664
+local function gruvbox_init()
+    local palette = require("gruvbox").palette
+    -- Set border style for this theme
+    vim.o.winborder = "solid"
 
-    -- ["@lsp.type.method.c"] = { link = "GruvboxOrangeBold" },
-    -- ["@lsp.type.method.cpp"] = { link = "GruvboxOrangeBold" },
-    LspInlayHint = { fg = "#919191", italic = true, bold = true },
+    palette.dark0 = "#0F0F0F"
+    palette.dark1 = "#1F1F1F"
+    palette.dark2 = "#2F2F2F"
 
-    LspReferenceText = { fg = "#FABD2F", underline = true },
+    local gruvbox_overrides = {
+        -- ========================================================================================
+        -- LSP
+        -- ========================================================================================
+        String = { fg = "#eb9664" }, -- #eb9664, #c89664
 
-    -- These highlights are special for undefined macros
-    ["@lsp.type.comment.c"] = { fg = "#91a573", bg = "#785032", italic = true },
-    ["@lsp.type.comment.cpp"] = { fg = "#91a573", bg = "#785032", italic = true },
-    -- Define = { link = "GruvboxPurple" },
-    Macro = { link = "GruvboxPurple" },
+        -- ["@lsp.type.method.c"] = { link = "GruvboxOrangeBold" },
+        -- ["@lsp.type.method.cpp"] = { link = "GruvboxOrangeBold" },
+        LspInlayHint = { fg = "#919191", italic = true, bold = true },
 
-    -- ========================================================================================
-    -- Git Diff
-    -- ========================================================================================
-    -- DiffAdd = { bold = true, reverse = false, fg = "", bg = "#2a4333" },
-    -- DiffChange = { bold = true, reverse = false, fg = "", bg = "#333841" },
-    -- DiffDelete = { bold = true, reverse = false, fg = "#442d30", bg = "#442d30" },
-    -- DiffText = { bold = true, reverse = false, fg = "", bg = "#213352" },
-    -- GitSignsCurrentLineBlame = { link = "GruvboxFg3" },
+        LspReferenceText = { fg = palette.bright_yellow, underline = true },
 
-    -- ========================================================================================
-    -- Fold
-    -- ========================================================================================
-    Folded = { fg = "#fe8019", bg = "#3c3836", italic = true },
-    FoldColumn = { fg = "#fe8019" },
-    SignColumn = { link = "GruvboxBg0" },
+        -- These highlights are special for undefined macros
+        ["@lsp.type.comment.c"] = { fg = "#91a573", bg = "#785032", italic = true },
+        ["@lsp.type.comment.cpp"] = { fg = "#91a573", bg = "#785032", italic = true },
+        -- Define = { link = "GruvboxPurple" },
+        Macro = { link = "GruvboxPurple" },
 
-    -- ========================================================================================
-    -- statusline and column
-    -- ========================================================================================
-    StatusLine = { fg = "#ffffff", bg = "#1F1F1F" },
-    StatusLineNC = { fg = "#3c3836", bg = "#1F1F1F" },
-    CursorLineNr = { fg = "#fabd2f", bg = "" },
-    GruvboxOrangeSign = { fg = "#dfaf87", bg = "" },
-    GruvboxAquaSign = { fg = "#8EC07C", bg = "" },
-    GruvboxGreenSign = { fg = "#b8bb26", bg = "" },
-    GruvboxRedSign = { fg = "#fb4934", bg = "" },
-    GruvboxBlueSign = { fg = "#83a598", bg = "" },
+        -- ========================================================================================
+        -- Git Diff
+        -- ========================================================================================
+        -- DiffAdd = { bold = true, reverse = false, fg = "", bg = "#2a4333" },
+        -- DiffChange = { bold = true, reverse = false, fg = "", bg = "#333841" },
+        -- DiffDelete = { bold = true, reverse = false, fg = "#442d30", bg = "#442d30" },
+        -- DiffText = { bold = true, reverse = false, fg = "", bg = "#213352" },
+        -- GitSignsCurrentLineBlame = { link = "GruvboxFg3" },
 
-    -- ========================================================================================
-    -- Markdown highlights
-    -- ========================================================================================
+        -- ========================================================================================
+        -- Statusline and columnns
+        -- ========================================================================================
+        Folded = { fg = palette.bright_orange, bg = palette.dark2, italic = true },
+        SignColumn = { link = "GruvboxBg0" },
+        FoldColumn = { fg = palette.bright_orange, bg = palette.dark0 },
+        StatusLine = { fg = palette.light0, bg = palette.dark1 },
+        StatusLineNC = { fg = palette.dark1, bg = palette.dark1 },
+        CursorLineNr = { fg = palette.bright_yellow, bg = "" },
+        GruvboxOrangeSign = { fg = "#dfaf87", bg = "" },
+        GruvboxAquaSign = { fg = palette.bright_aqua, bg = "" },
+        GruvboxGreenSign = { fg = palette.bright_green, bg = "" },
+        GruvboxRedSign = { fg = palette.bright_red, bg = "" },
+        GruvboxBlueSign = { fg = palette.bright_blue, bg = "" },
 
-    -- MeanderingProgrammer/markdown.nvim
-    RenderMarkdownH3Bg = { bg = "#442d30" },
-    RenderMarkdownH4Bg = { bg = "#442d30" },
-    RenderMarkdownH5Bg = { bg = "#442d30" },
-}
+        -- ========================================================================================
+        -- Markdown highlights
+        -- ========================================================================================
 
-local gruvbox_options = {
-    transparent_mode = false,
-    dim_inactive = false, -- dim inactive window
-    -- contrast = "hard", -- can be "hard" or "soft"
-    -- overriding highlight groups
-    palette_overrides = {
-        -- dark0 = "#0F0F0F",
-        -- dark1 = "#1F1F1F"
-    },
-    overrides = gruvbox_overrides,
-}
+        -- MeanderingProgrammer/markdown.nvim
+        RenderMarkdownH3Bg = { bg = "#442d30" },
+        RenderMarkdownH4Bg = { bg = "#442d30" },
+        RenderMarkdownH5Bg = { bg = "#442d30" },
+    }
+    vim.notify(vim.o.winborder)
+    if vim.o.winborder == "solid" then
+        gruvbox_overrides = require("utils").merge(gruvbox_overrides, {
+            NormalFloat = { fg = palette.light1, bg = palette.dark1 },
+            SnacksPicker = { link = "NormalFloat" },
+            SnacksPickerPreview = { bg = palette.dark2 },
+            SnacksPickerCursorLine = { bg = palette.dark0 },
+            SnacksPickerListCursorLine = { bg = palette.dark0 },
+        })
+    end
+
+    require("gruvbox").setup({
+        transparent_mode = false,
+        dim_inactive = false, -- dim inactive window
+        -- contrast = "hard", -- can be "hard" or "soft"
+        -- overriding highlight groups through palette itself
+        -- palette_overrides = { },
+        overrides = gruvbox_overrides,
+    })
+end
 
 local transparency_loc = vim.fn.has("win32") == 1
-    and os.getenv("LOCALAPPDATA") .. "/nvim-data/.gruvbox_transparency"
+        and os.getenv("LOCALAPPDATA") .. "/nvim-data/.gruvbox_transparency"
     or os.getenv("XDG_STATE_HOME") .. "/nvim/.gruvbox_transparency"
 
 --- @brief loads the transparency from the state file into the options
@@ -89,6 +102,7 @@ local function load_transparency(do_toggle)
     end
 
     local is_content_true = "true" == content
+    local gruvbox_options = require("gruvbox").config
     gruvbox_options.transparent_mode = not (is_content_true and do_toggle)
     transparency:write(tostring(gruvbox_options.transparent_mode))
     transparency:close()
@@ -96,7 +110,7 @@ end
 
 local function toggle_transparency()
     load_transparency(true)
-    require("gruvbox").setup(gruvbox_options)
+    -- require("gruvbox").setup(gruvbox_options)
     vim.cmd.colorscheme("gruvbox")
 end
 
@@ -111,8 +125,11 @@ return {
             },
         },
         init = function()
-            load_transparency(false)
-            require("gruvbox").setup(gruvbox_options)
+            gruvbox_init()
+            if not vim.g.neovide then
+                -- skip transparency for neovide, messes with colors
+                load_transparency(false)
+            end
         end,
     },
     {
