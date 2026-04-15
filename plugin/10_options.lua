@@ -52,7 +52,7 @@ vim.o.wrapscan = true
 -- vim.o.pumblend = 15 -- blend popup
 -- vim.o.winblend = 15
 
-vim.o.cmdheight = 1
+vim.o.cmdheight = 0
 -- configure ripgrep as grep program if available
 if vim.fn.executable("rg") then
     vim.o.grepprg = "rg --no-heading --vimgrep"
