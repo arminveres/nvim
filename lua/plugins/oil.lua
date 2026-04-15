@@ -18,7 +18,6 @@ return {
         float = {
             max_width = 120,
             max_height = 40,
-            border = vim.g.BorderStyle,
         },
         columns = {
             "icon",
@@ -27,10 +26,6 @@ return {
             "mtime",
         },
         view_options = { show_hidden = true },
-        confirmation = { border = vim.g.BorderStyle },
-        progress = { border = vim.g.BorderStyle },
-        ssh = { border = vim.g.BorderStyle },
-        keymaps_help = { border = vim.g.BorderStyle },
     },
     dependencies = { "nvim-tree/nvim-web-devicons" },
 }

@@ -89,4 +89,6 @@ vim.o.laststatus = 3
 vim.o.linespace = 0 -- adjust for lineheight
 vim.o.exrc = true
 
+vim.o.winborder="single"
+
 -- vim.o.fixeol = false -- stop adding automatic newline, relevant for DOS files

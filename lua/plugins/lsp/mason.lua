@@ -2,7 +2,7 @@ return {
     {
         "mason-org/mason.nvim", -- installer for lsps
         enabled = vim.fn.has("win32") == 1,
-        opts = { ui = { border = vim.g.BorderStyle } },
+        opts = {},
         cmd = "Mason",
         keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
         build = ":MasonUpdate",

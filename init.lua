@@ -3,7 +3,6 @@
 vim.keymap.set("", "<Space>", "<Nop>", { noremap = true, silent = true })
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-vim.g.BorderStyle = "rounded"
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -30,7 +29,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    ui = { border = vim.g.BorderStyle },
     defaults = { lazy = false },
     install = { missing = true },
     rocks = { enabled = false },

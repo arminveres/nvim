@@ -9,10 +9,5 @@ return {
         },
     },
     opts = {
-        menu = {
-            win_configs = {
-                border = vim.g.BorderStyle, -- Border style for the menu
-            },
-        },
     },
 }
