@@ -25,7 +25,13 @@ return {
             -- C-k: Toggle signature help (if signature.enabled = true)
             --
             -- See :h blink-cmp-config-keymap for defining your own keymap
-            keymap = { preset = "enter" },
+            keymap = {
+                preset = "enter",
+                -- override default signature keymap, we use that for snippet expansion
+                ["<C-k>"] = false,
+                ["<C-s>"] = { "show_signature", "hide_signature", "fallback" },
+            },
+            signature = { enabled = true },
 
             appearance = {
                 -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
