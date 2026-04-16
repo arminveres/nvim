@@ -57,6 +57,8 @@ local function gruvbox_init()
         RenderMarkdownH3Bg = { bg = "#442d30" },
         RenderMarkdownH4Bg = { bg = "#442d30" },
         RenderMarkdownH5Bg = { bg = "#442d30" },
+
+        NonText = { link = "GruvboxBg3" },
     }
 
     if vim.o.winborder == "solid" then
@@ -80,7 +82,7 @@ local function gruvbox_init()
 end
 
 local transparency_loc = vim.fn.has("win32") == 1
-        and os.getenv("LOCALAPPDATA") .. "/nvim-data/.gruvbox_transparency"
+    and os.getenv("LOCALAPPDATA") .. "/nvim-data/.gruvbox_transparency"
     or os.getenv("XDG_STATE_HOME") .. "/nvim/.gruvbox_transparency"
 
 --- @brief loads the transparency from the state file into the options
