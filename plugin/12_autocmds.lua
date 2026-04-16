@@ -38,6 +38,7 @@ autocmd("FileType", {
         "qf",
         "startuptime",
         "outputpanel",
+        "nvim-undotree",
     },
     callback = function(event)
         vim.bo[event.buf].buflisted = false

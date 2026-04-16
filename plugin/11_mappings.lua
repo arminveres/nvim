@@ -160,4 +160,5 @@ map("n", "<Leader>ll", function() vim.cmd("tabnew " .. vim.lsp.log.get_filename(
     desc = "Open [l]sp [l]og",
 })
 
-vim.keymap.set("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Open Lazy" })
+map("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Open Lazy" })
+map("n", "<leader>U", "<cmd>packadd nvim.undotree | Undotree<cr>", { desc = "Open Lazy" })
