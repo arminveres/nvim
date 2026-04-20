@@ -56,6 +56,22 @@ autocmd("LspAttach", {
         map("n", "gsi", vim.lsp.buf.incoming_calls, merge_desc(opts, "Show incoming lsp call"))
         map("n", "gso", vim.lsp.buf.outgoing_calls, merge_desc(opts, "Show incoming lsp call"))
 
+        -- resolve super(upper) and sub(lower) types, e.g., for classes/structs
+
+        map(
+            "n",
+            "grhu",
+            function() vim.lsp.buf.typehierarchy("supertypes") end,
+            merge_desc(opts, "[g]o [r]resolve type[h]ierarchy [u]pper")
+        )
+
+        map(
+            "n",
+            "grhl",
+            function() vim.lsp.buf.typehierarchy("subtypes") end,
+            merge_desc(opts, "[g]o [r]resolve type[h]ierarchy [l]ower")
+        )
+
         -- map('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
         -- map('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
         -- map('n', '<space>wl', function()
