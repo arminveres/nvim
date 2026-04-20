@@ -61,4 +61,13 @@ function M.root_project(bufnr, select_lsp_only)
     vim.cmd.tcd({ args = { root_dir }, mods = { silent = true } })
 end
 
+--- Get the highlight group
+function M.hl(group)
+    return vim.api.nvim_get_hl(0, {
+        name = group,
+        link = false,
+        create = false,
+    })
+end
+
 return M

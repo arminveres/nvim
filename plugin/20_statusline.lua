@@ -1,24 +1,39 @@
 --
--- Custom Statusline built with some LLM help and my old config.
+-- Custom Statusline
+--
 -- Features:
 --  - Lualine like components, crafted manually.
 --  - Only load available components, making this blazingly fast!
+--  - Highlight mode in left and right component
+-- Caveats:
+-- - Depends on gruvbox as colorscheme, as its palette is heavily used.
 --
--- TODO(aver):
--- - consider loading gruvbox colorscheme earlier and linking against those colors or moving the
---   Highlight definitions to the colorscheme.
+-- Sources:
+-- - LLM
+-- - https://jacobnscott.com/posts/nvim-statusline/
 
-local set_hi = vim.api.nvim_set_hl
-local global_hi_id = 0
+local hl = require("utils").hl
 local reset = "%#StatusLine#"
 local warn = "%#WarningMsg#"
+local plt = require("gruvbox").palette
 
-set_hi(global_hi_id, "MyStatusLineNormal", { fg = "#282828", bg = "#d75f00", bold = true })
-set_hi(global_hi_id, "MyStatusLineVisual", { fg = "#fbf1c7", bg = "#458588", bold = true })
-set_hi(global_hi_id, "MyStatusLineInsert", { fg = "#282828", bg = "#98971a", bold = true })
-set_hi(global_hi_id, "MyStatusLineTerminal", { fg = "#282828", bg = "#83a598", bold = true })
-set_hi(global_hi_id, "MyStatusLineReplace", { fg = "#282828", bg = "#fb4934", bold = true })
--- set_hi(id, "MyStatusLineCommand", { fg = "#282828", bg = "#792329", bold = true })
+-- Compile and apply our custom highlights
+local base = hl("StatusLine")
+for group, opts in pairs({
+    ModeNormal = { fg = base.bg, bg = plt.neutral_orange, bold = true },
+    ModePending = { fg = base.bg, bg = hl("Comment").fg, bold = true },
+    ModeVisual = { fg = base.bg, bg = plt.bright_blue, bold = true },
+    ModeInsert = { fg = base.bg, bg = plt.neutral_green, bold = true },
+    ModeCommand = { fg = base.bg, bg = plt.neutral_red, bold = true },
+    ModeReplace = { fg = base.bg, bg = plt.bright_red, bold = true },
+    Bold = { fg = base.fg, bg = base.bg, bold = true },
+    Dim = { fg = hl("LineNr").fg, bg = base.bg },
+}) do
+    group = "StatusLine" .. group
+    vim.api.nvim_set_hl(0, group, opts)
+    opts.fg, opts.bg = opts.bg, opts.fg
+    vim.api.nvim_set_hl(0, group .. "Inverted", opts)
+end
 
 local function git_changes()
     local status = vim.b.gitsigns_status_dict
@@ -75,38 +90,53 @@ local function get_diagnostics_info()
     return ""
 end
 
-local function get_mode()
-    local mode_map = {
-        ["n"] = "%%#MyStatusLineNormal# NORMAL ",
-        ["no"] = "%%#MyStatusLineNormal# N·Operator Pending ",
-        ["v"] = "%%#MyStatusLineVisual# VISUAL ",
-        ["V"] = "%%#MyStatusLineVisual# V·Line ",
-        [""] = "%%#MyStatusLineVisual# V·Block ",
-        ["s"] = "SELECT",
-        ["S"] = "S·Line",
-        [""] = "S·Block",
-        ["i"] = "%%#MyStatusLineInsert# INSERT ",
-        ["ic"] = "%%#MyStatusLineInsert# INSERT ",
-        ["R"] = "%%#MyStatusLineReplace# REPLACE ",
-        ["Rv"] = "%%#MyStatusLineVisual# V·Replace ",
-        ["c"] = "%%#MyStatusLineTerminal# COMMAND ",
-        ["cv"] = "Vim Ex",
-        ["ce"] = "Ex",
-        ["r"] = "Prompt",
-        ["rm"] = "More",
-        ["r?"] = "Confirm",
-        ["!"] = "Shell",
-        ["t"] = "%%#MyStatusLineTerminal# TERMINAL ",
-        ["nt"] = "%%#MyStatusLineTerminal# TERMINAL ",
-    }
+-- Note: termcodes \19 and \22 are ^S and ^V
+local mode_settings = {
+    ["n"] = { name = "NORMAL", hl = "Normal" },
+    ["no"] = { name = "OP-PENDING", hl = "Pending" },
+    ["nov"] = { name = "OP-PENDING", hl = "Pending" },
+    ["noV"] = { name = "OP-PENDING", hl = "Pending" },
+    ["no\22"] = { name = "OP-PENDING", hl = "Pending" },
+    ["niI"] = { name = "NORMAL", hl = "Normal" },
+    ["niR"] = { name = "NORMAL", hl = "Normal" },
+    ["niV"] = { name = "NORMAL", hl = "Normal" },
+    ["nt"] = { name = "NORMAL", hl = "Normal" },
+    ["ntT"] = { name = "NORMAL", hl = "Normal" },
+    ["v"] = { name = "VISUAL", hl = "Visual" },
+    ["vs"] = { name = "VISUAL", hl = "Visual" },
+    ["V"] = { name = "V-LINE", hl = "Visual" },
+    ["Vs"] = { name = "V-LINE", hl = "Visual" },
+    ["\22"] = { name = "V-BLOCK", hl = "Visual" },
+    ["\22s"] = { name = "V-BLOCK", hl = "Visual" },
+    ["s"] = { name = "SELECT", hl = "Insert" },
+    ["S"] = { name = "S-LINE", hl = "Normal" },
+    ["\19"] = { name = "S-BLOCK", hl = "Normal" },
+    ["i"] = { name = "INSERT", hl = "Insert" },
+    ["ic"] = { name = "INSERT", hl = "Insert" },
+    ["ix"] = { name = "INSERT", hl = "Insert" },
+    ["R"] = { name = "REPLACE", hl = "Replace" },
+    ["Rc"] = { name = "REPLACE", hl = "Replace" },
+    ["Rx"] = { name = "REPLACE", hl = "Replace" },
+    ["Rv"] = { name = "V-REPLACE", hl = "Replace" },
+    ["Rvc"] = { name = "V-REPLACE", hl = "Replace" },
+    ["Rvx"] = { name = "V-REPLACE", hl = "Replace" },
+    ["c"] = { name = "COMMAND", hl = "Command" },
+    ["cv"] = { name = "EX", hl = "Command" },
+    ["ce"] = { name = "EX", hl = "Command" },
+    ["r"] = { name = "REPLACE", hl = "Normal" },
+    ["rm"] = { name = "MORE", hl = "Normal" },
+    ["r?"] = { name = "CONFIRM", hl = "Normal" },
+    ["!"] = { name = "SHELL", hl = "Normal" },
+    ["t"] = { name = "TERMINAL", hl = "Command" },
+}
 
-    local mode = mode_map[vim.api.nvim_get_mode().mode] or "Unknown"
-    -- return mode .. " " .. reset
-    -- return string.format(mode) .. reset .. " "
+local function get_mode_hl(mode)
+    return string.format("%%#StatuslineMode%s#", mode.hl)
+end
 
-    -- local recording = vim.fn.reg_recording()
-    -- if recording ~= "" then mode = mode .. "(REC @" .. recording .. ") " end
-    return string.format(mode) .. reset .. " "
+local function get_mode_comp(mode)
+    return string.format("%%#StatuslineMode%s# %s %s ", mode.hl, mode.name, reset)
+    -- return table.concat({ "%#StatuslineMode" .. mode.hl .. "Inverted" .. "#", "%#StatuslineMode" .. mode.hl .. "# " .. mode.name .. " " .. reset, "%#StatuslineMode" .. mode.hl .. "Inverted" .. "#", })
 end
 
 local function get_lsps()
@@ -136,6 +166,7 @@ end
 
 local statusline_cache = ""
 
+--- Main render function
 function _G.MyStatusline()
     local align = "%=" -- Single align: left-right. Two aligns: 3 sections.
     local file_name = "%<%t"
@@ -145,9 +176,10 @@ function _G.MyStatusline()
     local filetype = "  %y"
     local percentage = "%p%%"
     local linecol = " %l:%c"
+    local mode = mode_settings[vim.api.nvim_get_mode().mode]
 
     local new_statusline = reset -- left segment
-        .. get_mode()
+        .. get_mode_comp(mode)
         .. git_changes()
         .. get_diagnostics_info()
         .. align -- middle segment
@@ -162,9 +194,13 @@ function _G.MyStatusline()
         .. fileencoding
         .. " "
         .. fileformat
-        .. " | "
+        .. " "
+        .. get_mode_hl(mode)
+        .. " "
         .. percentage
         .. linecol
+        .. " "
+        .. reset
 
     -- use a cached update, possibly improving performance (untested)
     if statusline_cache ~= new_statusline then statusline_cache = new_statusline end
