@@ -43,7 +43,7 @@ autocmd("LspAttach", {
         -- Buffer local mappings.
         -- ========================================================================================
         -- See `:help vim.lsp.*` for documentation on any of the below functions
-        local opts = { buffer = args.buf }
+        local opts = { noremap = true, buffer = args.buf }
         map("n", "gD", vim.lsp.buf.declaration, merge_desc(opts, "[g]o to [D]eclaration"))
         map("n", "gd", vim.lsp.buf.definition, merge_desc(opts, "[g]o to [d]efinition"))
         map("n", "<leader>D", vim.lsp.buf.type_definition, opts)
@@ -128,28 +128,17 @@ autocmd("LspAttach", {
             vim.diagnostic.jump({ float = true, count = 1, severity = vim.diagnostic.severity.WARN })
         end
         local prev_warn = function()
-            vim.diagnostic.jump({
-                float = true,
-                count = -1,
-                severity = vim.diagnostic.severity.WARN,
-            })
+            vim.diagnostic.jump({ float = true, count = -1, severity = vim.diagnostic.severity.WARN, })
         end
         local next_err = function()
-            vim.diagnostic.jump({
-                float = true,
-                count = 1,
-                severity = vim.diagnostic.severity.ERROR,
-            })
+            vim.diagnostic.jump({ float = true, count = 1, severity = vim.diagnostic.severity.ERROR, })
         end
         local prev_err = function()
-            vim.diagnostic.jump({
-                float = true,
-                count = -1,
-                severity = vim.diagnostic.severity.ERROR,
-            })
+            vim.diagnostic.jump({ float = true, count = -1, severity = vim.diagnostic.severity.ERROR, })
         end
 
         -- make sure forward function comes first
+        next_diag, prev_diag = repeat_move.make_repeatable_move_pair(next_diag, prev_diag)
         next_warn, prev_warn = repeat_move.make_repeatable_move_pair(next_warn, prev_warn)
         next_err, prev_err = repeat_move.make_repeatable_move_pair(next_err, prev_err)
 
