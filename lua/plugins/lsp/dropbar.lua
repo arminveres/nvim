@@ -9,5 +9,15 @@ return {
         },
     },
     opts = {
+        bar = {
+            update_events = {
+                buf = {
+                    -- "BufModifiedSet", -- BUG: deprecated
+                    "FileChangedShellPost",
+                    "TextChanged",
+                    "ModeChanged",
+                },
+            },
+        },
     },
 }
