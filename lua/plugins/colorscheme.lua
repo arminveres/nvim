@@ -17,7 +17,9 @@ local function gruvbox_init()
         -- ["@lsp.type.method.cpp"] = { link = "GruvboxOrangeBold" },
         LspInlayHint = { fg = "#919191", italic = true, bold = true },
 
-        LspReferenceText = { fg = palette.bright_yellow, underline = true },
+        LspReferenceText = { fg = palette.bright_yellow, bg = palette.dark2 },
+        LspReferenceRead = { link = "LspReferenceText" },
+        LspReferenceWrite = { link = "LspReferenceText" },
 
         -- These highlights are special for undefined macros
         ["@lsp.type.comment.c"] = { fg = "#91a573", bg = "#785032", italic = true },
@@ -43,11 +45,12 @@ local function gruvbox_init()
         StatusLine = { fg = palette.light0, bg = palette.dark1 },
         StatusLineNC = { fg = palette.dark1, bg = palette.dark1 },
         CursorLineNr = { fg = palette.bright_yellow, bg = "" },
-        GruvboxOrangeSign = { fg = "#dfaf87", bg = "" },
-        GruvboxAquaSign = { fg = palette.bright_aqua, bg = "" },
-        GruvboxGreenSign = { fg = palette.bright_green, bg = "" },
-        GruvboxRedSign = { fg = palette.bright_red, bg = "" },
-        GruvboxBlueSign = { fg = palette.bright_blue, bg = "" },
+
+        GruvboxOrangeSign = { fg = palette.bright_orange },
+        GruvboxAquaSign = { fg = palette.bright_aqua },
+        GruvboxGreenSign = { fg = palette.bright_green },
+        GruvboxRedSign = { fg = palette.bright_red },
+        GruvboxBlueSign = { fg = palette.bright_blue },
 
         -- ========================================================================================
         -- Markdown highlights
@@ -82,7 +85,7 @@ local function gruvbox_init()
 end
 
 local transparency_loc = vim.fn.has("win32") == 1
-    and os.getenv("LOCALAPPDATA") .. "/nvim-data/.gruvbox_transparency"
+        and os.getenv("LOCALAPPDATA") .. "/nvim-data/.gruvbox_transparency"
     or os.getenv("XDG_STATE_HOME") .. "/nvim/.gruvbox_transparency"
 
 --- @brief loads the transparency from the state file into the options
