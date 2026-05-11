@@ -71,6 +71,9 @@ local function gruvbox_init()
             SnacksPickerPreview = { bg = palette.dark2 },
             SnacksPickerCursorLine = { bg = palette.dark0 },
             SnacksPickerListCursorLine = { bg = palette.dark0 },
+
+            GlanceListNormal = { fg = palette.light1, bg = palette.dark2 },
+            GlancePreviewNormal = { fg = palette.light1, bg = palette.dark1 },
         })
     end
 
