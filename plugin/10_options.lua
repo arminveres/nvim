@@ -29,7 +29,7 @@ vim.o.number = true
 vim.o.colorcolumn = "100,120"
 vim.o.wrap = true
 vim.o.textwidth = 100
-vim.o.clipboard = "unnamedplus"
+vim.opt.clipboard:append("unnamedplus")
 
 vim.o.undofile = true --Save undo history
 
