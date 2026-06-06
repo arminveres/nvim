@@ -163,3 +163,49 @@ map("n", "<Leader>ll", function() vim.cmd("tabnew " .. vim.lsp.log.get_filename(
 map("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Open Lazy" })
 map("n", "<leader>U", "<cmd>packadd nvim.undotree | Undotree<cr>", { desc = "Open Lazy" })
 map("n", "<leader>T", "<cmd>trust<cr>", { desc = "Trust current file" })
+
+-- ================================================================================================
+-- BOOKMARKS (harpoon-like)
+-- ================================================================================================
+map(
+    "n",
+    "<leader>ha",
+    function() require("bookmarks").add() end,
+    merge_desc(opts, "[h]arpoon [a]dd file")
+)
+map(
+    "n",
+    "<leader>hd",
+    function() require("bookmarks").remove_current() end,
+    merge_desc(opts, "[h]arpoon [d]elete file")
+)
+map(
+    "n",
+    "<leader>hm",
+    function() require("bookmarks").toggle_menu() end,
+    merge_desc(opts, "[h]arpoon [m]enu")
+)
+map(
+    "n",
+    "<leader>hh",
+    function() require("bookmarks").goto_slot(1) end,
+    merge_desc(opts, "[h]arpoon slot [1]")
+)
+map(
+    "n",
+    "<leader>hj",
+    function() require("bookmarks").goto_slot(2) end,
+    merge_desc(opts, "[h]arpoon slot [2]")
+)
+map(
+    "n",
+    "<leader>hk",
+    function() require("bookmarks").goto_slot(3) end,
+    merge_desc(opts, "[h]arpoon slot [3]")
+)
+map(
+    "n",
+    "<leader>hl",
+    function() require("bookmarks").goto_slot(4) end,
+    merge_desc(opts, "[h]arpoon slot [4]")
+)
