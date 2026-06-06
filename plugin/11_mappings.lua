@@ -162,3 +162,4 @@ map("n", "<Leader>ll", function() vim.cmd("tabnew " .. vim.lsp.log.get_filename(
 
 map("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Open Lazy" })
 map("n", "<leader>U", "<cmd>packadd nvim.undotree | Undotree<cr>", { desc = "Open Lazy" })
+map("n", "<leader>T", "<cmd>trust<cr>", { desc = "Trust current file" })
