@@ -89,33 +89,32 @@ local function gruvbox_init()
     })
 end
 
-local transparency_loc = vim.fn.has("win32") == 1
+local transparency_file_path = vim.fn.has("win32") == 1
         and os.getenv("LOCALAPPDATA") .. "/nvim-data/.gruvbox_transparency"
     or os.getenv("XDG_STATE_HOME") .. "/nvim/.gruvbox_transparency"
 
 --- @brief loads the transparency from the state file into the options
 --- @param do_toggle boolean Whether to toggle transparency or not
 local function load_transparency(do_toggle)
-    local transparency = io.open(transparency_loc, "r")
-    local content
-    if not transparency then
-        vim.notify("failed to create file")
-        content = ""
-    else
-        content = transparency:read("*a")
+    local is_transparent = false
+    local read_file = io.open(transparency_file_path, "r")
+    if read_file then
+        is_transparent = read_file:read("*a") == "true"
+        read_file:close()
     end
 
-    transparency = io.open(transparency_loc, "w+")
-    if not transparency then
-        vim.notify("failed to create file")
+    if do_toggle then is_transparent = not is_transparent end
+
+    local write_file = io.open(transparency_file_path, "w")
+    if not write_file then
+        vim.notify("failed to write transparency file")
         return
     end
+    write_file:write(tostring(is_transparent))
+    write_file:close()
 
-    local is_content_true = "true" == content
     local gruvbox_options = require("gruvbox").config
-    gruvbox_options.transparent_mode = not (is_content_true and do_toggle)
-    transparency:write(tostring(gruvbox_options.transparent_mode))
-    transparency:close()
+    gruvbox_options.transparent_mode = is_transparent
 end
 
 local function toggle_transparency()
