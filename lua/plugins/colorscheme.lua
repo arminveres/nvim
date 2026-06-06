@@ -67,6 +67,8 @@ local function gruvbox_init()
     if vim.o.winborder == "solid" then
         gruvbox_overrides = require("utils").merge(gruvbox_overrides, {
             NormalFloat = { fg = palette.light1, bg = palette.dark1 },
+            SnacksInputNormal = { link = "NormalFloat" },
+            SnacksInputBorder = { link = "NormalFloat" },
             SnacksPicker = { link = "NormalFloat" },
             SnacksPickerPreview = { bg = palette.dark2 },
             SnacksPickerCursorLine = { bg = palette.dark0 },
