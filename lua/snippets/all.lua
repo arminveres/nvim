@@ -41,16 +41,15 @@ local snippets = {
             -- t("FIXME"),
             -- t("MISC")
         }),
-        t("("),
-        c(2, { t("AVE"), t("aver") }),
-        t("): "),
+        c(2, { t("(AVE)"), t("(aver)"), t("") }),
+        t(": "),
         c(3, {
+            t(""),
             p(function()
                 -- add space after the date
                 return os.date("%d-%m-%Y") .. " "
             end),
             t("Linux - "),
-            t(""),
         }),
     }),
 
