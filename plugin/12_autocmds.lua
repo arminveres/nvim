@@ -2,7 +2,11 @@ local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 local utils = require("utils")
 
-autocmd("TextYankPost", { callback = function() vim.highlight.on_yank() end })
+-- added from :h vim.hl
+autocmd(
+    { "TextYankPost", "TextPutPost" },
+    { callback = function() vim.hl.hl_op({ higroup = "Todo", timeout = 150 }) end }
+)
 
 -- always only show tabline when multiple tabs exist
 autocmd("TabClosed", { callback = function() vim.o.showtabline = 1 end })
