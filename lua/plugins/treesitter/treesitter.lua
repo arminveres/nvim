@@ -29,7 +29,6 @@ local parsers = {
     "python",
     "regex",
     "rust",
-    "tmux",
     "toml",
     "vim",
     "vimdoc",
@@ -37,6 +36,24 @@ local parsers = {
     "yaml",
     "zsh",
 }
+
+vim.api.nvim_create_autocmd("User", {
+    pattern = "TSUpdate",
+    callback = function()
+        require("nvim-treesitter.parsers").tmux = {
+            install_info = {
+                url = "https://github.com/Freed-Wu/tree-sitter-tmux",
+                revision = "a03e0b76998d6a08ea33d14bc11409c8996f4ea7", -- commit hash for revision to check out; HEAD if missing
+                -- optional entries:
+                branch = "main", -- only needed if different from default branch
+                -- location = "parser", -- only needed if the parser is in subdirectory of a "monorepo"
+                -- generate = true, -- only needed if repo does not contain pre-generated `src/parser.c`
+                -- generate_from_json = false, -- only needed if repo does not contain `src/grammar.json` either
+                -- queries = "queries/neovim", -- also install queries from given directory
+            },
+        }
+    end,
+})
 
 return {
     "nvim-treesitter/nvim-treesitter",
