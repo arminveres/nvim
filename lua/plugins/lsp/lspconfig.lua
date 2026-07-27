@@ -25,6 +25,7 @@ local function setup_lsp()
 
     -- enable selected lsps, installed externally.
     vim.lsp.enable({
+        "just",
         "basedpyright",
         "bashls",
         "bitbake_ls",
