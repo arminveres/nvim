@@ -2,13 +2,13 @@ return {
     {
         "saghen/blink.cmp",
         event = "InsertEnter",
-
-        -- use a release tag to download pre-built binaries
-        version = "1.*",
-        -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
-        -- build = 'cargo build --release',
-        -- If you use nix, you can build from source using latest nightly rust with:
-        build = "nix run .#build-plugin",
+        -- build the fuzzy matcher, optionally add a timeout to `pwait(timeout_ms)` you can use `gb` in `:Lazy` to rebuild the plugin as needed
+        build = function() require("blink.cmp").build():pwait() end,
+        dependencies = {
+            "saghen/blink.lib",
+            -- optional: provides snippets for the snippet source
+            -- 'rafamadriz/friendly-snippets',
+        },
 
         ---@module 'blink.cmp'
         ---@type blink.cmp.Config
@@ -29,7 +29,7 @@ return {
                 preset = "enter",
                 -- override default signature keymap, we use that for snippet expansion
                 ["<C-k>"] = false,
-                ["<C-s>"] = { "show_signature", "hide_signature", "fallback" },
+                -- ["<C-s>"] = { "show_signature", "hide_signature", "fallback" },
             },
             signature = { enabled = true },
 
