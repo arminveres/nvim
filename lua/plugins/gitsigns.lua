@@ -1,6 +1,6 @@
 return {
     "lewis6991/gitsigns.nvim",
-    tag = "release",
+    -- tag = "release",
     dependencies = { "kiyoon/repeatable-move.nvim" },
     event = { "BufReadPost" },
     opts = {
