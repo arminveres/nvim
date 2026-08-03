@@ -41,6 +41,8 @@ require("lazy").setup({
         { import = "plugins.debug" },
         { import = "plugins.snacks" },
         { import = "plugins.ai" },
+        { import = "plugins.langs" },
+        { import = "plugins.langs.rust" },
     },
     performance = {
         cache = { enabled = true },
