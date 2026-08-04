@@ -3,10 +3,34 @@ local function gruvbox_init()
     -- Set border style for this theme
     vim.o.winborder = "solid"
 
-    palette.dark0 = "#0F0F0F"
-    palette.dark1 = "#1F1F1F"
-    palette.dark2 = "#2F2F2F"
+    -- palette.dark0 = "#0F0F0F"
+    -- palette.dark1 = "#1F1F1F"
+    -- palette.dark2 = "#2F2F2F"
 
+    -- palette.dark0 = "#282828"
+    -- palette.dark1 = "#3c3836"
+    -- palette.dark2 = "#504945"
+    -- palette.dark3 = "#665c54"
+
+    -- JDH palette, from subdued terminal colors, e.g., tmux without 256color setup, but I like them xD
+    palette.dark0 = "#222222"
+    palette.dark1 = "#333333"
+    palette.dark2 = "#444444"
+    palette.bright_red = "#ff5f5f"
+    -- palette.bright_green = "#afaf00"
+    -- palette.bright_yellow = "#ffa001"
+    -- palette.bright_blue = "#87af87"
+    -- palette.bright_purple = "#d787af"
+    -- palette.bright_aqua = "#87af87"
+    -- palette.bright_orange = "#ff8700"
+
+    -- palette.bright_red = "#cc241d"
+    -- palette.bright_green = "#98971a"
+    -- palette.bright_yellow = "#d79921"
+    -- palette.bright_blue = "#458588"
+    -- palette.bright_purple = "#b16286"
+    -- palette.bright_aqua = "#689d6a"
+    -- palette.bright_orange = "#d65d0e"
     local gruvbox_overrides = {
         -- ========================================================================================
         -- LSP
@@ -46,10 +70,11 @@ local function gruvbox_init()
         StatusLineNC = { fg = palette.dark1, bg = palette.dark1 },
         CursorLineNr = { fg = palette.bright_yellow, bg = "" },
 
-        GruvboxOrangeSign = { fg = palette.bright_orange },
+        GruvboxOrangeSign = { fg = palette.bright_orange, bg = nil },
+        GruvboxYellowSign = { fg = palette.bright_yellow, bg = nil },
         GruvboxAquaSign = { fg = palette.bright_aqua },
         GruvboxGreenSign = { fg = palette.bright_green },
-        GruvboxRedSign = { fg = palette.bright_red },
+        GruvboxRedSign = { fg = palette.bright_red, bg = nil },
         GruvboxBlueSign = { fg = palette.bright_blue },
 
         -- ========================================================================================
@@ -86,11 +111,13 @@ local function gruvbox_init()
         -- overriding highlight groups through palette itself
         -- palette_overrides = { },
         overrides = gruvbox_overrides,
+        palette_overrides = palette,
+        -- invert_selection = true,
     })
 end
 
 local transparency_file_path = vim.fn.has("win32") == 1
-        and os.getenv("LOCALAPPDATA") .. "/nvim-data/.gruvbox_transparency"
+    and os.getenv("LOCALAPPDATA") .. "/nvim-data/.gruvbox_transparency"
     or os.getenv("XDG_STATE_HOME") .. "/nvim/.gruvbox_transparency"
 
 --- @brief loads the transparency from the state file into the options
