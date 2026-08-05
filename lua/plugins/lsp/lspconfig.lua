@@ -27,6 +27,7 @@ local function setup_lsp()
     vim.lsp.enable({
         "just",
         "basedpyright",
+        "texlab",
         "bashls",
         "bitbake_ls",
         "clangd",
