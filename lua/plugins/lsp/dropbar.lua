@@ -1,6 +1,6 @@
 return {
     "Bekaboo/dropbar.nvim",
-    event = "VimEnter",
+    event = "VeryLazy",
     keys = {
         {
             "<leader>o",
@@ -12,7 +12,6 @@ return {
         bar = {
             update_events = {
                 buf = {
-                    -- "BufModifiedSet", -- BUG: deprecated
                     "FileChangedShellPost",
                     "TextChanged",
                     "ModeChanged",
