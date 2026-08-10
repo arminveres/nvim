@@ -40,6 +40,7 @@ local function setup_lsp()
         "systemd_lsp",
         "taplo",
         "yamlls",
+        "zshcs",
     })
 end
 
