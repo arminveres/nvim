@@ -1,6 +1,7 @@
 -- TODO: migrate to ui2 once more stable
 return {
     "folke/noice.nvim",
+    enabled = not vim.g.neovide,
     event = "VeryLazy",
     keys = {
         {

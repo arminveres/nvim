@@ -81,7 +81,7 @@ else
     vim.o.backupdir = os.getenv("XDG_CACHE_HOME") .. "/nvim/backup//"
 end
 
-vim.o.guifont = "Mononoki Nerd Font Propo:h11.5"
+vim.o.guifont = "JetBrainsMono Nerd Font Mono:h11"
 
 vim.g.netrw_keepdir = 0
 vim.o.laststatus = 3
