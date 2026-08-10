@@ -88,23 +88,25 @@ autocmd("FileType", {
     callback = function() vim.opt.colorcolumn = "" end,
 })
 
--- aucmd("BufLeave", {
---     group = create_augroup("lspLogCleaner", { clear = true }),
---     callback = function()
---         local log_path = vim.fn.stdpath("state") .. "/lsp.log"
---         local backup_path = log_path .. ".old"
-
---         local stat = vim.loop.fs_stat(log_path)
---         if stat and stat.size > 1024 * 1024 then -- Limit to 1 MB
---             -- Rename the current log file
---             local succ, msg = os.rename(log_path, backup_path)
---             -- local succ, msg = os.remove(log_path)
---             if not succ then
---                 ---@diagnostic disable-next-line: param-type-mismatch
---                 vim.notify(msg, vim.log.levels.ERROR)
---                 return
---             end
---             vim.notify("Neovim log rotated", vim.log.levels.INFO)
---         end
---     end,
--- })
+-- trim the lsp log file so it doesn't grow unbounded
+autocmd("VimLeavePre", {
+    group = augroup("plugins.LspLogCleaner", {}),
+    callback = function()
+        local path = vim.lsp.log.get_filename()
+        local max = 1024 * 256 -- in Kilobytes
+        local f = io.open(path, "rb")
+        if not f then return end
+        local size = f:seek("end")
+        if size <= max then
+            f:close()
+            return
+        end
+        f:seek("set", size - max)
+        local tail = f:read("*a")
+        f:close()
+        local out = io.open(path, "wb")
+        if not out then return end
+        out:write(tail)
+        out:close()
+    end,
+})
