@@ -40,7 +40,6 @@ require("lazy").setup({
         { import = "plugins.ui" },
         { import = "plugins.debug" },
         { import = "plugins.snacks" },
-        { import = "plugins.ai" },
         { import = "plugins.langs" },
         { import = "plugins.langs.rust" },
     },
