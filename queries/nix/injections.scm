@@ -14,7 +14,7 @@
     attrpath: (attrpath (identifier) @attr)
     expression: (indented_string_expression (string_fragment) @injection.content)
   )
-  (#match? @attr "^(completionInit|envExtra|initContent|logoutExtra)$")
+  (#match? @attr "^(completionInit|envExtra|initContent|logoutExtra|profileExtra)$")
   (#set! injection.language "zsh")
 )
 
