@@ -7,6 +7,24 @@ local M = {}
 
 local NS = vim.api.nvim_create_namespace("lsp_callhierarchy")
 
+-- Run fn(item, cb) for every item in parallel and call on_done(results) once
+-- all callbacks have fired, preserving input order regardless of completion order.
+local function map_async(items, fn, on_done)
+    local results = {}
+    local pending = #items
+    if pending == 0 then
+        on_done(results)
+        return
+    end
+    for i, item in ipairs(items) do
+        fn(item, function(res)
+            results[i] = res
+            pending = pending - 1
+            if pending == 0 then on_done(results) end
+        end)
+    end
+end
+
 ---@param direction "incoming"|"outgoing"
 ---@param item table CallHierarchyItem
 ---@param client vim.lsp.Client
@@ -17,11 +35,7 @@ local NS = vim.api.nvim_create_namespace("lsp_callhierarchy")
 local function walk(direction, item, client, depth, max_depth, visited, on_done)
     local node = { item = item, children = {} }
 
-    local key = table.concat({
-        item.uri or (item.name .. tostring(item.range and item.range.start.line)),
-        item.name,
-        item.range and item.range.start.line or 0,
-    }, "|")
+    local key = table.concat({ item.uri, item.name, item.range.start.line }, "|")
 
     if depth >= max_depth or visited[key] then
         node.truncated = visited[key] and depth < max_depth
@@ -38,15 +52,13 @@ local function walk(direction, item, client, depth, max_depth, visited, on_done)
             return
         end
 
-        local pending = #result
-        for _, call in ipairs(result) do
+        map_async(result, function(call, cb)
             local child_item = direction == "incoming" and call.from or call.to
-            walk(direction, child_item, client, depth + 1, max_depth, visited, function(child_node)
-                table.insert(node.children, child_node)
-                pending = pending - 1
-                if pending == 0 then on_done(node) end
-            end)
-        end
+            walk(direction, child_item, client, depth + 1, max_depth, visited, cb)
+        end, function(children)
+            node.children = children
+            on_done(node)
+        end)
     end, item._bufnr)
 end
 
@@ -158,50 +170,48 @@ function M.show(direction, opts)
         vim.notify("Resolving call hierarchy…", vim.log.levels.INFO)
 
         local visited = {}
-        local roots = {}
-        local pending = #result
         for _, item in ipairs(result) do
             item._bufnr = bufnr
-            walk(direction, item, client, 0, max_depth, visited, function(node)
-                table.insert(roots, node)
-                pending = pending - 1
-                if pending == 0 then
-                    local buf = vim.api.nvim_create_buf(false, true)
-                    vim.bo[buf].filetype = "lspcallhierarchy"
-                    vim.bo[buf].bufhidden = "wipe"
-                    local locations = render(buf, roots, direction)
-
-                    vim.api.nvim_open_win(buf, true, {
-                        relative = "editor",
-                        row = 2,
-                        col = 4,
-                        width = math.max(60, math.floor(vim.o.columns * 0.7)),
-                        height = math.max(15, math.floor(vim.o.lines * 0.6)),
-                        style = "minimal",
-                        border = vim.o.winborder ~= "" and vim.o.winborder or "rounded",
-                        title = " Call Hierarchy ",
-                        title_pos = "center",
-                    })
-
-                    local function jump()
-                        local line = vim.api.nvim_win_get_cursor(0)[1]
-                        local loc = locations[line - 1]
-                        if not loc then return end
-                        vim.api.nvim_win_close(0, true)
-                        vim.cmd.edit(vim.uri_to_fname(loc.uri))
-                        vim.api.nvim_win_set_cursor(
-                            0,
-                            { loc.range.start.line + 1, loc.range.start.character }
-                        )
-                    end
-
-                    local kopts = { buffer = buf, silent = true, nowait = true }
-                    vim.keymap.set("n", "<CR>", jump, kopts)
-                    vim.keymap.set("n", "q", "<cmd>close<cr>", kopts)
-                    vim.keymap.set("n", "<Esc>", "<cmd>close<cr>", kopts)
-                end
-            end)
         end
+        map_async(
+            result,
+            function(item, cb) walk(direction, item, client, 0, max_depth, visited, cb) end,
+            function(roots)
+                local buf = vim.api.nvim_create_buf(false, true)
+                vim.bo[buf].filetype = "lspcallhierarchy"
+                vim.bo[buf].bufhidden = "wipe"
+                local locations = render(buf, roots, direction)
+
+                vim.api.nvim_open_win(buf, true, {
+                    relative = "editor",
+                    row = 2,
+                    col = 4,
+                    width = math.max(60, math.floor(vim.o.columns * 0.7)),
+                    height = math.max(15, math.floor(vim.o.lines * 0.6)),
+                    style = "minimal",
+                    border = vim.o.winborder ~= "" and vim.o.winborder or "rounded",
+                    title = " Call Hierarchy ",
+                    title_pos = "center",
+                })
+
+                local function jump()
+                    local line = vim.api.nvim_win_get_cursor(0)[1]
+                    local loc = locations[line - 1]
+                    if not loc then return end
+                    vim.api.nvim_win_close(0, true)
+                    vim.cmd.edit(vim.uri_to_fname(loc.uri))
+                    vim.api.nvim_win_set_cursor(
+                        0,
+                        { loc.range.start.line + 1, loc.range.start.character }
+                    )
+                end
+
+                local kopts = { buffer = buf, silent = true, nowait = true }
+                vim.keymap.set("n", "<CR>", jump, kopts)
+                vim.keymap.set("n", "q", "<cmd>close<cr>", kopts)
+                vim.keymap.set("n", "<Esc>", "<cmd>close<cr>", kopts)
+            end
+        )
     end, bufnr)
 end
 
