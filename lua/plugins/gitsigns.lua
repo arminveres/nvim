@@ -76,6 +76,12 @@ return {
                 { desc = "GitSigns diffthis ~" }
             )
             map("n", "<leader>td", gs.toggle_deleted)
+            map(
+                "n",
+                "<leader>B",
+                gs.blame,
+                { desc = "GitSigns [B]lame buffer" }
+            )
 
             -- Text object
             map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
