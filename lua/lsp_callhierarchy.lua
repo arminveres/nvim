@@ -50,15 +50,19 @@ local function walk(direction, item, client, depth, max_depth, visited, on_done)
     end, item._bufnr)
 end
 
-local KIND_ICON = {
-    [12] = "", -- Function
-    [6] = "", -- Method
-    [9] = "", -- Constructor
+-- LSP SymbolKind -> (icon, highlight group)
+local KIND_INFO = {
+    [6] = { icon = "󰊕", hl = "@function.method" }, -- Method
+    [9] = { icon = "", hl = "@constructor" }, -- Constructor
+    [12] = { icon = "󰊕", hl = "@function" }, -- Function
 }
+local DEFAULT_KIND = { icon = "", hl = "@function" }
 
 local function render(buf, roots, direction)
     local lines = {}
     local locations = {} -- line (0-idx) -> { uri, range }
+    -- highlights[line] = { { col_start, col_end, hl_group }, ... }
+    local highlights = {}
 
     local title = direction == "incoming" and "Incoming calls (callers)"
         or "Outgoing calls (callees)"
@@ -66,25 +70,37 @@ local function render(buf, roots, direction)
     table.insert(lines, "")
 
     local function add(node, prefix, is_last, is_root)
-        local icon = KIND_ICON[node.item.kind] or ""
+        local kind = KIND_INFO[node.item.kind] or DEFAULT_KIND
         local connector = is_root and "" or (is_last and "└─ " or "├─ ")
         local file = vim.fn.fnamemodify(vim.uri_to_fname(node.item.uri), ":~:.")
         local lnum = node.item.range.start.line + 1
         local suffix = node.truncated and "  (…)" or ""
-        table.insert(
-            lines,
-            string.format(
-                "%s%s%s %s  %s:%d%s",
-                prefix,
-                connector,
-                icon,
-                node.item.name,
-                file,
-                lnum,
-                suffix
-            )
+
+        local line = string.format(
+            "%s%s%s %s  %s:%d%s",
+            prefix,
+            connector,
+            kind.icon,
+            node.item.name,
+            file,
+            lnum,
+            suffix
         )
-        locations[#lines - 1] = { uri = node.item.uri, range = node.item.range }
+        table.insert(lines, line)
+        local lidx = #lines - 1
+        locations[lidx] = { uri = node.item.uri, range = node.item.range }
+
+        local col = #prefix
+        local hl = {}
+        if connector ~= "" then table.insert(hl, { col, col + #connector, "Comment" }) end
+        col = col + #connector
+        table.insert(hl, { col, col + #kind.icon, kind.hl })
+        col = col + #kind.icon + 1 -- icon + space
+        local name_hl = is_root and "@function.builtin" or kind.hl
+        table.insert(hl, { col, col + #node.item.name, name_hl })
+        col = col + #node.item.name
+        table.insert(hl, { col, #line, "Comment" })
+        highlights[lidx] = hl
 
         local child_prefix = prefix .. (is_root and "" or (is_last and "   " or "│  "))
         for i, child in ipairs(node.children) do
@@ -100,7 +116,19 @@ local function render(buf, roots, direction)
     vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
     vim.bo[buf].modifiable = false
 
+    vim.api.nvim_buf_clear_namespace(buf, NS, 0, -1)
     vim.api.nvim_buf_set_extmark(buf, NS, 0, 0, { hl_group = "Title", end_col = #lines[1] })
+    for lidx, hl in pairs(highlights) do
+        for _, seg in ipairs(hl) do
+            vim.api.nvim_buf_set_extmark(
+                buf,
+                NS,
+                lidx,
+                seg[1],
+                { end_col = seg[2], hl_group = seg[3] }
+            )
+        end
+    end
 
     return locations
 end
@@ -150,7 +178,7 @@ function M.show(direction, opts)
                         width = math.max(60, math.floor(vim.o.columns * 0.7)),
                         height = math.max(15, math.floor(vim.o.lines * 0.6)),
                         style = "minimal",
-                        border = "rounded",
+                        border = vim.o.winborder ~= "" and vim.o.winborder or "rounded",
                         title = " Call Hierarchy ",
                         title_pos = "center",
                     })
