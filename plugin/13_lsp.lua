@@ -69,6 +69,12 @@ autocmd("LspAttach", {
             function() callhierarchy.show("outgoing") end,
             merge_desc(opts, "[g]o [r]ecursive [c]all hierarchy [o]utgoing (callees)")
         )
+        map(
+            "n",
+            "grcr",
+            function() callhierarchy.reopen() end,
+            merge_desc(opts, "[g]o [r]ecursive [c]all hierarchy [r]eopen")
+        )
 
         -- resolve super(upper) and sub(lower) types, e.g., for classes/structs
 

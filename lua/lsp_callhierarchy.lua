@@ -7,6 +7,9 @@ local M = {}
 
 local NS = vim.api.nvim_create_namespace("lsp_callhierarchy")
 
+-- Last opened call-hierarchy window, so it can be reopened after closing.
+local last = { buf = nil, win_opts = nil }
+
 -- Run fn(item, cb) for every item in parallel and call on_done(results) once
 -- all callbacks have fired, preserving input order regardless of completion order.
 local function map_async(items, fn, on_done)
@@ -179,10 +182,10 @@ function M.show(direction, opts)
             function(roots)
                 local buf = vim.api.nvim_create_buf(false, true)
                 vim.bo[buf].filetype = "lspcallhierarchy"
-                vim.bo[buf].bufhidden = "wipe"
+                vim.bo[buf].bufhidden = "hide"
                 local locations = render(buf, roots, direction)
 
-                vim.api.nvim_open_win(buf, true, {
+                local win_opts = {
                     relative = "editor",
                     row = 2,
                     col = 4,
@@ -192,7 +195,9 @@ function M.show(direction, opts)
                     border = vim.o.winborder ~= "" and vim.o.winborder or "rounded",
                     title = " Call Hierarchy ",
                     title_pos = "center",
-                })
+                }
+                vim.api.nvim_open_win(buf, true, win_opts)
+                last = { buf = buf, win_opts = win_opts }
 
                 local function jump()
                     local line = vim.api.nvim_win_get_cursor(0)[1]
@@ -213,6 +218,15 @@ function M.show(direction, opts)
             end
         )
     end, bufnr)
+end
+
+-- Reopen the last call-hierarchy window (buffer content is preserved).
+function M.reopen()
+    if not (last.buf and vim.api.nvim_buf_is_valid(last.buf)) then
+        vim.notify("No previous call hierarchy to reopen", vim.log.levels.WARN)
+        return
+    end
+    vim.api.nvim_open_win(last.buf, true, last.win_opts)
 end
 
 return M
