@@ -56,6 +56,20 @@ autocmd("LspAttach", {
         map("n", "gsi", vim.lsp.buf.incoming_calls, merge_desc(opts, "Show incoming lsp call"))
         map("n", "gso", vim.lsp.buf.outgoing_calls, merge_desc(opts, "Show incoming lsp call"))
 
+        local callhierarchy = require("lsp_callhierarchy")
+        map(
+            "n",
+            "grci",
+            function() callhierarchy.show("incoming") end,
+            merge_desc(opts, "[g]o [r]ecursive [c]all hierarchy [i]ncoming (callers)")
+        )
+        map(
+            "n",
+            "grco",
+            function() callhierarchy.show("outgoing") end,
+            merge_desc(opts, "[g]o [r]ecursive [c]all hierarchy [o]utgoing (callees)")
+        )
+
         -- resolve super(upper) and sub(lower) types, e.g., for classes/structs
 
         map(
