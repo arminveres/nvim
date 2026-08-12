@@ -128,6 +128,10 @@ map("v", "<leader>d", '"_d', opts)
 -- According to thePrimeagen, the greatest map ever
 map("x", "<leader>p", '"_dP', opts)
 
+map("n", "<leader>cf", function()
+    vim.fn.setreg("+", vim.fn.expand("%:p"))
+end, merge_desc(opts, "[c]opy current [f]ile path to clipboard"))
+
 -- Easier window switching with leader + Number
 -- Creates mappings like this: km.set("n", "<Leader>2", "2<C-W>w", { desc = "Move to Window 2" })
 for i = 1, 6 do
