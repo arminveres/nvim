@@ -31,6 +31,12 @@ map("n", "<C-j>", "<C-w>j", opts)
 map("n", "<C-k>", "<C-w>k", opts)
 map("n", "<C-l>", "<C-w>l", opts) ]]
 
+-- clear multicursors, C-l, is already occupied by tmux plugin
+map("n", "<leader>lq", function()
+    local mc_ns = vim.api.nvim_create_namespace("nvim.multicursor")
+    vim.api.nvim_buf_clear_namespace(0, mc_ns, 0, -1)
+end, merge_desc(opts, "Clear multicursors"))
+
 -- Resize with arrows
 map("n", "<C-Up>", ":resize -2<CR>", opts)
 map("n", "<C-Down>", ":resize +2<CR>", opts)
@@ -109,8 +115,8 @@ end, { expr = true, noremap = true })
 -- ================================================================================================
 map("n", "<leader>q", "<cmd>q<CR>", opts)
 map("n", "<leader>Q", "<Cmd>qall!<CR>", opts) -- quickquit
-map("n", "<leader>w", "<Cmd>w<CR>", opts)     -- quick save
-map("n", "<leader>W", "<Cmd>w!<CR>", opts)    -- quick save
+map("n", "<leader>w", "<Cmd>w<CR>", opts) -- quick save
+map("n", "<leader>W", "<Cmd>w!<CR>", opts) -- quick save
 -- keymap("n", ",WQ", "<Cmd>wq!<CR>", opts) -- quick save
 
 -- Yank to clipboard
@@ -128,9 +134,12 @@ map("v", "<leader>d", '"_d', opts)
 -- According to thePrimeagen, the greatest map ever
 map("x", "<leader>p", '"_dP', opts)
 
-map("n", "<leader>cf", function()
-    vim.fn.setreg("+", vim.fn.expand("%:p"))
-end, merge_desc(opts, "[c]opy current [f]ile path to clipboard"))
+map(
+    "n",
+    "<leader>cf",
+    function() vim.fn.setreg("+", vim.fn.expand("%:p")) end,
+    merge_desc(opts, "[c]opy current [f]ile path to clipboard")
+)
 
 -- Easier window switching with leader + Number
 -- Creates mappings like this: km.set("n", "<Leader>2", "2<C-W>w", { desc = "Move to Window 2" })
