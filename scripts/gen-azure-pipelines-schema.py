@@ -24,6 +24,17 @@ BASE_SCHEMA_URL = "https://raw.githubusercontent.com/microsoft/azure-pipelines-v
 # on scalars are dropped entirely; tighten per-type if that hides real mistakes.
 SCALAR = ["string", "boolean", "number", "integer"]
 SCALAR_TYPES = set(SCALAR)
+# Template/runtime expressions are resolved by Azure before validation; yamlls sees them literally.
+# ponytail: expression keys/values are accepted as-is, their contents aren't validated.
+EXPR_KEY = r"^\$\{\{[\s\S]*\}\}$"  # `${{ if ... }}:` / `${{ each ... }}:` / `${{ else }}:`
+EXPR_VAL = r"\$\{\{[\s\S]*\}\}|\$\[[\s\S]*\]|\$\([\s\S]*\)"  # ${{ }}, $[ ], $( ) anywhere
+EXPR_ITEM = {
+    "type": "object",
+    "patternProperties": {EXPR_KEY: {}},
+    "additionalProperties": False,
+    "minProperties": 1,
+    "doNotSuggest": True,
+}
 
 
 def esc(s: str) -> str:
@@ -53,6 +64,19 @@ def yamllsify(node):
             if isinstance(sub, dict):
                 for alias in sub.get("aliases") or []:
                     props.setdefault(alias, sub)
+        node.setdefault("patternProperties", {})[EXPR_KEY] = {}
+
+    if isinstance(node.get("pattern"), str):
+        orig = node["pattern"]
+        node["pattern"] = f"{EXPR_VAL}|(?:{orig})"
+        node.setdefault("patternErrorMessage", f'String does not match the pattern of "{orig}".')
+    if isinstance(node.get("enum"), list) and "anyOf" not in node:
+        node["anyOf"] = [
+            {"enum": node.pop("enum")},
+            {"type": "string", "pattern": EXPR_VAL, "doNotSuggest": True},
+        ]
+    if isinstance(node.get("items"), dict):  # list item may be a bare `- ${{ if ... }}:` block
+        node["items"] = {"anyOf": [node["items"], EXPR_ITEM]}
 
 
 def extension_task_defs(tasks_dirs):
@@ -118,7 +142,7 @@ def main() -> None:
         n += 1
 
     yamllsify(schema)
-    Path(out_path).write_text(json.dumps(schema))
+    Path(out_path).write_text(json.dumps(schema, indent=2) + "\n")
     print(f"wrote {out_path} (+{n} extension tasks)")
 
 
