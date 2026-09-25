@@ -25,9 +25,7 @@ function main {
             git clone --depth=1 "$s"
         done
 
-        for d in ./*; do
-            "$SCRIPT_DIR"/gen-azure-pipelines-schema.py "$d" "$SCHEMA_OUTPUT"
-        done
+        "$SCRIPT_DIR"/gen-azure-pipelines-schema.py ./*/tasks "$SCHEMA_OUTPUT"
 
     )
     prettier --write "$SCHEMA_OUTPUT"

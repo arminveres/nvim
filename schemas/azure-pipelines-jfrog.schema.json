@@ -8884,6 +8884,253 @@
                   "doNotSuggest": true
                 }
               ]
+            },
+            {
+              "description": "JFrog Collect Build Issues\n\nCollect build issues from the git commit messages of the project and add them to the build-info.",
+              "anyOf": [
+                {
+                  "enum": ["JFrogCollectIssues@1"]
+                },
+                {
+                  "type": "string",
+                  "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                  "doNotSuggest": true
+                }
+              ]
+            },
+            {
+              "description": "JFrog CLI V2\n\nRun your own JFrog CLI command.",
+              "anyOf": [
+                {
+                  "enum": ["JfrogCliV2@1"]
+                },
+                {
+                  "type": "string",
+                  "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                  "doNotSuggest": true
+                }
+              ]
+            },
+            {
+              "description": "JFrog Nuget\n\nRestore and push NuGet packages from and to Artifactory while allowing to collect build-info. The collected build-info can be later published to Artifactory by the \"JFrog Publish Build Info\" task.",
+              "anyOf": [
+                {
+                  "enum": ["JFrogNuGet@1"]
+                },
+                {
+                  "type": "string",
+                  "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                  "doNotSuggest": true
+                }
+              ]
+            },
+            {
+              "description": "JFrog Maven\n\nBuild with Apache Maven, while resolving dependencies and deploying artifacts from and to Artifactory and while allowing to collect build-info. The collected build-info can be later published to Artifactory by the \"JFrog Publish Build Info\" task.",
+              "anyOf": [
+                {
+                  "enum": ["JFrogMaven@1"]
+                },
+                {
+                  "type": "string",
+                  "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                  "doNotSuggest": true
+                }
+              ]
+            },
+            {
+              "description": "JFrog Gradle\n\nBuild with Gradle, while resolving dependencies and deploying artifacts from and to Artifactory and while allowing to collect build-info. The collected build-info can be later published to Artifactory by the \"JFrog Publish Build Info\" task.",
+              "anyOf": [
+                {
+                  "enum": ["JFrogGradle@1"]
+                },
+                {
+                  "type": "string",
+                  "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                  "doNotSuggest": true
+                }
+              ]
+            },
+            {
+              "description": "JFrog Tools Installer\n\nInstalls tools necessary for JFrog integration tasks.",
+              "anyOf": [
+                {
+                  "enum": ["JFrogToolsInstaller@1"]
+                },
+                {
+                  "type": "string",
+                  "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                  "doNotSuggest": true
+                }
+              ]
+            },
+            {
+              "description": "JFrog Generic Artifacts\n\nRun generic commands with Artifactory using FileSpecs, while allowing to collect build-info. The collected build-info can be later published to Artifactory by the \"JFrog Publish Build Info\" task.",
+              "anyOf": [
+                {
+                  "enum": ["JFrogGenericArtifacts@1"]
+                },
+                {
+                  "type": "string",
+                  "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                  "doNotSuggest": true
+                }
+              ]
+            },
+            {
+              "description": "JFrog Discard Builds\n\nDiscard old builds from Artifactory.",
+              "anyOf": [
+                {
+                  "enum": ["JFrogDiscardBuilds@1"]
+                },
+                {
+                  "type": "string",
+                  "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                  "doNotSuggest": true
+                }
+              ]
+            },
+            {
+              "description": "JFrog Publish Build Info\n\nPublish the build-info collected in previous tasks to Artifactory.",
+              "anyOf": [
+                {
+                  "enum": ["JFrogPublishBuildInfo@1"]
+                },
+                {
+                  "type": "string",
+                  "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                  "doNotSuggest": true
+                }
+              ]
+            },
+            {
+              "description": "JFrog Build Scan\n\nScan a build with JFrog Xray.\nThe scanned build must be published to Artifactory prior to scanning, using the 'JFrog Publish Build Info' task.",
+              "anyOf": [
+                {
+                  "enum": ["JFrogBuildScan@1"]
+                },
+                {
+                  "type": "string",
+                  "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                  "doNotSuggest": true
+                }
+              ]
+            },
+            {
+              "description": "JFrog Go\n\nBuild and publish go packages from and to Artifactory while allowing to collect build-info. The collected build-info can be later published to Artifactory by the \"JFrog Publish Build Info\" task.",
+              "anyOf": [
+                {
+                  "enum": ["JFrogGo@1"]
+                },
+                {
+                  "type": "string",
+                  "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                  "doNotSuggest": true
+                }
+              ]
+            },
+            {
+              "description": "JFrog Conan\n\nThis task runs a Conan command.",
+              "anyOf": [
+                {
+                  "enum": ["JFrogConan@1"]
+                },
+                {
+                  "type": "string",
+                  "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                  "doNotSuggest": true
+                }
+              ]
+            },
+            {
+              "description": "JFrog .NET Core\n\nRestore and push .NET applications from and to Artifactory's NuGet repositories, while allowing to collect build-info. The collected build-info can be later published to Artifactory by the \"JFrog Publish Build Info\" task.",
+              "anyOf": [
+                {
+                  "enum": ["JFrogDotnetCore@1"]
+                },
+                {
+                  "type": "string",
+                  "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                  "doNotSuggest": true
+                }
+              ]
+            },
+            {
+              "description": "JFrog Distribution\n\nCreate, update, sign, distribute or delete release bundles from JFrog Distribution",
+              "anyOf": [
+                {
+                  "enum": ["JFrogDistribution@1"]
+                },
+                {
+                  "type": "string",
+                  "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                  "doNotSuggest": true
+                }
+              ]
+            },
+            {
+              "description": "JFrog Docker\n\nPull and push docker images from and to Artifactory (while allowing to collect build-info) or scan local docker images with JFrog Xray.",
+              "anyOf": [
+                {
+                  "enum": ["JFrogDocker@1"]
+                },
+                {
+                  "type": "string",
+                  "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                  "doNotSuggest": true
+                }
+              ]
+            },
+            {
+              "description": "JFrog npm\n\nInstall, pack and publish npm packages from and to Artifactory while allowing to collect build-info. The collected build-info can be later published to Artifactory by the \"JFrog Publish Build Info\" task.",
+              "anyOf": [
+                {
+                  "enum": ["JFrogNpm@1"]
+                },
+                {
+                  "type": "string",
+                  "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                  "doNotSuggest": true
+                }
+              ]
+            },
+            {
+              "description": "JFrog Build Promotion\n\nPromote a published build in Artifactory.",
+              "anyOf": [
+                {
+                  "enum": ["JFrogBuildPromotion@1"]
+                },
+                {
+                  "type": "string",
+                  "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                  "doNotSuggest": true
+                }
+              ]
+            },
+            {
+              "description": "JFrog Pip\n\nRun 'pip install' while resolving the Python dependencies from Artifactory. This task also allows collecting build-info. The collected build-info can be later published to Artifactory by the \"JFrog Publish Build Info\" task.",
+              "anyOf": [
+                {
+                  "enum": ["JFrogPip@1"]
+                },
+                {
+                  "type": "string",
+                  "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                  "doNotSuggest": true
+                }
+              ]
+            },
+            {
+              "description": "JFrog Audit\n\nAudit your local project's dependencies by generating a dependency tree and scanning it with Xray.",
+              "anyOf": [
+                {
+                  "enum": ["JFrogAudit@1"]
+                },
+                {
+                  "type": "string",
+                  "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                  "doNotSuggest": true
+                }
+              ]
             }
           ]
         },
@@ -42090,6 +42337,1737 @@
             }
           },
           "doNotSuggest": false,
+          "firstProperty": ["task"],
+          "required": ["task"],
+          "patternProperties": {
+            "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+          }
+        },
+        {
+          "properties": {
+            "task": {
+              "description": "JFrog Collect Build Issues\n\nCollect build issues from the git commit messages of the project and add them to the build-info.",
+              "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)|(?:^JFrogCollectIssues@1$)",
+              "patternErrorMessage": "String does not match the pattern of \"^JFrogCollectIssues@1$\"."
+            },
+            "inputs": {
+              "description": "JFrogCollectIssues inputs",
+              "properties": {
+                "artifactoryConnection": {
+                  "description": "Artifactory service connection"
+                },
+                "configSource": {
+                  "description": "Config source"
+                },
+                "taskConfig": {
+                  "description": "Issues collection configuration"
+                },
+                "file": {
+                  "description": "File path"
+                },
+                "workingDirectory": {
+                  "description": "Working Directory"
+                },
+                "buildName": {
+                  "description": "Build name"
+                },
+                "buildNumber": {
+                  "description": "Build number"
+                },
+                "projectKey": {
+                  "description": "Project key"
+                }
+              },
+              "additionalProperties": false,
+              "patternProperties": {
+                "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+              }
+            }
+          },
+          "firstProperty": ["task"],
+          "required": ["task"],
+          "patternProperties": {
+            "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+          }
+        },
+        {
+          "properties": {
+            "task": {
+              "description": "JFrog CLI V2\n\nRun your own JFrog CLI command.",
+              "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)|(?:^JfrogCliV2@1$)",
+              "patternErrorMessage": "String does not match the pattern of \"^JfrogCliV2@1$\"."
+            },
+            "inputs": {
+              "description": "JfrogCliV2 inputs",
+              "properties": {
+                "jfrogPlatformConnection": {
+                  "description": "JFrog Platform service connection"
+                },
+                "useCustomVersion": {
+                  "description": "Use custom JFrog CLI version"
+                },
+                "cliVersion": {
+                  "description": "Version"
+                },
+                "command": {
+                  "description": "Commands to run"
+                },
+                "workingDirectory": {
+                  "description": "Working Directory"
+                }
+              },
+              "additionalProperties": false,
+              "patternProperties": {
+                "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+              }
+            }
+          },
+          "firstProperty": ["task"],
+          "required": ["task"],
+          "patternProperties": {
+            "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+          }
+        },
+        {
+          "properties": {
+            "task": {
+              "description": "JFrog Nuget\n\nRestore and push NuGet packages from and to Artifactory while allowing to collect build-info. The collected build-info can be later published to Artifactory by the \"JFrog Publish Build Info\" task.",
+              "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)|(?:^JFrogNuGet@1$)",
+              "patternErrorMessage": "String does not match the pattern of \"^JFrogNuGet@1$\"."
+            },
+            "inputs": {
+              "description": "JFrogNuGet inputs",
+              "properties": {
+                "command": {
+                  "description": "Command",
+                  "anyOf": [
+                    {
+                      "enum": ["restore", "push"]
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                      "doNotSuggest": true
+                    }
+                  ]
+                },
+                "arguments": {
+                  "description": "Arguments"
+                },
+                "artifactoryConnection": {
+                  "description": "Artifactory service connection"
+                },
+                "targetResolveRepo": {
+                  "description": "Resolution repository"
+                },
+                "targetDeployRepo": {
+                  "description": "Deployment repository"
+                },
+                "targetDeployPath": {
+                  "description": "Relative deployment path"
+                },
+                "solutionPath": {
+                  "description": "Path to the root directory of the solution or to a file inside the root directory."
+                },
+                "pathToNupkg": {
+                  "description": "Path to NuGet package(s) to publish"
+                },
+                "noNuGetCache": {
+                  "description": "Disable local NuGet cache"
+                },
+                "packagesDirectory": {
+                  "description": "Destination directory"
+                },
+                "verbosityRestore": {
+                  "description": "Verbosity",
+                  "anyOf": [
+                    {
+                      "enum": ["Quiet", "Normal", "Detailed"]
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                      "doNotSuggest": true
+                    }
+                  ]
+                },
+                "collectBuildInfo": {
+                  "description": "Collect build info"
+                },
+                "buildName": {
+                  "description": "Build name"
+                },
+                "buildNumber": {
+                  "description": "Build number"
+                },
+                "projectKey": {
+                  "description": "Project key"
+                },
+                "includeEnvVars": {
+                  "description": "Include environment variables"
+                },
+                "nugetProtocolVersion": {
+                  "description": "NuGet protocol version"
+                }
+              },
+              "additionalProperties": false,
+              "patternProperties": {
+                "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+              }
+            }
+          },
+          "firstProperty": ["task"],
+          "required": ["task"],
+          "patternProperties": {
+            "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+          }
+        },
+        {
+          "properties": {
+            "task": {
+              "description": "JFrog Maven\n\nBuild with Apache Maven, while resolving dependencies and deploying artifacts from and to Artifactory and while allowing to collect build-info. The collected build-info can be later published to Artifactory by the \"JFrog Publish Build Info\" task.",
+              "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)|(?:^JFrogMaven@1$)",
+              "patternErrorMessage": "String does not match the pattern of \"^JFrogMaven@1$\"."
+            },
+            "inputs": {
+              "description": "JFrogMaven inputs",
+              "properties": {
+                "mavenPOMFile": {
+                  "description": "Maven POM file",
+                  "aliases": ["mavenPomFile"]
+                },
+                "goals": {
+                  "description": "Goal(s)"
+                },
+                "options": {
+                  "description": "Options"
+                },
+                "artifactoryResolverService": {
+                  "description": "Artifactory service"
+                },
+                "targetResolveReleaseRepo": {
+                  "description": "Resolution repository for releases"
+                },
+                "targetResolveSnapshotRepo": {
+                  "description": "Resolution repository for snapshots"
+                },
+                "artifactoryDeployService": {
+                  "description": "Artifactory service"
+                },
+                "targetDeployReleaseRepo": {
+                  "description": "Deployment repository for releases"
+                },
+                "targetDeploySnapshotRepo": {
+                  "description": "Deployment repository for snapshots"
+                },
+                "filterDeployedArtifacts": {
+                  "description": "Filter deployed artifacts"
+                },
+                "includePatterns": {
+                  "description": "Include patterns"
+                },
+                "excludePatterns": {
+                  "description": "Exclude patterns"
+                },
+                "collectBuildInfo": {
+                  "description": "Collect build info"
+                },
+                "buildName": {
+                  "description": "Build name"
+                },
+                "buildNumber": {
+                  "description": "Build number"
+                },
+                "projectKey": {
+                  "description": "Project key"
+                },
+                "includeEnvVars": {
+                  "description": "Include environment variables"
+                },
+                "javaHomeSelection": {
+                  "description": "Set JAVA_HOME by",
+                  "aliases": ["javaHomeOption"]
+                },
+                "jdkVersion": {
+                  "description": "JDK version",
+                  "aliases": ["jdkVersionOption"],
+                  "anyOf": [
+                    {
+                      "enum": [
+                        "default",
+                        "1.17",
+                        "1.11",
+                        "1.10",
+                        "1.9",
+                        "1.8",
+                        "1.7",
+                        "1.6"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                      "doNotSuggest": true
+                    }
+                  ]
+                },
+                "jdkUserInputPath": {
+                  "description": "JDK path",
+                  "aliases": ["jdkDirectory"]
+                },
+                "jdkArchitecture": {
+                  "description": "JDK architecture",
+                  "aliases": ["jdkArchitectureOption"],
+                  "anyOf": [
+                    {
+                      "enum": ["x86", "x64"]
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                      "doNotSuggest": true
+                    }
+                  ]
+                },
+                "mavenPomFile": {
+                  "description": "Maven POM file",
+                  "aliases": ["mavenPomFile"]
+                },
+                "javaHomeOption": {
+                  "description": "Set JAVA_HOME by",
+                  "aliases": ["javaHomeOption"]
+                },
+                "jdkVersionOption": {
+                  "description": "JDK version",
+                  "aliases": ["jdkVersionOption"],
+                  "anyOf": [
+                    {
+                      "enum": [
+                        "default",
+                        "1.17",
+                        "1.11",
+                        "1.10",
+                        "1.9",
+                        "1.8",
+                        "1.7",
+                        "1.6"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                      "doNotSuggest": true
+                    }
+                  ]
+                },
+                "jdkDirectory": {
+                  "description": "JDK path",
+                  "aliases": ["jdkDirectory"]
+                },
+                "jdkArchitectureOption": {
+                  "description": "JDK architecture",
+                  "aliases": ["jdkArchitectureOption"],
+                  "anyOf": [
+                    {
+                      "enum": ["x86", "x64"]
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                      "doNotSuggest": true
+                    }
+                  ]
+                }
+              },
+              "additionalProperties": false,
+              "patternProperties": {
+                "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+              }
+            }
+          },
+          "firstProperty": ["task"],
+          "required": ["task"],
+          "patternProperties": {
+            "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+          }
+        },
+        {
+          "properties": {
+            "task": {
+              "description": "JFrog Gradle\n\nBuild with Gradle, while resolving dependencies and deploying artifacts from and to Artifactory and while allowing to collect build-info. The collected build-info can be later published to Artifactory by the \"JFrog Publish Build Info\" task.",
+              "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)|(?:^JFrogGradle@1$)",
+              "patternErrorMessage": "String does not match the pattern of \"^JFrogGradle@1$\"."
+            },
+            "inputs": {
+              "description": "JFrogGradle inputs",
+              "properties": {
+                "gradleBuildFile": {
+                  "description": "Gradle build file"
+                },
+                "workDir": {
+                  "description": "Working directory"
+                },
+                "options": {
+                  "description": "Options"
+                },
+                "tasks": {
+                  "description": "Task(s)"
+                },
+                "artifactoryResolverService": {
+                  "description": "Artifactory service"
+                },
+                "sourceRepo": {
+                  "description": "Resolution repository"
+                },
+                "artifactoryDeployerService": {
+                  "description": "Artifactory service"
+                },
+                "targetRepo": {
+                  "description": "Deployment repository"
+                },
+                "usesPlugin": {
+                  "description": "Use Artifactory plugin"
+                },
+                "useWrapper": {
+                  "description": "Use Gradle wrapper"
+                },
+                "deployMavenDesc": {
+                  "description": "Deploy Maven descriptors"
+                },
+                "deployIvyDesc": {
+                  "description": "Deploy Ivy descriptors"
+                },
+                "ivyDescPattern": {
+                  "description": "Ivy descriptors pattern"
+                },
+                "ivyArtifactsPattern": {
+                  "description": "Ivy artifacts pattern"
+                },
+                "collectBuildInfo": {
+                  "description": "Collect build info"
+                },
+                "buildName": {
+                  "description": "Build name"
+                },
+                "buildNumber": {
+                  "description": "Build number"
+                },
+                "projectKey": {
+                  "description": "Project key"
+                },
+                "includeEnvVars": {
+                  "description": "Include environment variables"
+                },
+                "javaHomeSelection": {
+                  "description": "Set JAVA_HOME by",
+                  "aliases": ["javaHomeOption"]
+                },
+                "jdkVersion": {
+                  "description": "JDK version",
+                  "aliases": ["jdkVersionOption"],
+                  "anyOf": [
+                    {
+                      "enum": [
+                        "default",
+                        "1.17",
+                        "1.11",
+                        "1.10",
+                        "1.9",
+                        "1.8",
+                        "1.7",
+                        "1.6"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                      "doNotSuggest": true
+                    }
+                  ]
+                },
+                "jdkUserInputPath": {
+                  "description": "JDK path",
+                  "aliases": ["jdkDirectory"]
+                },
+                "jdkArchitecture": {
+                  "description": "JDK architecture",
+                  "aliases": ["jdkArchitectureOption"],
+                  "anyOf": [
+                    {
+                      "enum": ["x86", "x64"]
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                      "doNotSuggest": true
+                    }
+                  ]
+                },
+                "javaHomeOption": {
+                  "description": "Set JAVA_HOME by",
+                  "aliases": ["javaHomeOption"]
+                },
+                "jdkVersionOption": {
+                  "description": "JDK version",
+                  "aliases": ["jdkVersionOption"],
+                  "anyOf": [
+                    {
+                      "enum": [
+                        "default",
+                        "1.17",
+                        "1.11",
+                        "1.10",
+                        "1.9",
+                        "1.8",
+                        "1.7",
+                        "1.6"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                      "doNotSuggest": true
+                    }
+                  ]
+                },
+                "jdkDirectory": {
+                  "description": "JDK path",
+                  "aliases": ["jdkDirectory"]
+                },
+                "jdkArchitectureOption": {
+                  "description": "JDK architecture",
+                  "aliases": ["jdkArchitectureOption"],
+                  "anyOf": [
+                    {
+                      "enum": ["x86", "x64"]
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                      "doNotSuggest": true
+                    }
+                  ]
+                }
+              },
+              "additionalProperties": false,
+              "patternProperties": {
+                "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+              }
+            }
+          },
+          "firstProperty": ["task"],
+          "required": ["task"],
+          "patternProperties": {
+            "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+          }
+        },
+        {
+          "properties": {
+            "task": {
+              "description": "JFrog Tools Installer\n\nInstalls tools necessary for JFrog integration tasks.",
+              "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)|(?:^JFrogToolsInstaller@1$)",
+              "patternErrorMessage": "String does not match the pattern of \"^JFrogToolsInstaller@1$\"."
+            },
+            "inputs": {
+              "description": "JFrogToolsInstaller inputs",
+              "properties": {
+                "artifactoryConnection": {
+                  "description": "Artifactory service connection"
+                },
+                "cliInstallationRepo": {
+                  "description": "Install JFrog CLI from:"
+                },
+                "installCustomVersion": {
+                  "description": "Install custom version"
+                },
+                "cliVersion": {
+                  "description": "Version"
+                },
+                "installExtractors": {
+                  "description": "Install Maven and Gradle Extractors",
+                  "aliases": ["installExtractors", "installMavenExtractor"]
+                },
+                "extractorsInstallationRepo": {
+                  "description": "From:",
+                  "aliases": [
+                    "extractorsInstallationRepo",
+                    "mavenInstallationRepo"
+                  ]
+                },
+                "installMavenExtractor": {
+                  "description": "Install Maven and Gradle Extractors",
+                  "aliases": ["installExtractors", "installMavenExtractor"]
+                },
+                "mavenInstallationRepo": {
+                  "description": "From:",
+                  "aliases": [
+                    "extractorsInstallationRepo",
+                    "mavenInstallationRepo"
+                  ]
+                }
+              },
+              "additionalProperties": false,
+              "patternProperties": {
+                "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+              }
+            }
+          },
+          "firstProperty": ["task"],
+          "required": ["task"],
+          "patternProperties": {
+            "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+          }
+        },
+        {
+          "properties": {
+            "task": {
+              "description": "JFrog Generic Artifacts\n\nRun generic commands with Artifactory using FileSpecs, while allowing to collect build-info. The collected build-info can be later published to Artifactory by the \"JFrog Publish Build Info\" task.",
+              "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)|(?:^JFrogGenericArtifacts@1$)",
+              "patternErrorMessage": "String does not match the pattern of \"^JFrogGenericArtifacts@1$\"."
+            },
+            "inputs": {
+              "description": "JFrogGenericArtifacts inputs",
+              "properties": {
+                "command": {
+                  "description": "Command",
+                  "anyOf": [
+                    {
+                      "enum": [
+                        "Upload",
+                        "Download",
+                        "Set Properties",
+                        "Delete Properties",
+                        "Move",
+                        "Copy",
+                        "Delete"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                      "doNotSuggest": true
+                    }
+                  ]
+                },
+                "connection": {
+                  "description": "Artifactory service connection"
+                },
+                "setProps": {
+                  "description": "Properties to set"
+                },
+                "deleteProps": {
+                  "description": "Properties to delete"
+                },
+                "specSource": {
+                  "description": "File spec source"
+                },
+                "fileSpec": {
+                  "description": "Spec"
+                },
+                "file": {
+                  "description": "File path"
+                },
+                "replaceSpecVars": {
+                  "description": "Replace spec variables"
+                },
+                "specVars": {
+                  "description": "Spec vars"
+                },
+                "collectBuildInfo": {
+                  "description": "Collect build info"
+                },
+                "buildName": {
+                  "description": "Build name"
+                },
+                "buildNumber": {
+                  "description": "Build number"
+                },
+                "module": {
+                  "description": "Module name"
+                },
+                "projectKey": {
+                  "description": "Project key"
+                },
+                "includeEnvVars": {
+                  "description": "Include environment variables"
+                },
+                "dryRun": {
+                  "description": "Dry run"
+                },
+                "failNoOp": {
+                  "description": "Fail task if no files were affected"
+                },
+                "insecureTls": {
+                  "description": "Skip TLS certificates verification"
+                },
+                "threads": {
+                  "description": "# of threads",
+                  "anyOf": [
+                    {
+                      "enum": [
+                        "1",
+                        "2",
+                        "3",
+                        "4",
+                        "5",
+                        "6",
+                        "7",
+                        "8",
+                        "9",
+                        "10",
+                        "11",
+                        "12",
+                        "13",
+                        "14",
+                        "15",
+                        "16",
+                        "17",
+                        "18",
+                        "19",
+                        "20"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                      "doNotSuggest": true
+                    }
+                  ]
+                },
+                "retries": {
+                  "description": "# of retries",
+                  "anyOf": [
+                    {
+                      "enum": [
+                        "0",
+                        "1",
+                        "2",
+                        "3",
+                        "4",
+                        "5",
+                        "6",
+                        "7",
+                        "8",
+                        "9",
+                        "10",
+                        "11",
+                        "12"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                      "doNotSuggest": true
+                    }
+                  ]
+                },
+                "splitCount": {
+                  "description": "# of splits",
+                  "anyOf": [
+                    {
+                      "enum": [
+                        "0",
+                        "1",
+                        "2",
+                        "3",
+                        "4",
+                        "5",
+                        "6",
+                        "7",
+                        "8",
+                        "9",
+                        "10",
+                        "12",
+                        "14",
+                        "16",
+                        "18",
+                        "20",
+                        "25",
+                        "30",
+                        "35",
+                        "40",
+                        "45",
+                        "50",
+                        "60",
+                        "70",
+                        "80",
+                        "90",
+                        "100"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                      "doNotSuggest": true
+                    }
+                  ]
+                },
+                "minSplit": {
+                  "description": "The minimum size in KB for splitting files"
+                },
+                "validateSymlinks": {
+                  "description": "Validate symlinks are pointing to existing and unchanged files"
+                },
+                "syncDeletesPathLocal": {
+                  "description": "Path to sync and delete files from in the local file system"
+                },
+                "preserveSymlinks": {
+                  "description": "Preserve soft links structure in Artifactory"
+                },
+                "setDebianProps": {
+                  "description": "Set Debian properties"
+                },
+                "debDistribution": {
+                  "description": "Distribution"
+                },
+                "debComponent": {
+                  "description": "Component"
+                },
+                "debArchitecture": {
+                  "description": "Architecture"
+                },
+                "syncDeletesPathRemote": {
+                  "description": "Path to sync and delete files from in Artifactory"
+                },
+                "workingDirectory": {
+                  "description": "Working Directory"
+                }
+              },
+              "additionalProperties": false,
+              "patternProperties": {
+                "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+              }
+            }
+          },
+          "firstProperty": ["task"],
+          "required": ["task"],
+          "patternProperties": {
+            "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+          }
+        },
+        {
+          "properties": {
+            "task": {
+              "description": "JFrog Discard Builds\n\nDiscard old builds from Artifactory.",
+              "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)|(?:^JFrogDiscardBuilds@1$)",
+              "patternErrorMessage": "String does not match the pattern of \"^JFrogDiscardBuilds@1$\"."
+            },
+            "inputs": {
+              "description": "JFrogDiscardBuilds inputs",
+              "properties": {
+                "artifactoryConnection": {
+                  "description": "Artifactory service connection"
+                },
+                "buildName": {
+                  "description": "Build name"
+                },
+                "projectKey": {
+                  "description": "Project key"
+                },
+                "maxDays": {
+                  "description": "Max days"
+                },
+                "maxBuilds": {
+                  "description": "Max builds"
+                },
+                "excludeBuilds": {
+                  "description": "Exclude builds"
+                },
+                "deleteArtifacts": {
+                  "description": "Delete artifacts"
+                },
+                "async": {
+                  "description": "Async"
+                }
+              },
+              "additionalProperties": false,
+              "patternProperties": {
+                "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+              }
+            }
+          },
+          "firstProperty": ["task"],
+          "required": ["task"],
+          "patternProperties": {
+            "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+          }
+        },
+        {
+          "properties": {
+            "task": {
+              "description": "JFrog Publish Build Info\n\nPublish the build-info collected in previous tasks to Artifactory.",
+              "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)|(?:^JFrogPublishBuildInfo@1$)",
+              "patternErrorMessage": "String does not match the pattern of \"^JFrogPublishBuildInfo@1$\"."
+            },
+            "inputs": {
+              "description": "JFrogPublishBuildInfo inputs",
+              "properties": {
+                "artifactoryConnection": {
+                  "description": "Artifactory service connection"
+                },
+                "buildName": {
+                  "description": "Build name"
+                },
+                "buildNumber": {
+                  "description": "Build number"
+                },
+                "projectKey": {
+                  "description": "Project key"
+                },
+                "excludeEnvVars": {
+                  "description": "Exclude environment variables"
+                }
+              },
+              "additionalProperties": false,
+              "patternProperties": {
+                "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+              }
+            }
+          },
+          "firstProperty": ["task"],
+          "required": ["task"],
+          "patternProperties": {
+            "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+          }
+        },
+        {
+          "properties": {
+            "task": {
+              "description": "JFrog Build Scan\n\nScan a build with JFrog Xray.\nThe scanned build must be published to Artifactory prior to scanning, using the 'JFrog Publish Build Info' task.",
+              "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)|(?:^JFrogBuildScan@1$)",
+              "patternErrorMessage": "String does not match the pattern of \"^JFrogBuildScan@1$\"."
+            },
+            "inputs": {
+              "description": "JFrogBuildScan inputs",
+              "properties": {
+                "xrayConnection": {
+                  "description": "JFrog Xray service connection"
+                },
+                "buildName": {
+                  "description": "Build name"
+                },
+                "buildNumber": {
+                  "description": "Build number"
+                },
+                "projectKey": {
+                  "description": "Project key"
+                },
+                "allowFailBuild": {
+                  "description": "Allow fail build"
+                },
+                "vuln": {
+                  "description": "Show all vulnerabilities"
+                }
+              },
+              "additionalProperties": false,
+              "patternProperties": {
+                "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+              }
+            }
+          },
+          "firstProperty": ["task"],
+          "required": ["task"],
+          "patternProperties": {
+            "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+          }
+        },
+        {
+          "properties": {
+            "task": {
+              "description": "JFrog Go\n\nBuild and publish go packages from and to Artifactory while allowing to collect build-info. The collected build-info can be later published to Artifactory by the \"JFrog Publish Build Info\" task.",
+              "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)|(?:^JFrogGo@1$)",
+              "patternErrorMessage": "String does not match the pattern of \"^JFrogGo@1$\"."
+            },
+            "inputs": {
+              "description": "JFrogGo inputs",
+              "properties": {
+                "command": {
+                  "description": "Command",
+                  "anyOf": [
+                    {
+                      "enum": ["build", "test", "get", "publish", "custom"]
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                      "doNotSuggest": true
+                    }
+                  ]
+                },
+                "customCommand": {
+                  "description": "Go command to execute"
+                },
+                "goArguments": {
+                  "description": "Arguments"
+                },
+                "version": {
+                  "description": "Version"
+                },
+                "artifactoryConnection": {
+                  "description": "Artifactory service connection"
+                },
+                "resolutionRepo": {
+                  "description": "Go dependencies resolution repository"
+                },
+                "targetRepo": {
+                  "description": "Go target repository"
+                },
+                "collectBuildInfo": {
+                  "description": "Collect build info"
+                },
+                "buildName": {
+                  "description": "Build name"
+                },
+                "buildNumber": {
+                  "description": "Build number"
+                },
+                "projectKey": {
+                  "description": "Project key"
+                },
+                "includeEnvVars": {
+                  "description": "Include environment variables"
+                },
+                "workingDirectory": {
+                  "description": "Working Directory"
+                }
+              },
+              "additionalProperties": false,
+              "patternProperties": {
+                "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+              }
+            }
+          },
+          "firstProperty": ["task"],
+          "required": ["task"],
+          "patternProperties": {
+            "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+          }
+        },
+        {
+          "properties": {
+            "task": {
+              "description": "JFrog Conan\n\nThis task runs a Conan command.",
+              "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)|(?:^JFrogConan@1$)",
+              "patternErrorMessage": "String does not match the pattern of \"^JFrogConan@1$\"."
+            },
+            "inputs": {
+              "description": "JFrogConan inputs",
+              "properties": {
+                "conanCommand": {
+                  "description": "Conan Command",
+                  "anyOf": [
+                    {
+                      "enum": [
+                        "Config Install",
+                        "Add Remote",
+                        "Install",
+                        "Create",
+                        "Upload",
+                        "Custom"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                      "doNotSuggest": true
+                    }
+                  ]
+                },
+                "remoteName": {
+                  "description": "Conan Remote Name"
+                },
+                "artifactoryConnection": {
+                  "description": "Artifactory service connection"
+                },
+                "conanRepo": {
+                  "description": "Conan Repository"
+                },
+                "purgeExistingRemotes": {
+                  "description": "Purge Existing Remotes"
+                },
+                "configSourceType": {
+                  "description": "Source Type"
+                },
+                "configZipPath": {
+                  "description": "Zip File location"
+                },
+                "configInstallGit": {
+                  "description": "Git Repository URL"
+                },
+                "pathOrReference": {
+                  "description": "Path or Reference"
+                },
+                "patternOrReference": {
+                  "description": "Pattern or Reference"
+                },
+                "createPath": {
+                  "description": "Path"
+                },
+                "createReference": {
+                  "description": "Reference"
+                },
+                "extraArguments": {
+                  "description": "Conan arguments and options"
+                },
+                "customArguments": {
+                  "description": "Conan command to execute"
+                },
+                "collectBuildInfo": {
+                  "description": "Collect build info"
+                },
+                "buildName": {
+                  "description": "Build name"
+                },
+                "buildNumber": {
+                  "description": "Build number"
+                },
+                "conanUserHome": {
+                  "description": "Conan User Home"
+                },
+                "workingDirectory": {
+                  "description": "Working Directory"
+                }
+              },
+              "additionalProperties": false,
+              "patternProperties": {
+                "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+              }
+            }
+          },
+          "firstProperty": ["task"],
+          "required": ["task"],
+          "patternProperties": {
+            "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+          }
+        },
+        {
+          "properties": {
+            "task": {
+              "description": "JFrog .NET Core\n\nRestore and push .NET applications from and to Artifactory's NuGet repositories, while allowing to collect build-info. The collected build-info can be later published to Artifactory by the \"JFrog Publish Build Info\" task.",
+              "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)|(?:^JFrogDotnetCore@1$)",
+              "patternErrorMessage": "String does not match the pattern of \"^JFrogDotnetCore@1$\"."
+            },
+            "inputs": {
+              "description": "JFrogDotnetCore inputs",
+              "properties": {
+                "command": {
+                  "description": "Command",
+                  "anyOf": [
+                    {
+                      "enum": ["restore", "push", "custom"]
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                      "doNotSuggest": true
+                    }
+                  ]
+                },
+                "customCommand": {
+                  "description": "Custom command"
+                },
+                "arguments": {
+                  "description": "Arguments"
+                },
+                "artifactoryConnection": {
+                  "description": "Artifactory service connection"
+                },
+                "targetResolveRepo": {
+                  "description": "Resolution repository"
+                },
+                "targetDeployRepo": {
+                  "description": "Deployment repository"
+                },
+                "targetDeployPath": {
+                  "description": "Relative deployment path"
+                },
+                "rootPath": {
+                  "description": "Path to the root directory of a solution/project file to use"
+                },
+                "pathToNupkg": {
+                  "description": "Path to NuGet package(s) to publish"
+                },
+                "noNuGetCache": {
+                  "description": "Disable local cache"
+                },
+                "packagesDirectory": {
+                  "description": "Destination directory"
+                },
+                "verbosityRestore": {
+                  "description": "Verbosity",
+                  "anyOf": [
+                    {
+                      "enum": [
+                        "None",
+                        "Quiet",
+                        "Minimal",
+                        "Normal",
+                        "Detailed",
+                        "Diagnostic"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                      "doNotSuggest": true
+                    }
+                  ]
+                },
+                "collectBuildInfo": {
+                  "description": "Collect build info"
+                },
+                "buildName": {
+                  "description": "Build name"
+                },
+                "buildNumber": {
+                  "description": "Build number"
+                },
+                "projectKey": {
+                  "description": "Project key"
+                },
+                "includeEnvVars": {
+                  "description": "Include environment variables"
+                },
+                "nugetProtocolVersion": {
+                  "description": "NuGet protocol version"
+                }
+              },
+              "additionalProperties": false,
+              "patternProperties": {
+                "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+              }
+            }
+          },
+          "firstProperty": ["task"],
+          "required": ["task"],
+          "patternProperties": {
+            "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+          }
+        },
+        {
+          "properties": {
+            "task": {
+              "description": "JFrog Distribution\n\nCreate, update, sign, distribute or delete release bundles from JFrog Distribution",
+              "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)|(?:^JFrogDistribution@1$)",
+              "patternErrorMessage": "String does not match the pattern of \"^JFrogDistribution@1$\"."
+            },
+            "inputs": {
+              "description": "JFrogDistribution inputs",
+              "properties": {
+                "distributionConnection": {
+                  "description": "Distribution service connection"
+                },
+                "command": {
+                  "description": "Command",
+                  "anyOf": [
+                    {
+                      "enum": [
+                        "create",
+                        "update",
+                        "sign",
+                        "distribute",
+                        "delete"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                      "doNotSuggest": true
+                    }
+                  ]
+                },
+                "rbName": {
+                  "description": "Release bundle name"
+                },
+                "rbVersion": {
+                  "description": "Release bundle version"
+                },
+                "specSource": {
+                  "description": "File spec source"
+                },
+                "fileSpec": {
+                  "description": "Spec"
+                },
+                "file": {
+                  "description": "File path"
+                },
+                "replaceSpecVars": {
+                  "description": "Replace spec variables"
+                },
+                "specVars": {
+                  "description": "Spec vars"
+                },
+                "autoSign": {
+                  "description": "Automatically sign"
+                },
+                "passphrase": {
+                  "description": "Passphrase"
+                },
+                "useCustomRepo": {
+                  "description": "Use custom repo"
+                },
+                "customRepoName": {
+                  "description": "Custom repo name"
+                },
+                "addReleaseNotes": {
+                  "description": "Add release notes"
+                },
+                "releaseNotesFile": {
+                  "description": "Release notes file"
+                },
+                "releaseNotesSyntax": {
+                  "description": "Release notes syntax",
+                  "anyOf": [
+                    {
+                      "enum": ["markdown", "asciidoc", "plain_text"]
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                      "doNotSuggest": true
+                    }
+                  ]
+                },
+                "description": {
+                  "description": "Description"
+                },
+                "distRulesSource": {
+                  "description": "Distribution rules file source"
+                },
+                "distRulesTaskFile": {
+                  "description": "Distribution Rules File"
+                },
+                "distRulesFilePath": {
+                  "description": "File path"
+                },
+                "distSync": {
+                  "description": "Sync"
+                },
+                "maxWaitSync": {
+                  "description": "Sync timeout"
+                },
+                "deleteFromDist": {
+                  "description": "Delete from Distribution"
+                },
+                "dryRun": {
+                  "description": "Dry run"
+                },
+                "insecureTls": {
+                  "description": "Skip TLS certificates verification"
+                }
+              },
+              "additionalProperties": false,
+              "patternProperties": {
+                "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+              }
+            }
+          },
+          "firstProperty": ["task"],
+          "required": ["task"],
+          "patternProperties": {
+            "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+          }
+        },
+        {
+          "properties": {
+            "task": {
+              "description": "JFrog Docker\n\nPull and push docker images from and to Artifactory (while allowing to collect build-info) or scan local docker images with JFrog Xray.",
+              "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)|(?:^JFrogDocker@1$)",
+              "patternErrorMessage": "String does not match the pattern of \"^JFrogDocker@1$\"."
+            },
+            "inputs": {
+              "description": "JFrogDocker inputs",
+              "properties": {
+                "command": {
+                  "description": "Command",
+                  "anyOf": [
+                    {
+                      "enum": ["Pull", "Push", "Scan"]
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                      "doNotSuggest": true
+                    }
+                  ]
+                },
+                "xrayConnection": {
+                  "description": "JFrog Xray service connection"
+                },
+                "artifactoryConnection": {
+                  "description": "Artifactory service connection"
+                },
+                "imageName": {
+                  "description": "Image name"
+                },
+                "watchesSource": {
+                  "description": "Xray Watches Source",
+                  "anyOf": [
+                    {
+                      "enum": ["none", "watches", "project", "repoPath"]
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                      "doNotSuggest": true
+                    }
+                  ]
+                },
+                "watches": {
+                  "description": "Xray watches list"
+                },
+                "project": {
+                  "description": "JFrog Project key"
+                },
+                "repoPath": {
+                  "description": "Artifactory Repository Path"
+                },
+                "licenses": {
+                  "description": "Show licenses"
+                },
+                "allowFailBuild": {
+                  "description": "Allow fail build"
+                },
+                "allowBypassArchiveLimits": {
+                  "description": "Bypass archive limits"
+                },
+                "collectBuildInfo": {
+                  "description": "Collect build info"
+                },
+                "buildName": {
+                  "description": "Build name"
+                },
+                "buildNumber": {
+                  "description": "Build number"
+                },
+                "module": {
+                  "description": "Module name"
+                },
+                "projectKey": {
+                  "description": "Project key"
+                },
+                "includeEnvVars": {
+                  "description": "Include environment variables"
+                },
+                "threads": {
+                  "description": "# of threads",
+                  "anyOf": [
+                    {
+                      "enum": [
+                        "1",
+                        "2",
+                        "3",
+                        "4",
+                        "5",
+                        "6",
+                        "7",
+                        "8",
+                        "9",
+                        "10",
+                        "11",
+                        "12",
+                        "13",
+                        "14",
+                        "15",
+                        "16",
+                        "17",
+                        "18",
+                        "19",
+                        "20"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                      "doNotSuggest": true
+                    }
+                  ]
+                },
+                "skipLogin": {
+                  "description": "Skip Login"
+                }
+              },
+              "additionalProperties": false,
+              "patternProperties": {
+                "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+              }
+            }
+          },
+          "firstProperty": ["task"],
+          "required": ["task"],
+          "patternProperties": {
+            "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+          }
+        },
+        {
+          "properties": {
+            "task": {
+              "description": "JFrog npm\n\nInstall, pack and publish npm packages from and to Artifactory while allowing to collect build-info. The collected build-info can be later published to Artifactory by the \"JFrog Publish Build Info\" task.",
+              "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)|(?:^JFrogNpm@1$)",
+              "patternErrorMessage": "String does not match the pattern of \"^JFrogNpm@1$\"."
+            },
+            "inputs": {
+              "description": "JFrogNpm inputs",
+              "properties": {
+                "command": {
+                  "description": "Command",
+                  "anyOf": [
+                    {
+                      "enum": ["install", "ci", "pack and publish", "custom"]
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                      "doNotSuggest": true
+                    }
+                  ]
+                },
+                "customCommandAndArgs": {
+                  "description": "Command and arguments to execute"
+                },
+                "artifactoryConnection": {
+                  "description": "Artifactory service connection"
+                },
+                "sourceRepo": {
+                  "description": "Npm source repository"
+                },
+                "targetRepo": {
+                  "description": "Npm target repository"
+                },
+                "workingFolder": {
+                  "description": "Working folder with package.json"
+                },
+                "arguments": {
+                  "description": "Npm arguments"
+                },
+                "collectBuildInfo": {
+                  "description": "Collect build info"
+                },
+                "threads": {
+                  "description": "Build info threads",
+                  "anyOf": [
+                    {
+                      "enum": [
+                        "1",
+                        "2",
+                        "3",
+                        "4",
+                        "5",
+                        "6",
+                        "7",
+                        "8",
+                        "9",
+                        "10"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                      "doNotSuggest": true
+                    }
+                  ]
+                },
+                "buildName": {
+                  "description": "Build name"
+                },
+                "buildNumber": {
+                  "description": "Build number"
+                },
+                "projectKey": {
+                  "description": "Project key"
+                },
+                "includeEnvVars": {
+                  "description": "Include environment variables"
+                }
+              },
+              "additionalProperties": false,
+              "patternProperties": {
+                "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+              }
+            }
+          },
+          "firstProperty": ["task"],
+          "required": ["task"],
+          "patternProperties": {
+            "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+          }
+        },
+        {
+          "properties": {
+            "task": {
+              "description": "JFrog Build Promotion\n\nPromote a published build in Artifactory.",
+              "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)|(?:^JFrogBuildPromotion@1$)",
+              "patternErrorMessage": "String does not match the pattern of \"^JFrogBuildPromotion@1$\"."
+            },
+            "inputs": {
+              "description": "JFrogBuildPromotion inputs",
+              "properties": {
+                "artifactoryConnection": {
+                  "description": "Artifactory service connection"
+                },
+                "buildName": {
+                  "description": "Build name"
+                },
+                "buildNumber": {
+                  "description": "Build number"
+                },
+                "projectKey": {
+                  "description": "Project key"
+                },
+                "targetRepo": {
+                  "description": "Target repository"
+                },
+                "status": {
+                  "description": "Status"
+                },
+                "comment": {
+                  "description": "Comment"
+                },
+                "sourceRepo": {
+                  "description": "Source repository"
+                },
+                "includeDependencies": {
+                  "description": "Include build dependencies"
+                },
+                "copy": {
+                  "description": "Use copy"
+                },
+                "dryRun": {
+                  "description": "Dry run"
+                }
+              },
+              "additionalProperties": false,
+              "patternProperties": {
+                "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+              }
+            }
+          },
+          "firstProperty": ["task"],
+          "required": ["task"],
+          "patternProperties": {
+            "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+          }
+        },
+        {
+          "properties": {
+            "task": {
+              "description": "JFrog Pip\n\nRun 'pip install' while resolving the Python dependencies from Artifactory. This task also allows collecting build-info. The collected build-info can be later published to Artifactory by the \"JFrog Publish Build Info\" task.",
+              "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)|(?:^JFrogPip@1$)",
+              "patternErrorMessage": "String does not match the pattern of \"^JFrogPip@1$\"."
+            },
+            "inputs": {
+              "description": "JFrogPip inputs",
+              "properties": {
+                "artifactoryConnection": {
+                  "description": "Artifactory service connection"
+                },
+                "command": {
+                  "description": "Command",
+                  "anyOf": [
+                    {
+                      "enum": ["install"]
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                      "doNotSuggest": true
+                    }
+                  ]
+                },
+                "arguments": {
+                  "description": "Arguments"
+                },
+                "targetResolveRepo": {
+                  "description": "Resolution repository"
+                },
+                "collectBuildInfo": {
+                  "description": "Collect build info"
+                },
+                "buildName": {
+                  "description": "Build name"
+                },
+                "buildNumber": {
+                  "description": "Build number"
+                },
+                "projectKey": {
+                  "description": "Project key"
+                },
+                "includeEnvVars": {
+                  "description": "Include environment variables"
+                },
+                "noPipCache": {
+                  "description": "Disable local pip cache"
+                },
+                "virtualEnvActivation": {
+                  "description": "Virtual environment setup command"
+                },
+                "workingDirectory": {
+                  "description": "Working Directory"
+                }
+              },
+              "additionalProperties": false,
+              "patternProperties": {
+                "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+              }
+            }
+          },
+          "firstProperty": ["task"],
+          "required": ["task"],
+          "patternProperties": {
+            "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+          }
+        },
+        {
+          "properties": {
+            "task": {
+              "description": "JFrog Audit\n\nAudit your local project's dependencies by generating a dependency tree and scanning it with Xray.",
+              "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)|(?:^JFrogAudit@1$)",
+              "patternErrorMessage": "String does not match the pattern of \"^JFrogAudit@1$\"."
+            },
+            "inputs": {
+              "description": "JFrogAudit inputs",
+              "properties": {
+                "xrayConnection": {
+                  "description": "JFrog Xray service connection"
+                },
+                "workingDirectory": {
+                  "description": "Working Directory"
+                },
+                "watchesSource": {
+                  "description": "Xray Watches Source",
+                  "anyOf": [
+                    {
+                      "enum": ["none", "watches", "project", "repoPath"]
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "\\$\\{\\{[\\s\\S]*\\}\\}|\\$\\[[\\s\\S]*\\]|\\$\\([\\s\\S]*\\)",
+                      "doNotSuggest": true
+                    }
+                  ]
+                },
+                "watches": {
+                  "description": "Xray watches list"
+                },
+                "project": {
+                  "description": "JFrog Project key"
+                },
+                "repoPath": {
+                  "description": "Artifactory Repository Path"
+                },
+                "licenses": {
+                  "description": "Show licenses"
+                },
+                "allowFailBuild": {
+                  "description": "Allow fail build"
+                }
+              },
+              "additionalProperties": false,
+              "patternProperties": {
+                "^\\$\\{\\{[\\s\\S]*\\}\\}$": {}
+              }
+            }
+          },
           "firstProperty": ["task"],
           "required": ["task"],
           "patternProperties": {
