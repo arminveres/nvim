@@ -1,7 +1,10 @@
 return {
-    "aserowy/tmux.nvim",
+    "arminveres/tmux.nvim",
+    branch = "fix/rc-parsing",
     opts = {
-        -- disable copy sync, allowing us to use which-key registers again
-        copy_sync = { enable = false },
+        copy_sync = {
+            -- synchronizes registers when pressing p and P.
+            sync_registers_keymap_put = true,
+        },
     },
 }
