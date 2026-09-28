@@ -24,13 +24,12 @@ local root_markers = {
     ".git",
 }
 
-
 local command_template = {
     "clangd",
     "--background-index",
     "--header-insertion=iwyu", -- never
     "--clang-tidy",
-    "-j=" .. nproc(),
+    "-j=" .. nproc() / 2,
     "--header-insertion-decorators",
     "--all-scopes-completion",
     "--pch-storage=memory",
