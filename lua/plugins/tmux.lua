@@ -1,6 +1,5 @@
 return {
-    "arminveres/tmux.nvim",
-    branch = "fix/rc-parsing",
+    "aserowy/tmux.nvim",
     opts = {
         copy_sync = {
             -- synchronizes registers when pressing p and P.
