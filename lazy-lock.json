@@ -61,7 +61,7 @@
   "rustaceanvim": { "branch": "master", "commit": "9cb125de42c0256ed1bc1f9ded8d8f0381317a17" },
   "silicon.lua": { "branch": "main", "commit": "54682647a7c1c773dc4c9ab2bc309114a3b9e96f" },
   "snacks.nvim": { "branch": "main", "commit": "882c996cf28183f4d63640de0b4c02ec886d01f2" },
-  "tmux.nvim": { "branch": "main", "commit": "8d79b15bc8f115c956f467788db58b827afd0764" },
+  "tmux.nvim": { "branch": "main", "commit": "69a3c7af4599d80d4b713d2083916cd441d92acc" },
   "todo-comments.nvim": { "branch": "main", "commit": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668" },
   "treesj": { "branch": "main", "commit": "9f349ba62c524f065d6f43254d731ddf8319b9bf" },
   "vim-sleuth": { "branch": "master", "commit": "be69bff86754b1aa5adcbb527d7fcd1635a84080" },
