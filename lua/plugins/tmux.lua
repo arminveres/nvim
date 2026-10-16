@@ -1,5 +1,5 @@
 return {
-    "arminveres/tmux.nvim",
+    "aserowy/tmux.nvim",
     opts = {
         copy_sync = {
             -- synchronizes registers when pressing p and P.
