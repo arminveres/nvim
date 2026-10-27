@@ -90,3 +90,8 @@ vim.o.linespace = 0 -- adjust for lineheight
 vim.o.exrc = true
 
 -- vim.o.fixeol = false -- stop adding automatic newline, relevant for DOS files
+
+if os.getenv("WSL_DISTRO_NAME") ~= nil then
+    -- WSL does not recognize the faster refresh rate of the host Windows monitor.
+    vim.g.neovide_refresh_rate = 120
+end
