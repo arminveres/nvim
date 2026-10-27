@@ -148,6 +148,18 @@ local function get_lsps()
     return ""
 end
 
+-- vim.lsp.status() tracks all clients' progress and drops finished ones
+vim.api.nvim_create_autocmd("LspProgress", {
+    group = vim.api.nvim_create_augroup("StatuslineLspProgress", { clear = true }),
+    callback = function() vim.cmd.redrawstatus() end,
+})
+
+local function get_lsp_progress()
+    local status = vim.lsp.status()
+    if status == "" then return "" end
+    return " %#StatusLineDim#" .. status:gsub("%%", "%%%%") .. reset .. " | "
+end
+
 local function get_cwd()
     local cwd = vim.uv.cwd()
     if cwd then
@@ -188,6 +200,7 @@ function _G.MyStatusline()
         .. modified
         .. align -- right segment
         .. get_macro_state()
+        .. get_lsp_progress()
         .. get_lsps()
         .. filetype
         .. " | "
