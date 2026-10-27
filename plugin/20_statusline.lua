@@ -130,9 +130,7 @@ local mode_settings = {
     ["t"] = { name = "TERMINAL", hl = "Command" },
 }
 
-local function get_mode_hl(mode)
-    return string.format("%%#StatuslineMode%s#", mode.hl)
-end
+local function get_mode_hl(mode) return string.format("%%#StatuslineMode%s#", mode.hl) end
 
 local function get_mode_comp(mode)
     return string.format("%%#StatuslineMode%s# %s %s ", mode.hl, mode.name, reset)
@@ -161,12 +159,13 @@ local function get_lsp_progress()
 end
 
 local function get_cwd()
+    local result = ""
     local cwd = vim.uv.cwd()
     if cwd then
         local dirname = vim.fn.fnamemodify(cwd, ":t")
-        return dirname .. " > "
+        result = dirname .. " > "
     end
-    return ""
+    return " | " .. result
 end
 
 local function get_macro_state()
@@ -194,7 +193,6 @@ function _G.MyStatusline()
         .. get_mode_comp(mode)
         .. git_changes()
         .. get_diagnostics_info()
-        .. align -- middle segment
         .. get_cwd()
         .. file_name
         .. modified
