@@ -60,3 +60,14 @@ require("lazy").setup({
         },
     },
 })
+
+-- ui2 msg window changes buffers; notifying inside the built-in SwapExists handler then
+-- breaks the caller's :buffer (E812). Defer only that notification.
+local notify = vim.notify
+vim.notify = function(msg, ...)
+    if type(msg) == "string" and msg:find("^W325") then
+        local args = { ... }
+        return vim.schedule(function() notify(msg, unpack(args)) end)
+    end
+    return notify(msg, ...)
+end
