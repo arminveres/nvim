@@ -84,7 +84,7 @@ autocmd("BufEnter", {
 
 autocmd("FileType", {
     group = augroup("plugins.colorcolumn", {}),
-    pattern = { "oil", "noice", "qf", "lspinfo" },
+    pattern = { "oil", "pager", "msg", "cmd", "dialog", "qf", "lspinfo" },
     callback = function() vim.opt.colorcolumn = "" end,
 })
 

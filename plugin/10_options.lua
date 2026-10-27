@@ -89,6 +89,17 @@ vim.o.laststatus = 3
 vim.o.linespace = 0 -- adjust for lineheight
 vim.o.exrc = true
 
+-- experimental core ui2 replaces noice.nvim (messages, cmdline, pager)
+local ok, ui2 = pcall(require, "vim._core.ui2")
+if not ok then
+    vim.notify("ui2 unavailable, needs Neovim nightly", vim.log.levels.WARN)
+    return
+end
+-- 'msg' target: ephemeral float, suits cmdheight=0
+ui2.enable({ msg = { targets = { default = "msg" } } })
+vim.opt.messagesopt:append("timeout:4000")
+
+
 -- vim.o.fixeol = false -- stop adding automatic newline, relevant for DOS files
 
 if os.getenv("WSL_DISTRO_NAME") ~= nil then

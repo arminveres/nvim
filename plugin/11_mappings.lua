@@ -115,8 +115,8 @@ end, { expr = true, noremap = true })
 -- ================================================================================================
 map("n", "<leader>q", "<cmd>q<CR>", opts)
 map("n", "<leader>Q", "<Cmd>qall!<CR>", opts) -- quickquit
-map("n", "<leader>w", "<Cmd>w<CR>", opts) -- quick save
-map("n", "<leader>W", "<Cmd>w!<CR>", opts) -- quick save
+map("n", "<leader>w", "<Cmd>w<CR>", opts)     -- quick save
+map("n", "<leader>W", "<Cmd>w!<CR>", opts)    -- quick save
 -- keymap("n", ",WQ", "<Cmd>wq!<CR>", opts) -- quick save
 
 -- Yank to clipboard
@@ -222,3 +222,7 @@ map(
     function() require("bookmarks").goto_slot(4) end,
     merge_desc(opts, "[h]arpoon slot [4]")
 )
+
+map("n", "<leader>na", "<cmd>messages<cr>", { desc = "Open [n]essage [a]ll" })
+map("n", "<leader>nh", "<cmd>messages<cr>", { desc = "Open [n]essage [h]istory" })
+map("n", "<leader>nl", "g<", { desc = "Open [n]essage [l]ast" })
