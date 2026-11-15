@@ -18,3 +18,13 @@
   (#set! injection.language "zsh")
 )
 
+; lua
+(
+  (binding
+    attrpath: (attrpath (identifier) @attr)
+    expression: (indented_string_expression (string_fragment) @injection.content)
+  )
+  (#match? @attr "^(extraConfig)$")
+  (#set! injection.language "lua")
+)
+
