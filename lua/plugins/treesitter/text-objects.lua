@@ -9,7 +9,7 @@
 -- itself be a nested qualified_identifier (Foo::Bar::baz) - keep descending
 -- until we hit the innermost name.
 local function resolve_qualified(node)
-    while node and node:type() == "qualified_identifier" do
+    while node and (node:type() == "qualified_identifier" or node:type() == "scoped_identifier") do
         node = node:field("name")[1] or node
     end
     return node
@@ -50,7 +50,9 @@ local function last_identifier(node)
     return found
 end
 
-local function goto_name()
+local snap -- { start = {row,col}, name = {row,col} } of the last name-snap
+
+local function goto_name(is_call)
     local node = vim.treesitter.get_node()
     if not node then return end
 
@@ -72,11 +74,26 @@ local function goto_name()
         end
     end
 
-    local name = resolve_qualified(node:field("name")[1])
+    local name
+    if is_call then
+        -- callee: "function" (C/JS/Py/Rust) or "name" (Lua); for a.b.c() take the last identifier (c)
+        -- the climb above may overshoot to a wrapper (expression_statement); descend to the call node
+        while node and not (node:field("function")[1] or node:field("name")[1]) do
+            node = node:named_child(0)
+        end
+        if not node then return end
+        local callee = resolve_qualified(node:field("function")[1] or node:field("name")[1])
+        name = callee:type():match("identifier$") and callee or last_identifier(callee)
+        name = resolve_qualified(name)
+    else
+        name = resolve_qualified(node:field("name")[1])
         or follow_declarator(node:field("declarator")[1])
         or last_identifier(node)
+    end
     if name then
         local row, col = name:start()
+        local srow, scol = node:start()
+        snap = { start = { srow + 1, scol }, name = { row + 1, col } }
         vim.api.nvim_win_set_cursor(0, { row + 1, col })
     end
 end
@@ -93,21 +110,24 @@ end
 -- each ',' would flip relative to the previous flip and just toggle between
 -- two functions instead of continuing to step backward.
 local last_direction = true
+local last_capture = "@function.outer"
 
 local function goto_function_raw(opts)
     local move = require("nvim-treesitter-textobjects.move")
+    local capture = opts.capture or "@function.outer"
     if opts.forward then
-        move.goto_next_start("@function.outer", "textobjects")
+        move.goto_next_start(capture, "textobjects")
     else
-        -- goto_name snaps the cursor onto the def's name, which sits to the
-        -- right of the node's real start column. goto_previous_start only
-        -- checks "is there a match before my cursor col", so leaving the
-        -- cursor past col 0 makes the *current* function look like a valid
-        -- previous match forever. Reset to col 0 first so it actually steps back.
-        vim.api.nvim_win_set_cursor(0, { vim.fn.line("."), 0 })
-        move.goto_previous_start("@function.outer", "textobjects")
+        -- The cursor sits on the name, right of the node start, so the current
+        -- node would count as "previous". Step back onto the node start first
+        -- (only if the cursor is still where we snapped it).
+        local cur = vim.api.nvim_win_get_cursor(0)
+        if snap and cur[1] == snap.name[1] and cur[2] == snap.name[2] then
+            vim.api.nvim_win_set_cursor(0, snap.start)
+        end
+        move.goto_previous_start(capture, "textobjects")
     end
-    goto_name()
+    goto_name(capture == "@call.outer")
 
     -- move.goto_next_start/goto_previous_start are themselves wrapped with
     -- make_repeatable_move, so they clobber repeatable_move.last_move with
@@ -115,12 +135,13 @@ local function goto_function_raw(opts)
     -- ourselves here, after that clobber, so ; and , repeat move+snap -
     -- always against the stable last_direction, not this call's opts.
     require("nvim-treesitter-textobjects.repeatable_move").last_move =
-        { func = goto_function_raw, opts = { forward = last_direction }, additional_args = {} }
+        { func = goto_function_raw, opts = { forward = last_direction, capture = last_capture }, additional_args = {} }
 end
 
 local goto_function = require("nvim-treesitter-textobjects.repeatable_move").make_repeatable_move(
     function(opts)
         last_direction = opts.forward
+        last_capture = opts.capture or "@function.outer"
         goto_function_raw(opts)
     end
 )
@@ -365,24 +386,14 @@ return {
         {
             mode = { "n", "x", "o" },
             "]f",
-            function()
-                require("nvim-treesitter-textobjects.move").goto_next_start(
-                    "@call.outer",
-                    "textobjects"
-                )
-            end,
-            { desc = "Next Function" },
+            function() goto_function({ forward = true, capture = "@call.outer" }) end,
+            { desc = "Next Function Call" },
         },
         {
             mode = { "n", "x", "o" },
             "[f",
-            function()
-                require("nvim-treesitter-textobjects.move").goto_previous_start(
-                    "@call.outer",
-                    "textobjects"
-                )
-            end,
-            { desc = "Previous Function" },
+            function() goto_function({ forward = false, capture = "@call.outer" }) end,
+            { desc = "Previous Function Call" },
         },
 
         -- Classes
