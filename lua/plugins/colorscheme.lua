@@ -70,12 +70,12 @@ local function gruvbox_init()
         StatusLineNC = { fg = palette.dark1, bg = palette.dark1 },
         CursorLineNr = { fg = palette.bright_yellow, bg = "" },
 
-        GruvboxOrangeSign = { fg = palette.bright_orange, bg = nil },
-        GruvboxYellowSign = { fg = palette.bright_yellow, bg = nil },
-        GruvboxAquaSign = { fg = palette.bright_aqua },
-        GruvboxGreenSign = { fg = palette.bright_green },
-        GruvboxRedSign = { fg = palette.bright_red, bg = nil },
-        GruvboxBlueSign = { fg = palette.bright_blue },
+        GruvboxOrangeSign = { fg = palette.bright_orange, bg = palette.dark0 },
+        GruvboxYellowSign = { fg = palette.bright_yellow, bg = palette.dark0 },
+        GruvboxAquaSign = { fg = palette.bright_aqua, bg = palette.dark0 },
+        GruvboxGreenSign = { fg = palette.bright_green, bg = palette.dark0 },
+        GruvboxRedSign = { fg = palette.bright_red, bg = palette.dark0 },
+        GruvboxBlueSign = { fg = palette.bright_blue, bg = palette.dark0 },
 
         -- ========================================================================================
         -- Markdown highlights
