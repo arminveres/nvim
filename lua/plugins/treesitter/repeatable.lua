@@ -20,7 +20,6 @@ local pairs_to_wrap = {
     "q", -- quickfix list
     "l", -- loclist
     "b", -- Buffer
-    "s", -- spelling
 }
 
 return {
