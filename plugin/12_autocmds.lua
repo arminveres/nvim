@@ -110,3 +110,13 @@ autocmd("VimLeavePre", {
         out:close()
     end,
 })
+
+-- close quickfix/loclist window if it is the last window left, so `:q` quits nvim
+autocmd("WinEnter", {
+    group = augroup("AutoCloseLastQf", { clear = true }),
+    callback = function()
+        if vim.bo.buftype == "quickfix" and #vim.api.nvim_tabpage_list_wins(0) == 1 then
+            vim.cmd("quit")
+        end
+    end,
+})
