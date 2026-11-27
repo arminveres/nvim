@@ -30,16 +30,7 @@ local function setup()
             -- formatting.dockerfmt,
             formatting.stylua,
             -- exclude markdown so we can let other formatter do it (bullet point formatting)
-            formatting.prettier.with({
-                disabled_filetypes = { "markdown" },
-            }),
-            formatting.mdformat.with({
-                extra_args = {
-                    -- https://github.com/hukkin/mdformat
-                    -- apply consecutive numbering
-                    "--number",
-                },
-            }),
+            formatting.prettier,
             formatting.shfmt,
             require("none-ls.formatting.ruff_format"),
             formatting.stylelint,
