@@ -41,7 +41,7 @@ local function setup()
                 },
             }),
             formatting.shfmt,
-            formatting.black, --.with({ extra_args = { "--fast" } }),
+            require("none-ls.formatting.ruff_format"),
             formatting.stylelint,
             formatting.nixfmt.with({ extra_args = { "--width=100" } }),
             formatting.swift_format,

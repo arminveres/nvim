@@ -26,7 +26,7 @@ return {
                 -- import sorting
                 pyls_isort = { enabled = true },
                 -- formatter options
-                black = { enabled = true },
+                black = { enabled = false },
                 autopep8 = { enabled = false },
                 yapf = { enabled = false },
                 -- linter options
